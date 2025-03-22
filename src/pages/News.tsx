@@ -1,41 +1,28 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { newsData } from '@/data/news';
+import { ArrowRight, Filter } from 'lucide-react';
+import { newsData, NewsItem } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Skeleton } from "@/components/ui/skeleton";
 
-const ITEMS_PER_PAGE = 9;
+type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
 
 const News = () => {
   useAnimateOnScroll();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [paginatedNews, setPaginatedNews] = useState<typeof newsData>([]);
+  const [filter, setFilter] = useState<Category>('Все');
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>(newsData);
   
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
-    
-    // Simulate loading
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
   }, []);
   
   useEffect(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    setPaginatedNews(newsData.slice(startIndex, endIndex));
-    
-    // Scroll to top when page changes
-    window.scrollTo(0, 0);
-  }, [currentPage]);
-  
-  const totalPages = Math.ceil(newsData.length / ITEMS_PER_PAGE);
+    if (filter === 'Все') {
+      setFilteredNews(newsData);
+    } else {
+      setFilteredNews(newsData.filter(item => item.category === filter));
+    }
+  }, [filter]);
   
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -62,103 +49,85 @@ const News = () => {
         </div>
       </section>
       
-      {/* News Grid */}
+      {/* News Filter and Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Все публикации</h2>
-          
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="animate-on-scroll">
-                  <Skeleton className="h-48 w-full mb-4" />
-                  <Skeleton className="h-6 w-1/4 mb-2" />
-                  <Skeleton className="h-8 w-3/4 mb-4" />
-                  <Skeleton className="h-24 w-full mb-4" />
-                  <Skeleton className="h-6 w-1/3" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <>
-              {/* News Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedNews.map((news) => (
-                  <Card 
-                    key={news.id} 
-                    className="overflow-hidden transition-all duration-300 hover:shadow-md group animate-on-scroll"
+          {/* Filters */}
+          <div className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-on-scroll">
+            <h2 className="text-2xl font-semibold">Все публикации</h2>
+            
+            <div className="flex items-center">
+              <Filter size={20} className="mr-2 text-primary" />
+              <div className="flex flex-wrap gap-2">
+                {(['Все', 'Проекты', 'Технологии', 'События'] as Category[]).map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setFilter(category)}
+                    className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
+                      filter === category
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary/80 hover:bg-secondary text-foreground'
+                    }`}
                   >
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={news.image}
-                        alt={news.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                    
-                    <CardHeader className="p-6 pb-2">
-                      <CardDescription>
-                        {formatDate(news.date)}
-                      </CardDescription>
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                        {news.title}
-                      </CardTitle>
-                    </CardHeader>
-                    
-                    <CardContent className="p-6 pt-2">
-                      <p className="text-muted-foreground">
-                        {news.summary}
-                      </p>
-                    </CardContent>
-                    
-                    <CardFooter className="p-6 pt-0">
-                      <Link 
-                        to={`/news/${news.id}`}
-                        className="text-primary font-medium flex items-center gap-1 hover:underline"
-                      >
-                        Читать далее
-                        <ArrowRight size={16} />
-                      </Link>
-                    </CardFooter>
-                  </Card>
+                    {category}
+                  </button>
                 ))}
               </div>
-              
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <Pagination className="mt-12">
-                  <PaginationContent>
-                    {currentPage > 1 && (
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        />
-                      </PaginationItem>
-                    )}
-                    
-                    {Array.from({ length: totalPages }).map((_, index) => (
-                      <PaginationItem key={index}>
-                        <PaginationLink
-                          isActive={currentPage === index + 1}
-                          onClick={() => setCurrentPage(index + 1)}
-                        >
-                          {index + 1}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
-                    
-                    {currentPage < totalPages && (
-                      <PaginationItem>
-                        <PaginationNext 
-                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        />
-                      </PaginationItem>
-                    )}
-                  </PaginationContent>
-                </Pagination>
-              )}
-            </>
+            </div>
+          </div>
+          
+          {/* News Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredNews.map((news) => (
+              <div 
+                key={news.id} 
+                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                      {news.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {formatDate(news.date)}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                    {news.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4">
+                    {news.summary}
+                  </p>
+                  
+                  <Link 
+                    to={`/news/${news.id}`}
+                    className="text-primary font-medium flex items-center gap-1 hover:underline"
+                  >
+                    Читать далее
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {filteredNews.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">
+                Новостей в категории "{filter}" пока нет
+              </p>
+            </div>
           )}
         </div>
       </section>
