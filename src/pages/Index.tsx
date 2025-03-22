@@ -1,12 +1,205 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
+import { Hero } from '@/components/home/Hero';
+import { Services } from '@/components/home/Services';
+import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
 const Index = () => {
+  useAnimateOnScroll();
+  
+  useEffect(() => {
+    document.title = 'ООО «Гранит» — Буровзрывные работы на Дальнем Востоке';
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div>
+      <Hero />
+      <Services />
+      
+      {/* About Section */}
+      <section className="py-20 overflow-hidden relative">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-on-scroll">
+                10 лет на рынке
+              </span>
+              
+              <h2 className="section-title mb-6 animate-on-scroll">
+                Экспертиза в буровзрывных работах и производстве взрывчатых веществ
+              </h2>
+              
+              <p className="text-muted-foreground mb-6 animate-on-scroll">
+                ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ).
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3 animate-on-scroll">
+                  <div className="mt-1 text-primary">
+                    <Shield size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Независимость от поставщиков</h3>
+                    <p className="text-muted-foreground">Собственное производство ЭВВ гарантирует стабильность поставок и контроль качества.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 animate-on-scroll">
+                  <div className="mt-1 text-primary">
+                    <Map size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Работа в сложных условиях</h3>
+                    <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 animate-on-scroll">
+                  <div className="mt-1 text-primary">
+                    <Truck size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Производственные мощности</h3>
+                    <p className="text-muted-foreground">Заводы в Забайкалье и Хабаровске, линия в Якутии для обеспечения всего Дальнего Востока.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Link 
+                to="/about" 
+                className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
+              >
+                Подробнее о компании
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
+              <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
+                <img
+                  src="/images/about-company.jpg"
+                  alt="О компании ООО Гранит"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              
+              <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
+                <div className="flex items-center gap-3 mb-2">
+                  <Scroll className="text-primary" size={20} />
+                  <h4 className="font-semibold">Лицензии и сертификаты</h4>
+                </div>
+                <p className="text-sm text-muted-foreground">Все необходимые разрешения для проведения работ любой сложности</p>
+                <Link to="/licenses" className="text-primary text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline">
+                  Смотреть все
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="py-20 bg-primary/5 dark:bg-primary/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="section-title mb-6 animate-on-scroll">
+              Готовы обсудить ваш проект?
+            </h2>
+            
+            <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
+              Мы предлагаем комплексные решения для горнодобывающей отрасли, от проектирования до реализации буровзрывных работ в самых сложных условиях.
+            </p>
+            
+            <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+              <Link to="/contact" className="btn-primary">
+                Оставить заявку
+              </Link>
+              
+              <Link to="/technologies" className="btn-outline">
+                Наши технологии
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* News Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
+            <div>
+              <h2 className="section-title mb-2 animate-on-scroll">Последние новости</h2>
+              <p className="text-muted-foreground animate-on-scroll">Актуальная информация о наших проектах и достижениях</p>
+            </div>
+            
+            <Link 
+              to="/news" 
+              className="btn-outline flex items-center gap-2 animate-on-scroll"
+            >
+              Все новости
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((index) => (
+              <div 
+                key={index}
+                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={`/images/news/news-${index}.jpg`}
+                    alt={`Новость ${index}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                      {index === 1 ? 'Проекты' : index === 2 ? 'Технологии' : 'События'}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date().toLocaleDateString('ru-RU')}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                    {index === 1 
+                      ? 'Запуск завода в Забайкалье' 
+                      : index === 2 
+                        ? 'Успешные испытания патронов в Хабаровске' 
+                        : 'Участие в проекте БАМ-2'}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4">
+                    {index === 1 
+                      ? 'ООО «Гранит» ввело в эксплуатацию завод по производству компонентов ЭВВ мощностью 30 тыс. тонн/год.'
+                      : index === 2 
+                        ? 'Начало выпуска эмульсионных патронов диаметром 32–90 мм для автономного применения.'
+                        : 'Применение мобильных ПСЗУ позволило сократить сроки взрывных работ на 15%.'}
+                  </p>
+                  
+                  <Link 
+                    to={`/news/${index}`}
+                    className="text-primary font-medium flex items-center gap-1 hover:underline"
+                  >
+                    Читать далее
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
