@@ -1,39 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { cn } from '@/lib/utils';
 
 const mainNavItems = [
   { name: 'Главная', path: '/' },
-  { 
-    name: 'Техника и технологии', 
-    path: '/technologies',
-    hasSubmenu: true,
-    submenu: [
-      { name: 'Галерея', path: '/gallery' },
-      { name: 'Лицензии', path: '/licenses' },
-    ] 
-  },
+  { name: 'Техника и технологии', path: '/technologies' },
   { name: 'Новости', path: '/news' },
-  { 
-    name: 'О компании', 
-    path: '/about',
-    hasSubmenu: true,
-    submenu: [
-      { name: 'Сотрудники', path: '/team' },
-      { name: 'Вакансии', path: '/careers' },
-    ] 
-  },
+  { name: 'О компании', path: '/about' },
   { name: 'ЧаВо', path: '/faq' },
   { name: 'Контакты', path: '/contact' },
 ];
@@ -79,67 +54,20 @@ export const Header: React.FC = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList>
-            {mainNavItems.map((item, index) => (
-              item.hasSubmenu ? (
-                <NavigationMenuItem key={item.path} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                  <NavigationMenuTrigger 
-                    className={cn(
-                      "nav-link flex items-center gap-1", 
-                      isActive(item.path) ? "nav-link-active" : ""
-                    )}
-                  >
-                    {item.name}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-2 p-2">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={item.path}
-                            className={cn(
-                              "block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                              isActive(item.path) ? "bg-accent text-accent-foreground" : ""
-                            )}
-                          >
-                            {item.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      {item.submenu?.map((subItem) => (
-                        <li key={subItem.path}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              to={subItem.path}
-                              className={cn(
-                                "block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                                isActive(subItem.path) ? "bg-accent text-accent-foreground" : ""
-                              )}
-                            >
-                              {subItem.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={item.path} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                  <Link
-                    to={item.path}
-                    className={`nav-link ${
-                      isActive(item.path) ? 'nav-link-active' : ''
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                </NavigationMenuItem>
-              )
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <nav className="hidden md:flex items-center space-x-8">
+          {mainNavItems.map((item, index) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`nav-link ${
+                isActive(item.path) ? 'nav-link-active' : ''
+              }`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
         <div className="flex md:hidden items-center gap-4">
           <ThemeToggle />
@@ -163,51 +91,24 @@ export const Header: React.FC = () => {
           isMenuOpen ? 'max-h-[800px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
         }`}
       >
-        <nav className="container mx-auto px-4 flex flex-col space-y-2">
+        <nav className="container mx-auto px-4 flex flex-col space-y-4">
           {mainNavItems.map((item, index) => (
-            <div key={item.path} className="flex flex-col">
-              <Link
-                to={item.path}
-                className={`py-2 px-4 rounded-lg ${
-                  isActive(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground font-medium' : 'hover:bg-muted/50'
-                }`}
-                style={{ 
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
-                  opacity: isMenuOpen ? 1 : 0,
-                  transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
-                  transition: 'opacity 0.3s ease, transform 0.3s ease'
-                }}
-                onClick={closeMenu}
-              >
-                <div className="flex justify-between items-center">
-                  <span>{item.name}</span>
-                  {item.hasSubmenu && <ChevronDown size={16} className="ml-1" />}
-                </div>
-              </Link>
-              
-              {item.hasSubmenu && (
-                <div className="pl-6 space-y-2 mt-1">
-                  {item.submenu?.map((subItem) => (
-                    <Link
-                      key={subItem.path}
-                      to={subItem.path}
-                      className={`block py-2 px-4 rounded-lg ${
-                        isActive(subItem.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground font-medium' : 'hover:bg-muted/50'
-                      }`}
-                      style={{ 
-                        transitionDelay: isMenuOpen ? `${(index + 1) * 50}ms` : '0ms',
-                        opacity: isMenuOpen ? 1 : 0,
-                        transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
-                        transition: 'opacity 0.3s ease, transform 0.3s ease'
-                      }}
-                      onClick={closeMenu}
-                    >
-                      {subItem.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`py-2 px-4 rounded-lg ${
+                isActive(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground font-medium' : 'hover:bg-muted/50'
+              }`}
+              style={{ 
+                transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
+                opacity: isMenuOpen ? 1 : 0,
+                transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
+                transition: 'opacity 0.3s ease, transform 0.3s ease'
+              }}
+              onClick={closeMenu}
+            >
+              {item.name}
+            </Link>
           ))}
         </nav>
       </div>
