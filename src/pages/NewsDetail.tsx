@@ -21,7 +21,7 @@ const NewsDetail = () => {
       
       // Get related news (same category, excluding current)
       const related = newsData
-        .filter(item => item.category === currentNews.category && item.id !== id)
+        .filter(item => item.id !== id)
         .slice(0, 3);
       
       setRelatedNews(related);
@@ -65,11 +65,6 @@ const NewsDetail = () => {
                 <Calendar size={18} className="text-primary" />
                 <span>{formatDate(news.date)}</span>
               </div>
-              
-              <div className="flex items-center gap-1.5">
-                <Tag size={18} className="text-primary" />
-                <span>{news.category}</span>
-              </div>
             </div>
           </div>
         </div>
@@ -100,7 +95,7 @@ const NewsDetail = () => {
         <section className="py-16 bg-primary/5 dark:bg-primary/10">
           <div className="container mx-auto px-4">
             <h2 className="section-title text-center mb-12 animate-on-scroll">
-              Похожие новости
+              Другие новости
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -120,9 +115,6 @@ const NewsDetail = () => {
                   
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                        {item.category}
-                      </span>
                       <span className="text-xs text-muted-foreground">
                         {formatDate(item.date)}
                       </span>

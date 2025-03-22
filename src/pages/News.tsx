@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { newsData } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const News = () => {
   useAnimateOnScroll();
@@ -45,9 +46,9 @@ const News = () => {
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {newsData.map((news) => (
-              <div 
+              <Card 
                 key={news.id} 
-                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+                className="overflow-hidden transition-all duration-300 hover:shadow-md group animate-on-scroll"
               >
                 <div className="aspect-video overflow-hidden">
                   <img
@@ -58,21 +59,22 @@ const News = () => {
                   />
                 </div>
                 
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs text-muted-foreground">
-                      {formatDate(news.date)}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <CardHeader className="p-6 pb-2">
+                  <CardDescription>
+                    {formatDate(news.date)}
+                  </CardDescription>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
                     {news.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-4">
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="p-6 pt-2">
+                  <p className="text-muted-foreground">
                     {news.summary}
                   </p>
-                  
+                </CardContent>
+                
+                <CardFooter className="p-6 pt-0">
                   <Link 
                     to={`/news/${news.id}`}
                     className="text-primary font-medium flex items-center gap-1 hover:underline"
@@ -80,8 +82,8 @@ const News = () => {
                     Читать далее
                     <ArrowRight size={16} />
                   </Link>
-                </div>
-              </div>
+                </CardFooter>
+              </Card>
             ))}
           </div>
         </div>
