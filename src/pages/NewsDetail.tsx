@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar } from 'lucide-react';
 import { newsData, NewsItem } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
@@ -11,29 +13,48 @@ const NewsDetail = () => {
   const navigate = useNavigate();
   const [news, setNews] = useState<NewsItem | null>(null);
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    const currentNews = newsData.find(item => item.id === id);
-    
-    if (currentNews) {
-      setNews(currentNews);
-      document.title = `${currentNews.title} — ООО «Гранит»`;
+    const fetchNews = () => {
+      setIsLoading(true);
+      const currentNews = newsData.find(item => item.id === id);
       
-      // Get related news (same category, excluding current)
-      const related = newsData
-        .filter(item => item.id !== id)
-        .slice(0, 3);
-      
-      setRelatedNews(related);
-    } else {
-      navigate('/news', { replace: true });
-    }
+      if (currentNews) {
+        setNews(currentNews);
+        document.title = `${currentNews.title} — ООО «Гранит»`;
+        
+        // Get related news (excluding current)
+        const related = newsData
+          .filter(item => item.id !== id)
+          .slice(0, 3);
+        
+        setRelatedNews(related);
+      } else {
+        navigate('/news', { replace: true });
+      }
+      setIsLoading(false);
+    };
+
+    fetchNews();
   }, [id, navigate]);
   
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
+  
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-16">
+        <Skeleton className="h-12 w-64 mb-8" />
+        <Skeleton className="h-64 w-full mb-8" />
+        <Skeleton className="h-24 w-full mb-4" />
+        <Skeleton className="h-24 w-full mb-4" />
+        <Skeleton className="h-24 w-full" />
+      </div>
+    );
+  }
   
   if (!news) {
     return null;
@@ -74,7 +95,7 @@ const NewsDetail = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="glass-card rounded-xl overflow-hidden mb-10 animate-on-scroll">
+            <div className="rounded-xl overflow-hidden mb-10 animate-on-scroll">
               <img
                 src={news.image}
                 alt={news.title}
@@ -86,6 +107,17 @@ const NewsDetail = () => {
               className="prose prose-lg max-w-none dark:prose-invert animate-on-scroll"
               dangerouslySetInnerHTML={{ __html: news.content }}
             />
+            
+            <div className="mt-12 flex justify-between items-center">
+              <Button
+                variant="outline"
+                onClick={() => navigate('/news')}
+                className="flex items-center gap-1"
+              >
+                <ArrowLeft size={18} />
+                Назад к новостям
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -94,7 +126,7 @@ const NewsDetail = () => {
       {relatedNews.length > 0 && (
         <section className="py-16 bg-primary/5 dark:bg-primary/10">
           <div className="container mx-auto px-4">
-            <h2 className="section-title text-center mb-12 animate-on-scroll">
+            <h2 className="text-2xl font-semibold text-center mb-12 animate-on-scroll">
               Другие новости
             </h2>
             
@@ -102,7 +134,7 @@ const NewsDetail = () => {
               {relatedNews.map((item) => (
                 <div 
                   key={item.id} 
-                  className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+                  className="bg-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md group animate-on-scroll"
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
