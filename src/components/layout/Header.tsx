@@ -7,6 +7,7 @@ import { ThemeToggle } from '../ui/ThemeToggle';
 const mainNavItems = [
   { name: 'Главная', path: '/' },
   { name: 'Техника и технологии', path: '/technologies' },
+  { name: 'Новости', path: '/news' },
   { name: 'О компании', path: '/about' },
   { name: 'ЧаВо', path: '/faq' },
   { name: 'Контакты', path: '/contact' },

@@ -1,45 +1,38 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { newsData } from '@/data/news';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Skeleton } from "@/components/ui/skeleton";
-
-const ITEMS_PER_PAGE = 9;
 
 const News = () => {
   useAnimateOnScroll();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [paginatedNews, setPaginatedNews] = useState<typeof newsData>([]);
-  
+
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
-    
-    // Simulate loading
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
   }, []);
-  
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    setPaginatedNews(newsData.slice(startIndex, endIndex));
-    
-    // Scroll to top when page changes
-    window.scrollTo(0, 0);
-  }, [currentPage]);
-  
-  const totalPages = Math.ceil(newsData.length / ITEMS_PER_PAGE);
-  
+
+  // Sort news by date (newest first)
+  const sortedNews = [...newsData].sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('ru-RU', options);
+    const date = new Date(dateString);
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
   };
 
   return (
@@ -62,104 +55,68 @@ const News = () => {
         </div>
       </section>
       
-      {/* News Grid */}
+      {/* News Carousel */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Все публикации</h2>
+          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Последние новости</h2>
           
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="animate-on-scroll">
-                  <Skeleton className="h-48 w-full mb-4" />
-                  <Skeleton className="h-6 w-1/4 mb-2" />
-                  <Skeleton className="h-8 w-3/4 mb-4" />
-                  <Skeleton className="h-24 w-full mb-4" />
-                  <Skeleton className="h-6 w-1/3" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <>
-              {/* News Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedNews.map((news) => (
-                  <Card 
-                    key={news.id} 
-                    className="overflow-hidden transition-all duration-300 hover:shadow-md group animate-on-scroll"
-                  >
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="mx-auto animate-on-scroll max-w-7xl"
+          >
+            <CarouselContent className="-ml-4">
+              {sortedNews.map((news) => (
+                <CarouselItem key={news.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
+                  <Card className="h-full flex flex-col">
                     <div className="aspect-video overflow-hidden">
-                      <img
-                        src={news.image}
-                        alt={news.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
+                      <img 
+                        src={news.image} 
+                        alt={news.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
                     </div>
                     
-                    <CardHeader className="p-6 pb-2">
-                      <CardDescription>
+                    <CardHeader>
+                      <div className="text-sm text-muted-foreground mb-2">
                         {formatDate(news.date)}
-                      </CardDescription>
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                        {news.title}
-                      </CardTitle>
+                      </div>
+                      <CardTitle className="line-clamp-2">{news.title}</CardTitle>
                     </CardHeader>
                     
-                    <CardContent className="p-6 pt-2">
-                      <p className="text-muted-foreground">
+                    <CardContent className="flex-grow">
+                      <p className="text-sm text-muted-foreground line-clamp-3">
                         {news.summary}
                       </p>
                     </CardContent>
                     
-                    <CardFooter className="p-6 pt-0">
-                      <Link 
-                        to={`/news/${news.id}`}
-                        className="text-primary font-medium flex items-center gap-1 hover:underline"
-                      >
-                        Читать далее
-                        <ArrowRight size={16} />
+                    <CardFooter>
+                      <Link to={`/news/${news.id}`}>
+                        <Button variant="ghost" className="p-0 flex items-center gap-1 text-primary hover:text-primary/80">
+                          Читать далее <ArrowRight size={16} />
+                        </Button>
                       </Link>
                     </CardFooter>
                   </Card>
-                ))}
-              </div>
-              
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <Pagination className="mt-12">
-                  <PaginationContent>
-                    {currentPage > 1 && (
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        />
-                      </PaginationItem>
-                    )}
-                    
-                    {Array.from({ length: totalPages }).map((_, index) => (
-                      <PaginationItem key={index}>
-                        <PaginationLink
-                          isActive={currentPage === index + 1}
-                          onClick={() => setCurrentPage(index + 1)}
-                        >
-                          {index + 1}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
-                    
-                    {currentPage < totalPages && (
-                      <PaginationItem>
-                        <PaginationNext 
-                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        />
-                      </PaginationItem>
-                    )}
-                  </PaginationContent>
-                </Pagination>
-              )}
-            </>
-          )}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-1 lg:-left-12 bg-background/80 backdrop-blur-sm" />
+            <CarouselNext className="right-1 lg:-right-12 bg-background/80 backdrop-blur-sm" />
+          </Carousel>
+          
+          <div className="mt-16 text-center animate-on-scroll">
+            <p className="text-lg mb-6">
+              Узнайте больше о последних достижениях и проектах нашей компании
+            </p>
+            <Link to="/news">
+              <Button size="lg" className="font-medium">
+                Все новости
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

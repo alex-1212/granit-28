@@ -1,69 +1,67 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar } from 'lucide-react';
-import { newsData, NewsItem } from '@/data/news';
+import { newsData } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [news, setNews] = useState<NewsItem | null>(null);
-  const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  
+  // Find the current news item
+  const newsItem = newsData.find(item => item.id === id);
   
   useEffect(() => {
-    const fetchNews = () => {
-      setIsLoading(true);
-      const currentNews = newsData.find(item => item.id === id);
-      
-      if (currentNews) {
-        setNews(currentNews);
-        document.title = `${currentNews.title} — ООО «Гранит»`;
-        
-        // Get related news (excluding current)
-        const related = newsData
-          .filter(item => item.id !== id)
-          .slice(0, 3);
-        
-        setRelatedNews(related);
-      } else {
-        navigate('/news', { replace: true });
+    // Redirect if news not found
+    if (!newsItem) {
+      navigate('/news', { replace: true });
+      return;
+    }
+    
+    // Set page title and meta description
+    document.title = `${newsItem.title} — ООО «Гранит»`;
+    
+    // Create meta description tag if it doesn't exist
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    
+    // Set the content attribute
+    metaDescription.setAttribute('content', newsItem.summary);
+    
+    // Cleanup on unmount
+    return () => {
+      document.title = 'ООО «Гранит»';
+      if (metaDescription) {
+        metaDescription.setAttribute('content', '');
       }
-      setIsLoading(false);
     };
-
-    fetchNews();
-  }, [id, navigate]);
+  }, [newsItem, id, navigate]);
   
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('ru-RU', options);
-  };
-  
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-16">
-        <Skeleton className="h-12 w-64 mb-8" />
-        <Skeleton className="h-64 w-full mb-8" />
-        <Skeleton className="h-24 w-full mb-4" />
-        <Skeleton className="h-24 w-full mb-4" />
-        <Skeleton className="h-24 w-full" />
-      </div>
-    );
-  }
-  
-  if (!news) {
+  // If news not found and navigation is pending
+  if (!newsItem) {
     return null;
   }
+  
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+  };
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden">
+      <section className="pt-16 pb-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
@@ -78,14 +76,12 @@ const NewsDetail = () => {
             </Link>
             
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
-              {news.title}
+              {newsItem.title}
             </h1>
             
-            <div className="flex flex-wrap items-center gap-4 mb-8 animate-fade-in animate-delay-200">
-              <div className="flex items-center gap-1.5">
-                <Calendar size={18} className="text-primary" />
-                <span>{formatDate(news.date)}</span>
-              </div>
+            <div className="flex items-center gap-1.5 mb-4 animate-fade-in animate-delay-200">
+              <Calendar size={18} className="text-primary" />
+              <span>{formatDate(newsItem.date)}</span>
             </div>
           </div>
         </div>
@@ -97,79 +93,30 @@ const NewsDetail = () => {
           <div className="max-w-3xl mx-auto">
             <div className="rounded-xl overflow-hidden mb-10 animate-on-scroll">
               <img
-                src={news.image}
-                alt={news.title}
-                className="w-full aspect-video object-cover"
+                src={newsItem.image}
+                alt={newsItem.title}
+                className="w-full h-auto"
               />
             </div>
             
             <div 
               className="prose prose-lg max-w-none dark:prose-invert animate-on-scroll"
-              dangerouslySetInnerHTML={{ __html: news.content }}
+              dangerouslySetInnerHTML={{ __html: newsItem.content }}
             />
             
-            <div className="mt-12 flex justify-between items-center">
+            <div className="mt-12 animate-on-scroll">
               <Button
                 variant="outline"
                 onClick={() => navigate('/news')}
                 className="flex items-center gap-1"
               >
                 <ArrowLeft size={18} />
-                Назад к новостям
+                Вернуться к новостям
               </Button>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* Related News */}
-      {relatedNews.length > 0 && (
-        <section className="py-16 bg-primary/5 dark:bg-primary/10">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-semibold text-center mb-12 animate-on-scroll">
-              Другие новости
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {relatedNews.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="bg-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md group animate-on-scroll"
-                >
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs text-muted-foreground">
-                        {formatDate(item.date)}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    
-                    <Link 
-                      to={`/news/${item.id}`}
-                      className="text-primary font-medium flex items-center gap-1 hover:underline"
-                    >
-                      Читать
-                      <ArrowLeft size={16} className="rotate-180" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </div>
   );
 };
