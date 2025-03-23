@@ -1,9 +1,13 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  return <footer className="pt-16 pb-8 border-t border-border bg-white">
+  
+  return (
+    <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
@@ -73,13 +77,19 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone size={20} className="mr-3 text-primary mt-0.5" />
-                <a href="tel:+79145418570" className="text-foreground/80 hover:text-primary transition-colors">
+                <a 
+                  href="tel:+79145418570" 
+                  className="text-foreground/80 hover:text-primary transition-colors"
+                >
                   +7 914 541 85 70
                 </a>
               </li>
               <li className="flex items-start">
                 <Mail size={20} className="mr-3 text-primary mt-0.5" />
-                <a href="mailto:granit-svg@mail.ru" className="text-foreground/80 hover:text-primary transition-colors">
+                <a 
+                  href="mailto:granit-svg@mail.ru" 
+                  className="text-foreground/80 hover:text-primary transition-colors"
+                >
                   granit-svg@mail.ru
                 </a>
               </li>
@@ -113,5 +123,6 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
