@@ -1,8 +1,9 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { newsData } from '@/data/news';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   Carousel, 
@@ -12,18 +13,14 @@ import {
   CarouselPrevious 
 } from "@/components/ui/carousel";
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { getAllNews } from '@/services/newsService';
 
 const News = () => {
   useAnimateOnScroll();
-  
+
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
   }, []);
 
-  // Get news from service
-  const newsData = getAllNews();
-  
   // Sort news by date (newest first)
   const sortedNews = [...newsData].sort((a, b) => 
     new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -58,53 +55,10 @@ const News = () => {
         </div>
       </section>
       
-      {/* News List */}
+      {/* News Carousel */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedNews.map((news) => (
-              <Card key={news.id} className="h-full flex flex-col animate-on-scroll">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={news.image} 
-                    alt={news.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                
-                <CardHeader>
-                  <div className="text-sm text-muted-foreground mb-2">
-                    {formatDate(news.date)}
-                  </div>
-                  <CardTitle className="line-clamp-2">{news.title}</CardTitle>
-                </CardHeader>
-                
-                <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">
-                    {news.summary}
-                  </p>
-                </CardContent>
-                
-                <CardFooter>
-                  <Link to={`/news/${news.id}`} className="w-full">
-                    <Button 
-                      variant="outline" 
-                      className="w-full flex items-center justify-center gap-2"
-                    >
-                      Читать далее <ArrowRight size={16} />
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* News Carousel for Homepage */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Главные новости</h2>
+          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Последние новости</h2>
           
           <Carousel
             opts={{
@@ -114,7 +68,7 @@ const News = () => {
             className="mx-auto animate-on-scroll max-w-7xl"
           >
             <CarouselContent className="-ml-4">
-              {sortedNews.slice(0, 6).map((news) => (
+              {sortedNews.map((news) => (
                 <CarouselItem key={news.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
                   <Card className="h-full flex flex-col">
                     <div className="aspect-video overflow-hidden">
@@ -139,11 +93,8 @@ const News = () => {
                     </CardContent>
                     
                     <CardFooter>
-                      <Link to={`/news/${news.id}`} className="w-full">
-                        <Button 
-                          variant="ghost" 
-                          className="w-full p-0 flex items-center justify-center gap-1 text-primary hover:text-primary/80"
-                        >
+                      <Link to={`/news/${news.id}`}>
+                        <Button variant="ghost" className="p-0 flex items-center gap-1 text-primary hover:text-primary/80">
                           Читать далее <ArrowRight size={16} />
                         </Button>
                       </Link>
@@ -155,6 +106,17 @@ const News = () => {
             <CarouselPrevious className="left-1 lg:-left-12 bg-background/80 backdrop-blur-sm" />
             <CarouselNext className="right-1 lg:-right-12 bg-background/80 backdrop-blur-sm" />
           </Carousel>
+          
+          <div className="mt-16 text-center animate-on-scroll">
+            <p className="text-lg mb-6">
+              Узнайте больше о последних достижениях и проектах нашей компании
+            </p>
+            <Link to="/news">
+              <Button size="lg" className="font-medium">
+                Все новости
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
