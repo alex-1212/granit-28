@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -41,7 +42,7 @@ export const Header: React.FC = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'py-3 bg-background/80 dark:bg-background/80 backdrop-blur-lg shadow-sm' 
+          ? 'py-3 bg-white/90 dark:bg-background/80 backdrop-blur-lg shadow-sm' 
           : 'py-5 bg-transparent'
       }`}
     >
@@ -85,7 +86,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`md:hidden absolute top-full left-0 right-0 bg-background/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-border ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-gray-200 dark:border-border ${
           isMenuOpen ? 'max-h-[800px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
         }`}
       >
@@ -95,7 +96,7 @@ export const Header: React.FC = () => {
               key={item.path}
               to={item.path}
               className={`py-2 px-4 rounded-lg ${
-                isActive(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground font-medium' : 'hover:bg-muted/50'
+                isActive(item.path) ? 'bg-primary/10 text-primary font-medium dark:text-primary-foreground' : 'hover:bg-gray-100 dark:hover:bg-muted/50'
               }`}
               style={{ 
                 transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
