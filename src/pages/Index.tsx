@@ -1,20 +1,25 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
 import { Hero } from '@/components/home/Hero';
 import { Services } from '@/components/home/Services';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+
 const Index = () => {
   useAnimateOnScroll();
+  
   useEffect(() => {
     document.title = 'ООО «Гранит» — Буровзрывные работы на Дальнем Востоке';
   }, []);
-  return <div>
+
+  return (
+    <div>
       <Hero />
       <Services />
       
       {/* About Section */}
-      <section className="py-20 overflow-hidden relative bg-gray-200">
+      <section className="py-20 overflow-hidden relative">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -62,7 +67,10 @@ const Index = () => {
                 </div>
               </div>
               
-              <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
+              <Link 
+                to="/about" 
+                className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
+              >
                 Подробнее о компании
                 <ArrowRight size={18} />
               </Link>
@@ -71,7 +79,11 @@ const Index = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
               <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
-                <img src="/images/about-company.jpg" alt="О компании ООО Гранит" className="object-cover w-full h-full" />
+                <img
+                  src="/images/about-company.jpg"
+                  alt="О компании ООО Гранит"
+                  className="object-cover w-full h-full"
+                />
               </div>
               
               <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
@@ -116,6 +128,8 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
