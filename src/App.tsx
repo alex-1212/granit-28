@@ -12,8 +12,6 @@ import About from "./pages/About";
 import Technologies from "./pages/Technologies";
 import Gallery from "./pages/Gallery";
 import Licenses from "./pages/Licenses";
-import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
 import Team from "./pages/Team";
 import Careers from "./pages/Careers";
 import FAQ from "./pages/FAQ";
@@ -67,8 +65,6 @@ const App = () => (
                 <Route path="/technologies" element={<Technologies />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/licenses" element={<Licenses />} />
-                <Route path="/news" element={<News />} />
-                <Route path="/news/:id" element={<NewsDetail />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/faq" element={<FAQ />} />
