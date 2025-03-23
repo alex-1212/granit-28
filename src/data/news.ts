@@ -9,6 +9,7 @@ export interface NewsItem {
   category: string;
 }
 
+// Изначальные тестовые данные для новостей
 export const newsData: NewsItem[] = [
   {
     id: '1',

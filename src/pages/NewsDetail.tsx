@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar } from 'lucide-react';
-import { newsData } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
+import { getNewsById } from '@/services/newsService';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
@@ -12,7 +12,7 @@ const NewsDetail = () => {
   const navigate = useNavigate();
   
   // Find the current news item
-  const newsItem = newsData.find(item => item.id === id);
+  const newsItem = id ? getNewsById(id) : undefined;
   
   useEffect(() => {
     // Redirect if news not found
