@@ -27,11 +27,15 @@ const saveNewsToStorage = () => {
 
 // Get all news items, sorted by id descending (newest first)
 export const getAllNews = (): NewsItem[] => {
+  // Refresh from localStorage each time to ensure latest data
+  news = initializeNews();
   return [...news].sort((a, b) => b.id - a.id);
 };
 
 // Get a single news item by id
 export const getNewsById = (id: number): NewsItem | undefined => {
+  // Refresh from localStorage to ensure latest data
+  news = initializeNews();
   return news.find(item => item.id === id);
 };
 
