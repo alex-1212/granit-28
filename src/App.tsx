@@ -27,8 +27,6 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
-const queryClient = new QueryClient();
-
 // Progress bar for page transitions
 const PageProgressBar = () => {
   useEffect(() => {
@@ -54,46 +52,51 @@ const PageProgressBar = () => {
   return null;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+const App = () => {
+  // Create a new QueryClient instance inside the component
+  const queryClient = new QueryClient();
+  
+  return (
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <PageProgressBar />
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-grow pt-20">
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/technologies" element={<Technologies />} />
-                  <Route path="/news" element={<News />} />
-                  <Route path="/news/:id" element={<NewsDetail />} />
-                  <Route path="/gallery" element={<Gallery />} />
-                  <Route path="/licenses" element={<Licenses />} />
-                  <Route path="/team" element={<Team />} />
-                  <Route path="/careers" element={<Careers />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/admin-login" element={<AdminLogin />} />
-                  <Route path="/admnews" element={
-                    <ProtectedRoute>
-                      <AdminNews />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-            </div>
-          </TooltipProvider>
+          <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <PageProgressBar />
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-grow pt-20">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/technologies" element={<Technologies />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/news/:id" element={<NewsDetail />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/licenses" element={<Licenses />} />
+                    <Route path="/team" element={<Team />} />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/admin-login" element={<AdminLogin />} />
+                    <Route path="/admnews" element={
+                      <ProtectedRoute>
+                        <AdminNews />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </div>
+            </TooltipProvider>
+          </QueryClientProvider>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
-  </QueryClientProvider>
-);
+  );
+};
 
 export default App;
