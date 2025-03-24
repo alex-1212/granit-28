@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -18,6 +18,14 @@ export const Footer: React.FC = () => {
             <p className="text-muted-foreground mb-6">
               Специализированная компания по производству буровзрывных работ в сложных климатических условиях
             </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-foreground/70 hover:text-primary transition-colors" aria-label="Facebook">
+                <Facebook size={20} />
+              </a>
+              <a href="#" className="text-foreground/70 hover:text-primary transition-colors" aria-label="Instagram">
+                <Instagram size={20} />
+              </a>
+            </div>
           </div>
           
           <div>
@@ -31,6 +39,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link to="/technologies" className="text-foreground/80 hover:text-primary transition-colors">
                   Техника и технологии
+                </Link>
+              </li>
+              <li>
+                <Link to="/news" className="text-foreground/80 hover:text-primary transition-colors">
+                  Новости
                 </Link>
               </li>
               <li>

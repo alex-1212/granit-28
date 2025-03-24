@@ -10,10 +10,10 @@ export const ThemeToggle: React.FC = () => {
     <button
       onClick={toggleTheme}
       aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-secondary/30 hover:bg-gray-300 dark:hover:bg-muted transition-all duration-300"
+      className="p-2 rounded-lg bg-secondary/80 dark:bg-secondary/30 hover:bg-muted dark:hover:bg-muted transition-all duration-300"
     >
       {theme === 'light' ? (
-        <Moon size={18} className="text-gray-700" />
+        <Moon size={18} className="text-foreground" />
       ) : (
         <Sun size={18} className="text-foreground" />
       )}

@@ -1,67 +1,48 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar } from 'lucide-react';
-import { newsData } from '@/data/news';
+import { ArrowLeft, Calendar, Tag } from 'lucide-react';
+import { newsData, NewsItem } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { Button } from '@/components/ui/button';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  
-  // Find the current news item
-  const newsItem = newsData.find(item => item.id === id);
+  const [news, setNews] = useState<NewsItem | null>(null);
+  const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
   
   useEffect(() => {
-    // Redirect if news not found
-    if (!newsItem) {
+    const currentNews = newsData.find(item => item.id === id);
+    
+    if (currentNews) {
+      setNews(currentNews);
+      document.title = `${currentNews.title} — ООО «Гранит»`;
+      
+      // Get related news (same category, excluding current)
+      const related = newsData
+        .filter(item => item.category === currentNews.category && item.id !== id)
+        .slice(0, 3);
+      
+      setRelatedNews(related);
+    } else {
       navigate('/news', { replace: true });
-      return;
     }
-    
-    // Set page title and meta description
-    document.title = `${newsItem.title} — ООО «Гранит»`;
-    
-    // Create meta description tag if it doesn't exist
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    
-    // Set the content attribute
-    metaDescription.setAttribute('content', newsItem.summary);
-    
-    // Cleanup on unmount
-    return () => {
-      document.title = 'ООО «Гранит»';
-      if (metaDescription) {
-        metaDescription.setAttribute('content', '');
-      }
-    };
-  }, [newsItem, id, navigate]);
-  
-  // If news not found and navigation is pending
-  if (!newsItem) {
-    return null;
-  }
+  }, [id, navigate]);
   
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const months = [
-      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-    ];
-    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
+  
+  if (!news) {
+    return null;
+  }
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="pt-16 pb-12 relative overflow-hidden">
+      <section className="pt-16 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
@@ -76,12 +57,19 @@ const NewsDetail = () => {
             </Link>
             
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
-              {newsItem.title}
+              {news.title}
             </h1>
             
-            <div className="flex items-center gap-1.5 mb-4 animate-fade-in animate-delay-200">
-              <Calendar size={18} className="text-primary" />
-              <span>{formatDate(newsItem.date)}</span>
+            <div className="flex flex-wrap items-center gap-4 mb-8 animate-fade-in animate-delay-200">
+              <div className="flex items-center gap-1.5">
+                <Calendar size={18} className="text-primary" />
+                <span>{formatDate(news.date)}</span>
+              </div>
+              
+              <div className="flex items-center gap-1.5">
+                <Tag size={18} className="text-primary" />
+                <span>{news.category}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -91,32 +79,73 @@ const NewsDetail = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="rounded-xl overflow-hidden mb-10 animate-on-scroll">
+            <div className="glass-card rounded-xl overflow-hidden mb-10 animate-on-scroll">
               <img
-                src={newsItem.image}
-                alt={newsItem.title}
-                className="w-full h-auto"
+                src={news.image}
+                alt={news.title}
+                className="w-full aspect-video object-cover"
               />
             </div>
             
             <div 
               className="prose prose-lg max-w-none dark:prose-invert animate-on-scroll"
-              dangerouslySetInnerHTML={{ __html: newsItem.content }}
+              dangerouslySetInnerHTML={{ __html: news.content }}
             />
-            
-            <div className="mt-12 animate-on-scroll">
-              <Button
-                variant="outline"
-                onClick={() => navigate('/news')}
-                className="flex items-center gap-1"
-              >
-                <ArrowLeft size={18} />
-                Вернуться к новостям
-              </Button>
-            </div>
           </div>
         </div>
       </section>
+      
+      {/* Related News */}
+      {relatedNews.length > 0 && (
+        <section className="py-16 bg-primary/5 dark:bg-primary/10">
+          <div className="container mx-auto px-4">
+            <h2 className="section-title text-center mb-12 animate-on-scroll">
+              Похожие новости
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {relatedNews.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                        {item.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(item.date)}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    <Link 
+                      to={`/news/${item.id}`}
+                      className="text-primary font-medium flex items-center gap-1 hover:underline"
+                    >
+                      Читать
+                      <ArrowLeft size={16} className="rotate-180" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
