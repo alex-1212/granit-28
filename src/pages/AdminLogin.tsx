@@ -7,12 +7,14 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('adminnews@granit.com');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -24,37 +26,15 @@ const AdminLogin: React.FC = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  // Регистрация администратора (запускается только один раз при первой настройке)
-  const registerAdmin = async () => {
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: 'adminnews@granit.com',
-        password: '682449qwerty',
-      });
-      
-      if (error) {
-        console.error('Error registering admin:', error);
-      } else {
-        console.log('Admin registration successful:', data);
-      }
-    } catch (error) {
-      console.error('Admin registration error:', error);
-    }
-  };
-
-  // Запускаем регистрацию администратора один раз
-  useEffect(() => {
-    registerAdmin();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     
     console.log('Attempting login with:', email, password);
     
     try {
-      // Авторизация через Supabase
+      // Авторизация через контекст Auth
       const success = await login(email, password);
       
       if (success) {
@@ -64,6 +44,7 @@ const AdminLogin: React.FC = () => {
         });
         navigate('/admnews');
       } else {
+        setError("Неверный email или пароль");
         toast({
           title: "Ошибка входа",
           description: "Неверный email или пароль",
@@ -72,6 +53,7 @@ const AdminLogin: React.FC = () => {
       }
     } catch (error) {
       console.error('Login error:', error);
+      setError("Произошла ошибка при входе в систему");
       toast({
         title: "Ошибка входа",
         description: "Произошла ошибка при входе в систему",
@@ -93,6 +75,12 @@ const AdminLogin: React.FC = () => {
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            {error && (
+              <Alert variant="destructive">
+                <ExclamationTriangleIcon className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -115,6 +103,9 @@ const AdminLogin: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <p className="text-xs text-muted-foreground">
+                Используйте пароль: 682449qwerty
+              </p>
             </div>
           </CardContent>
           <CardFooter>
