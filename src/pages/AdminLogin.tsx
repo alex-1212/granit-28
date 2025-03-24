@@ -101,7 +101,6 @@ const AdminLogin: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                disabled
               />
               <p className="text-xs text-muted-foreground">
                 Используйте предустановленный email администратора

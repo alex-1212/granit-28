@@ -15,10 +15,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Константы для аутентификации
-const ADMIN_EMAIL = 'adminnews@granit.com';
-const ADMIN_PASSWORD = '682449qwerty';
-
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
@@ -53,12 +49,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       console.log('Attempting login with:', email, password);
-      
-      // Проверяем, что используются правильные учетные данные администратора
-      if (email !== ADMIN_EMAIL) {
-        console.log('Incorrect email');
-        return false;
-      }
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
