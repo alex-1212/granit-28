@@ -36,6 +36,7 @@ const mapNewsItemToDb = (item: Omit<NewsItem, 'id'>): Omit<NewsDB, 'id' | 'creat
 // Get all news items, sorted by id descending (newest first)
 export const getAllNews = async (): Promise<NewsItem[]> => {
   try {
+    console.log('Fetching all news from Supabase');
     const { data, error } = await supabase
       .from('news')
       .select('*')
@@ -46,6 +47,7 @@ export const getAllNews = async (): Promise<NewsItem[]> => {
       return [];
     }
 
+    console.log('Fetched news data:', data);
     return (data as NewsDB[]).map(mapDbToNewsItem);
   } catch (error) {
     console.error('Error in getAllNews:', error);
@@ -56,14 +58,20 @@ export const getAllNews = async (): Promise<NewsItem[]> => {
 // Get a single news item by id
 export const getNewsById = async (id: number): Promise<NewsItem | undefined> => {
   try {
+    console.log(`Fetching news with id: ${id}`);
     const { data, error } = await supabase
       .from('news')
       .select('*')
       .eq('id', id)
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error('Error fetching news by id:', error);
+      return undefined;
+    }
+
+    if (!data) {
+      console.log(`No news found with id: ${id}`);
       return undefined;
     }
 
@@ -77,6 +85,7 @@ export const getNewsById = async (id: number): Promise<NewsItem | undefined> => 
 // Add a new news item
 export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
   try {
+    console.log('Adding news item:', newsItem);
     const { data, error } = await supabase
       .from('news')
       .insert(mapNewsItemToDb(newsItem))
@@ -98,6 +107,7 @@ export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem 
 // Update an existing news item
 export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
   try {
+    console.log(`Updating news with id: ${id}`, updatedNews);
     const { data, error } = await supabase
       .from('news')
       .update(mapNewsItemToDb(updatedNews))
@@ -120,6 +130,7 @@ export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>):
 // Delete a news item
 export const deleteNews = async (id: number): Promise<boolean> => {
   try {
+    console.log(`Deleting news with id: ${id}`);
     const { error } = await supabase
       .from('news')
       .delete()

@@ -1,70 +1,100 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CryptoJS from 'crypto-js';
+import { supabase } from '@/integrations/supabase/client';
+import { Session, User } from '@supabase/supabase-js';
+import { useToast } from '@/hooks/use-toast';
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (username: string, password: string) => boolean;
-  logout: () => void;
+  user: User | null;
+  session: Session | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Правильный хеш для "adminnews:682449qwerty"
-const CORRECT_HASH = "f3b4c5a77dd1e633c44a9ea0fe4a631ebc5f8b77b11b8c1ea1e1ba0bec10da6b";
+// Константы для аутентификации
+const ADMIN_EMAIL = 'adminnews@granit.com';
+const ADMIN_PASSWORD = '682449qwerty';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  // Check for existing auth on mount
+  // Инициализация аутентификации при загрузке
   useEffect(() => {
-    const authStatus = localStorage.getItem('auth');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
+    // Устанавливаем слушатель изменений состояния аутентификации
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log('Auth state change:', event, session);
+        setSession(session);
+        setUser(session?.user ?? null);
+        setIsAuthenticated(!!session);
+      }
+    );
+
+    // Проверяем наличие сессии при загрузке
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Initial session check:', session);
+      setSession(session);
+      setUser(session?.user ?? null);
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const login = (username: string, password: string): boolean => {
-    // Fixed logic: Using the exact same approach to generate the hash
-    if (username === 'adminnews' && password === '682449qwerty') {
-      console.log('Correct credentials detected');
-      setIsAuthenticated(true);
-      localStorage.setItem('auth', 'true');
+  // Функция для входа
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      console.log('Attempting login with:', email, password);
+      
+      // Проверяем, что используются правильные учетные данные администратора
+      if (email !== ADMIN_EMAIL) {
+        console.log('Incorrect email');
+        return false;
+      }
+      
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        console.error('Error signing in:', error);
+        return false;
+      }
+
+      console.log('Login successful:', data);
       return true;
+    } catch (error) {
+      console.error('Login error:', error);
+      return false;
     }
-    
-    // For debugging
-    console.log('Login attempt:', { username, password });
-    
-    // Создаем строку с учетными данными
-    const credential = `${username}:${password}`;
-    
-    // Генерируем хеш с правильным алгоритмом
-    const hash = CryptoJS.SHA256(credential).toString(CryptoJS.enc.Hex).toLowerCase();
-    
-    console.log('Calculated hash:', hash);
-    console.log('Comparing to:', CORRECT_HASH);
-    console.log('Match:', hash === CORRECT_HASH);
-    
-    // Check if the hash matches the correct hash
-    if (hash === CORRECT_HASH) {
-      setIsAuthenticated(true);
-      localStorage.setItem('auth', 'true');
-      return true;
-    }
-    return false;
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('auth');
-    navigate('/admin-login');
+  // Функция для выхода
+  const logout = async (): Promise<void> => {
+    try {
+      await supabase.auth.signOut();
+      navigate('/admin-login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast({
+        title: "Ошибка выхода",
+        description: "Произошла ошибка при выходе из системы",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, session, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
