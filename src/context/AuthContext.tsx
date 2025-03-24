@@ -11,7 +11,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Hash for "adminnews:682449qwerty"
+// Правильный хеш для "adminnews:682449qwerty"
 const CORRECT_HASH = "f3b4c5a77dd1e633c44a9ea0fe4a631ebc5f8b77b11b8c1ea1e1ba0bec10da6b";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -27,9 +27,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = (username: string, password: string): boolean => {
-    // Create a hash of the username and password
+    // Создаем строку с учетными данными
     const credential = `${username}:${password}`;
-    const hash = CryptoJS.SHA256(credential).toString();
+    
+    // Используем SHA-256 для вычисления хеша (без преобразования в строку)
+    const hashWordArray = CryptoJS.SHA256(credential);
+    // Преобразуем в hex-строку в нижнем регистре
+    const hash = hashWordArray.toString(CryptoJS.enc.Hex).toLowerCase();
     
     console.log('Login attempt:', { username });
     console.log('Calculated hash:', hash);
