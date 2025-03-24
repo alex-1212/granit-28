@@ -20,7 +20,7 @@ const AdminLogin: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    console.log('Attempting login with:', username);
+    console.log('Attempting login with:', username, password);
     
     // Login logic
     const success = login(username, password);
