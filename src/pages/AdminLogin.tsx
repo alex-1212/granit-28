@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import { AlertTriangle } from 'lucide-react'; // Заменили импорт на иконку из lucide-react
 
 const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('adminnews@granit.com');
@@ -77,7 +77,7 @@ const AdminLogin: React.FC = () => {
           <CardContent className="space-y-4">
             {error && (
               <Alert variant="destructive">
-                <ExclamationTriangleIcon className="h-4 w-4" />
+                <AlertTriangle className="h-4 w-4" /> {/* Заменили на новую иконку */}
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
