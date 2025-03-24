@@ -31,6 +31,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const credential = `${username}:${password}`;
     const hash = CryptoJS.SHA256(credential).toString();
     
+    console.log('Login attempt:', { username });
+    console.log('Calculated hash:', hash);
+    console.log('Comparing to:', CORRECT_HASH);
+    console.log('Match:', hash === CORRECT_HASH);
+    
     // Check if the hash matches the correct hash
     if (hash === CORRECT_HASH) {
       setIsAuthenticated(true);
