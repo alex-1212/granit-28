@@ -7,7 +7,6 @@ import { ThemeToggle } from '../ui/ThemeToggle';
 const navItems = [
   { name: 'Главная', path: '/' },
   { name: 'Техника и технологии', path: '/technologies' },
-  { name: 'Новости', path: '/news' },
   { name: 'О компании', path: '/about' },
   { name: 'ЧаВо', path: '/faq' },
   { name: 'Контакты', path: '/contact' },
@@ -45,7 +44,7 @@ export const Header: React.FC = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3 animate-fade-in">
           <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-          <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+          <span className="text-xl font-spaceland font-semibold">ООО «Гранит»</span>
         </Link>
 
         {/* Desktop Menu */}
