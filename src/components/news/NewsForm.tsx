@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import NewsFormHeader from './NewsFormHeader';
 import NewsFormFields from './NewsFormFields';
 import NewsFormActions from './NewsFormActions';
+import { useAuth } from '@/context/AuthContext';
 
 interface NewsFormProps {
   newsItem: NewsItem | null;
@@ -25,6 +26,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewSrc, setPreviewSrc] = useState('');
   const { toast } = useToast();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (newsItem) {
@@ -67,6 +69,16 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    if (!isAuthenticated) {
+      toast({
+        title: "Ошибка аутентификации",
+        description: "Вы должны быть авторизованы для выполнения этого действия",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       let imagePath = image;

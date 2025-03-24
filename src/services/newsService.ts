@@ -86,20 +86,34 @@ export const getNewsById = async (id: number): Promise<NewsItem | undefined> => 
 export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
   try {
     console.log('Adding news item:', newsItem);
+    
+    // Explicitly log the request
+    console.log('Supabase request details:', {
+      table: 'news',
+      operation: 'insert',
+      data: mapNewsItemToDb(newsItem)
+    });
+    
     const { data, error } = await supabase
       .from('news')
       .insert(mapNewsItemToDb(newsItem))
-      .select('*')
+      .select()
       .single();
 
     if (error) {
       console.error('Error adding news:', error);
+      console.error('Error details:', error.details, error.hint, error.message);
       return null;
     }
 
+    console.log('Successfully added news, response:', data);
     return mapDbToNewsItem(data as NewsDB);
   } catch (error) {
     console.error('Error in addNews:', error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     return null;
   }
 };
@@ -108,21 +122,36 @@ export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem 
 export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
   try {
     console.log(`Updating news with id: ${id}`, updatedNews);
+    
+    // Explicitly log the request
+    console.log('Supabase request details:', {
+      table: 'news',
+      operation: 'update',
+      id,
+      data: mapNewsItemToDb(updatedNews)
+    });
+    
     const { data, error } = await supabase
       .from('news')
       .update(mapNewsItemToDb(updatedNews))
       .eq('id', id)
-      .select('*')
+      .select()
       .single();
 
     if (error) {
       console.error('Error updating news:', error);
+      console.error('Error details:', error.details, error.hint, error.message);
       return null;
     }
 
+    console.log('Successfully updated news, response:', data);
     return mapDbToNewsItem(data as NewsDB);
   } catch (error) {
     console.error('Error in updateNews:', error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     return null;
   }
 };
@@ -138,12 +167,18 @@ export const deleteNews = async (id: number): Promise<boolean> => {
 
     if (error) {
       console.error('Error deleting news:', error);
+      console.error('Error details:', error.details, error.hint, error.message);
       return false;
     }
 
+    console.log('Successfully deleted news with id:', id);
     return true;
   } catch (error) {
     console.error('Error in deleteNews:', error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     return false;
   }
 };
