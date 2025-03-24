@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { getNewsById } from '@/services/newsService';
 import { NewsItem } from '@/data/news';
 import { ArrowLeft } from 'lucide-react';
-import { getDefaultImage, isDataUrl } from '@/utils/imageUpload';
+import { getDefaultImage } from '@/utils/imageUpload';
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,15 +14,29 @@ const NewsDetail: React.FC = () => {
   const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Scroll to top when component mounts
   useEffect(() => {
-    if (id) {
-      const newsId = parseInt(id, 10);
-      const fetchedNews = getNewsById(newsId);
-      if (fetchedNews) {
-        setNewsItem(fetchedNews);
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchNewsItem = async () => {
+      if (id) {
+        try {
+          const newsId = parseInt(id, 10);
+          const fetchedNews = await getNewsById(newsId);
+          if (fetchedNews) {
+            setNewsItem(fetchedNews);
+          }
+        } catch (error) {
+          console.error("Error fetching news item:", error);
+        } finally {
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    }
+    };
+
+    fetchNewsItem();
   }, [id]);
 
   if (loading) {

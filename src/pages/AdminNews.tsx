@@ -17,6 +17,7 @@ const AdminNews: React.FC = () => {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [currentNews, setCurrentNews] = useState<NewsItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
   // Redirect if not authenticated
@@ -28,12 +29,25 @@ const AdminNews: React.FC = () => {
 
   // Load news items
   useEffect(() => {
-    setNewsItems(getAllNews());
+    refreshNews();
   }, []);
 
   // Refresh news list
-  const refreshNews = () => {
-    setNewsItems(getAllNews());
+  const refreshNews = async () => {
+    setIsLoading(true);
+    try {
+      const news = await getAllNews();
+      setNewsItems(news);
+    } catch (error) {
+      console.error('Error fetching news:', error);
+      toast({
+        title: "Ошибка загрузки",
+        description: "Не удалось загрузить список новостей",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Handle editing a news item
@@ -45,17 +59,26 @@ const AdminNews: React.FC = () => {
   // Handle deleting a news item
   const handleDelete = async (id: number) => {
     if (window.confirm('Вы уверены, что хотите удалить эту новость?')) {
-      const success = deleteNews(id);
-      if (success) {
-        toast({
-          title: "Новость удалена",
-          description: "Новость была успешно удалена",
-        });
-        refreshNews();
-      } else {
+      try {
+        const success = await deleteNews(id);
+        if (success) {
+          toast({
+            title: "Новость удалена",
+            description: "Новость была успешно удалена",
+          });
+          refreshNews();
+        } else {
+          toast({
+            title: "Ошибка",
+            description: "Не удалось удалить новость",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Error deleting news:', error);
         toast({
           title: "Ошибка",
-          description: "Не удалось удалить новость",
+          description: "Произошла ошибка при удалении новости",
           variant: "destructive",
         });
       }
@@ -102,7 +125,11 @@ const AdminNews: React.FC = () => {
           <CardTitle>Список новостей</CardTitle>
         </CardHeader>
         <CardContent>
-          {newsItems.length > 0 ? (
+          {isLoading ? (
+            <div className="text-center py-4">
+              <p>Загрузка...</p>
+            </div>
+          ) : newsItems.length > 0 ? (
             <Table>
               <TableHeader>
                 <TableRow>

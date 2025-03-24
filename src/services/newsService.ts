@@ -1,77 +1,153 @@
 
+import { supabase } from '@/integrations/supabase/client';
 import { NewsItem, newsData } from '../data/news';
 
-// Local storage key
-const NEWS_STORAGE_KEY = 'granitNewsData';
+// Database table mapping
+interface NewsDB {
+  id: number;
+  title: string;
+  date: string;
+  short_description: string;
+  full_text: string;
+  image: string;
+  created_at: string;
+  updated_at: string;
+}
 
-// Initialize news data from localStorage or default data
-const initializeNews = (): NewsItem[] => {
-  const savedNews = localStorage.getItem(NEWS_STORAGE_KEY);
-  if (savedNews) {
-    try {
-      return JSON.parse(savedNews);
-    } catch (error) {
-      console.error('Error parsing saved news data:', error);
-    }
-  }
-  return [...newsData];
-};
+// Map database model to application model
+const mapDbToNewsItem = (dbItem: NewsDB): NewsItem => ({
+  id: dbItem.id,
+  title: dbItem.title,
+  date: dbItem.date,
+  shortDescription: dbItem.short_description,
+  fullText: dbItem.full_text,
+  image: dbItem.image,
+});
 
-// In-memory storage for news items, initially loaded from localStorage or defaults
-let news: NewsItem[] = initializeNews();
-
-// Save current news to localStorage
-const saveNewsToStorage = () => {
-  localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(news));
-};
+// Map application model to database model
+const mapNewsItemToDb = (item: Omit<NewsItem, 'id'>): Omit<NewsDB, 'id' | 'created_at' | 'updated_at'> => ({
+  title: item.title,
+  date: item.date,
+  short_description: item.shortDescription,
+  full_text: item.fullText,
+  image: item.image,
+});
 
 // Get all news items, sorted by id descending (newest first)
-export const getAllNews = (): NewsItem[] => {
-  // Refresh from localStorage each time to ensure latest data
-  news = initializeNews();
-  return [...news].sort((a, b) => b.id - a.id);
+export const getAllNews = async (): Promise<NewsItem[]> => {
+  try {
+    const { data, error } = await supabase
+      .from('news')
+      .select('*')
+      .order('id', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching news:', error);
+      return [];
+    }
+
+    return (data as NewsDB[]).map(mapDbToNewsItem);
+  } catch (error) {
+    console.error('Error in getAllNews:', error);
+    return [];
+  }
 };
 
 // Get a single news item by id
-export const getNewsById = (id: number): NewsItem | undefined => {
-  // Refresh from localStorage to ensure latest data
-  news = initializeNews();
-  return news.find(item => item.id === id);
+export const getNewsById = async (id: number): Promise<NewsItem | undefined> => {
+  try {
+    const { data, error } = await supabase
+      .from('news')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      console.error('Error fetching news by id:', error);
+      return undefined;
+    }
+
+    return mapDbToNewsItem(data as NewsDB);
+  } catch (error) {
+    console.error('Error in getNewsById:', error);
+    return undefined;
+  }
 };
 
 // Add a new news item
-export const addNews = (newsItem: Omit<NewsItem, 'id'>): NewsItem => {
-  const id = news.length > 0 ? Math.max(...news.map(item => item.id)) + 1 : 1;
-  const newItem = { ...newsItem, id };
-  news.push(newItem);
-  saveNewsToStorage(); // Save after adding
-  return newItem;
+export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('news')
+      .insert(mapNewsItemToDb(newsItem))
+      .select('*')
+      .single();
+
+    if (error) {
+      console.error('Error adding news:', error);
+      return null;
+    }
+
+    return mapDbToNewsItem(data as NewsDB);
+  } catch (error) {
+    console.error('Error in addNews:', error);
+    return null;
+  }
 };
 
 // Update an existing news item
-export const updateNews = (id: number, updatedNews: Omit<NewsItem, 'id'>): NewsItem | null => {
-  const index = news.findIndex(item => item.id === id);
-  if (index === -1) return null;
-  
-  const updatedItem = { ...updatedNews, id };
-  news[index] = updatedItem;
-  saveNewsToStorage(); // Save after updating
-  return updatedItem;
+export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>): Promise<NewsItem | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('news')
+      .update(mapNewsItemToDb(updatedNews))
+      .eq('id', id)
+      .select('*')
+      .single();
+
+    if (error) {
+      console.error('Error updating news:', error);
+      return null;
+    }
+
+    return mapDbToNewsItem(data as NewsDB);
+  } catch (error) {
+    console.error('Error in updateNews:', error);
+    return null;
+  }
 };
 
 // Delete a news item
-export const deleteNews = (id: number): boolean => {
-  const initialLength = news.length;
-  news = news.filter(item => item.id !== id);
-  const deleted = news.length < initialLength;
-  if (deleted) {
-    saveNewsToStorage(); // Save after deleting
+export const deleteNews = async (id: number): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('news')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting news:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error in deleteNews:', error);
+    return false;
   }
-  return deleted;
 };
 
 // Reset to default data (useful for development)
-export const resetNewsData = (): void => {
-  news = [...newsData];
-  saveNewsToStorage();
+export const resetNewsData = async (): Promise<void> => {
+  try {
+    // Delete all existing news
+    await supabase.from('news').delete().neq('id', 0);
+    
+    // Add default news data
+    for (const item of newsData) {
+      await supabase.from('news').insert(mapNewsItemToDb(item));
+    }
+  } catch (error) {
+    console.error('Error in resetNewsData:', error);
+  }
 };

@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -18,9 +18,30 @@ import { getDefaultImage } from '@/utils/imageUpload';
 
 const News: React.FC = () => {
   const navigate = useNavigate();
-  const news = getAllNews();
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
   
   useAnimateOnScroll();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const fetchedNews = await getAllNews();
+        setNews(fetchedNews);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -33,25 +54,35 @@ const News: React.FC = () => {
         Новости компании
       </h1>
       
-      <div className="mb-12 animate-on-scroll">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full max-w-5xl mx-auto"
-        >
-          <CarouselContent>
-            {news.map((item) => (
-              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/4">
-                <NewsCard item={item} onReadMore={() => navigate(`/news/${item.id}`)} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
-      </div>
+      {loading ? (
+        <div className="text-center py-12">
+          <p>Загрузка новостей...</p>
+        </div>
+      ) : news.length > 0 ? (
+        <div className="mb-12 animate-on-scroll">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <CarouselContent>
+              {news.map((item) => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/4">
+                  <NewsCard item={item} onReadMore={() => navigate(`/news/${item.id}`)} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      ) : (
+        <div className="text-center py-12">
+          <p>Нет доступных новостей</p>
+        </div>
+      )}
     </div>
   );
 };

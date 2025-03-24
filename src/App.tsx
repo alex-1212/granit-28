@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { useEffect } from "react";
@@ -26,6 +26,17 @@ import AdminNews from "./pages/AdminNews";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+
+// ScrollToTop component to handle scrolling to top on page navigation
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 // Progress bar for page transitions
 const PageProgressBar = () => {
@@ -65,6 +76,7 @@ const App = () => {
               <Toaster />
               <Sonner />
               <PageProgressBar />
+              <ScrollToTop />
               <div className="flex flex-col min-h-screen">
                 <Header />
                 <main className="flex-grow pt-20">

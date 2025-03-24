@@ -97,10 +97,11 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
 
       console.log("Saving news with image:", imagePath.substring(0, 50) + "...");
 
+      let result;
       if (newsItem) {
         // Update existing news
-        const updated = updateNews(newsItem.id, newsData);
-        if (updated) {
+        result = await updateNews(newsItem.id, newsData);
+        if (result) {
           toast({
             title: "Новость обновлена",
             description: "Новость была успешно обновлена",
@@ -108,13 +109,17 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
         }
       } else {
         // Add new news
-        const added = addNews(newsData);
-        if (added) {
+        result = await addNews(newsData);
+        if (result) {
           toast({
             title: "Новость добавлена",
             description: "Новость была успешно добавлена",
           });
         }
+      }
+
+      if (!result) {
+        throw new Error("Failed to save news");
       }
 
       onSubmit();
