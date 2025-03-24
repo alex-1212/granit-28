@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { addNews, updateNews } from '@/services/newsService';
-import { uploadImage, getDefaultImage } from '@/utils/imageUpload';
+import { uploadImage, getDefaultImage, isDataUrl } from '@/utils/imageUpload';
 import { useToast } from '@/hooks/use-toast';
 import { X } from 'lucide-react';
 
@@ -25,6 +25,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
   const [image, setImage] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewSrc, setPreviewSrc] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
       setShortDescription(newsItem.shortDescription);
       setFullText(newsItem.fullText);
       setImage(newsItem.image);
+      setPreviewSrc(newsItem.image);
     } else {
       // Default date to current month
       const months = [
@@ -42,21 +44,25 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
       ];
       const now = new Date();
       setDate(`${months[now.getMonth()]} ${now.getFullYear()}`);
-      setImage(getDefaultImage());
+      const defaultImage = getDefaultImage();
+      setImage(defaultImage);
+      setPreviewSrc(defaultImage);
     }
   }, [newsItem]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImageFile(e.target.files[0]);
-      // Preview the image
+      const file = e.target.files[0];
+      setImageFile(file);
+      
+      // Create a preview
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target && typeof event.target.result === 'string') {
-          setImage(event.target.result);
+          setPreviewSrc(event.target.result);
         }
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -69,7 +75,18 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
 
       // If there's a new image file, upload it
       if (imageFile) {
-        imagePath = await uploadImage(imageFile);
+        try {
+          imagePath = await uploadImage(imageFile);
+          console.log("Image uploaded successfully:", imagePath.substring(0, 50) + "...");
+        } catch (error) {
+          console.error("Error uploading image:", error);
+          toast({
+            title: "Ошибка загрузки изображения",
+            description: "Не удалось загрузить изображение, используется изображение по умолчанию",
+            variant: "destructive",
+          });
+          imagePath = getDefaultImage();
+        }
       }
 
       const newsData = {
@@ -79,6 +96,8 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
         fullText,
         image: imagePath,
       };
+
+      console.log("Saving news with image:", imagePath.substring(0, 50) + "...");
 
       if (newsItem) {
         // Update existing news
@@ -102,6 +121,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
 
       onSubmit();
     } catch (error) {
+      console.error("Error saving news:", error);
       toast({
         title: "Ошибка",
         description: "Не удалось сохранить новость",
@@ -182,7 +202,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
                 </div>
                 <div className="w-32 h-24 border rounded overflow-hidden">
                   <img
-                    src={image}
+                    src={previewSrc}
                     alt="Preview"
                     className="w-full h-full object-cover"
                     onError={(e) => {

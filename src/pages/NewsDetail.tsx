@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { getNewsById } from '@/services/newsService';
 import { NewsItem } from '@/data/news';
 import { ArrowLeft } from 'lucide-react';
+import { getDefaultImage, isDataUrl } from '@/utils/imageUpload';
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,7 +65,7 @@ const NewsDetail: React.FC = () => {
             className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = '/images/news/placeholder.jpg';
+              target.src = getDefaultImage();
             }}
           />
         </div>

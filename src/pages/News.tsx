@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getAllNews } from '@/services/newsService';
 import { NewsItem } from '@/data/news';
+import { getDefaultImage } from '@/utils/imageUpload';
 
 const News: React.FC = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ item, onReadMore }) => {
           className="w-full h-full object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = '/images/news/placeholder.jpg';
+            target.src = getDefaultImage();
           }}
         />
       </div>

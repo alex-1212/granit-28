@@ -1,28 +1,44 @@
 
-// This is a simple mock image upload utility for demo purposes
-// In a real application, you would upload to a server or cloud storage
+// This handles image upload and storage for news items
 
-// Base64 encoded default placeholder image
-const DEFAULT_IMAGE = '/images/news/placeholder.jpg';
-
+/**
+ * Convert a File object to a data URL for storage
+ * This approach stores images directly in localStorage as base64 strings
+ */
 export const uploadImage = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
-    // In a real app, this would be a server upload
-    // For this demo, we'll just pretend we're uploading and return a placeholder path
     if (!file) {
       reject(new Error('No file provided'));
       return;
     }
     
-    // Simulate a network request
-    setTimeout(() => {
-      // In a real app, this would be the URL returned from the server
-      // For demo purposes, just return the name of the file
-      resolve(`/images/news/${file.name}`);
-    }, 500);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target && typeof event.target.result === 'string') {
+        // Return the base64 data URL that can be stored and displayed directly
+        resolve(event.target.result);
+      } else {
+        reject(new Error('Failed to convert image to data URL'));
+      }
+    };
+    reader.onerror = (error) => {
+      reject(error);
+    };
+    reader.readAsDataURL(file);
   });
 };
 
+// Default placeholder image (base64 or URL)
 export const getDefaultImage = (): string => {
-  return DEFAULT_IMAGE;
+  return '/images/news/placeholder.jpg';
+};
+
+// Validate if an image path is a data URL or a regular path
+export const isDataUrl = (url: string): boolean => {
+  return url.startsWith('data:image/');
+};
+
+// Helper to check if an image URL is valid
+export const isValidImageUrl = (url: string): boolean => {
+  return isDataUrl(url) || url.startsWith('/');
 };
