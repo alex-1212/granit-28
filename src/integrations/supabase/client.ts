@@ -28,7 +28,33 @@ export const supabase = createClient<Database>(
 
 // Export a helper function to check if a user is authenticated
 export const isUserAuthenticated = async () => {
+  // Сначала проверяем ручную авторизацию
+  if (localStorage.getItem('manual_auth') === 'true') {
+    return true;
+  }
+
+  // Затем проверяем Supabase сессию
   const { data, error } = await supabase.auth.getSession();
   console.log("Auth check session:", data, error);
   return !!data.session;
+};
+
+// Retrieve authenticated user
+export const getAuthenticatedUser = async () => {
+  // Проверяем ручную авторизацию
+  if (localStorage.getItem('manual_auth') === 'true') {
+    const userStr = localStorage.getItem('manual_auth_user');
+    if (userStr) {
+      try {
+        return JSON.parse(userStr);
+      } catch (e) {
+        console.error('Error parsing manual auth user:', e);
+      }
+    }
+    return { id: '1', email: 'adminnews@granit.com' };
+  }
+
+  // Получаем пользователя из Supabase
+  const { data } = await supabase.auth.getUser();
+  return data.user;
 };

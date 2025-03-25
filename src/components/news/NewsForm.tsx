@@ -9,7 +9,7 @@ import NewsFormHeader from './NewsFormHeader';
 import NewsFormFields from './NewsFormFields';
 import NewsFormActions from './NewsFormActions';
 import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { isUserAuthenticated } from '@/integrations/supabase/client';
 
 interface NewsFormProps {
   newsItem: NewsItem | null;
@@ -67,26 +67,29 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
     }
   };
 
-  // Check authentication status at the beginning
+  // Check authentication status
   useEffect(() => {
     const checkAuth = async () => {
-      const { data } = await supabase.auth.getSession();
-      console.log("Auth session check:", data);
+      const isAuth = await isUserAuthenticated();
+      console.log("Manual auth check in NewsForm:", isAuth);
+      console.log("Manual auth localStorage:", localStorage.getItem('manual_auth'));
+      console.log("Auth context isAuthenticated:", isAuthenticated);
     };
     
     checkAuth();
-  }, []);
+  }, [isAuthenticated]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // First, check if user is authenticated via Supabase directly
-      const { data: sessionData } = await supabase.auth.getSession();
-      console.log("Session data before saving:", sessionData);
+      // Проверка авторизации
+      const isAuth = await isUserAuthenticated();
+      console.log("Auth check before saving:", isAuth);
+      console.log("Manual auth in localStorage:", localStorage.getItem('manual_auth'));
       
-      if (!sessionData.session) {
+      if (!isAuth && !isAuthenticated) {
         toast({
           title: "Ошибка аутентификации",
           description: "Вы должны быть авторизованы для выполнения этого действия",

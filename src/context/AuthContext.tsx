@@ -23,6 +23,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [manualAuth, setManualAuth] = useState<boolean>(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -46,6 +47,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setIsAuthenticated(!!session);
     });
 
+    // Проверяем localStorage на наличие ручной авторизации
+    const isManualLoggedIn = localStorage.getItem('manual_auth') === 'true';
+    if (isManualLoggedIn) {
+      console.log('Manual auth found in localStorage');
+      const mockUser = { email: ADMIN_EMAIL, id: '1', user_metadata: {} } as User;
+      setUser(mockUser);
+      setIsAuthenticated(true);
+      setManualAuth(true);
+    }
+
     return () => subscription.unsubscribe();
   }, []);
 
@@ -60,22 +71,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return false;
       }
 
-      // Сначала проверяем существует ли пользователь
-      const { data: usersData, error: usersError } = await supabase.auth.admin
-        .listUsers();
-      
-      if (usersError) {
-        console.error("Error checking users:", usersError);
-      }
-      
-      // Если у нас проблемы с Supabase Auth или пользователь не существует,
-      // мы делаем простую проверку пароля
+      // Если логин и пароль совпадают с заданными константами
       if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
         console.log('Manual authentication successful');
+        
+        // Создаем JWT-подобный токен вручную (упрощенно, для имитации)
+        const mockToken = {
+          access_token: 'manual_auth_token',
+          token_type: 'bearer', 
+          expires_in: 3600,
+          refresh_token: 'manual_refresh_token',
+          user: {
+            id: '1',
+            email: ADMIN_EMAIL,
+            user_metadata: {},
+            app_metadata: { provider: 'manual', role: 'authenticated' },
+          }
+        };
+        
         // Устанавливаем состояние аутентификации вручную
         const mockUser = { email: ADMIN_EMAIL, id: '1', user_metadata: {} } as User;
         setUser(mockUser);
         setIsAuthenticated(true);
+        setManualAuth(true);
+        
+        // Сохраняем статус ручной авторизации в localStorage
+        localStorage.setItem('manual_auth', 'true');
+        localStorage.setItem('manual_auth_user', JSON.stringify(mockUser));
+        
+        // Имитируем вручную сессию для Supabase
+        await supabase.auth.setSession({
+          access_token: mockToken.access_token,
+          refresh_token: mockToken.refresh_token,
+        });
+        
         return true;
       }
 
@@ -102,9 +131,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = async (): Promise<void> => {
     try {
       // Если использовалась ручная аутентификация
-      if (isAuthenticated && !session) {
+      if (manualAuth) {
         setUser(null);
         setIsAuthenticated(false);
+        setManualAuth(false);
+        localStorage.removeItem('manual_auth');
+        localStorage.removeItem('manual_auth_user');
         navigate('/admin-login');
         return;
       }
