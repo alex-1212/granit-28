@@ -81,22 +81,21 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Log authentication state
-    console.log("Is authenticated:", isAuthenticated);
-    const { data: sessionData } = await supabase.auth.getSession();
-    console.log("Session data:", sessionData);
-
-    if (!isAuthenticated) {
-      toast({
-        title: "Ошибка аутентификации",
-        description: "Вы должны быть авторизованы для выполнения этого действия",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
+      // First, check if user is authenticated via Supabase directly
+      const { data: sessionData } = await supabase.auth.getSession();
+      console.log("Session data before saving:", sessionData);
+      
+      if (!sessionData.session) {
+        toast({
+          title: "Ошибка аутентификации",
+          description: "Вы должны быть авторизованы для выполнения этого действия",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       if (!title || !date || !shortDescription || !fullText) {
         toast({
           title: "Ошибка валидации",

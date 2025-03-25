@@ -87,20 +87,25 @@ export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem 
   try {
     console.log('Adding news item:', newsItem);
     
-    // Get the current authenticated session
-    const { data: sessionData } = await supabase.auth.getSession();
-    console.log('Current session:', sessionData);
+    // Get the current authentication status
+    const { data: authData } = await supabase.auth.getSession();
+    
+    if (!authData.session) {
+      console.error('Cannot add news: User not authenticated');
+      throw new Error('User not authenticated');
+    }
     
     // Make sure image is not empty
     if (!newsItem.image) {
       newsItem.image = '/images/news/placeholder.jpg';
     }
     
-    // Explicitly log the request
+    // Explicitly log the request with auth token for debugging
     console.log('Supabase request details:', {
       table: 'news',
       operation: 'insert',
-      data: mapNewsItemToDb(newsItem)
+      data: mapNewsItemToDb(newsItem),
+      authStatus: !!authData.session
     });
     
     const { data, error } = await supabase
@@ -132,21 +137,26 @@ export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>):
   try {
     console.log(`Updating news with id: ${id}`, updatedNews);
     
-    // Get the current authenticated session
-    const { data: sessionData } = await supabase.auth.getSession();
-    console.log('Current session:', sessionData);
+    // Get the current authentication status
+    const { data: authData } = await supabase.auth.getSession();
+    
+    if (!authData.session) {
+      console.error('Cannot update news: User not authenticated');
+      throw new Error('User not authenticated');
+    }
     
     // Make sure image is not empty
     if (!updatedNews.image) {
       updatedNews.image = '/images/news/placeholder.jpg';
     }
     
-    // Explicitly log the request
+    // Explicitly log the request with auth token for debugging
     console.log('Supabase request details:', {
       table: 'news',
       operation: 'update',
       id,
-      data: mapNewsItemToDb(updatedNews)
+      data: mapNewsItemToDb(updatedNews),
+      authStatus: !!authData.session
     });
     
     const { data, error } = await supabase
@@ -179,9 +189,13 @@ export const deleteNews = async (id: number): Promise<boolean> => {
   try {
     console.log(`Deleting news with id: ${id}`);
     
-    // Get the current authenticated session
-    const { data: sessionData } = await supabase.auth.getSession();
-    console.log('Current session:', sessionData);
+    // Get the current authentication status
+    const { data: authData } = await supabase.auth.getSession();
+    
+    if (!authData.session) {
+      console.error('Cannot delete news: User not authenticated');
+      throw new Error('User not authenticated');
+    }
     
     const { error } = await supabase
       .from('news')
@@ -209,9 +223,13 @@ export const deleteNews = async (id: number): Promise<boolean> => {
 // Add the provided news items to the database
 export const addProvidedNews = async (): Promise<boolean> => {
   try {
-    // Get the current authenticated session
-    const { data: sessionData } = await supabase.auth.getSession();
-    console.log('Current session for adding provided news:', sessionData);
+    // Get the current authentication status
+    const { data: authData } = await supabase.auth.getSession();
+    
+    if (!authData.session) {
+      console.error('Cannot add provided news: User not authenticated');
+      throw new Error('User not authenticated');
+    }
     
     const newsItems = [
       {
