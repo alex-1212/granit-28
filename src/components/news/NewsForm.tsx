@@ -81,6 +81,16 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
     }
 
     try {
+      if (!title || !date || !shortDescription || !fullText) {
+        toast({
+          title: "Ошибка валидации",
+          description: "Пожалуйста, заполните все обязательные поля",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       let imagePath = image;
 
       // If there's a new image file, upload it
@@ -97,6 +107,11 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
           });
           imagePath = getDefaultImage();
         }
+      }
+      
+      // If no image is set, use default
+      if (!imagePath) {
+        imagePath = getDefaultImage();
       }
 
       const newsData = {

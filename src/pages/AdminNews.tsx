@@ -6,10 +6,20 @@ import { useAuth } from '@/context/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { NewsItem } from '@/data/news';
-import { getAllNews, deleteNews } from '@/services/newsService';
-import { LogOut, Plus, Pencil, Trash2 } from 'lucide-react';
+import { getAllNews, deleteNews, addProvidedNews } from '@/services/newsService';
+import { LogOut, Plus, Pencil, Trash2, RefreshCw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import NewsForm from '@/components/news/NewsForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 const AdminNews: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -18,6 +28,7 @@ const AdminNews: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [currentNews, setCurrentNews] = useState<NewsItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAddingDefaultNews, setIsAddingDefaultNews] = useState(false);
   const { toast } = useToast();
 
   // Redirect if not authenticated
@@ -91,6 +102,36 @@ const AdminNews: React.FC = () => {
     setIsFormOpen(true);
   };
 
+  // Handle adding default news
+  const handleAddDefaultNews = async () => {
+    setIsAddingDefaultNews(true);
+    try {
+      const success = await addProvidedNews();
+      if (success) {
+        toast({
+          title: "Новости добавлены",
+          description: "Предоставленные новости были успешно добавлены",
+        });
+        refreshNews();
+      } else {
+        toast({
+          title: "Ошибка",
+          description: "Не удалось добавить предоставленные новости",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error adding default news:', error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при добавлении новостей",
+        variant: "destructive",
+      });
+    } finally {
+      setIsAddingDefaultNews(false);
+    }
+  };
+
   // After form submission
   const handleFormSubmit = () => {
     setIsFormOpen(false);
@@ -109,6 +150,34 @@ const AdminNews: React.FC = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Управление новостями</h1>
         <div className="flex gap-2">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Добавить тестовые новости
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Добавить предоставленные новости?</DialogTitle>
+                <DialogDescription>
+                  Это действие заменит все существующие новости пятью предоставленными новостями.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Отмена</Button>
+                </DialogClose>
+                <Button 
+                  onClick={handleAddDefaultNews} 
+                  disabled={isAddingDefaultNews}
+                >
+                  {isAddingDefaultNews ? 'Добавление...' : 'Добавить'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
           <Button onClick={handleAddNew}>
             <Plus className="mr-2 h-4 w-4" />
             Добавить новость
