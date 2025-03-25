@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
               <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-              <span className="text-xl font-spaceland font-semibold">ООО «Гранит»</span>
+              <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
             </Link>
             <p className="text-muted-foreground mb-6">
               Специализированная компания по производству буровзрывных работ в сложных климатических условиях
