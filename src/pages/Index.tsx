@@ -1,20 +1,25 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
 import { Hero } from '@/components/home/Hero';
 import { Services } from '@/components/home/Services';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+
 const Index = () => {
   useAnimateOnScroll();
+  
   useEffect(() => {
     document.title = 'ООО «Гранит» — Буровзрывные работы на Дальнем Востоке';
   }, []);
-  return <div>
+
+  return (
+    <div>
       <Hero />
       <Services />
       
       {/* About Section */}
-      <section className="py-20 overflow-hidden relative bg-gray-200">
+      <section className="py-20 overflow-hidden relative">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -62,7 +67,10 @@ const Index = () => {
                 </div>
               </div>
               
-              <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
+              <Link 
+                to="/about" 
+                className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
+              >
                 Подробнее о компании
                 <ArrowRight size={18} />
               </Link>
@@ -71,7 +79,11 @@ const Index = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
               <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
-                <img src="/images/about-company.jpg" alt="О компании ООО Гранит" className="object-cover w-full h-full" />
+                <img
+                  src="/images/about-company.jpg"
+                  alt="О компании ООО Гранит"
+                  className="object-cover w-full h-full"
+                />
               </div>
               
               <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
@@ -116,6 +128,80 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>;
+      
+      {/* News Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
+            <div>
+              <h2 className="section-title mb-2 animate-on-scroll">Последние новости</h2>
+              <p className="text-muted-foreground animate-on-scroll">Актуальная информация о наших проектах и достижениях</p>
+            </div>
+            
+            <Link 
+              to="/news" 
+              className="btn-outline flex items-center gap-2 animate-on-scroll"
+            >
+              Все новости
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((index) => (
+              <div 
+                key={index}
+                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={`/images/news/news-${index}.jpg`}
+                    alt={`Новость ${index}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                      {index === 1 ? 'Проекты' : index === 2 ? 'Технологии' : 'События'}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date().toLocaleDateString('ru-RU')}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                    {index === 1 
+                      ? 'Запуск завода в Забайкалье' 
+                      : index === 2 
+                        ? 'Успешные испытания патронов в Хабаровске' 
+                        : 'Участие в проекте БАМ-2'}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4">
+                    {index === 1 
+                      ? 'ООО «Гранит» ввело в эксплуатацию завод по производству компонентов ЭВВ мощностью 30 тыс. тонн/год.'
+                      : index === 2 
+                        ? 'Начало выпуска эмульсионных патронов диаметром 32–90 мм для автономного применения.'
+                        : 'Применение мобильных ПСЗУ позволило сократить сроки взрывных работ на 15%.'}
+                  </p>
+                  
+                  <Link 
+                    to={`/news/${index}`}
+                    className="text-primary font-medium flex items-center gap-1 hover:underline"
+                  >
+                    Читать далее
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 };
+
 export default Index;

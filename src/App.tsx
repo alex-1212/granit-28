@@ -3,27 +3,40 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 import { useEffect } from "react";
 
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Technologies from "./pages/Technologies";
+import News from "./pages/News";
+import NewsDetail from "./pages/NewsDetail";
 import Gallery from "./pages/Gallery";
 import Licenses from "./pages/Licenses";
 import Team from "./pages/Team";
 import Careers from "./pages/Careers";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
-import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminNews from "./pages/AdminNews";
 
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
-const queryClient = new QueryClient();
+// ScrollToTop component to handle scrolling to top on page navigation
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 // Progress bar for page transitions
 const PageProgressBar = () => {
@@ -50,38 +63,52 @@ const PageProgressBar = () => {
   return null;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <PageProgressBar />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow pt-20">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/technologies" element={<Technologies />} />
-                <Route path="/news" element={<News />} />
-                <Route path="/news/:id" element={<NewsDetail />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/licenses" element={<Licenses />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Create a new QueryClient instance inside the component
+  const queryClient = new QueryClient();
+  
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <PageProgressBar />
+              <ScrollToTop />
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-grow pt-20">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/technologies" element={<Technologies />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/news/:id" element={<NewsDetail />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/licenses" element={<Licenses />} />
+                    <Route path="/team" element={<Team />} />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/admin-login" element={<AdminLogin />} />
+                    <Route path="/admnews" element={
+                      <ProtectedRoute>
+                        <AdminNews />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </div>
+            </TooltipProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+};
 
 export default App;

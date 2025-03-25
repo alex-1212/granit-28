@@ -1,125 +1,124 @@
 
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { newsData } from '@/data/news';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { getAllNews } from '@/services/newsService';
+import { NewsItem } from '@/data/news';
+import { getDefaultImage } from '@/utils/imageUpload';
 
-const News = () => {
+const News: React.FC = () => {
+  const navigate = useNavigate();
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  
   useAnimateOnScroll();
 
+  // Scroll to top when component mounts
   useEffect(() => {
-    document.title = 'Новости — ООО «Гранит»';
+    window.scrollTo(0, 0);
   }, []);
 
-  // Sort news by date (newest first)
-  const sortedNews = [...newsData].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const fetchedNews = await getAllNews();
+        setNews(fetchedNews);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const months = [
-      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-    ];
-    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-  };
+    fetchNews();
+  }, []);
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              Новости компании
-            </h1>
-            
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Актуальная информация о наших проектах, достижениях и технологиях
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="container mx-auto px-4 py-12">
+      <Helmet>
+        <title>Новости компании | ООО «Гранит»</title>
+        <meta name="description" content="Актуальные новости компании ООО «Гранит»: инновации, проекты, достижения и события." />
+      </Helmet>
       
-      {/* News Carousel */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-12 animate-on-scroll">Последние новости</h2>
-          
+      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center animate-on-scroll">
+        Новости компании
+      </h1>
+      
+      {loading ? (
+        <div className="text-center py-12">
+          <p>Загрузка новостей...</p>
+        </div>
+      ) : news.length > 0 ? (
+        <div className="mb-12 animate-on-scroll">
           <Carousel
             opts={{
               align: "start",
               loop: true,
             }}
-            className="mx-auto animate-on-scroll max-w-7xl"
+            className="w-full max-w-5xl mx-auto"
           >
-            <CarouselContent className="-ml-4">
-              {sortedNews.map((news) => (
-                <CarouselItem key={news.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
-                  <Card className="h-full flex flex-col">
-                    <div className="aspect-video overflow-hidden">
-                      <img 
-                        src={news.image} 
-                        alt={news.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    
-                    <CardHeader>
-                      <div className="text-sm text-muted-foreground mb-2">
-                        {formatDate(news.date)}
-                      </div>
-                      <CardTitle className="line-clamp-2">{news.title}</CardTitle>
-                    </CardHeader>
-                    
-                    <CardContent className="flex-grow">
-                      <p className="text-sm text-muted-foreground line-clamp-3">
-                        {news.summary}
-                      </p>
-                    </CardContent>
-                    
-                    <CardFooter>
-                      <Link to={`/news/${news.id}`}>
-                        <Button variant="ghost" className="p-0 flex items-center gap-1 text-primary hover:text-primary/80">
-                          Читать далее <ArrowRight size={16} />
-                        </Button>
-                      </Link>
-                    </CardFooter>
-                  </Card>
+            <CarouselContent>
+              {news.map((item) => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/4">
+                  <NewsCard item={item} onReadMore={() => navigate(`/news/${item.id}`)} />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-1 lg:-left-12 bg-background/80 backdrop-blur-sm" />
-            <CarouselNext className="right-1 lg:-right-12 bg-background/80 backdrop-blur-sm" />
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
-          
-          <div className="mt-16 text-center animate-on-scroll">
-            <p className="text-lg mb-6">
-              Узнайте больше о последних достижениях и проектах нашей компании
-            </p>
-            <Link to="/news">
-              <Button size="lg" className="font-medium">
-                Все новости
-              </Button>
-            </Link>
-          </div>
         </div>
-      </section>
+      ) : (
+        <div className="text-center py-12">
+          <p>Нет доступных новостей</p>
+        </div>
+      )}
     </div>
+  );
+};
+
+interface NewsCardProps {
+  item: NewsItem;
+  onReadMore: () => void;
+}
+
+const NewsCard: React.FC<NewsCardProps> = ({ item, onReadMore }) => {
+  return (
+    <Card className="h-full overflow-hidden hover:shadow-md transition-shadow duration-300">
+      <div className="h-48 overflow-hidden">
+        <img 
+          src={item.image} 
+          alt={item.title} 
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = getDefaultImage();
+          }}
+        />
+      </div>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+        <CardDescription className="text-sm">{item.date}</CardDescription>
+      </CardHeader>
+      <CardContent className="pb-2">
+        <p className="text-sm line-clamp-3">{item.shortDescription}</p>
+      </CardContent>
+      <CardFooter>
+        <Button variant="outline" size="sm" onClick={onReadMore}>
+          Читать далее
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 
