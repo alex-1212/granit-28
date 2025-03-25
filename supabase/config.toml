@@ -1,1 +1,45 @@
+
 project_id = "axpllivhrhdrnaomusfl"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+
+[db]
+port = 54322
+
+[studio]
+port = 54323
+
+# Add a section to enable Row Level Security (RLS) policies
+[auth]
+enabled = true
+
+[realtime]
+enabled = true
+
+# Add RLS policies for the news table
+[[auth.policies]]
+name = "Enable read access for all users"
+table = "news"
+operation = "SELECT"
+expression = "true"
+
+[[auth.policies]]
+name = "Enable insert access for authenticated users"
+table = "news"
+operation = "INSERT"
+expression = "auth.role() = 'authenticated'"
+
+[[auth.policies]]
+name = "Enable update access for authenticated users"
+table = "news"
+operation = "UPDATE"
+expression = "auth.role() = 'authenticated'"
+
+[[auth.policies]]
+name = "Enable delete access for authenticated users"
+table = "news"
+operation = "DELETE"
+expression = "auth.role() = 'authenticated'"

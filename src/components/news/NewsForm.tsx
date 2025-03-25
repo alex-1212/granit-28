@@ -9,6 +9,7 @@ import NewsFormHeader from './NewsFormHeader';
 import NewsFormFields from './NewsFormFields';
 import NewsFormActions from './NewsFormActions';
 import { useAuth } from '@/context/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 
 interface NewsFormProps {
   newsItem: NewsItem | null;
@@ -66,9 +67,24 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
     }
   };
 
+  // Check authentication status at the beginning
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data } = await supabase.auth.getSession();
+      console.log("Auth session check:", data);
+    };
+    
+    checkAuth();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Log authentication state
+    console.log("Is authenticated:", isAuthenticated);
+    const { data: sessionData } = await supabase.auth.getSession();
+    console.log("Session data:", sessionData);
 
     if (!isAuthenticated) {
       toast({
@@ -154,7 +170,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSubmit, onCancel }) => 
       console.error("Error saving news:", error);
       toast({
         title: "Ошибка",
-        description: "Не удалось сохранить новость",
+        description: "Не удалось сохранить новость. Проверьте консоль для деталей.",
         variant: "destructive",
       });
     } finally {
