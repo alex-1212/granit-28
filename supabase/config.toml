@@ -19,7 +19,7 @@ enabled = true
 [realtime]
 enabled = true
 
-# Упрощаем RLS политики для таблицы news
+# Упрощаем RLS политики для таблицы news - разрешаем все для всех пользователей
 [[auth.policies]]
 name = "Enable read access for all users"
 table = "news"
@@ -27,19 +27,19 @@ operation = "SELECT"
 expression = "true"
 
 [[auth.policies]]
-name = "Enable insert access for all users"
+name = "Enable insert for all users"
 table = "news"
 operation = "INSERT"
 expression = "true"
 
 [[auth.policies]]
-name = "Enable update access for all users"
+name = "Enable update for all users"
 table = "news"
 operation = "UPDATE"
 expression = "true"
 
 [[auth.policies]]
-name = "Enable delete access for all users"
+name = "Enable delete for all users"
 table = "news"
 operation = "DELETE"
 expression = "true"

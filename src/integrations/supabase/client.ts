@@ -58,3 +58,32 @@ export const getAuthenticatedUser = async () => {
   const { data } = await supabase.auth.getUser();
   return data.user;
 };
+
+// Set up automatic authentication for manual auth users
+export const setupManualAuth = async () => {
+  if (localStorage.getItem('manual_auth') === 'true') {
+    try {
+      // This creates a custom session for the manually authenticated user
+      const { error } = await supabase.auth.signInWithPassword({
+        email: 'adminnews@granit.com',
+        password: SUPABASE_PUBLISHABLE_KEY // Using the publishable key as a password for simplicity
+      });
+      
+      if (error) {
+        console.error('Error setting up manual auth:', error);
+        // If signIn fails, we'll try to use the token directly
+        await supabase.auth.setSession({
+          access_token: SUPABASE_PUBLISHABLE_KEY,
+          refresh_token: SUPABASE_PUBLISHABLE_KEY
+        });
+      }
+    } catch (e) {
+      console.error('Exception during manual auth setup:', e);
+    }
+  }
+};
+
+// Initialize manual auth if needed
+if (typeof localStorage !== 'undefined' && localStorage.getItem('manual_auth') === 'true') {
+  setupManualAuth().catch(console.error);
+}

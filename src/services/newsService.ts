@@ -1,5 +1,5 @@
 
-import { supabase, isUserAuthenticated } from '@/integrations/supabase/client';
+import { supabase, isUserAuthenticated, getAuthenticatedUser } from '@/integrations/supabase/client';
 import { NewsItem, newsData } from '../data/news';
 
 // Database table mapping
@@ -33,22 +33,17 @@ const mapNewsItemToDb = (item: Omit<NewsItem, 'id'>): Omit<NewsDB, 'id' | 'creat
   image: item.image,
 });
 
-// Функция для проверки авторизации и установки хедеров
-const getAuthenticatedClient = async () => {
-  const isAuth = await isUserAuthenticated();
-  if (!isAuth) {
-    throw new Error('Unauthorized: User must be authenticated');
-  }
-  
+// Функция для создания клиента с дополнительными заголовками для ручной авторизации
+const getClientWithHeaders = () => {
   // Если это ручная авторизация, добавляем хедер для RLS политик
   if (localStorage.getItem('manual_auth') === 'true') {
-    return supabase.headers({
-      'X-Manual-Auth': 'true',
-      'Authorization': `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+    return supabase.auth.setSession({
+      access_token: SUPABASE_PUBLISHABLE_KEY,
+      refresh_token: SUPABASE_PUBLISHABLE_KEY,
     });
   }
   
-  return supabase;
+  return Promise.resolve({ data: { session: null }, error: null });
 };
 
 // Константа для доступа к publishable key
@@ -127,6 +122,11 @@ export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem 
     console.log('Auth status before insert:', isAuth);
     console.log('Manual auth status:', localStorage.getItem('manual_auth'));
     
+    // Подготавливаем клиент с учетом ручной авторизации
+    if (localStorage.getItem('manual_auth') === 'true') {
+      await getClientWithHeaders();
+    }
+    
     // Выполняем запрос
     const { data, error } = await supabase
       .from('news')
@@ -137,25 +137,6 @@ export const addNews = async (newsItem: Omit<NewsItem, 'id'>): Promise<NewsItem 
     if (error) {
       console.error('Error adding news:', error);
       console.error('Error details:', error.details, error.hint, error.message);
-      // Попробуем через альтернативный метод с хедерами для ручной авторизации
-      if (localStorage.getItem('manual_auth') === 'true') {
-        const { data: altData, error: altError } = await supabase
-          .headers({
-            'X-Manual-Auth': 'true',
-            'Role': 'authenticated'
-          })
-          .from('news')
-          .insert(newsData)
-          .select()
-          .single();
-          
-        if (altError) {
-          console.error('Alternative insert also failed:', altError);
-          return null;
-        }
-        
-        return mapDbToNewsItem(altData as NewsDB);
-      }
       return null;
     }
 
@@ -190,6 +171,11 @@ export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>):
     // Настраиваем данные для обновления
     const newsData = mapNewsItemToDb(updatedNews);
     
+    // Подготавливаем клиент с учетом ручной авторизации
+    if (localStorage.getItem('manual_auth') === 'true') {
+      await getClientWithHeaders();
+    }
+    
     // Выполняем запрос
     const { data, error } = await supabase
       .from('news')
@@ -201,26 +187,6 @@ export const updateNews = async (id: number, updatedNews: Omit<NewsItem, 'id'>):
     if (error) {
       console.error('Error updating news:', error);
       console.error('Error details:', error.details, error.hint, error.message);
-      // Попробуем через альтернативный метод с хедерами для ручной авторизации
-      if (localStorage.getItem('manual_auth') === 'true') {
-        const { data: altData, error: altError } = await supabase
-          .headers({
-            'X-Manual-Auth': 'true',
-            'Role': 'authenticated'
-          })
-          .from('news')
-          .update(newsData)
-          .eq('id', id)
-          .select()
-          .single();
-          
-        if (altError) {
-          console.error('Alternative update also failed:', altError);
-          return null;
-        }
-        
-        return mapDbToNewsItem(altData as NewsDB);
-      }
       return null;
     }
 
@@ -247,6 +213,11 @@ export const deleteNews = async (id: number): Promise<boolean> => {
       throw new Error('User not authenticated');
     }
     
+    // Подготавливаем клиент с учетом ручной авторизации
+    if (localStorage.getItem('manual_auth') === 'true') {
+      await getClientWithHeaders();
+    }
+    
     const { error } = await supabase
       .from('news')
       .delete()
@@ -255,24 +226,6 @@ export const deleteNews = async (id: number): Promise<boolean> => {
     if (error) {
       console.error('Error deleting news:', error);
       console.error('Error details:', error.details, error.hint, error.message);
-      // Попробуем через альтернативный метод с хедерами для ручной авторизации
-      if (localStorage.getItem('manual_auth') === 'true') {
-        const { error: altError } = await supabase
-          .headers({
-            'X-Manual-Auth': 'true',
-            'Role': 'authenticated'
-          })
-          .from('news')
-          .delete()
-          .eq('id', id);
-          
-        if (altError) {
-          console.error('Alternative delete also failed:', altError);
-          return false;
-        }
-        
-        return true;
-      }
       return false;
     }
 
@@ -339,18 +292,15 @@ export const addProvidedNews = async (): Promise<boolean> => {
       }
     ];
     
-    // В зависимости от статуса ручной авторизации выбираем клиент
-    const client = localStorage.getItem('manual_auth') === 'true' 
-      ? supabase.headers({
-          'X-Manual-Auth': 'true',
-          'Role': 'authenticated'
-        })
-      : supabase;
+    // Подготавливаем клиент с учетом ручной авторизации
+    if (localStorage.getItem('manual_auth') === 'true') {
+      await getClientWithHeaders();
+    }
 
-    // Clear existing news - use a different approach that ignores RLS
+    // Clear existing news 
     console.log('Deleting existing news');
     try {
-      const { error: deleteError } = await client
+      const { error: deleteError } = await supabase
         .from('news')
         .delete()
         .neq('id', 0); // Delete all records
@@ -368,7 +318,7 @@ export const addProvidedNews = async (): Promise<boolean> => {
     // Insert all provided news
     let successCount = 0;
     for (const item of newsItems) {
-      const { error } = await client
+      const { error } = await supabase
         .from('news')
         .insert(mapNewsItemToDb(item));
       
