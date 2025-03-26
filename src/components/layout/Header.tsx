@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -47,8 +48,11 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center">
-            <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-            <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+            <img 
+              src="/lovable-uploads/73164d07-ceac-4efb-ae83-2fee45daa097.png" 
+              alt="ООО «Гранит»" 
+              className="h-12 object-contain"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-1">

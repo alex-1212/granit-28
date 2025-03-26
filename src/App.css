@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,9 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Logo styles */
+.dark-mode img[src="/lovable-uploads/73164d07-ceac-4efb-ae83-2fee45daa097.png"] {
+  filter: brightness(1.5);
 }
