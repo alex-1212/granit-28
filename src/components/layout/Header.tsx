@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -45,13 +46,17 @@ export const Header = () => {
   return (
     <header className={headerClass}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center">
-            <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-            <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
-          </Link>
+        <div className="flex items-center h-20">
+          {/* Logo on the left */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="flex items-center">
+              <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
+              <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+            </Link>
+          </div>
 
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Navigation centered */}
+          <nav className="hidden lg:flex flex-1 items-center justify-center space-x-1">
             {navItems.map((item, index) => (
               <Link
                 key={item.path}
@@ -67,12 +72,13 @@ export const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="ml-4 animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
-              <ThemeToggle />
-            </div>
           </nav>
 
+          {/* Theme toggle and user menu on the right */}
           <div className="flex items-center gap-2">
+            <div className="hidden lg:block animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+              <ThemeToggle />
+            </div>
             <UserMenu />
             {/* Only show ThemeToggle on mobile if menu is not open */}
             <div className="lg:hidden">
