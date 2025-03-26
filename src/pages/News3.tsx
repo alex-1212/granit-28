@@ -7,10 +7,12 @@ import NewsHero from '@/components/news/NewsHero';
 import NewsFilters from '@/components/news/NewsFilters';
 import NewsGrid from '@/components/news/NewsGrid';
 
+type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
+
 const News3 = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState("Все");
+  const [filter, setFilter] = useState<Category>("Все");
 
   useEffect(() => {
     const fetchNews = async () => {

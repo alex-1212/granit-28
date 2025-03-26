@@ -74,15 +74,18 @@ const News = () => {
       )}
       
       {/* Hero Section */}
-      <NewsHero />
+      <NewsHero 
+        title="Новости компании" 
+        subtitle="Актуальная информация о наших проектах, достижениях и технологиях" 
+      />
       
       {/* News Filter and Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           {/* Filters and Admin Controls */}
           <NewsFilters 
-            filter={filter} 
-            setFilter={setFilter}
+            currentFilter={filter} 
+            onFilterChange={setFilter}
             onCreateNews={() => setIsCreateDialogOpen(true)}
           />
           
