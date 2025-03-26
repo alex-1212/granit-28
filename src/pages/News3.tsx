@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { NewsItem, getAllNews } from '@/services/newsService';
-import { NewsHero } from '@/components/news/NewsHero';
-import { NewsFilters } from '@/components/news/NewsFilters';
+import NewsHero from '@/components/news/NewsHero';
+import NewsFilters from '@/components/news/NewsFilters';
 import NewsGrid from '@/components/news/NewsGrid';
 
 const News3 = () => {
@@ -48,6 +48,7 @@ const News3 = () => {
         <NewsFilters 
           currentFilter={filter} 
           onFilterChange={setFilter} 
+          onCreateNews={() => {}} 
         />
       </div>
       

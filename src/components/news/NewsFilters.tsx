@@ -7,12 +7,12 @@ import { useAuth } from '@/context/AuthContext';
 type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
 
 interface NewsFiltersProps {
-  filter: Category;
-  setFilter: (category: Category) => void;
+  currentFilter: Category;
+  onFilterChange: (category: Category) => void;
   onCreateNews: () => void;
 }
 
-const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
+const NewsFilters = ({ currentFilter, onFilterChange, onCreateNews }: NewsFiltersProps) => {
   const { user } = useAuth();
   
   return (
@@ -37,9 +37,9 @@ const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
             {(['Все', 'Проекты', 'Технологии', 'События'] as Category[]).map((category) => (
               <button
                 key={category}
-                onClick={() => setFilter(category)}
+                onClick={() => onFilterChange(category)}
                 className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
-                  filter === category
+                  currentFilter === category
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-secondary/80 hover:bg-secondary text-foreground'
                 }`}
