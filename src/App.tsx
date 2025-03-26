@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { useEffect } from "react";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
 
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -84,6 +84,7 @@ const App = () => (
     <ThemeProvider>
       <TooltipProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <AuthProvider>
             <div className="flex flex-col min-h-screen">
               <Header />
@@ -93,10 +94,10 @@ const App = () => (
               <Footer />
             </div>
           </AuthProvider>
+          <Toaster />
+          <Sonner />
+          <PageProgressBar />
         </BrowserRouter>
-        <Toaster />
-        <Sonner />
-        <PageProgressBar />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
