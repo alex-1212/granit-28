@@ -1,8 +1,6 @@
 
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/context/AuthContext';
-import { LogIn, User, LogOut } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
+import { useState } from 'react';
 
 export const UserMenu = () => {
   const { user, signOut } = useAuth();
@@ -24,18 +23,9 @@ export const UserMenu = () => {
     setIsOpen(false);
   };
 
+  // If user is not logged in, return null (don't show anything)
   if (!user) {
-    return (
-      <Button 
-        variant="ghost" 
-        size="sm" 
-        className="gap-2" 
-        onClick={() => navigate('/auth')}
-      >
-        <LogIn size={18} />
-        <span>Войти</span>
-      </Button>
-    );
+    return null;
   }
 
   const initials = user.email 
@@ -45,12 +35,10 @@ export const UserMenu = () => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="relative h-9 w-9 rounded-full">
-          <Avatar className="h-9 w-9">
-            <AvatarImage src="" alt={user.email || 'Пользователь'} />
-            <AvatarFallback>{initials}</AvatarFallback>
-          </Avatar>
-        </Button>
+        <Avatar className="h-9 w-9 cursor-pointer">
+          <AvatarImage src="" alt={user.email || 'Пользователь'} />
+          <AvatarFallback>{initials}</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
