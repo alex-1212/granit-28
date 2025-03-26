@@ -76,12 +76,15 @@ export const Header = () => {
 
           <div className="flex items-center gap-2">
             <UserMenu />
-            <ThemeToggle />
+            {/* Only show ThemeToggle on mobile if menu is not open */}
+            <div className="lg:hidden">
+              <ThemeToggle />
+            </div>
             <button
               className="p-2 lg:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>

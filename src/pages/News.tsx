@@ -29,6 +29,7 @@ const News = () => {
       setIsLoading(true);
       try {
         const data = await getAllNews();
+        console.log("Fetched news data:", data); // For debugging
         setNews(data);
       } catch (error) {
         console.error('Failed to fetch news:', error);
