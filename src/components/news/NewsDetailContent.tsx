@@ -24,10 +24,17 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
             />
           </div>
           
-          <div 
-            className="prose prose-lg max-w-none dark:prose-invert animate-on-scroll"
-            dangerouslySetInnerHTML={{ __html: news.content }}
-          />
+          {news.content && (
+            <div className="prose prose-lg max-w-none dark:prose-invert animate-on-scroll">
+              {/* If content is HTML, render it with dangerouslySetInnerHTML */}
+              {news.content.includes('<') ? (
+                <div dangerouslySetInnerHTML={{ __html: news.content }} />
+              ) : (
+                /* Otherwise render as plain text with paragraph wrapping */
+                <p>{news.content}</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
