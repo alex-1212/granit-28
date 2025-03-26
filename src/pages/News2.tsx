@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/carousel';
 import { getAllNews, NewsItem } from '@/services/newsService';
 import NewsCard from '@/components/news/NewsCard';
-import { Skeleton } from '@/components/ui/skeleton';
 
 const News2 = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -48,7 +47,9 @@ const News2 = () => {
     return (
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8 text-center">Новости</h1>
-        <NewsCarouselSkeleton />
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
       </div>
     );
   }
@@ -83,28 +84,6 @@ const News2 = () => {
           <p>Новости не найдены</p>
         </div>
       )}
-    </div>
-  );
-};
-
-const NewsCarouselSkeleton = () => {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="rounded-xl overflow-hidden border border-border">
-          <Skeleton className="h-48 w-full" />
-          <div className="p-6 space-y-3">
-            <div className="flex gap-2">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="h-4 w-24" />
-            </div>
-            <Skeleton className="h-6 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-3/4" />
-            <Skeleton className="h-4 w-1/4" />
-          </div>
-        </div>
-      ))}
     </div>
   );
 };
