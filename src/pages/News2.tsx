@@ -57,7 +57,7 @@ const News2 = () => {
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8 text-center">Новости</h1>
       
-      {news.length > 0 ? (
+      {news && news.length > 0 ? (
         <div className="relative py-8">
           <Carousel className="w-full"
             opts={{
@@ -68,7 +68,9 @@ const News2 = () => {
             <CarouselContent className="-ml-4">
               {news.map((newsItem) => (
                 <CarouselItem key={newsItem.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
-                  <NewsCard newsItem={newsItem} formatDate={formatDate} />
+                  <div className="h-full">
+                    <NewsCard newsItem={newsItem} formatDate={formatDate} />
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
