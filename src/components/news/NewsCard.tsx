@@ -12,7 +12,7 @@ interface NewsCardProps {
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   return (
     <div 
-      className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll h-full flex flex-col"
+      className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
     >
       <div className="aspect-video overflow-hidden">
         <img
@@ -20,14 +20,10 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
           alt={newsItem.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg';
-          }}
         />
       </div>
       
-      <div className="p-6 flex-grow flex flex-col">
+      <div className="p-6">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
             {newsItem.category}
@@ -41,13 +37,13 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
           {newsItem.title}
         </h3>
         
-        <p className="text-muted-foreground mb-4 flex-grow">
+        <p className="text-muted-foreground mb-4">
           {newsItem.summary}
         </p>
         
         <Link 
           to={`/news/${newsItem.id}`}
-          className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto"
+          className="text-primary font-medium flex items-center gap-1 hover:underline"
         >
           Читать далее
           <ArrowRight size={16} />
