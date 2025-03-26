@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NewsItem } from '@/services/newsService';
 import NewsCard from './NewsCard';
 import NewsCardSkeleton from './NewsCardSkeleton';
@@ -12,14 +12,6 @@ interface NewsGridProps {
 }
 
 const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
-  useEffect(() => {
-    console.log('NewsGrid rendered with:');
-    console.log('isLoading:', isLoading);
-    console.log('news items count:', news.length);
-    console.log('news data:', news);
-    console.log('filter:', filter);
-  }, [isLoading, news, filter]);
-
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
