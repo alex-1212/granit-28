@@ -1,10 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Filter } from 'lucide-react';
+import { ArrowRight, Filter, Plus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getAllNews, NewsItem } from '@/services/newsService';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/AuthContext';
+import { NewsEditor } from '@/components/news/NewsEditor';
 
 type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
 
@@ -14,6 +17,10 @@ const News = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
+  
+  // State for create news dialog
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
@@ -45,9 +52,25 @@ const News = () => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
+  
+  const handleCreateSuccess = () => {
+    // Reload news after successful creation
+    getAllNews().then(data => {
+      setNews(data);
+    });
+  };
 
   return (
     <div>
+      {/* Create News Dialog - Only for authenticated users */}
+      {user && (
+        <NewsEditor
+          isOpen={isCreateDialogOpen}
+          onClose={() => setIsCreateDialogOpen(false)}
+          onSuccess={handleCreateSuccess}
+        />
+      )}
+      
       {/* Hero Section */}
       <section className="pt-16 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
@@ -69,26 +92,39 @@ const News = () => {
       {/* News Filter and Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          {/* Filters */}
+          {/* Filters and Admin Controls */}
           <div className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-on-scroll">
             <h2 className="text-2xl font-semibold">Все публикации</h2>
             
-            <div className="flex items-center">
-              <Filter size={20} className="mr-2 text-primary" />
-              <div className="flex flex-wrap gap-2">
-                {(['Все', 'Проекты', 'Технологии', 'События'] as Category[]).map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setFilter(category)}
-                    className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
-                      filter === category
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-secondary/80 hover:bg-secondary text-foreground'
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              {/* Add News Button - Only visible to authenticated users */}
+              {user && (
+                <Button 
+                  onClick={() => setIsCreateDialogOpen(true)}
+                  className="flex items-center gap-1.5"
+                >
+                  <Plus size={18} />
+                  Добавить новость
+                </Button>
+              )}
+              
+              <div className="flex items-center">
+                <Filter size={20} className="mr-2 text-primary" />
+                <div className="flex flex-wrap gap-2">
+                  {(['Все', 'Проекты', 'Технологии', 'События'] as Category[]).map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setFilter(category)}
+                      className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
+                        filter === category
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-secondary/80 hover:bg-secondary text-foreground'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -1,10 +1,13 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Edit, Tag, Trash } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getNewsById, getRelatedNews, NewsItem } from '@/services/newsService';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/button';
+import { NewsEditor } from '@/components/news/NewsEditor';
+import { DeleteNewsDialog } from '@/components/news/DeleteNewsDialog';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
@@ -13,6 +16,10 @@ const NewsDetail = () => {
   const [news, setNews] = useState<NewsItem | null>(null);
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
+  
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   
   useEffect(() => {
     const fetchNewsDetails = async () => {
@@ -27,7 +34,6 @@ const NewsDetail = () => {
           setNews(newsItem);
           document.title = `${newsItem.title} — ООО «Гранит»`;
           
-          // Get related news (same category, excluding current)
           const related = await getRelatedNews(newsItem.category, id, 3);
           setRelatedNews(related);
         } else {
@@ -49,10 +55,24 @@ const NewsDetail = () => {
     return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
   
+  const handleEditSuccess = () => {
+    if (id) {
+      getNewsById(id).then(updatedNews => {
+        if (updatedNews) {
+          setNews(updatedNews);
+          document.title = `${updatedNews.title} — ООО «Гранит»`;
+        }
+      });
+    }
+  };
+  
+  const handleDeleteSuccess = () => {
+    navigate('/news', { replace: true });
+  };
+  
   if (isLoading) {
     return (
       <div>
-        {/* Hero Skeleton */}
         <section className="pt-16 pb-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
           <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
@@ -73,7 +93,6 @@ const NewsDetail = () => {
           </div>
         </section>
         
-        {/* Content Skeleton */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
@@ -99,20 +118,64 @@ const NewsDetail = () => {
 
   return (
     <div>
-      {/* Hero Section */}
+      {user && news && (
+        <>
+          <NewsEditor 
+            isOpen={isEditDialogOpen}
+            onClose={() => setIsEditDialogOpen(false)}
+            onSuccess={handleEditSuccess}
+            initialData={news}
+          />
+          
+          <DeleteNewsDialog 
+            isOpen={isDeleteDialogOpen}
+            onClose={() => setIsDeleteDialogOpen(false)}
+            onSuccess={handleDeleteSuccess}
+            newsId={news.id}
+            newsTitle={news.title}
+          />
+        </>
+      )}
+      
       <section className="pt-16 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto">
-            <Link 
-              to="/news" 
-              className="inline-flex items-center gap-2 text-primary font-medium mb-8 hover:underline animate-fade-in"
-            >
-              <ArrowLeft size={18} />
-              Вернуться к новостям
-            </Link>
+            <div className="flex justify-between items-start mb-8">
+              <Link 
+                to="/news" 
+                className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in"
+              >
+                <ArrowLeft size={18} />
+                Вернуться к новостям
+              </Link>
+              
+              {user && (
+                <div className="flex items-center gap-2 animate-fade-in">
+                  <Button 
+                    onClick={() => setIsEditDialogOpen(true)} 
+                    variant="outline" 
+                    size="sm"
+                    className="flex items-center gap-1"
+                  >
+                    <Edit size={16} />
+                    Редактировать
+                  </Button>
+                  
+                  <Button 
+                    onClick={() => setIsDeleteDialogOpen(true)} 
+                    variant="destructive" 
+                    size="sm"
+                    className="flex items-center gap-1"
+                  >
+                    <Trash size={16} />
+                    Удалить
+                  </Button>
+                </div>
+              )}
+            </div>
             
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
               {news.title}
@@ -133,7 +196,6 @@ const NewsDetail = () => {
         </div>
       </section>
       
-      {/* News Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
@@ -153,7 +215,6 @@ const NewsDetail = () => {
         </div>
       </section>
       
-      {/* Related News */}
       {relatedNews.length > 0 && (
         <section className="py-16 bg-primary/5 dark:bg-primary/10">
           <div className="container mx-auto px-4">

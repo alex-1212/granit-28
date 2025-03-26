@@ -8,7 +8,7 @@ export interface NewsItem {
   content: string;
   date: string;
   image: string;
-  category: 'Проекты' | 'Технологии' | 'События';
+  category: string; // Changed from union type to string to match database
 }
 
 export async function getAllNews(): Promise<NewsItem[]> {
@@ -55,4 +55,51 @@ export async function getRelatedNews(category: string, currentId: string, limit:
   }
   
   return data || [];
+}
+
+// Add new functions for authenticated users to manage news
+
+export async function createNews(newsData: Omit<NewsItem, 'id'>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
+  const { data, error } = await supabase
+    .from('news')
+    .insert([newsData])
+    .select('*')
+    .single();
+  
+  if (error) {
+    console.error('Error creating news:', error);
+    return { success: false, error: error.message };
+  }
+  
+  return { success: true, data };
+}
+
+export async function updateNews(id: string, newsData: Partial<Omit<NewsItem, 'id'>>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
+  const { data, error } = await supabase
+    .from('news')
+    .update(newsData)
+    .eq('id', id)
+    .select('*')
+    .single();
+  
+  if (error) {
+    console.error('Error updating news:', error);
+    return { success: false, error: error.message };
+  }
+  
+  return { success: true, data };
+}
+
+export async function deleteNews(id: string): Promise<{success: boolean, error?: string}> {
+  const { error } = await supabase
+    .from('news')
+    .delete()
+    .eq('id', id);
+  
+  if (error) {
+    console.error('Error deleting news:', error);
+    return { success: false, error: error.message };
+  }
+  
+  return { success: true };
 }
