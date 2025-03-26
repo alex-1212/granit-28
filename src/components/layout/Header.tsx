@@ -1,8 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { Menu, X } from 'lucide-react';
-import { useMobileView } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
 
 const navItems = [
@@ -19,7 +20,7 @@ export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { isMobile } = useMobileView();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
