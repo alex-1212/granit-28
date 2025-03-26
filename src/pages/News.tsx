@@ -150,15 +150,15 @@ const News = () => {
                 </div>
               ))
             ) : (
-              filteredNews.map((news) => (
+              filteredNews.map((newsItem) => (
                 <div 
-                  key={news.id} 
+                  key={newsItem.id} 
                   className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={news.image}
-                      alt={news.title}
+                      src={newsItem.image}
+                      alt={newsItem.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -167,23 +167,23 @@ const News = () => {
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                        {news.category}
+                        {newsItem.category}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        {formatDate(news.date)}
+                        {formatDate(newsItem.date)}
                       </span>
                     </div>
                     
                     <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                      {news.title}
+                      {newsItem.title}
                     </h3>
                     
                     <p className="text-muted-foreground mb-4">
-                      {news.summary}
+                      {newsItem.summary}
                     </p>
                     
                     <Link 
-                      to={`/news/${news.id}`}
+                      to={`/news/${newsItem.id}`}
                       className="text-primary font-medium flex items-center gap-1 hover:underline"
                     >
                       Читать далее
