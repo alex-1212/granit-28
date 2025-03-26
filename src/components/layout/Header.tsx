@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -46,17 +45,13 @@ export const Header = () => {
   return (
     <header className={headerClass}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center h-20">
-          {/* Logo on the left */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
-              <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-              <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
-            </Link>
-          </div>
+        <div className="flex justify-between items-center h-20">
+          <Link to="/" className="flex items-center">
+            <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
+            <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+          </Link>
 
-          {/* Navigation centered */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <Link
                 key={item.path}
@@ -72,29 +67,29 @@ export const Header = () => {
                 {item.name}
               </Link>
             ))}
+            <div className="ml-4 animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+              <ThemeToggle />
+            </div>
           </nav>
 
-          {/* Theme toggle and user menu on the right */}
-          <div className="flex items-center ml-auto gap-2">
-            <div className="hidden lg:block animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
-              <ThemeToggle />
-            </div>
+          <div className="flex items-center gap-2">
             <UserMenu />
-            <div className="flex items-center gap-2 lg:hidden">
+            {/* Only show ThemeToggle on mobile if menu is not open */}
+            <div className="lg:hidden">
               <ThemeToggle />
-              <button
-                className="p-2"
-                onClick={toggleMenu}
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
             </div>
+            <button
+              className="p-2 lg:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </div>
 
       <div 
-        className={`md:hidden absolute top-[100%] left-0 right-0 bg-background/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-border ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-background/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-border ${
           isMenuOpen ? 'max-h-[500px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
         }`}
       >

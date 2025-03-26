@@ -7,7 +7,6 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { useEffect } from "react";
-import { ScrollToTop } from "./components/utils/ScrollToTop";
 
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -87,7 +86,6 @@ const App = () => (
         <Sonner />
         <PageProgressBar />
         <BrowserRouter>
-          <ScrollToTop />
           <AuthProvider>
             <div className="flex flex-col min-h-screen">
               <Header />
