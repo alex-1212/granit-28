@@ -12,7 +12,7 @@ interface NewsCardProps {
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   return (
     <div 
-      className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group h-full flex flex-col"
+      className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll h-full flex flex-col"
     >
       <div className="aspect-video overflow-hidden">
         <img

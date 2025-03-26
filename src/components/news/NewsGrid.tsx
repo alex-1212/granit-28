@@ -13,10 +13,10 @@ interface NewsGridProps {
 
 const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
   useEffect(() => {
-    // Логирование для отладки
     console.log('NewsGrid rendered with:');
     console.log('isLoading:', isLoading);
     console.log('news items count:', news.length);
+    console.log('news data:', news);
     console.log('filter:', filter);
   }, [isLoading, news, filter]);
 
@@ -43,12 +43,11 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {news.map((newsItem) => (
-        <div key={newsItem.id} className="h-full">
-          <NewsCard 
-            newsItem={newsItem}
-            formatDate={formatDate}
-          />
-        </div>
+        <NewsCard 
+          key={newsItem.id} 
+          newsItem={newsItem}
+          formatDate={formatDate}
+        />
       ))}
     </div>
   );
