@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,7 +14,6 @@ import Technologies from "./pages/Technologies";
 import Gallery from "./pages/Gallery";
 import Licenses from "./pages/Licenses";
 import News from "./pages/News";
-import News3 from "./pages/News3";
 import NewsDetail from "./pages/NewsDetail";
 import Team from "./pages/Team";
 import Careers from "./pages/Careers";
@@ -30,7 +28,6 @@ import { Footer } from "./components/layout/Footer";
 
 const queryClient = new QueryClient();
 
-// Progress bar for page transitions
 const PageProgressBar = () => {
   useEffect(() => {
     const startProgress = () => {
@@ -63,7 +60,6 @@ const AppRoutes = () => (
     <Route path="/gallery" element={<Gallery />} />
     <Route path="/licenses" element={<Licenses />} />
     <Route path="/news" element={<News />} />
-    <Route path="/news3" element={<News3 />} />
     <Route path="/news/:id" element={<NewsDetail />} />
     <Route path="/team" element={<Team />} />
     <Route path="/careers" element={<Careers />} />

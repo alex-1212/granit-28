@@ -27,11 +27,18 @@ const News = () => {
     document.title = 'Новости — ООО «Гранит»';
     
     const fetchNews = async () => {
-      setIsLoading(true);
       try {
+        setIsLoading(true);
         const data = await getAllNews();
-        console.log("Fetched news data:", data); // For debugging
+        console.log("Fetched news data:", data.length); // Логируем количество загруженных новостей
         setNews(data);
+        
+        // Сразу фильтруем новости при загрузке
+        if (filter === 'Все') {
+          setFilteredNews(data);
+        } else {
+          setFilteredNews(data.filter(item => item.category === filter));
+        }
       } catch (error) {
         console.error('Failed to fetch news:', error);
       } finally {
@@ -40,7 +47,7 @@ const News = () => {
     };
     
     fetchNews();
-  }, []);
+  }, [filter]);
   
   useEffect(() => {
     if (filter === 'Все') {
@@ -51,8 +58,14 @@ const News = () => {
   }, [filter, news]);
   
   const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('ru-RU', options);
+    try {
+      const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('ru-RU', options);
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return dateString;
+    }
   };
   
   const handleCreateSuccess = () => {
@@ -63,7 +76,7 @@ const News = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-background">
       {/* Create News Dialog - Only for authenticated users */}
       {user && (
         <NewsEditor
@@ -74,18 +87,15 @@ const News = () => {
       )}
       
       {/* Hero Section */}
-      <NewsHero 
-        title="Новости компании" 
-        subtitle="Актуальная информация о наших проектах, достижениях и технологиях" 
-      />
+      <NewsHero />
       
       {/* News Filter and Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           {/* Filters and Admin Controls */}
           <NewsFilters 
-            currentFilter={filter} 
-            onFilterChange={setFilter}
+            filter={filter} 
+            setFilter={setFilter}
             onCreateNews={() => setIsCreateDialogOpen(true)}
           />
           
