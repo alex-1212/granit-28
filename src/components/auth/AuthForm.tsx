@@ -23,13 +23,16 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMsg(null);
 
     try {
+      console.log(`Выполняется ${mode === 'signin' ? 'вход' : 'регистрация'} для ${email}`);
       if (mode === 'signin') {
         await signIn(email, password);
         toast({
@@ -47,9 +50,12 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
       }
       navigate('/');
     } catch (error: any) {
+      console.error('Ошибка авторизации:', error);
+      const errorMessage = error?.message || 'Произошла ошибка при авторизации';
+      setErrorMsg(errorMessage);
       toast({
         title: 'Ошибка',
-        description: error?.message || 'Произошла ошибка при авторизации',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
@@ -90,6 +96,11 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
               required
             />
           </div>
+          {errorMsg && (
+            <div className="text-destructive text-sm mt-2">
+              {errorMsg}
+            </div>
+          )}
           <Button type="submit" className="w-full" disabled={loading}>
             {loading
               ? 'Загрузка...'

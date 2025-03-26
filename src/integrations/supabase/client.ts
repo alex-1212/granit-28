@@ -1,20 +1,26 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Get environment variables
+// Корректный URL и ключ API
 const supabaseUrl = 'https://axpllivhrhdrnaomusfl.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4cGxsaXZocmhkcm5hb211c2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODA1MTk0NTgsImV4cCI6MTk5NjA5NTQ1OH0.2Ppo9SQZ9QnSBx5DGcG5wnCpOyDk7LMn3NKCWQb5kpo';
 
-// Create Supabase client
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Создаем клиент Supabase с правильными настройками
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true
+  }
+});
 
-// Function to check if user is authenticated
+// Функция для проверки аутентификации пользователя
 export const isUserAuthenticated = async (): Promise<boolean> => {
   const { data } = await supabase.auth.getSession();
   return !!data.session;
 };
 
-// Function to get current user
+// Функция для получения текущего пользователя
 export const getCurrentUser = async () => {
   const { data } = await supabase.auth.getUser();
   return data.user;
@@ -22,22 +28,32 @@ export const getCurrentUser = async () => {
 
 // Функции для авторизации
 export const signIn = async (email: string, password: string) => {
+  console.log('Попытка входа с данными:', { email, password: '***' });
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
   
-  if (error) throw error;
+  if (error) {
+    console.error('Ошибка при входе:', error);
+    throw error;
+  }
+  console.log('Успешный вход:', data);
   return data;
 };
 
 export const signUp = async (email: string, password: string) => {
+  console.log('Попытка регистрации с данными:', { email, password: '***' });
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
   });
   
-  if (error) throw error;
+  if (error) {
+    console.error('Ошибка при регистрации:', error);
+    throw error;
+  }
+  console.log('Успешная регистрация:', data);
   return data;
 };
 
