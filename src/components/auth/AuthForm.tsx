@@ -99,19 +99,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           </Button>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        {mode === 'signin' ? (
-          <p className="text-sm text-center">
-            Нет учетной записи?{' '}
-            <Button
-              variant="link"
-              className="p-0"
-              onClick={() => navigate('/signup')}
-            >
-              Зарегистрироваться
-            </Button>
-          </p>
-        ) : (
+      {mode === 'signup' && (
+        <CardFooter className="flex justify-center">
           <p className="text-sm text-center">
             Уже есть учетная запись?{' '}
             <Button
@@ -122,8 +111,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
               Войти
             </Button>
           </p>
-        )}
-      </CardFooter>
+        </CardFooter>
+      )}
     </Card>
   );
 };

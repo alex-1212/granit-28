@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, UserPlus } from 'lucide-react';
+import { LogIn, LogOut } from 'lucide-react';
 import { signOut, isUserAuthenticated } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from '@/hooks/use-toast';
@@ -45,12 +45,6 @@ export const AuthButtons: React.FC = () => {
         <Button variant="outline" size="sm">
           <LogIn className="h-4 w-4 mr-2" />
           Войти
-        </Button>
-      </Link>
-      <Link to="/signup" className="hidden sm:block">
-        <Button variant="default" size="sm">
-          <UserPlus className="h-4 w-4 mr-2" />
-          Регистрация
         </Button>
       </Link>
     </div>
