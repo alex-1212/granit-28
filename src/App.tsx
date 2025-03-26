@@ -17,7 +17,7 @@ import Gallery from "./pages/Gallery";
 import Licenses from "./pages/Licenses";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
-import SimpleNews from "./pages/SimpleNews"; // Импортируем новую страницу
+import SimpleNews from "./pages/SimpleNews";
 import Team from "./pages/Team";
 import Careers from "./pages/Careers";
 import FAQ from "./pages/FAQ";
@@ -64,7 +64,7 @@ const AppRoutes = () => (
     <Route path="/licenses" element={<Licenses />} />
     <Route path="/news" element={<News />} />
     <Route path="/news/:id" element={<NewsDetail />} />
-    <Route path="/news/1212" element={<SimpleNews />} /> {/* Добавляем новый маршрут */}
+    <Route path="/news/1212" element={<SimpleNews />} />
     <Route path="/team" element={<Team />} />
     <Route path="/careers" element={<Careers />} />
     <Route path="/faq" element={<FAQ />} />

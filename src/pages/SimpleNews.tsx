@@ -49,131 +49,28 @@ const SimpleNews: React.FC = () => {
   };
   
   return (
-    <div className="simple-news-page">
-      <div className="simple-news-header">
-        <div className="container">
-          <Link to="/news" className="back-link">
+    <div className="font-sans text-gray-800 dark:text-gray-200 dark:bg-gray-900 min-h-screen">
+      <div className="bg-gray-100 dark:bg-gray-800 py-8 mb-10">
+        <div className="max-w-3xl mx-auto px-4">
+          <Link to="/news" className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 text-sm mb-5">
             <ArrowLeft size={18} />
             Вернуться к новостям
           </Link>
-          <h1>Простая страница новостей</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Простая страница новостей</h1>
         </div>
       </div>
       
-      <div className="container">
-        <div className="simple-news-list">
+      <div className="max-w-3xl mx-auto px-4 pb-16">
+        <div className="space-y-8">
           {simpleNewsData.map(news => (
-            <div className="simple-news-item" key={news.id}>
-              <h2>{news.title}</h2>
-              <div className="simple-news-date">{formatDate(news.date)}</div>
-              <p>{news.content}</p>
+            <div key={news.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 bg-white dark:bg-gray-800 shadow-sm">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{news.title}</h2>
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">{formatDate(news.date)}</div>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{news.content}</p>
             </div>
           ))}
         </div>
       </div>
-      
-      <style jsx>{`
-        .simple-news-page {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          color: #333;
-          line-height: 1.6;
-        }
-        
-        .container {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        
-        .simple-news-header {
-          background: #f5f5f5;
-          padding: 30px 0;
-          margin-bottom: 40px;
-        }
-        
-        .back-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          color: #555;
-          text-decoration: none;
-          margin-bottom: 20px;
-          font-size: 14px;
-        }
-        
-        .back-link:hover {
-          color: #000;
-        }
-        
-        h1 {
-          font-size: 32px;
-          font-weight: 700;
-          margin: 0;
-          color: #222;
-        }
-        
-        .simple-news-list {
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-        }
-        
-        .simple-news-item {
-          padding: 20px;
-          border: 1px solid #e5e5e5;
-          border-radius: 6px;
-          background-color: #fff;
-        }
-        
-        .simple-news-item h2 {
-          font-size: 22px;
-          margin: 0 0 10px 0;
-        }
-        
-        .simple-news-date {
-          font-size: 14px;
-          color: #777;
-          margin-bottom: 12px;
-        }
-        
-        .simple-news-item p {
-          margin: 0;
-          font-size: 15px;
-        }
-        
-        /* Темная тема */
-        @media (prefers-color-scheme: dark) {
-          .simple-news-page {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-          }
-          
-          .simple-news-header {
-            background: #242424;
-          }
-          
-          h1 {
-            color: #fff;
-          }
-          
-          .back-link {
-            color: #aaa;
-          }
-          
-          .back-link:hover {
-            color: #fff;
-          }
-          
-          .simple-news-item {
-            background-color: #242424;
-            border-color: #333;
-          }
-          
-          .simple-news-date {
-            color: #999;
-          }
-        }
-      `}</style>
     </div>
   );
 };

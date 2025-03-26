@@ -57,6 +57,12 @@ const NewsDetail = () => {
     };
     
     fetchNewsDetails();
+    
+    // Make sure animations work properly when loading the page
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(el => el.classList.add('visible'));
+    }, 100);
   }, [id, navigate]);
   
   const formatDate = (dateString: string) => {
