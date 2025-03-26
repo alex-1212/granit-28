@@ -75,21 +75,20 @@ export const Header = () => {
           </nav>
 
           {/* Theme toggle and user menu on the right */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center ml-auto gap-2">
             <div className="hidden lg:block animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
               <ThemeToggle />
             </div>
             <UserMenu />
-            {/* Only show ThemeToggle on mobile if menu is not open */}
-            <div className="lg:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
               <ThemeToggle />
+              <button
+                className="p-2"
+                onClick={toggleMenu}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
             </div>
-            <button
-              className="p-2 lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
       </div>
