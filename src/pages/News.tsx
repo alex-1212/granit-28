@@ -2,27 +2,44 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Filter } from 'lucide-react';
-import { newsData, NewsItem } from '@/data/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { getAllNews, NewsItem } from '@/services/newsService';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
 
 const News = () => {
   useAnimateOnScroll();
   const [filter, setFilter] = useState<Category>('Все');
-  const [filteredNews, setFilteredNews] = useState<NewsItem[]>(newsData);
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
+    
+    const fetchNews = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getAllNews();
+        setNews(data);
+      } catch (error) {
+        console.error('Failed to fetch news:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchNews();
   }, []);
   
   useEffect(() => {
     if (filter === 'Все') {
-      setFilteredNews(newsData);
+      setFilteredNews(news);
     } else {
-      setFilteredNews(newsData.filter(item => item.category === filter));
+      setFilteredNews(news.filter(item => item.category === filter));
     }
-  }, [filter]);
+  }, [filter, news]);
   
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -78,51 +95,70 @@ const News = () => {
           
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredNews.map((news) => (
-              <div 
-                key={news.id} 
-                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
+            {isLoading ? (
+              // Skeleton loaders while data is loading
+              Array(6).fill(0).map((_, index) => (
+                <div key={index} className="glass-card-solid rounded-xl overflow-hidden animate-on-scroll">
+                  <Skeleton className="aspect-video w-full" />
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Skeleton className="h-5 w-20 rounded-full" />
+                      <Skeleton className="h-5 w-24 rounded-full" />
+                    </div>
+                    <Skeleton className="h-7 w-full mb-3" />
+                    <Skeleton className="h-5 w-full mb-2" />
+                    <Skeleton className="h-5 w-3/4 mb-4" />
+                    <Skeleton className="h-5 w-32" />
+                  </div>
                 </div>
-                
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                      {news.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {formatDate(news.date)}
-                    </span>
+              ))
+            ) : (
+              filteredNews.map((news) => (
+                <div 
+                  key={news.id} 
+                  className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
                   
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                    {news.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-4">
-                    {news.summary}
-                  </p>
-                  
-                  <Link 
-                    to={`/news/${news.id}`}
-                    className="text-primary font-medium flex items-center gap-1 hover:underline"
-                  >
-                    Читать далее
-                    <ArrowRight size={16} />
-                  </Link>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                        {news.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(news.date)}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                      {news.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground mb-4">
+                      {news.summary}
+                    </p>
+                    
+                    <Link 
+                      to={`/news/${news.id}`}
+                      className="text-primary font-medium flex items-center gap-1 hover:underline"
+                    >
+                      Читать далее
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           
-          {filteredNews.length === 0 && (
+          {!isLoading && filteredNews.length === 0 && (
             <div className="text-center py-12">
               <p className="text-lg text-muted-foreground">
                 Новостей в категории "{filter}" пока нет
