@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Edit, Tag, Trash } from 'lucide-react';
@@ -23,12 +24,18 @@ const NewsDetail = () => {
   
   useEffect(() => {
     const fetchNewsDetails = async () => {
-      if (!id) return;
+      if (!id) {
+        console.error("No ID parameter found in URL");
+        navigate('/news', { replace: true });
+        return;
+      }
       
       setIsLoading(true);
       
       try {
+        console.log("Fetching news with ID:", id);
         const newsItem = await getNewsById(id);
+        console.log("Fetched news item:", newsItem);
         
         if (newsItem) {
           setNews(newsItem);
@@ -37,6 +44,7 @@ const NewsDetail = () => {
           const related = await getRelatedNews(newsItem.category, id, 3);
           setRelatedNews(related);
         } else {
+          console.error("News item not found with ID:", id);
           navigate('/news', { replace: true });
         }
       } catch (error) {

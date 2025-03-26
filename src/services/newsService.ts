@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 
 export interface NewsItem {
@@ -22,6 +23,7 @@ export async function getAllNews(): Promise<NewsItem[]> {
       return [];
     }
     
+    console.log('Fetched all news successfully:', data?.length || 0, 'items');
     return data || [];
   } catch (err) {
     console.error('Unexpected error fetching news:', err);
@@ -36,6 +38,7 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
       return null;
     }
 
+    console.log('Fetching news by ID:', id);
     const { data, error } = await supabase
       .from('news')
       .select('*')
@@ -47,6 +50,7 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
       return null;
     }
     
+    console.log('Fetched news by ID result:', data ? 'Found' : 'Not found');
     return data;
   } catch (err) {
     console.error('Unexpected error fetching news by id:', err);
@@ -56,6 +60,7 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
 
 export async function getRelatedNews(category: string, currentId: string, limit: number = 3): Promise<NewsItem[]> {
   try {
+    console.log(`Fetching related news for category: ${category}, excluding ID: ${currentId}`);
     const { data, error } = await supabase
       .from('news')
       .select('*')
@@ -69,6 +74,7 @@ export async function getRelatedNews(category: string, currentId: string, limit:
       return [];
     }
     
+    console.log(`Found ${data?.length || 0} related news items`);
     return data || [];
   } catch (err) {
     console.error('Unexpected error fetching related news:', err);
@@ -77,6 +83,7 @@ export async function getRelatedNews(category: string, currentId: string, limit:
 }
 
 export async function createNews(newsData: Omit<NewsItem, 'id'>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
+  console.log('Creating new news item:', newsData.title);
   const { data, error } = await supabase
     .from('news')
     .insert([newsData])
@@ -88,10 +95,12 @@ export async function createNews(newsData: Omit<NewsItem, 'id'>): Promise<{succe
     return { success: false, error: error.message };
   }
   
+  console.log('Successfully created news item with ID:', data.id);
   return { success: true, data };
 }
 
 export async function updateNews(id: string, newsData: Partial<Omit<NewsItem, 'id'>>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
+  console.log('Updating news item:', id);
   const { data, error } = await supabase
     .from('news')
     .update(newsData)
@@ -104,10 +113,12 @@ export async function updateNews(id: string, newsData: Partial<Omit<NewsItem, 'i
     return { success: false, error: error.message };
   }
   
+  console.log('Successfully updated news item');
   return { success: true, data };
 }
 
 export async function deleteNews(id: string): Promise<{success: boolean, error?: string}> {
+  console.log('Deleting news item:', id);
   const { error } = await supabase
     .from('news')
     .delete()
@@ -118,5 +129,6 @@ export async function deleteNews(id: string): Promise<{success: boolean, error?:
     return { success: false, error: error.message };
   }
   
+  console.log('Successfully deleted news item');
   return { success: true };
 }
