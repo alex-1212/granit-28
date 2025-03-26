@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NewsItem } from '@/services/newsService';
 
 interface NewsDetailContentProps {
@@ -7,6 +7,11 @@ interface NewsDetailContentProps {
 }
 
 const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
+  useEffect(() => {
+    console.log('NewsDetailContent rendering with news:', news);
+    console.log('News content:', news.content);
+  }, [news]);
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
