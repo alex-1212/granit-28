@@ -2,27 +2,43 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Filter } from 'lucide-react';
-import { newsData, NewsItem } from '@/data/news';
+import { NewsItem } from '@/types/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { getAllNews } from '@/services/news';
 
 type Category = 'Все' | 'Проекты' | 'Технологии' | 'События';
 
 const News = () => {
   useAnimateOnScroll();
   const [filter, setFilter] = useState<Category>('Все');
-  const [filteredNews, setFilteredNews] = useState<NewsItem[]>(newsData);
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
   
   useEffect(() => {
     document.title = 'Новости — ООО «Гранит»';
+    
+    // Fetch news from our service
+    const fetchNews = async () => {
+      try {
+        const data = await getAllNews();
+        setNewsItems(data);
+        setFilteredNews(data);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }
+    };
+    
+    fetchNews();
   }, []);
   
   useEffect(() => {
     if (filter === 'Все') {
-      setFilteredNews(newsData);
+      setFilteredNews(newsItems);
     } else {
-      setFilteredNews(newsData.filter(item => item.category === filter));
+      // Filter by tag that contains the category
+      setFilteredNews(newsItems.filter(item => item.tags.includes(filter)));
     }
-  }, [filter]);
+  }, [filter, newsItems]);
   
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -95,10 +111,10 @@ const News = () => {
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                      {news.category}
+                      {news.tags[0]}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {formatDate(news.date)}
+                      {formatDate(news.publishDate)}
                     </span>
                   </div>
                   
@@ -107,7 +123,8 @@ const News = () => {
                   </h3>
                   
                   <p className="text-muted-foreground mb-4">
-                    {news.summary}
+                    {/* Use the first part of content as summary */}
+                    {news.content.substring(0, 150).replace(/<[^>]*>/g, '')}...
                   </p>
                   
                   <Link 

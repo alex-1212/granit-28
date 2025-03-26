@@ -1,9 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Tag } from 'lucide-react';
-import { newsData, NewsItem } from '@/data/news';
+import { NewsItem } from '@/types/news';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { getNewsById, getAllNews } from '@/services/news';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
@@ -13,21 +13,34 @@ const NewsDetail = () => {
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
   
   useEffect(() => {
-    const currentNews = newsData.find(item => item.id === id);
+    const fetchNewsDetails = async () => {
+      if (!id) return;
+      
+      try {
+        const newsItem = await getNewsById(id);
+        
+        if (newsItem) {
+          setNews(newsItem);
+          document.title = `${newsItem.title} — ООО «Гранит»`;
+          
+          // Get related news (same tag/category, excluding current)
+          const allNews = await getAllNews();
+          const category = newsItem.tags[0]; // Use first tag as category
+          const related = allNews
+            .filter(item => item.tags.includes(category) && item.id !== id)
+            .slice(0, 3);
+          
+          setRelatedNews(related);
+        } else {
+          navigate('/news', { replace: true });
+        }
+      } catch (error) {
+        console.error('Error fetching news details:', error);
+        navigate('/news', { replace: true });
+      }
+    };
     
-    if (currentNews) {
-      setNews(currentNews);
-      document.title = `${currentNews.title} — ООО «Гранит»`;
-      
-      // Get related news (same category, excluding current)
-      const related = newsData
-        .filter(item => item.category === currentNews.category && item.id !== id)
-        .slice(0, 3);
-      
-      setRelatedNews(related);
-    } else {
-      navigate('/news', { replace: true });
-    }
+    fetchNewsDetails();
   }, [id, navigate]);
   
   const formatDate = (dateString: string) => {
@@ -63,12 +76,12 @@ const NewsDetail = () => {
             <div className="flex flex-wrap items-center gap-4 mb-8 animate-fade-in animate-delay-200">
               <div className="flex items-center gap-1.5">
                 <Calendar size={18} className="text-primary" />
-                <span>{formatDate(news.date)}</span>
+                <span>{formatDate(news.publishDate)}</span>
               </div>
               
               <div className="flex items-center gap-1.5">
                 <Tag size={18} className="text-primary" />
-                <span>{news.category}</span>
+                <span>{news.tags[0]}</span>
               </div>
             </div>
           </div>
@@ -121,10 +134,10 @@ const NewsDetail = () => {
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                        {item.category}
+                        {item.tags[0]}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        {formatDate(item.date)}
+                        {formatDate(item.publishDate)}
                       </span>
                     </div>
                     
