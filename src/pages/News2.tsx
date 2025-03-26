@@ -17,6 +17,8 @@ const News2 = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'Новости2 — ООО «Гранит»';
+    
     const fetchNews = async () => {
       try {
         setLoading(true);
@@ -46,7 +48,7 @@ const News2 = () => {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-8 text-center">Новости</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center">Новости2</h1>
         <div className="flex justify-center items-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </div>
@@ -56,7 +58,7 @@ const News2 = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-8 text-center">Новости</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Новости2</h1>
       
       {news && news.length > 0 ? (
         <div className="relative py-8">
@@ -68,20 +70,20 @@ const News2 = () => {
           >
             <CarouselContent className="-ml-4">
               {news.map((newsItem) => (
-                <CarouselItem key={newsItem.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
-                  <div className="h-full">
+                <CarouselItem key={newsItem.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="h-full p-2">
                     <NewsCard newsItem={newsItem} formatDate={formatDate} />
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-2 lg:-left-12" />
-            <CarouselNext className="right-2 lg:-right-12" />
+            <CarouselPrevious className="left-0 lg:-left-12" />
+            <CarouselNext className="right-0 lg:-right-12" />
           </Carousel>
         </div>
       ) : (
         <div className="text-center py-12">
-          <p>Новости не найдены</p>
+          <p className="text-lg">Новости не найдены</p>
         </div>
       )}
     </div>
