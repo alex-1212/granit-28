@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { AuthButtons } from '../auth/AuthButtons';
 
 const navItems = [
   { name: 'Главная', path: '/' },
@@ -65,13 +65,15 @@ export const Header: React.FC = () => {
               {item.name}
             </Link>
           ))}
-          <div className="ml-4 animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+          <div className="ml-4 animate-fade-in flex items-center gap-3" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+            <AuthButtons />
             <ThemeToggle />
           </div>
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-4">
+          <AuthButtons />
           <ThemeToggle />
           <button 
             onClick={toggleMenu} 
