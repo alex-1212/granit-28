@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -46,40 +45,37 @@ export const Header = () => {
   return (
     <header className={headerClass}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center h-20">
-          {/* Logo on the left */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
-              <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-              <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
-            </Link>
-          </div>
-          
-          {/* Centered navigation */}
-          <div className="hidden lg:flex flex-1 justify-center">
-            <nav className="flex items-center space-x-1">
-              {navItems.map((item, index) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`nav-link animate-fade-in ${
-                    (location.pathname === item.path || 
-                     (item.path !== '/' && location.pathname.startsWith(item.path)))
-                      ? 'nav-link-active'
-                      : ''
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          
-          {/* Right side with theme toggle and user menu */}
+        <div className="flex justify-between items-center h-20">
+          <Link to="/" className="flex items-center">
+            <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
+            <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+          </Link>
+
+          <nav className="hidden lg:flex items-center space-x-1">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`nav-link animate-fade-in ${
+                  (location.pathname === item.path || 
+                   (item.path !== '/' && location.pathname.startsWith(item.path)))
+                    ? 'nav-link-active'
+                    : ''
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="ml-4 animate-fade-in" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+              <ThemeToggle />
+            </div>
+          </nav>
+
           <div className="flex items-center gap-2">
             <UserMenu />
-            <div className="animate-fade-in">
+            {/* Only show ThemeToggle on mobile if menu is not open */}
+            <div className="lg:hidden">
               <ThemeToggle />
             </div>
             <button
