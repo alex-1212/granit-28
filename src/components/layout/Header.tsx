@@ -97,7 +97,6 @@ export const Header = () => {
         className={`md:hidden absolute top-[100%] left-0 right-0 bg-background/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-border ${
           isMenuOpen ? 'max-h-[500px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
         }`}
-        style={{ marginTop: 0 }}
       >
         <nav className="container mx-auto px-4 flex flex-col space-y-4">
           {navItems.map((item, index) => (
