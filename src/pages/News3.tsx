@@ -1,81 +1,112 @@
 
 import React, { useEffect, useState } from 'react';
-import { getAllNews, NewsItem } from '@/services/newsService';
 import { Link } from 'react-router-dom';
-import { Skeleton } from '@/components/ui/skeleton';
+import { getAllNews, NewsItem } from '@/services/newsService';
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
 
 const News3 = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = 'Новости3 — ООО «Гранит»';
     
     const fetchNews = async () => {
-      setIsLoading(true);
       try {
-        const data = await getAllNews();
-        setNews(data);
+        setLoading(true);
+        const newsData = await getAllNews();
+        console.log('Fetched news for News3:', newsData.length);
+        setNews(newsData);
       } catch (error) {
-        console.error('Failed to fetch news:', error);
+        console.error('Error fetching news for News3:', error);
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
     };
-    
+
     fetchNews();
   }, []);
 
   const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('ru-RU', options);
+    try {
+      const date = new Date(dateString);
+      return format(date, 'd MMMM yyyy', { locale: ru });
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return dateString;
+    }
   };
 
-  if (isLoading) {
+  if (loading) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">Новости3</h1>
-        <div className="space-y-6">
-          {Array(5).fill(0).map((_, index) => (
-            <div key={index} className="flex flex-col">
-              <Skeleton className="h-6 w-1/3 mb-2" />
-              <Skeleton className="h-4 w-1/4 mb-4" />
-              <Skeleton className="h-20 w-full" />
-            </div>
-          ))}
+      <div className="min-h-screen bg-slate-100 p-8">
+        <h1 className="text-4xl font-bold text-center mb-12 text-slate-800">Новости3</h1>
+        <div className="flex justify-center items-center h-64">
+          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8">Новости3</h1>
+    <div className="min-h-screen bg-slate-100 p-8">
+      <h1 className="text-4xl font-bold text-center mb-12 text-slate-800">Новости3</h1>
       
-      <div className="space-y-8">
-        {news.map((item) => (
-          <div 
-            key={item.id}
-            className="news-item border-l-4 border-primary pl-4 hover:bg-background"
-          >
-            <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
-            <div className="flex gap-3 text-sm text-muted-foreground mb-3">
-              <span>{formatDate(item.date)}</span>
-              <span>•</span>
-              <span className="bg-primary/10 px-2 py-0.5 rounded-full text-primary">
-                {item.category}
-              </span>
-            </div>
-            <p className="mb-3">{item.summary}</p>
-            <Link 
-              to={`/news/${item.id}`}
-              className="inline-block bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
+      {news && news.length > 0 ? (
+        <div className="max-w-5xl mx-auto">
+          {news.map((item) => (
+            <div 
+              key={item.id} 
+              className="bg-white rounded-lg shadow-md mb-8 overflow-hidden transform transition-transform hover:scale-[1.01]"
             >
-              Читать далее
-            </Link>
-          </div>
-        ))}
-      </div>
+              <div className="md:flex">
+                <div className="md:w-1/3">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/placeholder.svg';
+                    }}
+                  />
+                </div>
+                <div className="p-6 md:w-2/3">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                      {item.category}
+                    </span>
+                    <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                      {formatDate(item.date)}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-2xl font-bold mb-3 text-gray-800">
+                    {item.title}
+                  </h2>
+                  
+                  <p className="text-gray-600 mb-4">
+                    {item.summary}
+                  </p>
+                  
+                  <Link 
+                    to={`/news/${item.id}`}
+                    className="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                  >
+                    Читать далее
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-16">
+          <p className="text-xl text-gray-500">Новости не найдены</p>
+        </div>
+      )}
     </div>
   );
 };

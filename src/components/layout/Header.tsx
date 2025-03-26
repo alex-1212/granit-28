@@ -10,7 +10,7 @@ const navItems = [
   { name: 'Главная', path: '/' },
   { name: 'Техника и технологии', path: '/technologies' },
   { name: 'Новости', path: '/news' },
-  { name: 'Новости3', path: '/news3' },
+  { name: 'Новости2', path: '/news2' },
   { name: 'О компании', path: '/about' },
   { name: 'ЧаВо', path: '/faq' },
   { name: 'Контакты', path: '/contact' },
