@@ -8,8 +8,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { HelmetProvider } from 'react-helmet-async';
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { useEffect } from "react";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
-import { ProgressBar } from "./components/ui/progress-bar";
 
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -30,6 +30,30 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 
 const queryClient = new QueryClient();
+
+const PageProgressBar = () => {
+  useEffect(() => {
+    const startProgress = () => {
+      const progress = document.getElementById("nprogress");
+      if (progress) return;
+      
+      const bar = document.createElement("div");
+      bar.id = "nprogress";
+      bar.innerHTML = '<div class="bar"><div class="peg"></div></div>';
+      document.body.appendChild(bar);
+      
+      setTimeout(() => {
+        const element = document.getElementById("nprogress");
+        if (element) element.remove();
+      }, 500);
+    };
+    
+    window.addEventListener("beforeunload", startProgress);
+    return () => window.removeEventListener("beforeunload", startProgress);
+  }, []);
+  
+  return null;
+};
 
 const AppRoutes = () => (
   <Routes>
@@ -65,7 +89,6 @@ const App = () => (
           <BrowserRouter>
             <ScrollToTop />
             <AuthProvider>
-              <ProgressBar />
               <div className="flex flex-col min-h-screen">
                 <Header />
                 <main className="flex-grow pt-20">
@@ -76,6 +99,7 @@ const App = () => (
             </AuthProvider>
             <Toaster />
             <Sonner />
+            <PageProgressBar />
           </BrowserRouter>
         </HelmetProvider>
       </TooltipProvider>
