@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { getNewsById, NewsItem } from '@/services/newsService';
+import { getNewsById, getAllNews, NewsItem } from '@/services/newsService';
 import { useTheme } from '@/context/ThemeContext';
 
 const News2 = () => {
@@ -14,11 +14,20 @@ const News2 = () => {
     const fetchNews = async () => {
       setIsLoading(true);
       try {
-        // Fetch the specific news about factory in Zabaykalye
-        // We know from the data that this is ID 1
-        const newsItem = await getNewsById('1');
-        if (newsItem) {
-          setNews(newsItem);
+        // First get all news to find the one about Zabaykalye factory
+        const allNews = await getAllNews();
+        
+        // Find the news item with title about factory in Zabaykalye
+        const zabaykalyeNews = allNews.find(item => 
+          item.title.includes('Запуск завода в Забайкалье')
+        );
+        
+        if (zabaykalyeNews) {
+          // Now fetch the complete news item by its UUID
+          const newsItem = await getNewsById(zabaykalyeNews.id);
+          if (newsItem) {
+            setNews(newsItem);
+          }
         }
       } catch (error) {
         console.error('Error fetching news:', error);
