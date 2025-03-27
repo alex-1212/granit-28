@@ -43,7 +43,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         
         <Link 
           to={`/news/${newsItem.slug}`} 
-          className="text-sm font-medium text-primary dark:text-white flex items-center"
+          className="text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-3 py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-colors"
         >
           Подробнее <ArrowRight size={14} className="ml-1" />
         </Link>
