@@ -1,5 +1,5 @@
 
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Home, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [count, setCount] = useState(5);
   const [animateError, setAnimateError] = useState(false);
@@ -38,6 +39,8 @@ const NotFound = () => {
       setCount((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
+          // Переход на главную после окончания счетчика
+          navigate('/');
           return 0;
         }
         return prev - 1;
@@ -45,7 +48,7 @@ const NotFound = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [location.pathname, toast]);
+  }, [location.pathname, toast, navigate]);
 
   // Функция для возврата на предыдущую страницу
   const goBack = () => {
