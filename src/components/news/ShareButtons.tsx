@@ -10,13 +10,22 @@ interface ShareButtonsProps {
   description?: string;
 }
 
+type ShareIconType = React.FC<{ className?: string }> | (() => React.ReactNode);
+
+interface ShareLink {
+  name: string;
+  icon: ShareIconType;
+  color: string;
+  link: string;
+}
+
 const ShareButtons = ({ title, url, description = '' }: ShareButtonsProps) => {
   const { toast } = useToast();
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const encodedDesc = encodeURIComponent(description);
 
-  const shareLinks = [
+  const shareLinks: ShareLink[] = [
     {
       name: 'ВКонтакте',
       icon: () => (
@@ -66,10 +75,10 @@ const ShareButtons = ({ title, url, description = '' }: ShareButtonsProps) => {
             onClick={() => window.open(item.link, '_blank')}
             aria-label={`Поделиться в ${item.name}`}
           >
-            {typeof item.icon === 'function' ? (
-              <span className="mr-2">{item.icon()}</span>
+            {typeof item.icon === 'function' && !('$$typeof' in item.icon) ? (
+              <span className="mr-2">{(item.icon as () => React.ReactNode)()}</span>
             ) : (
-              <item.icon className="mr-2 h-4 w-4" />
+              React.createElement(item.icon as React.FC<{ className: string }>, { className: "mr-2 h-4 w-4" })
             )}
             {item.name}
           </Button>
