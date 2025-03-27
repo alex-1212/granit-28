@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import GalleryImageSkeleton from '@/components/gallery/GalleryImageSkeleton';
 
 interface ImageItem {
   id: number;
@@ -25,10 +26,19 @@ const galleryImages: ImageItem[] = [
 const Gallery = () => {
   useAnimateOnScroll();
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
   const modalRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     document.title = 'Галерея — ООО «Гранит»';
+    
+    // Имитация загрузки изображений
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
   }, []);
   
   useEffect(() => {
@@ -56,6 +66,10 @@ const Gallery = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [selectedImage]);
+  
+  const handleImageLoad = (imageId: number) => {
+    setLoadedImages(prev => ({ ...prev, [imageId]: true }));
+  };
   
   const openModal = (image: ImageItem) => {
     setSelectedImage(image);
@@ -89,25 +103,37 @@ const Gallery = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {galleryImages.map((image) => (
-              <div 
-                key={image.id} 
-                className="animate-on-scroll group cursor-pointer"
-                onClick={() => openModal(image)}
-              >
-                <div className="glass-card-solid rounded-xl overflow-hidden">
-                  <div className="aspect-square overflow-hidden relative">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            {loading ? (
+              // Показываем скелетоны во время загрузки
+              Array(12).fill(0).map((_, index) => (
+                <div key={`skeleton-${index}`} className="animate-on-scroll">
+                  <GalleryImageSkeleton />
+                </div>
+              ))
+            ) : (
+              // Показываем изображения после загрузки
+              galleryImages.map((image) => (
+                <div 
+                  key={image.id} 
+                  className="animate-on-scroll group cursor-pointer"
+                  onClick={() => openModal(image)}
+                >
+                  <div className="glass-card-solid rounded-xl overflow-hidden">
+                    <div className="aspect-square overflow-hidden relative">
+                      {!loadedImages[image.id] && <Skeleton className="absolute inset-0" />}
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${loadedImages[image.id] ? 'opacity-100' : 'opacity-0'}`}
+                        loading="lazy"
+                        onLoad={() => handleImageLoad(image.id)}
+                      />
+                      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
