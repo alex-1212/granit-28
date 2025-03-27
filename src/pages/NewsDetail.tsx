@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
@@ -87,7 +88,7 @@ const NewsDetail = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div>
       {user && news && (
         <>
           <NewsEditor 
