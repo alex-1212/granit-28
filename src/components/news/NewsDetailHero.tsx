@@ -19,7 +19,7 @@ const NewsDetailHero = ({
 }: NewsDetailHeroProps) => {
   return <section className="pt-16 pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-      <div className="absolute inset-0 bg-[url('https://www.terra-ekb.ru/wordpress/wp-content/uploads/Obshhaya-klassifikacziya-gornyh-porod/Obshhaya-klassifikacziya-gornyh-porod_(2).jpg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:100px_100px]"></div>
+      <div className="absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/detail-view-black-granite-surface-texture-your-project_463999-6199.jpg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:100px_100px]"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
