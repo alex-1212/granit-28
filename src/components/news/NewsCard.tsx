@@ -20,7 +20,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
             alt={newsItem.title} 
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute top-3 right-3 border border-primary dark:border-white rounded-md px-3 py-1 bg-primary/10 dark:bg-white/10 text-xs text-primary dark:text-white">
+          <div className="absolute top-3 right-3 bg-primary px-3 py-1 text-xs text-white rounded-full">
             {newsItem.category}
           </div>
         </Link>
