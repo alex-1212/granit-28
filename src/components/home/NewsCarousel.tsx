@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { NewsItem, getAllNews } from '@/services/newsService';
 import NewsCardSkeleton from '@/components/news/NewsCardSkeleton';
+import { useDelayedLoading } from '@/hooks/use-delayed-loading';
 import {
   Carousel,
   CarouselContent,
@@ -17,7 +18,10 @@ interface NewsCarouselProps {
 
 const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  
+  // Use delayed loading with 500ms minimum duration
+  const isLoading = useDelayedLoading(isInitialLoading, 500);
 
   // Default date formatter if none provided
   const defaultFormatDate = (dateString: string) => {
@@ -36,14 +40,14 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        setIsLoading(true);
+        setIsInitialLoading(true);
         const data = await getAllNews();
         // Take only the latest 6 news items
         setNews(data.slice(0, 6));
       } catch (error) {
         console.error('Failed to fetch news for carousel:', error);
       } finally {
-        setIsLoading(false);
+        setIsInitialLoading(false);
       }
     };
 

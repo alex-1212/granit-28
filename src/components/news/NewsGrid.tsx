@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { NewsItem } from '@/services/newsService';
 import NewsCard from './NewsCard';
@@ -7,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ScrollToTopButton } from '@/components/layout/ScrollToTopButton';
+import { useDelayedLoading } from '@/hooks/use-delayed-loading';
 
 interface NewsGridProps {
   isLoading: boolean;
@@ -17,6 +17,9 @@ interface NewsGridProps {
 
 const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
   const isMobile = useIsMobile();
+  
+  // Use delayed loading with 500ms minimum duration
+  const delayedLoading = useDelayedLoading(isLoading, 500);
   
   // Адаптивные настройки для разных размеров экрана
   const itemsPerRow = isMobile ? 1 : 3; // Мобильный: 1, десктоп: 3
@@ -64,7 +67,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
     });
   };
 
-  if (isLoading) {
+  if (delayedLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
         {Array(itemsPerRow * initialRows).fill(0).map((_, index) => (
