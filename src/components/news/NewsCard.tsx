@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { NewsItem } from '@/services/newsService';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface NewsCardProps {
   newsItem: NewsItem;
@@ -12,6 +13,8 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
+  const isMobile = useIsMobile();
+
   return (
     <Card className="h-full flex flex-col overflow-hidden news-card hover:shadow-lg transition-all duration-300 group">
       <div className="relative overflow-hidden aspect-video">
@@ -20,10 +23,11 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
             src={newsItem.image} 
             alt={newsItem.title} 
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+            loading="lazy" // Добавляем ленивую загрузку
           />
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-2 md:top-3 right-2 md:right-3">
             <Badge 
-              className="font-medium border border-primary/20 dark:border-white/20 bg-white/70 dark:bg-black/50 text-primary dark:text-white backdrop-blur-sm rounded-md px-3 py-1"
+              className="font-medium text-xs md:text-sm border border-primary/20 dark:border-white/20 bg-white/70 dark:bg-black/50 text-primary dark:text-white backdrop-blur-sm rounded-md px-2 md:px-3 py-0.5 md:py-1"
             >
               {newsItem.category}
             </Badge>
@@ -31,26 +35,26 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         </Link>
       </div>
       
-      <CardContent className="flex-grow p-5">
+      <CardContent className="flex-grow p-3 md:p-5">
         <Link to={`/news/${newsItem.slug}`} className="block">
-          <h3 className="text-xl font-display font-bold mb-2 line-clamp-2 group-hover:text-primary dark:group-hover:text-white transition-colors">
+          <h3 className="text-lg md:text-xl font-display font-bold mb-1 md:mb-2 line-clamp-2 group-hover:text-primary dark:group-hover:text-white transition-colors">
             {newsItem.title}
           </h3>
         </Link>
-        <p className="text-muted-foreground line-clamp-2">{newsItem.summary}</p>
+        <p className="text-sm md:text-base text-muted-foreground line-clamp-2">{newsItem.summary}</p>
       </CardContent>
       
-      <CardFooter className="px-5 pb-5 pt-0 flex items-center justify-between">
-        <div className="flex items-center text-sm text-muted-foreground">
-          <Calendar size={14} className="mr-1" />
+      <CardFooter className="px-3 md:px-5 pb-3 md:pb-5 pt-0 flex items-center justify-between">
+        <div className="flex items-center text-xs md:text-sm text-muted-foreground">
+          <Calendar size={isMobile ? 12 : 14} className="mr-1" />
           <span>{formatDate(newsItem.date)}</span>
         </div>
         
         <Link 
           to={`/news/${newsItem.slug}`} 
-          className="text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-3 py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-colors"
+          className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-colors"
         >
-          Подробнее <ArrowRight size={14} className="ml-1" />
+          {isMobile ? "Далее" : "Подробнее"} <ArrowRight size={isMobile ? 12 : 14} className="ml-1" />
         </Link>
       </CardFooter>
     </Card>
