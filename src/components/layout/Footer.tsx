@@ -1,24 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
-
-// Custom WhatsApp SVG icon component
-const WhatsAppIcon = () => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="20" 
-    height="20" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className="lucide lucide-icon"
-  >
-    <path d="M20.4 3.6C17.7.9 14.2.9 11.6 2.5c-2.7 1.6-4.2 4.3-4.3 7.4 0 1.2.3 2.4.8 3.5L7 18l4.6-1.2c1.2.7 2.5 1 3.8 1 4.1 0 7.6-3.4 7.6-7.5 0-2.3-1-4.3-2.6-5.7zm-8.8 11.5c-1.1 0-2.1-.3-3.1-.8l-.2-.1H8l-1 .3.3-1v-.2c-.6-1-.9-2.1-.9-3.2 0-3.4 2.8-6.2 6.2-6.2 1.7 0 3.2.7 4.4 1.8 1.2 1.1 1.8 2.7 1.8 4.3 0 3.5-2.8 6.3-6.2 6.3zm3.4-4.6l-.4-.2c-.2 0-.4.1-.5.2l-.7.8c-.1.1-.3.2-.4.1-1.2-.5-2.3-1.6-2.8-2.8-.1-.2 0-.4.1-.5l.3-.6c.1-.1.1-.3.1-.4l-.2-.7c-.1-.7-.5-.8-.7-.8h-.6c-.2 0-.5.1-.6.2s-.7.7-.7 1.7c0 1 .7 2 .8 2.1.6.9 1.3 1.6 2.2 2.2.9.5 2 1 2.2 1.1.8.2 1.4.2 1.8.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3 0-.2-.1-.3-.4-.4z" />
-  </svg>
-);
+import { Button } from '@/components/ui/button';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -36,8 +19,10 @@ export const Footer: React.FC = () => {
               Специализированная компания по производству буровзрывных работ в сложных климатических условиях
             </p>
             <div className="flex space-x-4">
-              <a href="https://wa.me/79145418570" className="text-foreground/70 hover:text-primary transition-colors" aria-label="WhatsApp">
-                <WhatsAppIcon />
+              <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
+                <Button variant="outline" size="sm">
+                  Напишите нам
+                </Button>
               </a>
             </div>
           </div>
