@@ -51,6 +51,14 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
   const handleLoadMore = () => {
     setVisibleRows(prev => prev + rowsToLoad);
   };
+  
+  // Обработчик для прокрутки страницы наверх
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   if (isLoading) {
     return (
@@ -101,6 +109,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
             variant="outline" 
             size="lg" 
             className="border-primary dark:border-white text-primary dark:text-white hover:bg-primary/10 dark:hover:bg-white/10"
+            onClick={handleScrollToTop}
           >
             <Link to="/news">
               К другим новостям
