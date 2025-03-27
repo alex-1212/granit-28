@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -8,6 +9,7 @@ import { UserMenu } from './UserMenu';
 const navItems = [
   { name: 'Главная', path: '/' },
   { name: 'Техника и технологии', path: '/technologies' },
+  { name: 'Галерея', path: '/gallery' },
   { name: 'Новости', path: '/news' },
   { name: 'О компании', path: '/about' },
   { name: 'ЧаВо', path: '/faq' },
