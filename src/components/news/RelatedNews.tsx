@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
 
 interface RelatedNewsProps {
@@ -10,14 +11,16 @@ interface RelatedNewsProps {
 }
 
 const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
+  const { theme } = useTheme();
+  
   if (relatedNews.length === 0) {
     return null;
   }
 
   return (
-    <section className="py-16 bg-primary/5 dark:bg-primary/10">
+    <section className={`py-16 ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-50'}`}>
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center mb-12 animate-on-scroll">
+        <h2 className={`text-3xl md:text-4xl font-display font-bold mb-12 text-center ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
           Похожие новости
         </h2>
         
@@ -25,7 +28,7 @@ const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
           {relatedNews.map((item) => (
             <div 
               key={item.id} 
-              className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
+              className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-md ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}
             >
               <div className="aspect-video overflow-hidden">
                 <img
@@ -38,15 +41,15 @@ const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
               
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${theme === 'dark' ? 'bg-primary/20 text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
                     {item.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                     {formatDate(item.date)}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'} group-hover:text-primary transition-colors`}>
                   {item.title}
                 </h3>
                 
