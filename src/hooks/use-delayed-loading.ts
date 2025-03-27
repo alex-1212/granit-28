@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
  */
 export function useDelayedLoading(
   isInitiallyLoading: boolean, 
-  minimumLoadingTimeMs: number = 500
+  minimumLoadingTimeMs: number = 800
 ): boolean {
   const [isLoading, setIsLoading] = useState(isInitiallyLoading);
   
