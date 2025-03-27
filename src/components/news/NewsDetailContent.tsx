@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
 import ShareButtons from '@/components/news/ShareButtons';
+import { useNewsCache } from '@/hooks/use-news';
 
 interface NewsDetailContentProps {
   news: NewsItem;
@@ -10,6 +11,7 @@ interface NewsDetailContentProps {
 
 const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
   const { theme } = useTheme();
+  const { prefetchNewsDetails } = useNewsCache();
 
   useEffect(() => {
     // Обновляем title при загрузке новости
@@ -41,6 +43,11 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
     console.log('News content:', news.content);
   }, [news]);
 
+  // Префетчинг связанных новостей при наведении на ссылки
+  const handlePrefetchRelated = (slug: string) => {
+    prefetchNewsDetails(slug);
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -60,6 +67,17 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
               <div 
                 className={`prose max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}
                 dangerouslySetInnerHTML={{ __html: news.content }}
+                onMouseOver={(e) => {
+                  const target = e.target as HTMLElement;
+                  const anchor = target.closest('a');
+                  if (anchor) {
+                    const href = anchor.getAttribute('href');
+                    if (href?.startsWith('/news/')) {
+                      const slug = href.replace('/news/', '');
+                      handlePrefetchRelated(slug);
+                    }
+                  }
+                }}
               />
               
               <ShareButtons 

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -29,7 +28,17 @@ import NotFound from "./pages/NotFound";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 
-const queryClient = new QueryClient();
+// Создаем и конфигурируем QueryClient с улучшенными настройками
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // Данные считаются свежими в течение 5 минут
+      cacheTime: 15 * 60 * 1000, // Хранение данных в кэше 15 минут
+      refetchOnWindowFocus: false, // Предотвращаем обновление при фокусе окна
+      retry: 1, // Делаем только одну повторную попытку запроса при ошибке
+    },
+  },
+});
 
 const PageProgressBar = () => {
   useEffect(() => {
