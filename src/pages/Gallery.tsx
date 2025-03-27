@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import GalleryImageSkeleton from '@/components/gallery/GalleryImageSkeleton';
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ImageItem {
   id: number;
@@ -93,7 +93,7 @@ const Gallery = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Фотографии наших объектов, техники и производственных мощностей
+              Фотографии наших объектов, т��хники и производственных мощностей
             </p>
           </div>
         </div>
