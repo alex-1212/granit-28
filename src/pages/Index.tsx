@@ -1,9 +1,10 @@
+
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
 import { Hero } from '@/components/home/Hero';
 import { Services } from '@/components/home/Services';
-import NewsCarousel from '@/components/home/NewsCarousel';
+import AboutSection from '@/components/home/AboutSection';
+import CTASection from '@/components/home/CTASection';
+import NewsSection from '@/components/home/NewsSection';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
 const Index = () => {
@@ -17,141 +18,9 @@ const Index = () => {
     <div>
       <Hero />
       <Services />
-      
-      {/* About Section */}
-      <section className="py-20 overflow-hidden relative">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-on-scroll">
-                10 лет на рынке
-              </span>
-              
-              <h2 className="section-title mb-6 animate-on-scroll">
-                Экспертиза в буровзрывных работах и производстве взрывчатых веществ
-              </h2>
-              
-              <p className="text-muted-foreground mb-6 animate-on-scroll">
-                ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ).
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3 animate-on-scroll">
-                  <div className="mt-1 text-primary">
-                    <Shield size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Независимость от поставщиков</h3>
-                    <p className="text-muted-foreground">Собственное производство ЭВВ гарантирует стабильность поставок и контроль качества.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3 animate-on-scroll">
-                  <div className="mt-1 text-primary">
-                    <Map size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Работа в сложных условиях</h3>
-                    <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3 animate-on-scroll">
-                  <div className="mt-1 text-primary">
-                    <Truck size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Производственные мощности</h3>
-                    <p className="text-muted-foreground">Заводы в Забайкалье и Хабаровске, линия в Якутии для обеспечения всего Дальнего Востока.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <Link 
-                to="/about" 
-                className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
-              >
-                Подробнее о компании
-                <ArrowRight size={18} />
-              </Link>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
-              <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
-                <img
-                  src="/images/about-company.jpg"
-                  alt="О компании ООО Гранит"
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              
-              <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
-                <div className="flex items-center gap-3 mb-2">
-                  <Scroll className="text-primary" size={20} />
-                  <h4 className="font-semibold">Лицензии и сертификаты</h4>
-                </div>
-                <p className="text-sm text-muted-foreground">Все необходимые разрешения для проведения работ любой сложности</p>
-                <Link to="/licenses" className="text-primary text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline">
-                  Смотреть все
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* CTA Section */}
-      <section className="py-20 bg-primary/5 dark:bg-primary/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="section-title mb-6 animate-on-scroll">
-              Готовы обсудить ваш проект?
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
-              Мы предлагаем комплексные решения для горнодобывающей отрасли, от проектирования до реализации буровзрывных работ в самых сложных условиях.
-            </p>
-            
-            <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
-              <Link to="/contact" className="btn-primary">
-                Оставить заявку
-              </Link>
-              
-              <Link to="/technologies" className="btn-outline">
-                Наши технологии
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* News Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
-            <div>
-              <h2 className="section-title mb-2 animate-on-scroll">Последние новости</h2>
-              <p className="text-muted-foreground animate-on-scroll">Актуальная информация о наших проектах и достижениях</p>
-            </div>
-            
-            <Link 
-              to="/news" 
-              className="btn-outline flex items-center gap-2 animate-on-scroll"
-            >
-              Все новости
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-          
-          <div className="animate-on-scroll">
-            <NewsCarousel />
-          </div>
-        </div>
-      </section>
+      <AboutSection />
+      <CTASection />
+      <NewsSection />
     </div>
   );
 };
