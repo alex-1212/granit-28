@@ -267,6 +267,16 @@
   .prose blockquote {
     @apply border-l-4 border-primary/30 pl-4 italic py-1;
   }
+
+  @keyframes progress-loading {
+    from { width: 0%; }
+    to { width: 80%; }
+  }
+  
+  @keyframes progress-complete {
+    from { width: 80%; }
+    to { width: 100%; }
+  }
 }
 
 #nprogress {
