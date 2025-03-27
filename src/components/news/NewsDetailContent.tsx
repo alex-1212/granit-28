@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
+import ShareButtons from '@/components/news/ShareButtons';
 
 interface NewsDetailContentProps {
   news: NewsItem;
@@ -59,6 +60,12 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
               <div 
                 className={`prose max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}
                 dangerouslySetInnerHTML={{ __html: news.content }}
+              />
+              
+              <ShareButtons 
+                title={news.title}
+                url={window.location.href}
+                description={news.summary}
               />
             </div>
           </article>
