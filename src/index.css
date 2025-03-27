@@ -118,6 +118,10 @@
   img {
     @apply object-cover;
   }
+  
+  .dark a {
+    @apply text-white hover:text-white/90;
+  }
 }
 
 @layer components {
@@ -241,7 +245,7 @@
   }
   
   .prose a {
-    @apply text-primary hover:underline;
+    @apply text-primary hover:underline dark:text-white dark:hover:text-white/90;
   }
   
   .prose ul, .prose ol {
