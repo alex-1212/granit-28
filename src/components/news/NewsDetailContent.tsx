@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
-import { NewsItem } from '@/services/newsService';
+import { NewsItem } from '@/services/news/types';
 import ShareButtons from '@/components/news/ShareButtons';
 import { useNewsCache } from '@/hooks/use-news';
 

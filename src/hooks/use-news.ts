@@ -18,13 +18,15 @@ export function useAllNews() {
   return useQuery({
     queryKey: NEWS_QUERY_KEYS.allNews,
     queryFn: getAllNews,
-    onError: (error) => {
-      console.error('Ошибка при загрузке новостей:', error);
-      toast({
-        title: "Ошибка загрузки данных",
-        description: "Не удалось загрузить список новостей. Пожалуйста, попробуйте позже.",
-        variant: "destructive"
-      });
+    meta: {
+      onError: (error: Error) => {
+        console.error('Ошибка при загрузке новостей:', error);
+        toast({
+          title: "Ошибка загрузки данных",
+          description: "Не удалось загрузить список новостей. Пожалуйста, попробуйте позже.",
+          variant: "destructive"
+        });
+      }
     }
   });
 }
@@ -36,13 +38,15 @@ export function useNewsDetail(slug: string) {
   return useQuery({
     queryKey: NEWS_QUERY_KEYS.newsDetail(slug),
     queryFn: () => getNewsById(slug),
-    onError: (error) => {
-      console.error('Ошибка при загрузке новости:', error);
-      toast({
-        title: "Ошибка загрузки данных",
-        description: "Не удалось загрузить новость. Пожалуйста, попробуйте позже.",
-        variant: "destructive"
-      });
+    meta: {
+      onError: (error: Error) => {
+        console.error('Ошибка при загрузке новости:', error);
+        toast({
+          title: "Ошибка загрузки данных",
+          description: "Не удалось загрузить новость. Пожалуйста, попробуйте позже.",
+          variant: "destructive"
+        });
+      }
     },
     enabled: !!slug, // Выполнять запрос только если есть slug
   });
@@ -55,9 +59,11 @@ export function useRelatedNews(category: string, currentId: string, limit?: numb
   return useQuery({
     queryKey: NEWS_QUERY_KEYS.relatedNews(category, currentId),
     queryFn: () => getRelatedNews(category, currentId, limit),
-    onError: (error) => {
-      console.error('Ошибка при загрузке связанных новостей:', error);
-      // Не показываем уведомление о ошибке для связанных новостей, чтобы не отвлекать пользователя
+    meta: {
+      onError: (error: Error) => {
+        console.error('Ошибка при загрузке связанных новостей:', error);
+        // Не показываем уведомление о ошибке для связанных новостей, чтобы не отвлекать пользователя
+      }
     },
     enabled: !!category && !!currentId,
   });
