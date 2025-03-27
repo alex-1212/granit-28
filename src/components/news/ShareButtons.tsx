@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Link, MessageCircle } from 'lucide-react';
+import { Link, MessageCircle, Phone } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 interface ShareButtonsProps {
@@ -41,6 +41,12 @@ const ShareButtons = ({ title, url, description = '' }: ShareButtonsProps) => {
       icon: MessageCircle,
       color: 'bg-[#0088cc] hover:bg-[#0088cc]/90',
       link: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+    },
+    {
+      name: 'WhatsApp',
+      icon: Phone,
+      color: 'bg-[#25D366] hover:bg-[#25D366]/90',
+      link: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
     }
   ];
 
