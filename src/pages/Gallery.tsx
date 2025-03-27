@@ -11,17 +11,20 @@ interface ImageItem {
   alt: string;
 }
 
+// Новые изображения с Unsplash
 const galleryImages: ImageItem[] = [
-  { id: 1, src: '/images/gallery/gallery-1.jpg', alt: 'Буровые работы в горах' },
-  { id: 2, src: '/images/gallery/gallery-2.jpg', alt: 'Производственная линия ЭВВ' },
-  { id: 3, src: '/images/gallery/gallery-3.jpg', alt: 'Специалисты на объекте' },
-  { id: 4, src: '/images/gallery/gallery-4.jpg', alt: 'Бурение скважин' },
-  { id: 5, src: '/images/gallery/gallery-5.jpg', alt: 'Взрывные работы' },
-  { id: 6, src: '/images/gallery/gallery-6.jpg', alt: 'Заводская линия в Якутии' },
-  { id: 7, src: '/images/gallery/gallery-7.jpg', alt: 'Работа на БАМ-2' },
-  { id: 8, src: '/images/gallery/gallery-8.jpg', alt: 'Техника компании' },
-  { id: 9, src: '/images/gallery/gallery-9.jpg', alt: 'Производство патронов ЭВВ' },
-  { id: 10, src: '/images/gallery/gallery-10.jpg', alt: 'Команда на объекте' },
+  { id: 1, src: 'https://source.unsplash.com/random/800x800?mining,1', alt: 'Буровые работы в горах' },
+  { id: 2, src: 'https://source.unsplash.com/random/800x800?industry,2', alt: 'Производственная линия' },
+  { id: 3, src: 'https://source.unsplash.com/random/800x800?construction,3', alt: 'Специалисты на объекте' },
+  { id: 4, src: 'https://source.unsplash.com/random/800x800?drilling,4', alt: 'Бурение скважин' },
+  { id: 5, src: 'https://source.unsplash.com/random/800x800?explosion,5', alt: 'Взрывные работы' },
+  { id: 6, src: 'https://source.unsplash.com/random/800x800?factory,6', alt: 'Заводская линия' },
+  { id: 7, src: 'https://source.unsplash.com/random/800x800?railroad,7', alt: 'Работа на железной дороге' },
+  { id: 8, src: 'https://source.unsplash.com/random/800x800?machinery,8', alt: 'Техника компании' },
+  { id: 9, src: 'https://source.unsplash.com/random/800x800?industrial,9', alt: 'Производство' },
+  { id: 10, src: 'https://source.unsplash.com/random/800x800?team,10', alt: 'Команда на объекте' },
+  { id: 11, src: 'https://source.unsplash.com/random/800x800?construction,11', alt: 'Строительные работы' },
+  { id: 12, src: 'https://source.unsplash.com/random/800x800?engineering,12', alt: 'Инженерные решения' },
 ];
 
 const Gallery = () => {
