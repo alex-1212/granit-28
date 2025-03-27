@@ -25,7 +25,7 @@ export async function getAllNews(): Promise<NewsItem[]> {
       return [];
     }
     
-    // Генерируем slug'и для существующих записей, если они отсутствуют
+    // Ensure all records have slugs (this is a fallback, should be unnecessary now)
     const newsWithSlugs = data?.map(item => {
       return { 
         ...item, 
@@ -50,14 +50,14 @@ export async function getNewsById(idOrSlug: string): Promise<NewsItem | null> {
 
     console.log('Fetching news by ID or slug:', idOrSlug);
     
-    // Сначала пробуем найти по slug
+    // First try to find by slug
     let { data, error } = await supabase
       .from('news')
       .select('*')
       .eq('slug', idOrSlug)
       .maybeSingle();
     
-    // Если не найдено по slug, пробуем по id
+    // If not found by slug, try by id
     if (!data && !error) {
       ({ data, error } = await supabase
         .from('news')
@@ -71,7 +71,7 @@ export async function getNewsById(idOrSlug: string): Promise<NewsItem | null> {
       return null;
     }
     
-    // Если данные получены, убедимся что slug существует
+    // If data is found, ensure slug exists
     if (data) {
       return {
         ...data,

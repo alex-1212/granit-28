@@ -17,6 +17,7 @@ export type Database = {
           date: string
           id: string
           image: string
+          slug: string
           summary: string
           title: string
         }
@@ -27,6 +28,7 @@ export type Database = {
           date?: string
           id?: string
           image: string
+          slug: string
           summary: string
           title: string
         }
@@ -37,6 +39,7 @@ export type Database = {
           date?: string
           id?: string
           image?: string
+          slug?: string
           summary?: string
           title?: string
         }
