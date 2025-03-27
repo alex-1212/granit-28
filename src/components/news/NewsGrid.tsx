@@ -18,8 +18,8 @@ interface NewsGridProps {
 const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
   const isMobile = useIsMobile();
   
-  // Use delayed loading with 500ms minimum duration
-  const delayedLoading = useDelayedLoading(isLoading, 500);
+  // Use delayed loading with 800ms minimum duration
+  const delayedLoading = useDelayedLoading(isLoading);
   
   // Адаптивные настройки для разных размеров экрана
   const itemsPerRow = isMobile ? 1 : 3; // Мобильный: 1, десктоп: 3
