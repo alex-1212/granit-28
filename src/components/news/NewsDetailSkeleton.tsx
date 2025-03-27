@@ -4,6 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Share2, ArrowLeft, PenSquare, Trash2 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 const NewsDetailSkeleton = () => {
   const isMobile = useIsMobile();
