@@ -20,8 +20,8 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   
-  // Use delayed loading with 800ms minimum duration
-  const isLoading = useDelayedLoading(isInitialLoading);
+  // Use delayed loading with 500ms minimum duration
+  const isLoading = useDelayedLoading(isInitialLoading, 500);
 
   // Default date formatter if none provided
   const defaultFormatDate = (dateString: string) => {
