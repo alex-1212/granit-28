@@ -1,9 +1,8 @@
 
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Home, Search, AlertTriangle, RefreshCw } from "lucide-react";
+import { ArrowLeft, Home, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/components/ui/use-toast";
@@ -11,7 +10,6 @@ import { useToast } from "@/components/ui/use-toast";
 const NotFound = () => {
   const location = useLocation();
   const { toast } = useToast();
-  const [searchOpen, setSearchOpen] = useState(false);
   const [count, setCount] = useState(5);
   const [animateError, setAnimateError] = useState(false);
 
@@ -54,11 +52,6 @@ const NotFound = () => {
     window.history.back();
   };
 
-  // Функция для обновления страницы
-  const refreshPage = () => {
-    window.location.reload();
-  };
-
   return (
     <div className="min-h-[85vh] flex items-center justify-center bg-gradient-to-b from-background to-muted/50">
       <div className="container px-4 py-16">
@@ -89,7 +82,7 @@ const NotFound = () => {
                 
                 <p className="text-muted-foreground mb-6">
                   Запрашиваемая страница была перемещена, удалена или никогда не существовала.
-                  Пожалуйста, вернитесь на главную страницу или воспользуйтесь поиском.
+                  Пожалуйста, вернитесь на главную страницу.
                 </p>
                 
                 {count > 0 && (
@@ -110,29 +103,11 @@ const NotFound = () => {
                 
                 <Button 
                   variant="outline"
-                  onClick={() => setSearchOpen(true)}
-                  className="inline-flex items-center gap-2 justify-center"
-                >
-                  <Search size={18} />
-                  Поиск
-                </Button>
-                
-                <Button 
-                  variant="outline"
                   onClick={goBack}
                   className="inline-flex items-center gap-2 justify-center"
                 >
                   <ArrowLeft size={18} />
                   Назад
-                </Button>
-                
-                <Button 
-                  variant="ghost"
-                  onClick={refreshPage}
-                  className="inline-flex items-center gap-2 justify-center"
-                >
-                  <RefreshCw size={18} />
-                  Обновить
                 </Button>
               </div>
             </div>
@@ -143,22 +118,6 @@ const NotFound = () => {
           </div>
         </div>
       </div>
-      
-      {/* Имитация диалога поиска */}
-      <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Поиск по сайту</DialogTitle>
-            <DialogDescription>
-              Поиск временно недоступен. Попробуйте найти нужную информацию через меню навигации.
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="flex justify-end mt-4">
-            <Button onClick={() => setSearchOpen(false)}>Закрыть</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
