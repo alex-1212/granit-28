@@ -20,12 +20,11 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
     console.log('filter:', filter);
   }, [isLoading, news, filter]);
 
-  // Always render skeleton when loading is true
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {Array(6).fill(0).map((_, index) => (
-          <NewsCardSkeleton key={`skeleton-${index}-${filter}`} />
+          <NewsCardSkeleton key={index} />
         ))}
       </div>
     );

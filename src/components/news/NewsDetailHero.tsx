@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Edit, Tag, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { NewsItem } from '@/services/news/types';
+import { NewsItem } from '@/services/newsService';
 
 interface NewsDetailHeroProps {
   news: NewsItem;
@@ -24,7 +24,7 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
           <div className="flex justify-between items-start mb-8">
             <Link 
               to="/news" 
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in dark:text-white dark:hover:text-white/90"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in"
               aria-label="Вернуться к списку новостей"
             >
               <ArrowLeft size={18} />

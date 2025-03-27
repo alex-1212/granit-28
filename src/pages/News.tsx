@@ -25,7 +25,8 @@ const News = () => {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   
   useEffect(() => {
-    // Fetch news data on component mount
+    // Обновление title перенесено в компонент NewsHero с Helmet
+    
     const fetchNews = async () => {
       try {
         setIsLoading(true);
@@ -47,21 +48,14 @@ const News = () => {
     };
     
     fetchNews();
-  }, []); // Remove filter dependency to avoid refetching on filter change
+  }, [filter]);
   
   useEffect(() => {
-    // Set loading when filter changes
-    setIsLoading(true);
-    
-    // Apply filter to news
-    setTimeout(() => {
-      if (filter === 'Все') {
-        setFilteredNews(news);
-      } else {
-        setFilteredNews(news.filter(item => item.category === filter));
-      }
-      setIsLoading(false);
-    }, 300); // Small timeout to ensure loading state is visible
+    if (filter === 'Все') {
+      setFilteredNews(news);
+    } else {
+      setFilteredNews(news.filter(item => item.category === filter));
+    }
   }, [filter, news]);
   
   const formatDate = (dateString: string) => {
@@ -80,13 +74,6 @@ const News = () => {
     getAllNews().then(data => {
       setNews(data);
     });
-  };
-
-  const handleFilterChange = (newFilter: Category) => {
-    // Only update if different from current filter
-    if (newFilter !== filter) {
-      setFilter(newFilter);
-    }
   };
 
   return (
@@ -116,7 +103,7 @@ const News = () => {
           {/* Filters and Admin Controls */}
           <NewsFilters 
             filter={filter} 
-            setFilter={handleFilterChange}
+            setFilter={setFilter}
             onCreateNews={() => setIsCreateDialogOpen(true)}
           />
           
