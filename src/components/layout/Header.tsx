@@ -5,6 +5,7 @@ import { ThemeToggle } from '../ui/ThemeToggle';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navItems = [
   { name: 'Главная', path: '/' },
@@ -77,55 +78,49 @@ export const Header = () => {
 
           <div className="flex items-center gap-2">
             <UserMenu />
-            {/* Only show ThemeToggle on mobile if menu is not open */}
+            {/* Отображаем ThemeToggle вне Sheet для десктопов и для мобильных, если меню закрыто */}
             <div className="lg:hidden">
               <ThemeToggle />
             </div>
-            <button
-              className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden"
-              onClick={toggleMenu}
-              aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
-            >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            
+            {/* Используем компонент Sheet из shadcn/ui для мобильного меню */}
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden"
+                  aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
+                >
+                  {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="p-0 pt-2 w-full sm:w-[300px] overflow-y-auto">
+                <nav className="pt-10 px-2 flex flex-col h-full">
+                  {navItems.map((item, index) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`py-3 px-4 rounded-lg text-lg font-medium my-1 transition-colors ${
+                        (location.pathname === item.path || 
+                        (item.path !== '/' && location.pathname.startsWith(item.path)))
+                          ? 'bg-primary/10 text-primary dark:text-primary-foreground'
+                          : 'hover:bg-muted/50'
+                      }`}
+                      onClick={closeMenu}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  
+                  <div className="mt-auto pt-4 border-t border-border mt-6">
+                    <p className="text-sm text-muted-foreground px-4 py-2">
+                      © {new Date().getFullYear()} ООО «Гранит»
+                    </p>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      </div>
-
-      {/* Улучшенное мобильное меню с плавными анимациями */}
-      <div 
-        className={`lg:hidden fixed inset-0 top-[64px] bg-background/95 dark:bg-background/95 backdrop-blur-lg z-40 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <nav className="container mx-auto px-4 py-6 flex flex-col h-full overflow-y-auto">
-          {navItems.map((item, index) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`py-3 px-4 rounded-lg text-lg font-medium transition-all duration-300 ${
-                (location.pathname === item.path || 
-                 (item.path !== '/' && location.pathname.startsWith(item.path)))
-                  ? 'bg-primary/10 text-primary dark:text-primary-foreground'
-                  : 'hover:bg-muted/50'
-              }`}
-              style={{ 
-                opacity: isMenuOpen ? 1 : 0,
-                transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
-                transitionDelay: `${index * 50}ms`,
-              }}
-              onClick={closeMenu}
-            >
-              {item.name}
-            </Link>
-          ))}
-          
-          <div className="mt-auto pt-4 border-t border-border mt-6">
-            <p className="text-sm text-muted-foreground px-4 py-2">
-              © {new Date().getFullYear()} ООО «Гранит»
-            </p>
-          </div>
-        </nav>
       </div>
     </header>
   );
