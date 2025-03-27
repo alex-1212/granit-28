@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Edit, Tag, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NewsItem } from '@/services/newsService';
-
 interface NewsDetailHeroProps {
   news: NewsItem;
   formatDate: (dateString: string) => string;
@@ -12,50 +10,36 @@ interface NewsDetailHeroProps {
   onEdit: () => void;
   onDelete: () => void;
 }
-
-const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetailHeroProps) => {
-  return (
-    <section className="pt-16 pb-20 relative overflow-hidden">
+const NewsDetailHero = ({
+  news,
+  formatDate,
+  user,
+  onEdit,
+  onDelete
+}: NewsDetailHeroProps) => {
+  return <section className="pt-16 pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-      <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
+      <div className="absolute inset-0 bg-[url('www.strela27.ru/sites/all/themes/strela2012/images/fp/main.png')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-between items-start mb-8">
-            <Link 
-              to="/news" 
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in"
-              aria-label="Вернуться к списку новостей"
-            >
+            <Link to="/news" className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in" aria-label="Вернуться к списку новостей">
               <ArrowLeft size={18} />
               Вернуться к новостям
             </Link>
             
-            {user && (
-              <div className="flex items-center gap-2 animate-fade-in">
-                <Button 
-                  onClick={onEdit} 
-                  variant="outline" 
-                  size="sm"
-                  className="flex items-center gap-1"
-                  aria-label="Редактировать новость"
-                >
+            {user && <div className="flex items-center gap-2 animate-fade-in">
+                <Button onClick={onEdit} variant="outline" size="sm" className="flex items-center gap-1" aria-label="Редактировать новость">
                   <Edit size={16} />
                   Редактировать
                 </Button>
                 
-                <Button 
-                  onClick={onDelete} 
-                  variant="destructive" 
-                  size="sm"
-                  className="flex items-center gap-1"
-                  aria-label="Удалить новость"
-                >
+                <Button onClick={onDelete} variant="destructive" size="sm" className="flex items-center gap-1" aria-label="Удалить новость">
                   <Trash size={16} />
                   Удалить
                 </Button>
-              </div>
-            )}
+              </div>}
           </div>
           
           <header>
@@ -77,8 +61,6 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
           </header>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default NewsDetailHero;
