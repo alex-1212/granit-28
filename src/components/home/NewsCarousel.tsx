@@ -110,7 +110,7 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
                 
                 <Link 
                   to={`/news/${item.slug}`}
-                  className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto"
+                  className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto dark:text-white dark:hover:text-white/90"
                 >
                   Читать далее
                   <ArrowRight size={16} />
