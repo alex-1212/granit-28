@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Calendar, ArrowRight } from 'lucide-react';
 import { NewsItem } from '@/services/newsService';
 
 interface NewsCardProps {
@@ -11,49 +12,43 @@ interface NewsCardProps {
 
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   return (
-    <div 
-      className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group h-full flex flex-col"
-    >
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={newsItem.image}
-          alt={newsItem.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg';
-          }}
-        />
-      </div>
-      
-      <div className="p-6 flex-grow flex flex-col">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
+    <Card className="h-full flex flex-col overflow-hidden news-card hover:shadow-lg transition-all duration-300 group">
+      <div className="relative overflow-hidden aspect-video">
+        <Link to={`/news/${newsItem.slug}`}>
+          <img 
+            src={newsItem.image} 
+            alt={newsItem.title} 
+            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+          />
+          <div className="absolute top-3 right-3 bg-primary px-3 py-1 text-xs text-white rounded-full">
             {newsItem.category}
-          </span>
-          <span className="text-xs text-muted-foreground">
-            {formatDate(newsItem.date)}
-          </span>
-        </div>
-        
-        <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-          {newsItem.title}
-        </h3>
-        
-        <p className="text-muted-foreground mb-4 flex-grow">
-          {newsItem.summary}
-        </p>
-        
-        <Link 
-          to={`/news/${newsItem.id}`}
-          className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto"
-        >
-          Читать далее
-          <ArrowRight size={16} />
+          </div>
         </Link>
       </div>
-    </div>
+      
+      <CardContent className="flex-grow p-5">
+        <Link to={`/news/${newsItem.slug}`} className="block">
+          <h3 className="text-xl font-display font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {newsItem.title}
+          </h3>
+        </Link>
+        <p className="text-muted-foreground line-clamp-2">{newsItem.summary}</p>
+      </CardContent>
+      
+      <CardFooter className="px-5 pb-5 pt-0 flex items-center justify-between">
+        <div className="flex items-center text-sm text-muted-foreground">
+          <Calendar size={14} className="mr-1" />
+          <span>{formatDate(newsItem.date)}</span>
+        </div>
+        
+        <Link 
+          to={`/news/${newsItem.slug}`} 
+          className="text-sm font-medium text-primary flex items-center"
+        >
+          Подробнее <ArrowRight size={14} className="ml-1" />
+        </Link>
+      </CardFooter>
+    </Card>
   );
 };
 

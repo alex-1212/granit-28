@@ -1,4 +1,6 @@
 
+import { generateSlug } from "@/lib/slugify";
+
 export interface NewsItem {
   id: string;
   title: string;
@@ -7,6 +9,7 @@ export interface NewsItem {
   date: string;
   image: string;
   category: 'Проекты' | 'Технологии' | 'События';
+  slug: string;
 }
 
 export const newsData: NewsItem[] = [
@@ -27,7 +30,8 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-08-15',
     image: '/images/news/factory.jpg',
-    category: 'Проекты'
+    category: 'Проекты',
+    slug: 'zapusk-zavoda-v-zabaikale'
   },
   {
     id: '2',
@@ -46,7 +50,8 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-07-10',
     image: '/images/news/testing.jpg',
-    category: 'Технологии'
+    category: 'Технологии',
+    slug: 'uspeshnye-ispytaniya-patronov-v-habarovske'
   },
   {
     id: '3',
@@ -65,7 +70,8 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-06-20',
     image: '/images/news/bam-2.jpg',
-    category: 'Проекты'
+    category: 'Проекты',
+    slug: 'uchastie-v-proekte-bam-2'
   },
   {
     id: '4',
@@ -84,7 +90,8 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-05-15',
     image: '/images/news/equipment.jpg',
-    category: 'Технологии'
+    category: 'Технологии',
+    slug: 'perehod-na-rossiyskoe-oborudovanie'
   },
   {
     id: '5',
@@ -103,7 +110,8 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-04-05',
     image: '/images/news/yakutia.jpg',
-    category: 'Проекты'
+    category: 'Проекты',
+    slug: 'otkrytie-linii-v-yakutii'
   },
   {
     id: '6',
@@ -122,6 +130,7 @@ export const newsData: NewsItem[] = [
     `,
     date: '2024-03-20',
     image: '/images/news/recycling.jpg',
-    category: 'Технологии'
+    category: 'Технологии',
+    slug: 'vnedrenie-programmy-pererabotki-meshkotary'
   }
 ];

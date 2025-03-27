@@ -14,7 +14,7 @@ import NewsDetailSkeleton from '@/components/news/NewsDetailSkeleton';
 
 const NewsDetail = () => {
   useAnimateOnScroll();
-  const { id } = useParams<{ id: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [news, setNews] = useState<NewsItem | null>(null);
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
@@ -27,8 +27,8 @@ const NewsDetail = () => {
   
   useEffect(() => {
     const fetchNewsDetails = async () => {
-      if (!id) {
-        console.error("No ID parameter found in URL");
+      if (!slug) {
+        console.error("No slug parameter found in URL");
         navigate('/news', { replace: true });
         return;
       }
@@ -36,8 +36,8 @@ const NewsDetail = () => {
       setIsLoading(true);
       
       try {
-        console.log("Fetching news with ID:", id);
-        const newsItem = await getNewsById(id);
+        console.log("Fetching news with slug:", slug);
+        const newsItem = await getNewsById(slug);
         console.log("Fetched news item:", newsItem);
         
         if (newsItem) {
@@ -45,10 +45,10 @@ const NewsDetail = () => {
           document.title = `${newsItem.title} — ООО «Гранит»`;
           
           // Remove the limit to get all related news items from the same category
-          const related = await getRelatedNews(newsItem.category, id);
+          const related = await getRelatedNews(newsItem.category, newsItem.id);
           setRelatedNews(related);
         } else {
-          console.error("News item not found with ID:", id);
+          console.error("News item not found with slug:", slug);
           navigate('/news', { replace: true });
         }
       } catch (error) {
@@ -60,7 +60,7 @@ const NewsDetail = () => {
     };
     
     fetchNewsDetails();
-  }, [id, navigate]);
+  }, [slug, navigate]);
   
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -68,8 +68,8 @@ const NewsDetail = () => {
   };
   
   const handleEditSuccess = () => {
-    if (id) {
-      getNewsById(id).then(updatedNews => {
+    if (slug) {
+      getNewsById(slug).then(updatedNews => {
         if (updatedNews) {
           setNews(updatedNews);
           document.title = `${updatedNews.title} — ООО «Гранит»`;

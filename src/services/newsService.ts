@@ -1,4 +1,6 @@
+
 import { supabase } from "@/integrations/supabase/client";
+import { generateSlug } from "@/lib/slugify";
 
 export interface NewsItem {
   id: string;
@@ -8,6 +10,7 @@ export interface NewsItem {
   date: string;
   image: string;
   category: string; // Changed from union type to string to match database
+  slug: string;
 }
 
 export async function getAllNews(): Promise<NewsItem[]> {
@@ -22,37 +25,61 @@ export async function getAllNews(): Promise<NewsItem[]> {
       return [];
     }
     
-    console.log('Fetched all news successfully:', data?.length || 0, 'items');
-    return data || [];
+    // Генерируем slug'и для существующих записей, если они отсутствуют
+    const newsWithSlugs = data?.map(item => {
+      if (!item.slug) {
+        return { ...item, slug: generateSlug(item.title) };
+      }
+      return item;
+    }) || [];
+    
+    console.log('Fetched all news successfully:', newsWithSlugs?.length || 0, 'items');
+    return newsWithSlugs;
   } catch (err) {
     console.error('Unexpected error fetching news:', err);
     return [];
   }
 }
 
-export async function getNewsById(id: string): Promise<NewsItem | null> {
+export async function getNewsById(idOrSlug: string): Promise<NewsItem | null> {
   try {
-    if (!id) {
-      console.error('Invalid news ID provided');
+    if (!idOrSlug) {
+      console.error('Invalid news ID or slug provided');
       return null;
     }
 
-    console.log('Fetching news by ID:', id);
-    const { data, error } = await supabase
+    console.log('Fetching news by ID or slug:', idOrSlug);
+    
+    // Сначала пробуем найти по slug
+    let { data, error } = await supabase
       .from('news')
       .select('*')
-      .eq('id', id)
-      .single();
+      .eq('slug', idOrSlug)
+      .maybeSingle();
+    
+    // Если не найдено по slug, пробуем по id
+    if (!data && !error) {
+      ({ data, error } = await supabase
+        .from('news')
+        .select('*')
+        .eq('id', idOrSlug)
+        .single());
+    }
     
     if (error) {
-      console.error('Error fetching news by id:', error);
+      console.error('Error fetching news by id or slug:', error);
       return null;
     }
     
-    console.log('Fetched news by ID result:', data ? 'Found' : 'Not found');
+    // Если данные получены, но slug отсутствует, генерируем его
+    if (data && !data.slug) {
+      data.slug = generateSlug(data.title);
+    }
+    
+    console.log('Fetched news result:', data ? 'Found' : 'Not found');
     return data;
   } catch (err) {
-    console.error('Unexpected error fetching news by id:', err);
+    console.error('Unexpected error fetching news by id or slug:', err);
     return null;
   }
 }
