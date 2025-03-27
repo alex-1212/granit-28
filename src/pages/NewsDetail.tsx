@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getNewsById, getRelatedNews, NewsItem } from '@/services/newsService';
 import { useAuth } from '@/context/AuthContext';
+import { useTheme } from '@/context/ThemeContext';
 import { NewsEditor } from '@/components/news/NewsEditor';
 import { DeleteNewsDialog } from '@/components/news/DeleteNewsDialog';
 import NewsDetailHero from '@/components/news/NewsDetailHero';
@@ -19,6 +20,7 @@ const NewsDetail = () => {
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { theme } = useTheme();
   
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -88,7 +90,7 @@ const NewsDetail = () => {
   }
 
   return (
-    <div>
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
       {user && news && (
         <>
           <NewsEditor 
