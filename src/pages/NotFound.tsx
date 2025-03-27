@@ -70,11 +70,15 @@ const NotFound = () => {
                 </div>
               </div>
               
-              <Alert variant="destructive" className="mb-6">
-                <AlertTriangle className="h-4 w-4" />
-                <AlertTitle>Страница не найдена</AlertTitle>
-                <AlertDescription>
-                  Запрашиваемый путь <code className="bg-background/80 px-1 py-0.5 rounded">{location.pathname}</code> не существует.
+              <Alert variant="destructive" className="mb-6 border-destructive bg-destructive/10">
+                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <AlertTitle className="text-destructive font-medium text-base">Страница не найдена</AlertTitle>
+                <AlertDescription className="mt-2">
+                  Запрашиваемый путь{" "}
+                  <code className="px-2 py-1 rounded bg-background/80 font-mono text-sm border border-destructive/30 whitespace-nowrap">
+                    {location.pathname}
+                  </code>{" "}
+                  не существует.
                 </AlertDescription>
               </Alert>
               
