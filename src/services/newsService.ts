@@ -27,14 +27,14 @@ export async function getAllNews(): Promise<NewsItem[]> {
     
     // Генерируем slug'и для существующих записей, если они отсутствуют
     const newsWithSlugs = data?.map(item => {
-      if (!item.slug) {
-        return { ...item, slug: generateSlug(item.title) };
-      }
-      return item;
+      return { 
+        ...item, 
+        slug: item.slug || generateSlug(item.title) 
+      };
     }) || [];
     
     console.log('Fetched all news successfully:', newsWithSlugs?.length || 0, 'items');
-    return newsWithSlugs;
+    return newsWithSlugs as NewsItem[];
   } catch (err) {
     console.error('Unexpected error fetching news:', err);
     return [];
@@ -71,13 +71,16 @@ export async function getNewsById(idOrSlug: string): Promise<NewsItem | null> {
       return null;
     }
     
-    // Если данные получены, но slug отсутствует, генерируем его
-    if (data && !data.slug) {
-      data.slug = generateSlug(data.title);
+    // Если данные получены, убедимся что slug существует
+    if (data) {
+      return {
+        ...data,
+        slug: data.slug || generateSlug(data.title)
+      } as NewsItem;
     }
     
     console.log('Fetched news result:', data ? 'Found' : 'Not found');
-    return data;
+    return null;
   } catch (err) {
     console.error('Unexpected error fetching news by id or slug:', err);
     return null;
@@ -106,8 +109,14 @@ export async function getRelatedNews(category: string, currentId: string, limit?
       return [];
     }
     
-    console.log(`Found ${data?.length || 0} related news items`);
-    return data || [];
+    // Ensure all news items have a slug
+    const newsWithSlugs = data?.map(item => ({
+      ...item,
+      slug: item.slug || generateSlug(item.title)
+    })) || [];
+    
+    console.log(`Found ${newsWithSlugs?.length || 0} related news items`);
+    return newsWithSlugs as NewsItem[];
   } catch (err) {
     console.error('Unexpected error fetching related news:', err);
     return [];
@@ -116,9 +125,16 @@ export async function getRelatedNews(category: string, currentId: string, limit?
 
 export async function createNews(newsData: Omit<NewsItem, 'id'>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
   console.log('Creating new news item:', newsData.title);
+  
+  // Ensure slug is set
+  const dataWithSlug = {
+    ...newsData,
+    slug: newsData.slug || generateSlug(newsData.title)
+  };
+  
   const { data, error } = await supabase
     .from('news')
-    .insert([newsData])
+    .insert([dataWithSlug])
     .select('*')
     .single();
   
@@ -127,15 +143,28 @@ export async function createNews(newsData: Omit<NewsItem, 'id'>): Promise<{succe
     return { success: false, error: error.message };
   }
   
-  console.log('Successfully created news item with ID:', data.id);
-  return { success: true, data };
+  // Ensure returned data has a slug
+  const resultWithSlug = {
+    ...data,
+    slug: data.slug || generateSlug(data.title)
+  } as NewsItem;
+  
+  console.log('Successfully created news item with ID:', resultWithSlug.id);
+  return { success: true, data: resultWithSlug };
 }
 
 export async function updateNews(id: string, newsData: Partial<Omit<NewsItem, 'id'>>): Promise<{success: boolean, data?: NewsItem, error?: string}> {
   console.log('Updating news item:', id);
+  
+  // Ensure slug is set if title is being updated
+  const dataToUpdate = { ...newsData };
+  if (newsData.title && !newsData.slug) {
+    dataToUpdate.slug = generateSlug(newsData.title);
+  }
+  
   const { data, error } = await supabase
     .from('news')
-    .update(newsData)
+    .update(dataToUpdate)
     .eq('id', id)
     .select('*')
     .single();
@@ -145,8 +174,14 @@ export async function updateNews(id: string, newsData: Partial<Omit<NewsItem, 'i
     return { success: false, error: error.message };
   }
   
+  // Ensure returned data has a slug
+  const resultWithSlug = {
+    ...data,
+    slug: data.slug || generateSlug(data.title)
+  } as NewsItem;
+  
   console.log('Successfully updated news item');
-  return { success: true, data };
+  return { success: true, data: resultWithSlug };
 }
 
 export async function deleteNews(id: string): Promise<{success: boolean, error?: string}> {

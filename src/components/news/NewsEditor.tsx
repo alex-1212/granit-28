@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { createNews, updateNews, NewsItem } from '@/services/newsService';
 import { useToast } from '@/hooks/use-toast';
+import { generateSlug } from '@/lib/slugify';
 
 interface NewsEditorProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
     image: initialData?.image || '',
     category: initialData?.category || categoryOptions[0],
     date: initialData?.date || new Date().toISOString(),
+    slug: initialData?.slug || ''
   });
 
   const isEditing = !!initialData;
@@ -35,6 +37,15 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Auto-generate slug when title changes
+    if (name === 'title') {
+      setFormData(prev => ({ 
+        ...prev, 
+        [name]: value,
+        slug: generateSlug(value)
+      }));
+    }
   };
 
   const handleCategoryChange = (value: string) => {
@@ -51,7 +62,12 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
       if (isEditing && initialData) {
         result = await updateNews(initialData.id, formData);
       } else {
-        result = await createNews(formData);
+        // Ensure slug is set
+        const newsDataWithSlug = {
+          ...formData,
+          slug: formData.slug || generateSlug(formData.title)
+        };
+        result = await createNews(newsDataWithSlug);
       }
       
       if (result.success) {
@@ -100,6 +116,20 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
                 onChange={handleChange}
                 required
               />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="slug">URL (slug)</Label>
+              <Input
+                id="slug"
+                name="slug"
+                value={formData.slug}
+                onChange={handleChange}
+                placeholder="Генерируется автоматически"
+              />
+              <p className="text-xs text-muted-foreground">
+                Уникальный идентификатор для URL. Генерируется автоматически из заголовка.
+              </p>
             </div>
             
             <div className="space-y-2">

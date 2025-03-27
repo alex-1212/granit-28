@@ -109,7 +109,7 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
                 </p>
                 
                 <Link 
-                  to={`/news/${item.id}`}
+                  to={`/news/${item.slug}`}
                   className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto"
                 >
                   Читать далее
