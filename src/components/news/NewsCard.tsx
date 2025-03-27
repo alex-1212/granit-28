@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { NewsItem } from '@/services/newsService';
 
 interface NewsCardProps {
@@ -20,8 +21,12 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
             alt={newsItem.title} 
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute top-3 right-3 bg-primary px-3 py-1 text-xs text-white rounded-full">
-            {newsItem.category}
+          <div className="absolute top-3 right-3">
+            <Badge 
+              className="font-medium border border-primary/20 dark:border-white/20 bg-white/70 dark:bg-black/50 text-primary dark:text-white backdrop-blur-sm rounded-md px-3 py-1"
+            >
+              {newsItem.category}
+            </Badge>
           </div>
         </Link>
       </div>
