@@ -1,9 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
 import { Hero } from '@/components/home/Hero';
 import { Services } from '@/components/home/Services';
+import NewsCarousel from '@/components/home/NewsCarousel';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
 const Index = () => {
@@ -147,56 +147,8 @@ const Index = () => {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((index) => (
-              <div 
-                key={index}
-                className="glass-card-solid rounded-xl overflow-hidden transition-all duration-300 hover:shadow-subtle group animate-on-scroll"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={`/images/news/news-${index}.jpg`}
-                    alt={`Новость ${index}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
-                      {index === 1 ? 'Проекты' : index === 2 ? 'Технологии' : 'События'}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {new Date().toLocaleDateString('ru-RU')}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                    {index === 1 
-                      ? 'Запуск завода в Забайкалье' 
-                      : index === 2 
-                        ? 'Успешные испытания патронов в Хабаровске' 
-                        : 'Участие в проекте БАМ-2'}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-4">
-                    {index === 1 
-                      ? 'ООО «Гранит» ввело в эксплуатацию завод по производству компонентов ЭВВ мощностью 30 тыс. тонн/год.'
-                      : index === 2 
-                        ? 'Начало выпуска эмульсионных патронов диаметром 32–90 мм для автономного применения.'
-                        : 'Применение мобильных ПСЗУ позволило сократить сроки взрывных работ на 15%.'}
-                  </p>
-                  
-                  <Link 
-                    to={`/news/${index}`}
-                    className="text-primary font-medium flex items-center gap-1 hover:underline"
-                  >
-                    Читать далее
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className="animate-on-scroll">
+            <NewsCarousel />
           </div>
         </div>
       </section>
