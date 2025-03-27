@@ -28,7 +28,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
       
       <CardContent className="flex-grow p-5">
         <Link to={`/news/${newsItem.slug}`} className="block">
-          <h3 className="text-xl font-display font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-display font-bold mb-2 line-clamp-2 group-hover:text-primary dark:group-hover:text-white transition-colors">
             {newsItem.title}
           </h3>
         </Link>
