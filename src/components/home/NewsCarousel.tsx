@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -53,11 +52,17 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array(3).fill(0).map((_, index) => (
-          <NewsCardSkeleton key={index} />
-        ))}
-      </div>
+      <Carousel className="w-full relative">
+        <CarouselContent className="-ml-4">
+          {Array(3).fill(0).map((_, index) => (
+            <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+              <NewsCardSkeleton />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="absolute -left-4 lg:-left-12" />
+        <CarouselNext className="absolute -right-4 lg:-right-12" />
+      </Carousel>
     );
   }
 
