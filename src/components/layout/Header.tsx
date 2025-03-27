@@ -38,19 +38,20 @@ export const Header = () => {
     closeMenu();
   }, [location.pathname]);
 
+  // Добавим дополнительные классы для адаптивного отображения
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     scrolled 
-      ? 'py-3 bg-background/80 dark:bg-background/80 backdrop-blur-lg shadow-sm' 
-      : 'py-5 bg-transparent'
+      ? 'py-2 bg-background/90 dark:bg-background/90 backdrop-blur-lg shadow-sm' 
+      : 'py-3 bg-transparent'
   }`;
 
   return (
     <header className={headerClass}>
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           <Link to="/" className="flex items-center">
-            <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-            <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+            <div className="h-8 w-8 sm:h-10 sm:w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-lg sm:text-xl">Г</div>
+            <span className="text-lg sm:text-xl font-display font-semibold ml-2">ООО «Гранит»</span>
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-1">
@@ -81,42 +82,49 @@ export const Header = () => {
               <ThemeToggle />
             </div>
             <button
-              className="p-2 lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden"
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
       </div>
 
+      {/* Улучшенное мобильное меню с плавными анимациями */}
       <div 
-        className={`md:hidden absolute top-full left-0 right-0 bg-background/95 dark:bg-background/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ease-in-out border-b border-border ${
-          isMenuOpen ? 'max-h-[500px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
+        className={`lg:hidden fixed inset-0 top-[64px] bg-background/95 dark:bg-background/95 backdrop-blur-lg z-40 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <nav className="container mx-auto px-4 flex flex-col space-y-4">
+        <nav className="container mx-auto px-4 py-6 flex flex-col h-full overflow-y-auto">
           {navItems.map((item, index) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`py-2 px-4 rounded-lg ${
+              className={`py-3 px-4 rounded-lg text-lg font-medium transition-all duration-300 ${
                 (location.pathname === item.path || 
                  (item.path !== '/' && location.pathname.startsWith(item.path)))
-                  ? 'bg-primary/10 text-primary dark:text-primary-foreground font-medium'
+                  ? 'bg-primary/10 text-primary dark:text-primary-foreground'
                   : 'hover:bg-muted/50'
               }`}
               style={{ 
-                transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
                 opacity: isMenuOpen ? 1 : 0,
                 transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
-                transition: 'opacity 0.3s ease, transform 0.3s ease'
+                transitionDelay: `${index * 50}ms`,
               }}
               onClick={closeMenu}
             >
               {item.name}
             </Link>
           ))}
+          
+          <div className="mt-auto pt-4 border-t border-border mt-6">
+            <p className="text-sm text-muted-foreground px-4 py-2">
+              © {new Date().getFullYear()} ООО «Гранит»
+            </p>
+          </div>
         </nav>
       </div>
     </header>
