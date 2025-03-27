@@ -44,7 +44,8 @@ const NewsDetail = () => {
           setNews(newsItem);
           document.title = `${newsItem.title} — ООО «Гранит»`;
           
-          const related = await getRelatedNews(newsItem.category, id, 3);
+          // Remove the limit to get all related news items from the same category
+          const related = await getRelatedNews(newsItem.category, id);
           setRelatedNews(related);
         } else {
           console.error("News item not found with ID:", id);

@@ -1,4 +1,3 @@
-
 import { supabase } from "@/integrations/supabase/client";
 
 export interface NewsItem {
@@ -58,16 +57,22 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
   }
 }
 
-export async function getRelatedNews(category: string, currentId: string, limit: number = 3): Promise<NewsItem[]> {
+export async function getRelatedNews(category: string, currentId: string, limit?: number): Promise<NewsItem[]> {
   try {
     console.log(`Fetching related news for category: ${category}, excluding ID: ${currentId}`);
-    const { data, error } = await supabase
+    let query = supabase
       .from('news')
       .select('*')
       .eq('category', category)
       .neq('id', currentId)
-      .order('date', { ascending: false })
-      .limit(limit);
+      .order('date', { ascending: false });
+    
+    // Only apply limit if specified
+    if (limit) {
+      query = query.limit(limit);
+    }
+    
+    const { data, error } = await query;
     
     if (error) {
       console.error('Error fetching related news:', error);
