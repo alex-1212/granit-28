@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,21 +25,11 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import Test from "./pages/Test";
 
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 10, // 10 minutes
-      retry: 1,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const PageProgressBar = () => {
   useEffect(() => {
@@ -78,7 +69,6 @@ const AppRoutes = () => (
     <Route path="/faq" element={<FAQ />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/auth" element={<Auth />} />
-    <Route path="/test" element={<Test />} />
     <Route 
       path="/profile" 
       element={
