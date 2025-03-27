@@ -23,7 +23,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
           />
           <div className="absolute top-3 right-3">
             <Badge 
-              className="font-medium italic border border-primary/20 dark:border-white/20 bg-white/70 dark:bg-black/50 text-primary dark:text-white backdrop-blur-sm rounded-md px-3 py-1"
+              className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium"
             >
               {newsItem.category}
             </Badge>
