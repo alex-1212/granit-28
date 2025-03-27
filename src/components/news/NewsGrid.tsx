@@ -20,6 +20,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
     console.log('filter:', filter);
   }, [isLoading, news, filter]);
 
+  // Render the skeleton loaders when content is loading
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -30,6 +31,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
     );
   }
 
+  // Show a message if no news items are found for the selected filter
   if (news.length === 0) {
     return (
       <div className="text-center py-12">
@@ -40,6 +42,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
     );
   }
 
+  // Render the actual news grid once data is loaded
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {news.map((newsItem) => (
