@@ -47,21 +47,14 @@ const News = () => {
     };
     
     fetchNews();
-  }, []);
+  }, [filter]);
   
-  // Modified effect to always show loading state when filter changes
   useEffect(() => {
-    setIsLoading(true);
-    
-    // Short timeout to ensure skeleton shows even for quick filter changes
-    setTimeout(() => {
-      if (filter === 'Все') {
-        setFilteredNews(news);
-      } else {
-        setFilteredNews(news.filter(item => item.category === filter));
-      }
-      setIsLoading(false);
-    }, 500); // Small delay to show loading state
+    if (filter === 'Все') {
+      setFilteredNews(news);
+    } else {
+      setFilteredNews(news.filter(item => item.category === filter));
+    }
   }, [filter, news]);
   
   const formatDate = (dateString: string) => {
@@ -80,14 +73,6 @@ const News = () => {
     getAllNews().then(data => {
       setNews(data);
     });
-  };
-
-  const handleFilterChange = (newFilter: Category) => {
-    // Only set loading and change filter if it's different
-    if (newFilter !== filter) {
-      setIsLoading(true);
-      setFilter(newFilter);
-    }
   };
 
   return (
@@ -110,7 +95,7 @@ const News = () => {
           {/* Filters and Admin Controls */}
           <NewsFilters 
             filter={filter} 
-            setFilter={handleFilterChange}
+            setFilter={setFilter}
             onCreateNews={() => setIsCreateDialogOpen(true)}
           />
           
