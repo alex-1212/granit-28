@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -23,7 +22,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
           />
           <div className="absolute top-3 right-3">
             <Badge 
-              className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/30 dark:text-white font-medium"
+              className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/50 dark:text-white font-medium"
             >
               {newsItem.category}
             </Badge>
