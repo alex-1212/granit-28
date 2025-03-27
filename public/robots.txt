@@ -1,4 +1,26 @@
+
+User-agent: *
+Allow: /
+
+# Основные разделы
+Allow: /about
+Allow: /technologies
+Allow: /news
+Allow: /team
+Allow: /contact
+
+# Карта сайта
+Sitemap: https://granite-corp.ru/sitemap.xml
+
+# Отключаем доступ к авторизации и профилю
+Disallow: /auth
+Disallow: /profile
+
+# Социальные сети и боты
 User-agent: Googlebot
+Allow: /
+
+User-agent: Yandexbot
 Allow: /
 
 User-agent: Bingbot
@@ -8,7 +30,4 @@ User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
 Allow: /

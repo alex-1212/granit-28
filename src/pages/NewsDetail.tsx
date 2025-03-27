@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getNewsById, getRelatedNews, NewsItem } from '@/services/newsService';
 import { useAuth } from '@/context/AuthContext';
@@ -42,9 +43,8 @@ const NewsDetail = () => {
         
         if (newsItem) {
           setNews(newsItem);
-          document.title = `${newsItem.title} — ООО «Гранит»`;
           
-          // Remove the limit to get all related news items from the same category
+          // Получение связанных новостей
           const related = await getRelatedNews(newsItem.category, newsItem.id);
           setRelatedNews(related);
         } else {
@@ -72,7 +72,6 @@ const NewsDetail = () => {
       getNewsById(slug).then(updatedNews => {
         if (updatedNews) {
           setNews(updatedNews);
-          document.title = `${updatedNews.title} — ООО «Гранит»`;
         }
       });
     }
@@ -92,6 +91,48 @@ const NewsDetail = () => {
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
+      <Helmet>
+        <title>{`${news.title} — ООО «Гранит» | Новости`}</title>
+        <meta name="description" content={news.summary} />
+        <link rel="canonical" href={`https://granite-corp.ru/news/${news.slug}`} />
+        <meta property="og:title" content={`${news.title} — ООО «Гранит»`} />
+        <meta property="og:description" content={news.summary} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={news.image} />
+        <meta property="og:url" content={`https://granite-corp.ru/news/${news.slug}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${news.title} — ООО «Гранит»`} />
+        <meta name="twitter:description" content={news.summary} />
+        <meta name="twitter:image" content={news.image} />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "${news.title}",
+            "image": "${news.image}",
+            "datePublished": "${news.date}",
+            "dateModified": "${news.date}",
+            "description": "${news.summary}",
+            "author": {
+              "@type": "Organization",
+              "name": "ООО «Гранит»"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "ООО «Гранит»",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "/images/logo.png"
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://granite-corp.ru/news/${news.slug}"
+            }
+          }
+        `}</script>
+      </Helmet>
+      
       {user && news && (
         <>
           <NewsEditor 

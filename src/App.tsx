@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
+import { HelmetProvider } from 'react-helmet-async';
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { useEffect } from "react";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
@@ -84,21 +85,23 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <TooltipProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <AuthProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-grow pt-20">
-                <AppRoutes />
-              </main>
-              <Footer />
-            </div>
-          </AuthProvider>
-          <Toaster />
-          <Sonner />
-          <PageProgressBar />
-        </BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <AuthProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-grow pt-20">
+                  <AppRoutes />
+                </main>
+                <Footer />
+              </div>
+            </AuthProvider>
+            <Toaster />
+            <Sonner />
+            <PageProgressBar />
+          </BrowserRouter>
+        </HelmetProvider>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

@@ -25,6 +25,7 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
             <Link 
               to="/news" 
               className="inline-flex items-center gap-2 text-primary font-medium hover:underline animate-fade-in"
+              aria-label="Вернуться к списку новостей"
             >
               <ArrowLeft size={18} />
               Вернуться к новостям
@@ -37,6 +38,7 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
                   variant="outline" 
                   size="sm"
                   className="flex items-center gap-1"
+                  aria-label="Редактировать новость"
                 >
                   <Edit size={16} />
                   Редактировать
@@ -47,6 +49,7 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
                   variant="destructive" 
                   size="sm"
                   className="flex items-center gap-1"
+                  aria-label="Удалить новость"
                 >
                   <Trash size={16} />
                   Удалить
@@ -55,21 +58,23 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
             )}
           </div>
           
-          <h1 className="text-3xl md:text-4xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
-            {news.title}
-          </h1>
-          
-          <div className="flex flex-wrap items-center gap-4 mb-8 animate-fade-in animate-delay-200">
-            <div className="flex items-center gap-1.5">
-              <Calendar size={18} className="text-primary" />
-              <span>{formatDate(news.date)}</span>
-            </div>
+          <header>
+            <h1 className="text-3xl md:text-4xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
+              {news.title}
+            </h1>
             
-            <div className="flex items-center gap-1.5">
-              <Tag size={18} className="text-primary" />
-              <span>{news.category}</span>
+            <div className="flex flex-wrap items-center gap-4 mb-8 animate-fade-in animate-delay-200">
+              <div className="flex items-center gap-1.5">
+                <Calendar size={18} className="text-primary" />
+                <time dateTime={news.date}>{formatDate(news.date)}</time>
+              </div>
+              
+              <div className="flex items-center gap-1.5">
+                <Tag size={18} className="text-primary" />
+                <span>{news.category}</span>
+              </div>
             </div>
-          </div>
+          </header>
         </div>
       </div>
     </section>

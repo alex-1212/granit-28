@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getAllNews, NewsItem } from '@/services/newsService';
 import { useAuth } from '@/context/AuthContext';
@@ -24,13 +25,13 @@ const News = () => {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   
   useEffect(() => {
-    document.title = 'Новости — ООО «Гранит»';
+    // Обновление title перенесено в компонент NewsHero с Helmet
     
     const fetchNews = async () => {
       try {
         setIsLoading(true);
         const data = await getAllNews();
-        console.log("Fetched news data:", data.length); // Логируем количество загруженных новостей
+        console.log("Fetched news data:", data.length);
         setNews(data);
         
         // Сразу фильтруем новости при загрузке
@@ -77,6 +78,13 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Новости компании — ООО «Гранит»</title>
+        <meta name="description" content="Актуальная информация о проектах, достижениях и технологиях компании ООО «Гранит». Последние новости в сфере буровзрывных работ на Дальнем Востоке." />
+        <link rel="canonical" href="https://granite-corp.ru/news" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      
       {/* Create News Dialog - Only for authenticated users */}
       {user && (
         <NewsEditor
