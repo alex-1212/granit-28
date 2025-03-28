@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
@@ -10,71 +10,9 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Контакты — ООО «Гранит»';
-    
-    // Очистка любых существующих скриптов 2GIS
-    const existingScripts = document.querySelectorAll('script[src*="2gis"]');
-    existingScripts.forEach(script => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    });
-    
-    // Удаление всех существующих карт
-    if (mapContainerRef.current) {
-      mapContainerRef.current.innerHTML = '';
-    }
-    
-    // Загрузка нового скрипта 2GIS
-    const script = document.createElement('script');
-    script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
-    script.charset = 'utf-8';
-    script.async = true;
-    
-    script.onload = () => {
-      // Проверка, что DGWidgetLoader загружен и доступен
-      if (window.DGWidgetLoader && mapContainerRef.current) {
-        // Убедимся, что контейнер пуст перед инициализацией новой карты
-        mapContainerRef.current.innerHTML = '';
-        
-        new window.DGWidgetLoader({
-          "width": "100%",
-          "height": 600,
-          "borderColor": "#a3a3a3",
-          "pos": {
-            "lat": 48.374240154042546,
-            "lon": 135.10527133941653,
-            "zoom": 16
-          },
-          "opt": {
-            "city": "khabarovsk"
-          },
-          "org": [
-            {
-              "id": "70000001038799978"
-            }
-          ]
-        });
-      }
-    };
-    
-    document.body.appendChild(script);
-    
-    // Очистка при размонтировании компонента
-    return () => {
-      // Удаляем скрипт при размонтировании
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      
-      // Очищаем контейнер карты
-      if (mapContainerRef.current) {
-        mapContainerRef.current.innerHTML = '';
-      }
-    };
   }, []);
 
   const validateForm = () => {
@@ -109,11 +47,14 @@ const Contact = () => {
       return;
     }
     
+    // Prepare WhatsApp message
     const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nСообщение: ${message}`);
     const whatsappUrl = `https://wa.me/89145418570?text=${whatsappText}`;
     
+    // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
     
+    // Reset form
     setName('');
     setPhone('');
     setEmail('');
@@ -123,6 +64,7 @@ const Contact = () => {
 
   return (
     <div>
+      {/* Hero Section */}
       <section className="pt-16 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
@@ -140,6 +82,7 @@ const Contact = () => {
         </div>
       </section>
       
+      {/* Contact Information */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -213,6 +156,7 @@ const Contact = () => {
         </div>
       </section>
       
+      {/* Contact Form and Map */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -315,12 +259,17 @@ const Contact = () => {
                 Наше местоположение
               </h2>
               
-              <div className="glass-card rounded-xl overflow-hidden">
-                <div ref={mapContainerRef} className="w-full h-[600px]">
-                  <noscript style={{color:"#c00",fontSize:"16px",fontWeight:"bold"}}>
-                    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
-                  </noscript>
-                </div>
+              <div className="glass-card rounded-xl overflow-hidden h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.4302175116087!2d135.07920999999998!3d48.4804697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5efae9dc22927c3b%3A0xd5fc815212362d9!2z0KHRgtGA0L7QuNGC0LXQu9GM0L3QsNGPINGD0LsuLCAyOCwg0KXQsNCx0LDRgNC-0LLRgdC6!5e0!3m2!1sru!2sru!4v1717091235400!5m2!1sru!2sru"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Карта расположения ООО Гранит"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -331,3 +280,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
