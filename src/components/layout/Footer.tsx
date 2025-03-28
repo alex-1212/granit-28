@@ -108,9 +108,14 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start">
                 <MapPin size={20} className="mr-3 text-primary mt-0.5" />
-                <span className="text-foreground/80">
+                <a 
+                  href="https://go.2gis.com/1YfhD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 hover:text-primary transition-colors"
+                >
                   Строительная ул., 28 г, Хабаровск
-                </span>
+                </a>
               </li>
             </ul>
           </div>
@@ -139,3 +144,4 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+

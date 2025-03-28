@@ -142,7 +142,7 @@ const Contact = () => {
                     Строительная ул., 28 г, Хабаровск
                   </p>
                   <a 
-                    href="https://maps.google.com?q=Строительная+ул.,+28+г,+Хабаровск" 
+                    href="https://go.2gis.com/1YfhD" 
                     className="text-primary text-sm font-medium hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -280,3 +280,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
