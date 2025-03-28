@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
@@ -10,71 +9,9 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Контакты — ООО «Гранит»';
-    
-    // Очистка любых существующих скриптов 2GIS
-    const existingScripts = document.querySelectorAll('script[src*="2gis"]');
-    existingScripts.forEach(script => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    });
-    
-    // Удаление всех существующих карт
-    if (mapContainerRef.current) {
-      mapContainerRef.current.innerHTML = '';
-    }
-    
-    // Загрузка нового скрипта 2GIS
-    const script = document.createElement('script');
-    script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
-    script.charset = 'utf-8';
-    script.async = true;
-    
-    script.onload = () => {
-      // Проверка, что DGWidgetLoader загружен и доступен
-      if (window.DGWidgetLoader && mapContainerRef.current) {
-        // Убедимся, что контейнер пуст перед инициализацией новой карты
-        mapContainerRef.current.innerHTML = '';
-        
-        new window.DGWidgetLoader({
-          "width": "100%",
-          "height": 600,
-          "borderColor": "#a3a3a3",
-          "pos": {
-            "lat": 48.374240154042546,
-            "lon": 135.10527133941653,
-            "zoom": 16
-          },
-          "opt": {
-            "city": "khabarovsk"
-          },
-          "org": [
-            {
-              "id": "70000001038799978"
-            }
-          ]
-        });
-      }
-    };
-    
-    document.body.appendChild(script);
-    
-    // Очистка при размонтировании компонента
-    return () => {
-      // Удаляем скрипт при размонтировании
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      
-      // Очищаем контейнер карты
-      if (mapContainerRef.current) {
-        mapContainerRef.current.innerHTML = '';
-      }
-    };
   }, []);
 
   const validateForm = () => {
@@ -316,10 +253,14 @@ const Contact = () => {
               </h2>
               
               <div className="glass-card rounded-xl overflow-hidden">
-                <div ref={mapContainerRef} className="w-full h-[600px]">
-                  <noscript style={{color:"#c00",fontSize:"16px",fontWeight:"bold"}}>
-                    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
-                  </noscript>
+                <div className="h-[600px]">
+                  <a className="dg-widget-link" href="http://2gis.ru/khabarovsk/firm/70000001038799978/center/135.10527133941653,48.374240154042546/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Пос��отреть на карте Хабаровска</a>
+                  <div className="dg-widget-link"><a href="http://2gis.ru/khabarovsk/center/135.10537,48.374246/zoom/16/routeTab/rsType/bus/to/135.10537,48.374246╎Гранит, компания?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Гранит, компания</a></div>
+                  <script charSet="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+                  <script charSet="utf-8" dangerouslySetInnerHTML={{
+                    __html: `new DGWidgetLoader({"width":"100%","height":600,"borderColor":"#a3a3a3","pos":{"lat":48.374240154042546,"lon":135.10527133941653,"zoom":16},"opt":{"city":"khabarovsk"},"org":[{"id":"70000001038799978"}]})`
+                  }}></script>
+                  <noscript style={{color:"#c00",fontSize:"16px",fontWeight:"bold"}}>Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
                 </div>
               </div>
             </div>
