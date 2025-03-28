@@ -293,7 +293,7 @@ const Contact = () => {
               </h2>
               
               <div className="glass-card rounded-xl overflow-hidden">
-                <div id="map-container" ref={mapContainerRef} className="h-[600px]">
+                <div id="map-container" ref={mapContainerRef} className="h-[600px] w-full relative">
                   <noscript style={{color:"#c00",fontSize:"16px",fontWeight:"bold"}}>
                     Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
                   </noscript>
