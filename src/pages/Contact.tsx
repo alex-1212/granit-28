@@ -15,14 +15,31 @@ const Contact = () => {
   useEffect(() => {
     document.title = 'Контакты — ООО «Гранит»';
     
-    // Загрузка скрипта 2GIS
+    // Очистка любых существующих скриптов 2GIS
+    const existingScripts = document.querySelectorAll('script[src*="2gis"]');
+    existingScripts.forEach(script => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    });
+    
+    // Удаление всех существующих карт
+    if (mapContainerRef.current) {
+      mapContainerRef.current.innerHTML = '';
+    }
+    
+    // Загрузка нового скрипта 2GIS
     const script = document.createElement('script');
     script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
     script.charset = 'utf-8';
     script.async = true;
+    
     script.onload = () => {
       // Проверка, что DGWidgetLoader загружен и доступен
       if (window.DGWidgetLoader && mapContainerRef.current) {
+        // Убедимся, что контейнер пуст перед инициализацией новой карты
+        mapContainerRef.current.innerHTML = '';
+        
         new window.DGWidgetLoader({
           "width": "100%",
           "height": 600,
@@ -48,8 +65,14 @@ const Contact = () => {
     
     // Очистка при размонтировании компонента
     return () => {
+      // Удаляем скрипт при размонтировании
       if (document.body.contains(script)) {
         document.body.removeChild(script);
+      }
+      
+      // Очищаем контейнер карты
+      if (mapContainerRef.current) {
+        mapContainerRef.current.innerHTML = '';
       }
     };
   }, []);
@@ -293,7 +316,7 @@ const Contact = () => {
               </h2>
               
               <div className="glass-card rounded-xl overflow-hidden">
-                <div id="map-container" ref={mapContainerRef} className="h-[600px] w-full relative">
+                <div ref={mapContainerRef} className="w-full h-[600px]">
                   <noscript style={{color:"#c00",fontSize:"16px",fontWeight:"bold"}}>
                     Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
                   </noscript>
