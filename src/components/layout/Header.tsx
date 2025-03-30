@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navItems = [
   { name: 'Главная', path: '/' },
-  { name: 'Техника и технологии', path: '/technologies' },
+  { name: 'Продукты и услуги', path: '/products' },
   { name: 'Галерея', path: '/gallery' },
   { name: 'Новости', path: '/news' },
   { name: 'О компании', path: '/about' },

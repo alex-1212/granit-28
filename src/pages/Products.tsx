@@ -1,14 +1,14 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Truck, Factory, Settings, BarChart, Shield, FileText } from 'lucide-react';
+import { ArrowRight, Truck, Factory, Settings, BarChart, Shield, FileText, Clock, Zap, Sliders, Leaf } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
-const Technologies = () => {
+const Products = () => {
   useAnimateOnScroll();
   
   useEffect(() => {
-    document.title = 'Техника и технологии — ООО «Гранит»';
+    document.title = 'Продукты и услуги — ООО «Гранит»';
   }, []);
 
   return (
@@ -21,7 +21,7 @@ const Technologies = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              Техника и технологии
+              Продукты и услуги
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
@@ -169,6 +169,84 @@ const Technologies = () => {
             </div>
           </div>
           
+          {/* Системы инициирования - НОВАЯ СЕКЦИЯ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div className="animate-on-scroll">
+              <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
+                Передовые решения
+              </span>
+              
+              <h2 className="section-title mb-6">
+                Системы инициирования
+              </h2>
+              
+              <p className="text-lg mb-6">
+                Поставляем передовые системы инициирования для безопасного и эффективного проведения взрывных работ в любых условиях.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-primary">
+                    <Clock size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Точность синхронизации</h3>
+                    <p className="text-muted-foreground">Микросекундная точность для эффективных взрывов и оптимального дробления породы.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-primary">
+                    <Shield size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Высокая безопасность</h3>
+                    <p className="text-muted-foreground">Защита от электромагнитных помех и несанкционированного подрыва.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-primary">
+                    <Sliders size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Гибкость настройки</h3>
+                    <p className="text-muted-foreground">Адаптация под любые задачи и условия проведения взрывных работ.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 text-primary">
+                    <Leaf size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Экологичность</h3>
+                    <p className="text-muted-foreground">Снижение вредного воздействия на окружающую среду при проведении взрывных работ.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
+                Запросить консультацию
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+            
+            <div className="relative animate-on-scroll">
+              <div className="glass-card rounded-2xl overflow-hidden aspect-video">
+                <img
+                  src="/images/initiation-systems.jpg"
+                  alt="Системы инициирования"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
+                <p className="font-semibold">Электронная точность</p>
+                <p className="text-sm text-muted-foreground">для идеального результата</p>
+              </div>
+            </div>
+          </div>
+          
           {/* Auxiliary Equipment */}
           <h2 className="section-title text-center mb-12 animate-on-scroll">Вспомогательная техника</h2>
           
@@ -302,4 +380,4 @@ const Technologies = () => {
   );
 };
 
-export default Technologies;
+export default Products;

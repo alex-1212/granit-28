@@ -13,7 +13,7 @@ import { ScrollToTop } from "./components/layout/ScrollToTop";
 
 import Index from "./pages/Index";
 import About from "./pages/About";
-import Technologies from "./pages/Technologies";
+import Products from "./pages/Products";
 import Gallery from "./pages/Gallery";
 import Licenses from "./pages/Licenses";
 import News from "./pages/News";
@@ -59,7 +59,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/about" element={<About />} />
-    <Route path="/technologies" element={<Technologies />} />
+    <Route path="/products" element={<Products />} />
     <Route path="/gallery" element={<Gallery />} />
     <Route path="/licenses" element={<Licenses />} />
     <Route path="/news" element={<News />} />
