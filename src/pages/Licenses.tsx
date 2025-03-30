@@ -24,12 +24,12 @@ const licensesData: LicenseItem[] = [{
   number: 'ВМ-00-015946'
 }, {
   id: 4,
-  src: 'https://granit-svg.ru/assets/images/lic4-709x1024-1-709x1024.jpg',
+  src: 'https://granit-svg.ru/assets/images/lic6-709x1024-1-709x1024.jpg',
   title: 'Лицензия на осуществление погрузочно-разгрузочной деятельности применительно к опасным грузам на ЖД транспорте',
   number: 'Серия ПРД №2707892'
 }, {
   id: 5,
-  src: 'https://granit-svg.ru/assets/images/lic6-709x1024.jpg',
+  src: 'https://granit-svg.ru/assets/images/lic4-709x1024.jpg',
   title: 'Разрешение на применение технических устройств Комплекс Игла в вариантах комплектации Р и Э',
   number: 'РРС 00-377966'
 }, {
