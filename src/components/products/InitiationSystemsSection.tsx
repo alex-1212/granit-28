@@ -60,7 +60,7 @@ export const InitiationSystemsSection = () => {
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
           <img
-            src="/images/initiation-systems.jpg"
+            src="https://nedradv.ru/_files/db.biznes-gazeta.ru//images/IMG_20230814_074845.jpg"
             alt="Системы инициирования"
             className="object-cover w-full h-full"
           />
