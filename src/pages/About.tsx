@@ -130,15 +130,6 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 Выпуск эмульсионных патронов для заказчиков Дальнего Востока. Стратегическое расположение для минимизации логистических затрат.
               </p>
-              <img
-                src="/images/facility-2.jpg"
-                alt="Линия в Якутии"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
-                Подробнее
-                <ArrowRight size={16} />
-              </Link>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
@@ -146,15 +137,6 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 Патроны, сенсибилизированные микросферами (диаметры 32–90 мм), для автономного применения на удаленных объектах.
               </p>
-              <img
-                src="/images/facility-3.jpg"
-                alt="Производство в Хабаровске"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
-                Подробнее
-                <ArrowRight size={16} />
-              </Link>
             </div>
           </div>
           
