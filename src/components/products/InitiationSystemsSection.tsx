@@ -60,7 +60,7 @@ export const InitiationSystemsSection = () => {
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
           <img
-            src="https://nedradv.ru/_files/db.biznes-gazeta.ru//images/IMG_20230814_074845.jpg"
+            src="https://static.tildacdn.com/tild6230-3264-4165-a462-623834623732/WhatsApp_Image_2022-.jpeg"
             alt="Системы инициирования"
             className="object-cover w-full h-full"
           />
