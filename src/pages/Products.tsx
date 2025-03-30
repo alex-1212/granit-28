@@ -35,10 +35,14 @@ const Products = () => {
           
           {/* Услуги компании */}
           <ServicesSection />
-          
-          {/* CTA */}
-          <CTASection />
-          
+        </div>
+      </section>
+      
+      {/* CTA */}
+      <CTASection />
+      
+      <section className="py-20">
+        <div className="container mx-auto px-4">
           {/* Auxiliary Equipment */}
           <AuxiliaryEquipmentSection />
         </div>
