@@ -123,15 +123,6 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 С 2024 года запущено производство компонентов ЭВВ мощностью 30 тыс. тонн/год, включая «холодную» эмульсию для экстремальных условий.
               </p>
-              <img
-                src="/images/facility-1.jpg"
-                alt="Завод в Забайкалье"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
-                Подробнее
-                <ArrowRight size={16} />
-              </Link>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
