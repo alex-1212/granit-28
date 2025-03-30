@@ -14,24 +14,24 @@ const licensesData: LicenseItem[] = [{
   number: 'ВМ-00-015946'
 }, {
   id: 2,
-  src: 'https://granit-svg.ru/assets/images/lic3-709x1024.jpg',
+  src: 'https://granit-svg.ru/assets/images/lic2-709x1024.jpg',
   title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения',
   number: 'ВМ-00-015946'
 }, {
   id: 3,
-  src: 'https://granit-svg.ru/assets/images/lic2-709x1024.jpg',
-  title: 'Свидетельство о регистрации опасных производственных объектов',
-  number: 'А71-12345'
+  src: 'https://granit-svg.ru/assets/images/lic3-709x1024.jpg',
+  title: 'Приложение к Лицензии',
+  number: 'ВМ-00-015946'
 }, {
   id: 4,
-  src: 'https://granit-svg.ru/assets/images/lic6-709x1024-1-709x1024.jpg',
-  title: 'Сертификат соответствия на ЭВВ',
-  number: 'РОСС RU.АЯ56.В12345'
+  src: 'https://granit-svg.ru/assets/images/lic4-709x1024-1-709x1024.jpg',
+  title: 'Лицензия на осуществление погрузочно-разгрузочной деятельности применительно к опасным грузам на ЖД транспорте',
+  number: 'Серия ПРД №2707892'
 }, {
   id: 5,
-  src: 'https://granit-svg.ru/assets/images/lic4-709x1024.jpg',
-  title: 'Разрешение на применение технических устройств',
-  number: 'РРС 00-12345'
+  src: 'https://granit-svg.ru/assets/images/lic6-709x1024.jpg',
+  title: 'Разрешение на применение технических устройств Комплекс Игла в вариантах комплектации Р и Э',
+  number: 'РРС 00-377966'
 }, {
   id: 6,
   src: 'https://granit-svg.ru/assets/images/lic5-709x1024.jpg',
