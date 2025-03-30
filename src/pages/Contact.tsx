@@ -49,7 +49,7 @@ const Contact = () => {
     
     // Prepare WhatsApp message
     const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nСообщение: ${message}`);
-    const whatsappUrl = `https://wa.me/89145418570?text=${whatsappText}`;
+    const whatsappUrl = `https://wa.me/+79145418570?text=${whatsappText}`;
     
     // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
@@ -100,7 +100,7 @@ const Contact = () => {
                     +7 914 541 85 70
                   </a>
                   <a 
-                    href="https://wa.me/89145418570" 
+                    href="https://wa.me/+79145418570" 
                     className="text-primary text-sm font-medium hover:underline" 
                     target="_blank"
                     rel="noopener noreferrer"
@@ -139,7 +139,7 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Адрес</h3>
                   <p className="text-muted-foreground mb-2">
-                    Строительная ул., 28 г, Хабаровск
+                    г. Хабаровск ул. Строительная 28
                   </p>
                   <a 
                     href="https://go.2gis.com/1YfhD" 
