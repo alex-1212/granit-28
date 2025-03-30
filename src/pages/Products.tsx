@@ -5,6 +5,7 @@ import { ProductsHero } from '@/components/products/Hero';
 import { EvvSection } from '@/components/products/EvvSection';
 import { SzmSection } from '@/components/products/SzmSection';
 import { InitiationSystemsSection } from '@/components/products/InitiationSystemsSection';
+import { ServicesSection } from '@/components/products/ServicesSection';
 import { AuxiliaryEquipmentSection } from '@/components/products/AuxiliaryEquipmentSection';
 import { InnovationSection } from '@/components/products/InnovationSection';
 import { CTASection } from '@/components/products/CTASection';
@@ -31,6 +32,9 @@ const Products = () => {
           
           {/* Системы инициирования */}
           <InitiationSystemsSection />
+          
+          {/* Услуги компании */}
+          <ServicesSection />
           
           {/* Auxiliary Equipment */}
           <AuxiliaryEquipmentSection />

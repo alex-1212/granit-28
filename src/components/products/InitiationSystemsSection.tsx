@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Shield, Sliders, Leaf } from 'lucide-react';
+import { ArrowRight, Clock, Shield, Leaf } from 'lucide-react';
 
 export const InitiationSystemsSection = () => {
   return (
@@ -37,16 +37,6 @@ export const InitiationSystemsSection = () => {
             <div>
               <h3 className="font-semibold mb-1">Высокая безопасность</h3>
               <p className="text-muted-foreground">Защита от электромагнитных помех и несанкционированного подрыва.</p>
-            </div>
-          </div>
-          
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <Sliders size={20} />
-            </div>
-            <div>
-              <h3 className="font-semibold mb-1">Гибкость настройки</h3>
-              <p className="text-muted-foreground">Адаптация под любые задачи и условия проведения взрывных работ.</p>
             </div>
           </div>
           
