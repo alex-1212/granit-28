@@ -11,12 +11,12 @@ interface LicenseItem {
 }
 
 const licensesData: LicenseItem[] = [
-  { id: 1, src: '/public/images/license-1.jpg', title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
-  { id: 2, src: '/public/images/license-2.jpg', title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
-  { id: 3, src: '/public/images/license-3.jpg', title: 'Свидетельство о регистрации опасных производственных объектов', number: 'А71-12345' },
-  { id: 4, src: '/public/images/license-4.jpg', title: 'Сертификат соответствия на ЭВВ', number: 'РОСС RU.АЯ56.В12345' },
-  { id: 5, src: '/public/images/license-5.jpg', title: 'Разрешение на применение технических устройств', number: 'РРС 00-12345' },
-  { id: 6, src: '/public/images/license-6.jpg', title: 'Лицензия на осуществление деятельности по перевозкам', number: 'АК-71-123456' },
+  { id: 1, src: 'https://granit-svg.ru/assets/images/lic1-709x1024.jpg', title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
+  { id: 2, src: 'https://granit-svg.ru/assets/images/lic3-709x1024.jpg', title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
+  { id: 3, src: 'https://granit-svg.ru/assets/images/lic2-709x1024.jpg', title: 'Свидетельство о регистрации опасных производственных объектов', number: 'А71-12345' },
+  { id: 4, src: 'https://granit-svg.ru/assets/images/lic6-709x1024-1-709x1024.jpg', title: 'Сертификат соответствия на ЭВВ', number: 'РОСС RU.АЯ56.В12345' },
+  { id: 5, src: 'https://granit-svg.ru/assets/images/lic4-709x1024.jpg', title: 'Разрешение на применение технических устройств', number: 'РРС 00-12345' },
+  { id: 6, src: 'https://granit-svg.ru/assets/images/lic5-709x1024.jpg', title: 'Лицензия на осуществление деятельности по перевозкам', number: 'АК-71-123456' },
 ];
 
 const Licenses = () => {
