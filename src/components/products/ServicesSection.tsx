@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Drill, Bomb, Target, Ruler, Hammer, Lightbulb } from 'lucide-react';
+import { Drill, Bomb, Target, Ruler, Hammer, Lightbulb } from 'lucide-react';
 
 export const ServicesSection = () => {
   return (
@@ -21,7 +20,7 @@ export const ServicesSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Drill size={28} />
           </div>
@@ -31,7 +30,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Bomb size={28} />
           </div>
@@ -41,7 +40,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Target size={28} />
           </div>
@@ -51,7 +50,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Ruler size={28} />
           </div>
@@ -61,7 +60,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Hammer size={28} />
           </div>
@@ -71,7 +70,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Lightbulb size={28} />
           </div>
@@ -80,13 +79,6 @@ export const ServicesSection = () => {
             Профессиональные решения для оптимизации буровзрывных, маркшейдерских и производственных процессов.
           </p>
         </div>
-      </div>
-      
-      <div className="mt-8 text-center">
-        <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
-          Обсудить ваш проект
-          <ArrowRight size={18} />
-        </Link>
       </div>
     </div>
   );

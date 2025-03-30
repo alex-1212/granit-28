@@ -36,6 +36,9 @@ const Products = () => {
           {/* Услуги компании */}
           <ServicesSection />
           
+          {/* CTA */}
+          <CTASection />
+          
           {/* Auxiliary Equipment */}
           <AuxiliaryEquipmentSection />
         </div>
@@ -43,9 +46,6 @@ const Products = () => {
       
       {/* Technologies and Innovations */}
       <InnovationSection />
-      
-      {/* CTA */}
-      <CTASection />
     </div>
   );
 };
