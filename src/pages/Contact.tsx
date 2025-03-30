@@ -76,7 +76,7 @@ const Contact = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Задайте вопросы эксперту и получите профессиональный ответ. При необходимости закажите расчет вашего проекта.
+              Получите консультацию специалиста или оставьте заявку на расчет проекта
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-foreground font-medium mb-2">
-                    Имя*
+                    Имя
                   </label>
                   <input
                     id="name"
@@ -187,7 +187,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="phone" className="block text-foreground font-medium mb-2">
-                    Телефон*
+                    Телефон
                   </label>
                   <input
                     id="phone"

@@ -123,6 +123,15 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 С 2024 года запущено производство компонентов ЭВВ мощностью 30 тыс. тонн/год, включая «холодную» эмульсию для экстремальных условий.
               </p>
+              <img
+                src="/images/facility-1.jpg"
+                alt="Завод в Забайкалье"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
+                Подробнее
+                <ArrowRight size={16} />
+              </Link>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
@@ -130,6 +139,15 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 Выпуск эмульсионных патронов для заказчиков Дальнего Востока. Стратегическое расположение для минимизации логистических затрат.
               </p>
+              <img
+                src="/images/facility-2.jpg"
+                alt="Линия в Якутии"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
+                Подробнее
+                <ArrowRight size={16} />
+              </Link>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
@@ -137,6 +155,15 @@ const About = () => {
               <p className="text-muted-foreground mb-4">
                 Патроны, сенсибилизированные микросферами (диаметры 32–90 мм), для автономного применения на удаленных объектах.
               </p>
+              <img
+                src="/images/facility-3.jpg"
+                alt="Производство в Хабаровске"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <Link to="/technologies" className="text-primary font-medium flex items-center gap-1 hover:underline">
+                Подробнее
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
           
@@ -224,13 +251,36 @@ const About = () => {
           {/* Team */}
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="section-title mb-6">
-              Стратегия развития
+              Команда профессионалов
             </h2>
             
             <p className="text-lg mb-8 max-w-3xl mx-auto">
-Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
+              Специалисты с опытом работы в Канаде, ЮАР и Австралии. Программы наставничества и обучения для молодых сотрудников. Акцент на социальные гарантии.
             </p>
-<div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+            
+            <Link to="/team" className="btn-primary inline-flex items-center gap-2">
+              Познакомиться с командой
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="py-20 bg-primary/5 dark:bg-primary/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="section-title mb-6 animate-on-scroll">
+              Стратегия развития
+            </h2>
+            
+            <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
+              Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
+            </p>
+            
+            <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
                 Связаться с нами
               </Link>
@@ -242,7 +292,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
