@@ -27,7 +27,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
 export const Services: React.FC = () => {
   const services = [
     {
-      icon: <Shield size={24} />,
+      icon: <Drilling size={24} />,
       title: 'Буровые работы',
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
