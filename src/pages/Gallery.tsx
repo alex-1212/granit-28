@@ -10,16 +10,16 @@ interface ImageItem {
 }
 
 const galleryImages: ImageItem[] = [
-  { id: 1, src: '/images/gallery/gallery-1.jpg', alt: 'Буровые работы в горах' },
-  { id: 2, src: '/images/gallery/gallery-2.jpg', alt: 'Производственная линия ЭВВ' },
-  { id: 3, src: '/images/gallery/gallery-3.jpg', alt: 'Специалисты на объекте' },
-  { id: 4, src: '/images/gallery/gallery-4.jpg', alt: 'Бурение скважин' },
-  { id: 5, src: '/images/gallery/gallery-5.jpg', alt: 'Взрывные работы' },
-  { id: 6, src: '/images/gallery/gallery-6.jpg', alt: 'Заводская линия в Якутии' },
-  { id: 7, src: '/images/gallery/gallery-7.jpg', alt: 'Работа на БАМ-2' },
-  { id: 8, src: '/images/gallery/gallery-8.jpg', alt: 'Техника компании' },
-  { id: 9, src: '/images/gallery/gallery-9.jpg', alt: 'Производство патронов ЭВВ' },
-  { id: 10, src: '/images/gallery/gallery-10.jpg', alt: 'Команда на объекте' },
+  { id: 1, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Буровые работы в горах' },
+  { id: 2, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Производственная линия ЭВВ' },
+  { id: 3, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Специалисты на объекте' },
+  { id: 4, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Бурение скважин' },
+  { id: 5, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Взрывные работы' },
+  { id: 6, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Заводская линия в Якутии' },
+  { id: 7, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Работа на БАМ-2' },
+  { id: 8, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Техника компании' },
+  { id: 9, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Производство патронов ЭВВ' },
+  { id: 10, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Команда на объекте' },
 ];
 
 const Gallery = () => {
