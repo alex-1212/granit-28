@@ -9,7 +9,7 @@ export const SzmSection = () => {
       <div className="order-2 lg:order-1 relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
           <img
-            src="https://npgm.ru/images/com_acatalog/mszu-14-npb-A04.jpg"
+            src="https://granit-svg.ru/assets/images/efcf8f04-9352-4315-be5b-43705b99649e.jpg"
             alt="Смесительно-зарядные машины"
             className="object-cover w-full h-full"
           />
