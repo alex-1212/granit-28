@@ -9,7 +9,7 @@ export const SzmSection = () => {
       <div className="order-2 lg:order-1 relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
           <img
-            src="/images/equipment.jpg"
+            src="https://npgm.ru/images/com_acatalog/mszu-14-npb-A04.jpg"
             alt="Смесительно-зарядные машины"
             className="object-cover w-full h-full"
           />
