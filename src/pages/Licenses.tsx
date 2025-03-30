@@ -11,16 +11,12 @@ interface LicenseItem {
 }
 
 const licensesData: LicenseItem[] = [
-  { id: 1, src: '/public/images/license-1.jpg', title: 'Лицензия на производство взрывчатых материалов', number: 'ВМ-71-001234' },
-  { id: 2, src: '/public/images/license-2.jpg', title: 'Лицензия на применение взрывчатых материалов', number: 'ВМ-71-001235' },
+  { id: 1, src: '/public/images/license-1.jpg', title: 'Лицензия на осуществление делятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
+  { id: 2, src: '/public/images/license-2.jpg', title: 'Лицензия на осуществление делятельности связанная с обращением взрывчатых материалов промышленного назначения', number: 'ВМ-00-015946' },
   { id: 3, src: '/public/images/license-3.jpg', title: 'Свидетельство о регистрации опасных производственных объектов', number: 'А71-12345' },
   { id: 4, src: '/public/images/license-4.jpg', title: 'Сертификат соответствия на ЭВВ', number: 'РОСС RU.АЯ56.В12345' },
   { id: 5, src: '/public/images/license-5.jpg', title: 'Разрешение на применение технических устройств', number: 'РРС 00-12345' },
   { id: 6, src: '/public/images/license-6.jpg', title: 'Лицензия на осуществление деятельности по перевозкам', number: 'АК-71-123456' },
-  { id: 7, src: '/public/images/license-7.jpg', title: 'Сертификат ISO 9001:2015', number: 'ISO 9001-12345' },
-  { id: 8, src: '/public/images/license-8.jpg', title: 'Сертификат ISO 14001:2015', number: 'ISO 14001-12345' },
-  { id: 9, src: '/public/images/license-9.jpg', title: 'Сертификат ISO 45001:2018', number: 'ISO 45001-12345' },
-  { id: 10, src: '/public/images/license-10.jpg', title: 'Свидетельство СРО о допуске к работам', number: 'СРО-С-123-12345' },
 ];
 
 const Licenses = () => {
