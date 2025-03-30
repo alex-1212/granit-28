@@ -102,7 +102,7 @@ const About = () => {
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-[4/3]">
                 <img
-                  src="/images/company-facility.jpg"
+                  src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG"
                   alt="Производственный комплекс ООО Гранит"
                   className="object-cover w-full h-full"
                 />
@@ -144,7 +144,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1 animate-on-scroll">
               <img
-                src="/images/innovation.jpg"
+                src="https://npgm.ru/images/com_acatalog/mszu-14-npb-A03.jpg"
                 alt="Инновации и технологии"
                 className="w-full rounded-2xl glass-card overflow-hidden"
               />
