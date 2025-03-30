@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/technologies" className="text-foreground/80 hover:text-primary transition-colors">
-                  Техника и технологии
+                <Link to="/products" className="text-foreground/80 hover:text-primary transition-colors">
+                  Продукты и услуги
                 </Link>
               </li>
               <li>
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-foreground/80 hover:text-primary transition-colors"
                 >
-                  Строительная ул., 28 г, Хабаровск
+                  г. Хабаровск ул. Строительная 28
                 </a>
               </li>
             </ul>
