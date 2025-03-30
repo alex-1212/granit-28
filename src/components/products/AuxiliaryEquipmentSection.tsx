@@ -10,7 +10,7 @@ export const AuxiliaryEquipmentSection = () => {
         <div className="glass-card-primary rounded-xl overflow-hidden">
           <div className="aspect-video">
             <img
-              src="/images/bulldozer.jpg"
+              src="https://s9.auto.drom.ru/photo/v2/Sa714jKuL9rAO_unE2pJT_VTam-dtv55Y_bXTdhF86Zl7_NwC1a4bME1cS7hiw0tHCtAZgXiVfzpv6fN/gen1200.jpg"
               alt="Бульдозеры SHANTUI"
               className="w-full h-full object-cover"
             />
@@ -26,7 +26,7 @@ export const AuxiliaryEquipmentSection = () => {
         <div className="glass-card-primary rounded-xl overflow-hidden">
           <div className="aspect-video">
             <img
-              src="/images/vezdehod.jpg"
+              src="https://img.promportal.su/foto/good_fotos/3569/35690399/vezdehod-snegobolotohod-trekol-39294_foto_largest.jpg"
               alt="Вездеходы ТРЭКОЛ"
               className="w-full h-full object-cover"
             />
@@ -42,7 +42,7 @@ export const AuxiliaryEquipmentSection = () => {
         <div className="glass-card-primary rounded-xl overflow-hidden">
           <div className="aspect-video">
             <img
-              src="/images/trucks.jpg"
+              src="https://uzst.ru/images/stories/contentimages/catalog/92-61144.jpg"
               alt="Грузовые автомобили"
               className="w-full h-full object-cover"
             />
