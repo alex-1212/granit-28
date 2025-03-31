@@ -1,18 +1,13 @@
-
 import React, { useEffect } from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 import { teamData } from '@/data/team';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-
 const Team = () => {
   useAnimateOnScroll();
-  
   useEffect(() => {
     document.title = 'Команда — ООО «Гранит»';
   }, []);
-
-  return (
-    <div>
+  return <div>
       {/* Hero Section */}
       <section className="pt-16 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
@@ -41,20 +36,10 @@ const Team = () => {
           </div>
           
           {/* Team Grid */}
-          {teamData.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              {teamData.map((member, index) => (
-                <div 
-                  key={member.id} 
-                  className="glass-card-solid rounded-xl overflow-hidden animate-on-scroll"
-                >
+          {teamData.length > 0 && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {teamData.map((member, index) => <div key={member.id} className="glass-card-solid rounded-xl overflow-hidden animate-on-scroll">
                   <div className="aspect-square overflow-hidden">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   
                   <div className="p-6">
@@ -63,25 +48,17 @@ const Team = () => {
                     <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
                     
                     <div className="flex gap-2">
-                      <button 
-                        className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
-                        aria-label={`Написать ${member.name}`}
-                      >
+                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`Написать ${member.name}`}>
                         <Mail size={16} />
                       </button>
                       
-                      <button 
-                        className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
-                        aria-label={`LinkedIn ${member.name}`}
-                      >
+                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`LinkedIn ${member.name}`}>
                         <Linkedin size={16} />
                       </button>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                </div>)}
+            </div>}
         </div>
       </section>
       
@@ -120,11 +97,7 @@ const Team = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll">
               <div className="glass-card rounded-xl overflow-hidden">
-                <img
-                  src="/images/training.jpg"
-                  alt="Обучение и развитие сотрудников"
-                  className="w-full aspect-video object-cover"
-                />
+                <img alt="Обучение и развитие сотрудников" className="w-full aspect-video object-cover" src="/lovable-uploads/1fb05fcb-ee67-4418-a269-bf02668f2110.png" />
               </div>
             </div>
             
@@ -166,17 +139,12 @@ const Team = () => {
               Мы всегда в поиске талантливых и преданных своему делу специалистов. Ознакомьтесь с текущими вакансиями и станьте частью нашей команды профессионалов.
             </p>
             
-            <a 
-              href="/careers" 
-              className="btn-primary inline-block animate-on-scroll"
-            >
+            <a href="/careers" className="btn-primary inline-block animate-on-scroll">
               Смотреть вакансии
             </a>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Team;
