@@ -1,15 +1,11 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   useAnimateOnScroll();
-  
-  useEffect(() => {
-    document.title = 'О компании — ООО «Гранит»';
-  }, []);
   
   const advantages = [
     {
@@ -35,13 +31,18 @@ const About = () => {
   ];
 
   return (
-    <div>
+    <div className="w-full">
+      <Helmet>
+        <title>О компании — ООО «Гранит»</title>
+        <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы." />
+      </Helmet>
+      
       {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden">
+      <section className="pt-16 pb-20 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
               О компании
@@ -71,8 +72,8 @@ const About = () => {
       </section>
       
       {/* Main Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="section-title mb-6 animate-on-scroll">
@@ -242,7 +243,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

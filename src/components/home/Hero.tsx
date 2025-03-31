@@ -5,13 +5,13 @@ import { ChevronRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden w-full">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/hero-pattern.svg')] opacity-[0.15] dark:opacity-[0.07] bg-repeat bg-[length:100px_100px]"></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
             <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-fade-in">
