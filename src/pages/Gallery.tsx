@@ -10,10 +10,10 @@ interface ImageItem {
 }
 
 const galleryImages: ImageItem[] = [
-  { id: 1, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Буровые работы в горах' },
-  { id: 2, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Производственная линия ЭВВ' },
-  { id: 3, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Специалисты на объекте' },
-  { id: 4, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Бурение скважин' },
+  { id: 1, src: 'https://granit-svg.ru/img-granit/galery-1.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
+  { id: 2, src: 'https://granit-svg.ru/img-granit/galery-2.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
+  { id: 3, src: 'https://granit-svg.ru/img-granit/galery-3.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
+  { id: 4, src: 'https://granit-svg.ru/img-granit/galery-4.jpg', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
   { id: 5, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Взрывные работы' },
   { id: 6, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Заводская линия в Якутии' },
   { id: 7, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Работа на БАМ-2' },
