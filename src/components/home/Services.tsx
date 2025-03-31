@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Truck, Factory, FileText, Users, Settings } from 'lucide-react';
+import { Shield, Truck, Factory, FileText, Users, Settings, Drill, Bomb, Target } from 'lucide-react';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -27,17 +27,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
 export const Services: React.FC = () => {
   const services = [
     {
-      icon: <Shield size={24} />,
+      icon: <Drill size={24} />,
       title: 'Буровые работы',
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
-      icon: <Truck size={24} />,
+      icon: <Bomb size={24} />,
       title: 'Взрывные работы',
       description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
     {
-      icon: <Users size={24} />,
+      icon: <Target size={24} />,
       title: 'Специальные взрывные работы',
       description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
     },

@@ -22,26 +22,16 @@ export const InnovationSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
           <div className="glass-card rounded-xl p-8">
             <h3 className="text-xl font-semibold mb-4">Цифровые технологии</h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground">
               Внедрение систем 3D-моделирования для проектирования взрывных работ и контроля их результатов. Использование современного программного обеспечения для расчета параметров взрыва с учетом геологических особенностей участка.
             </p>
-            <img
-              src="/images/digital-tech.jpg"
-              alt="Цифровые технологии"
-              className="w-full h-48 object-cover rounded-lg"
-            />
           </div>
           
           <div className="glass-card rounded-xl p-8">
             <h3 className="text-xl font-semibold mb-4">Экологичные решения</h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground">
               Разработка и применение технологий, минимизирующих воздействие на окружающую среду. Внедрение замкнутых циклов производства и переработка отходов для повторного использования.
             </p>
-            <img
-              src="/images/eco-solutions.jpg"
-              alt="Экологичные решения"
-              className="w-full h-48 object-cover rounded-lg"
-            />
           </div>
         </div>
         
