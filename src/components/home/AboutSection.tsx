@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
-
 const AboutSection: React.FC = () => {
-  return (
-    <section className="py-20 overflow-hidden relative w-full">
+  return <section className="py-20 overflow-hidden relative w-full">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -53,10 +50,7 @@ const AboutSection: React.FC = () => {
               </div>
             </div>
             
-            <Link 
-              to="/about" 
-              className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
-            >
+            <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
               Подробнее о компании
               <ArrowRight size={18} />
             </Link>
@@ -65,11 +59,7 @@ const AboutSection: React.FC = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
             <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
-              <img
-                src="https://avmining.ru/wp-content/uploads/2023/09/4.jpg"
-                alt="О компании ООО Гранит"
-                className="object-cover w-full h-full"
-              />
+              <img src="https://avmining.ru/wp-content/uploads/2023/09/4.jpg" alt="О компании ООО Гранит" className="object-cover w-full h-full" />
             </div>
             
             <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
@@ -77,7 +67,7 @@ const AboutSection: React.FC = () => {
                 <Scroll className="text-primary" size={20} />
                 <h4 className="font-semibold">Лицензии и сертификаты</h4>
               </div>
-              <p className="text-sm text-muted-foreground">Все необходимые разрешения для проведения работ любой сложности</p>
+              <p className="text-sm text-inherit">Все необходимые разрешения для проведения работ любой сложности</p>
               <Link to="/licenses" className="text-primary text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline">
                 Смотреть все
                 <ArrowRight size={14} />
@@ -86,8 +76,6 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
