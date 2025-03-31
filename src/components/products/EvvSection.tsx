@@ -56,7 +56,7 @@ export const EvvSection = () => {
       
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG" alt="Производство ЭВВ" className="object-cover w-full h-full" />
+          <img src="https://granit-svg.ru/img-granit/products1.webp" alt="Производство ЭВВ" className="object-cover w-full h-full" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">30 тыс. тонн/год</p>
