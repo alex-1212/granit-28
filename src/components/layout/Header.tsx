@@ -51,8 +51,11 @@ export const Header = () => {
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link to="/" className="flex items-center">
-            <div className="h-8 w-8 sm:h-10 sm:w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-lg sm:text-xl">Г</div>
-            <span className="text-lg sm:text-xl font-display font-semibold ml-2">ООО «Гранит»</span>
+            <img 
+              src="/lovable-uploads/0e1daff0-a362-4f16-82ea-1bc042b74471.png" 
+              alt="ООО «Гранит» логотип" 
+              className="h-10 sm:h-12"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-1">
