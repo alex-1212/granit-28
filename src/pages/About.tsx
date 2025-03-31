@@ -3,35 +3,26 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
-
 const About = () => {
   useAnimateOnScroll();
-  
-  const advantages = [
-    {
-      icon: <Calendar className="h-6 w-6 text-primary" />,
-      title: '10+ лет',
-      description: 'экспертизы в буровзрывных работах'
-    },
-    {
-      icon: <Factory className="h-6 w-6 text-primary" />,
-      title: '3 завода',
-      description: 'в Забайкалье, Хабаровске и Якутии'
-    },
-    {
-      icon: <Users className="h-6 w-6 text-primary" />,
-      title: '200+ специалистов',
-      description: 'высококвалифицированных сотрудников'
-    },
-    {
-      icon: <ShieldCheck className="h-6 w-6 text-primary" />,
-      title: 'Безопасность',
-      description: 'соответствие всем нормам и стандартам'
-    }
-  ];
-
-  return (
-    <div className="w-full">
+  const advantages = [{
+    icon: <Calendar className="h-6 w-6 text-primary" />,
+    title: '10+ лет',
+    description: 'экспертизы в буровзрывных работах'
+  }, {
+    icon: <Factory className="h-6 w-6 text-primary" />,
+    title: '3 завода',
+    description: 'в Забайкалье, Хабаровске и Якутии'
+  }, {
+    icon: <Users className="h-6 w-6 text-primary" />,
+    title: '200+ специалистов',
+    description: 'высококвалифицированных сотрудников'
+  }, {
+    icon: <ShieldCheck className="h-6 w-6 text-primary" />,
+    title: 'Безопасность',
+    description: 'соответствие всем нормам и стандартам'
+  }];
+  return <div className="w-full">
       <Helmet>
         <title>О компании — ООО «Гранит»</title>
         <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы." />
@@ -54,19 +45,15 @@ const About = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
-            {advantages.map((item, index) => (
-              <div 
-                key={index} 
-                className="glass-card rounded-xl p-6 text-center animate-fade-in"
-                style={{ animationDelay: `${(index + 2) * 100}ms` }}
-              >
+            {advantages.map((item, index) => <div key={index} className="glass-card rounded-xl p-6 text-center animate-fade-in" style={{
+            animationDelay: `${(index + 2) * 100}ms`
+          }}>
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 mb-4">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
                 <p className="text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -102,15 +89,11 @@ const About = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-[4/3]">
-                <img
-                  src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG"
-                  alt="Производственный комплекс ООО Гранит"
-                  className="object-cover w-full h-full"
-                />
+                <img src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG" alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">Собственное производство</p>
-                <p className="text-sm text-muted-foreground">Контроль качества на всех этапах</p>
+                <p className="text-sm text-inherit">Контроль качества на всех этапах</p>
               </div>
             </div>
           </div>
@@ -144,11 +127,7 @@ const About = () => {
           {/* Innovation and Technology */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1 animate-on-scroll">
-              <img
-                src="https://npgm.ru/images/com_acatalog/mszu-14-npb-A03.jpg"
-                alt="Инновации и технологии"
-                className="w-full rounded-2xl glass-card overflow-hidden"
-              />
+              <img src="https://npgm.ru/images/com_acatalog/mszu-14-npb-A03.jpg" alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" />
             </div>
             
             <div className="order-1 lg:order-2 animate-on-scroll">
@@ -231,7 +210,7 @@ const About = () => {
             <p className="text-lg mb-8 max-w-3xl mx-auto">
 Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
             </p>
-<div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+          <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
                 Связаться с нами
               </Link>
@@ -243,8 +222,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
