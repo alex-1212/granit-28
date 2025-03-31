@@ -12,7 +12,7 @@ const Index = () => {
   useAnimateOnScroll();
   
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <Helmet>
         <title>ООО «Гранит» — Буровзрывные работы на Дальнем Востоке</title>
         <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания, специализирующаяся в сфере буровзрывных работ на Дальнем Востоке. Собственное производство ЭВВ." />

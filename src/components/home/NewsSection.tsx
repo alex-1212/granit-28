@@ -6,8 +6,8 @@ import NewsCarousel from '@/components/home/NewsCarousel';
 
 const NewsSection: React.FC = () => {
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
+    <section className="py-20 w-full">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
           <div>
             <h2 className="section-title mb-2 animate-on-scroll">Последние новости</h2>

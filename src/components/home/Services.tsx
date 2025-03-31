@@ -59,10 +59,10 @@ export const Services: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden w-full">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/30 dark:to-primary/5 -z-10"></div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="section-title animate-on-scroll">Наши услуги</h2>
           <p className="section-subtitle mx-auto animate-on-scroll">

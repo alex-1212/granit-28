@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-primary/5 dark:bg-primary/10 relative overflow-hidden">
+    <section className="py-20 bg-primary/5 dark:bg-primary/10 relative overflow-hidden w-full">
       <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="section-title mb-6 animate-on-scroll">
             Готовы обсудить ваш проект?

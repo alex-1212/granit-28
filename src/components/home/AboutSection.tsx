@@ -5,8 +5,8 @@ import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
-    <section className="py-20 overflow-hidden relative">
-      <div className="container mx-auto px-4">
+    <section className="py-20 overflow-hidden relative w-full">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-on-scroll">
