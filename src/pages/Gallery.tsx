@@ -8,7 +8,6 @@ interface ImageItem {
   src: string;
   alt: string;
 }
-
 const galleryImages: ImageItem[] = [
   { id: 1, src: 'https://granit-svg.ru/img-granit/galery-1.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
   { id: 2, src: 'https://granit-svg.ru/img-granit/galery-2.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
