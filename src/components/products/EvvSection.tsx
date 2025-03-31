@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, BarChart, FileText } from 'lucide-react';
-
 export const EvvSection = () => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+  return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
         <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
           Собственное производство
@@ -59,17 +56,12 @@ export const EvvSection = () => {
       
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img
-            src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG"
-            alt="Производство ЭВВ"
-            className="object-cover w-full h-full"
-          />
+          <img src="https://rostec.ru/upload/iblock/a35/a354ddf07b00c2bad175ecc716b9714d.JPG" alt="Производство ЭВВ" className="object-cover w-full h-full" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">30 тыс. тонн/год</p>
-          <p className="text-sm text-muted-foreground">мощность производства в Забайкалье</p>
+          <p className="text-sm text-inherit">мощность производства в Забайкалье</p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
