@@ -63,13 +63,13 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden">
+      <section className="pt-16 pb-20 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
               Свяжитесь с нами
@@ -83,8 +83,8 @@ const Contact = () => {
       </section>
       
       {/* Contact Information */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="animate-on-scroll">
               <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
@@ -157,8 +157,8 @@ const Contact = () => {
       </section>
       
       {/* Contact Form and Map */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="animate-on-scroll">
               <h2 className="text-2xl font-display font-semibold mb-6">
@@ -280,4 +280,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

@@ -77,7 +77,7 @@ const News = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="w-full bg-background">
       <Helmet>
         <title>Новости компании — ООО «Гранит»</title>
         <meta name="description" content="Актуальная информация о проектах, достижениях и технологиях компании ООО «Гранит». Последние новости в сфере буровзрывных работ на Дальнем Востоке." />
@@ -98,8 +98,8 @@ const News = () => {
       <NewsHero />
       
       {/* News Filter and Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
           {/* Filters and Admin Controls */}
           <NewsFilters 
             filter={filter} 
