@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Shield, Leaf } from 'lucide-react';
-
 export const InitiationSystemsSection = () => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+  return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
         <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
           Передовые решения
@@ -59,17 +56,12 @@ export const InitiationSystemsSection = () => {
       
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img
-            src="https://static.tildacdn.com/tild6230-3264-4165-a462-623834623732/WhatsApp_Image_2022-.jpeg"
-            alt="Системы инициирования"
-            className="object-cover w-full h-full"
-          />
+          <img src="https://static.tildacdn.com/tild6230-3264-4165-a462-623834623732/WhatsApp_Image_2022-.jpeg" alt="Системы инициирования" className="object-cover w-full h-full" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">Электронная точность</p>
-          <p className="text-sm text-muted-foreground">для идеального результата</p>
+          <p className="text-sm text-inherit">для идеального результата</p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
