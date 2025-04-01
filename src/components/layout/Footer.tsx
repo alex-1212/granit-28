@@ -14,7 +14,18 @@ export const Footer: React.FC = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
               <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-10" />
-              <span className="text-xl font-display font-semibold" style={{ fontFamily: 'Spaceland Ten Oblique, cursive' }}>ООО «Гранит»</span>
+              <span 
+                className="font-display font-semibold" 
+                style={{ 
+                  fontFamily: 'Spaceland Ten Oblique, cursive',
+                  fontSize: '28px',
+                  lineHeight: '1.75rem',
+                  textShadow: '0px 0px 7px #000000',
+                  letterSpacing: '1px'
+                }}
+              >
+                ООО «ГРАНИТ»
+              </span>
             </Link>
             <p className="text-muted-foreground mb-6">
               Специализированная компания по производству буровзрывных работ в сложных климатических условиях
@@ -124,7 +135,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {currentYear} ООО «Гранит». Все права защищены.
+              © {currentYear} ООО «ГРАНИТ». Все права защищены.
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
