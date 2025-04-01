@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'spaceland_ten_oblique';
+	src: url('Spaceland-TenOblique.woff2') format('WOFF2'),
+		url('Spaceland-TenOblique.woff') format('WOFF'),
+		url('Spaceland-TenOblique.eot') format('EOT'),
+		url('Spaceland-TenOblique.svg') format('SVG');
+	font-weight: normal;
+	font-style: normal;
+}
