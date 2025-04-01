@@ -3,7 +3,7 @@ import React from 'react';
 import { 
   Shield, Truck, Factory, FileText, Users, Settings, 
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
-  Building, Compass, Mountain, Package, Map, Earth, Landmark
+  Building, Compass, Mountain, Package, Map, Earth, Landmark, Target
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -29,29 +29,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
 };
 
 export const Services: React.FC = () => {
-  // Набор различных иконок для 'Буровые работы'
-  const drillingIcons = [
-    <Drill size={24} />, 
-    <Hammer size={24} />,
-    <Wrench size={24} />,
-    <Pickaxe size={24} />,
-    <Shovel size={24} />,
-    <Construction size={24} />,
-    <Building size={24} />,
-    <Compass size={24} />,
-    <Mountain size={24} />,
-    <Package size={24} />
-  ];
-  
-  // Выбираем случайную иконку из набора
-  const randomDrillingIcon = () => {
-    const index = Math.floor(Math.random() * drillingIcons.length);
-    return drillingIcons[index];
-  };
-  
   const services = [
     {
-      icon: randomDrillingIcon(),
+      icon: <Pickaxe size={24} />,
       title: 'Буровые работы',
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
@@ -61,7 +41,7 @@ export const Services: React.FC = () => {
       description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
     {
-      icon: <Shield size={24} />,
+      icon: <Target size={24} />,
       title: 'Специальные взрывные работы',
       description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
     },

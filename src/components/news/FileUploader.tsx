@@ -67,7 +67,8 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
         .from('news_images')
         .upload(filePath, file, {
           cacheControl: '3600',
-          upsert: false
+          upsert: false,
+          contentType: file.type  // Добавляем Content-Type
         });
       
       if (uploadError) {

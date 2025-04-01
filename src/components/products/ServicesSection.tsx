@@ -1,24 +1,41 @@
 
 import React from 'react';
 import { 
-  Drill, Factory, Shield, Ruler, Hammer, Lightbulb, Wrench, 
-  Pickaxe, Shovel, Construction, Building, Compass, Mountain, 
-  Package, Earth
+  Pickaxe, Factory, Target, Settings, FileText
 } from 'lucide-react';
 
 export const ServicesSection = () => {
-  // Все иконки для буровых работ
-  const drillingIcons = [
-    { icon: <Drill size={28} />, name: "Буровая установка" },
-    { icon: <Hammer size={28} />, name: "Ударные работы" },
-    { icon: <Wrench size={28} />, name: "Монтаж оборудования" },
-    { icon: <Pickaxe size={28} />, name: "Проходческие работы" },
-    { icon: <Shovel size={28} />, name: "Земляные работы" },
-    { icon: <Construction size={28} />, name: "Строительство" },
-    { icon: <Building size={28} />, name: "Возведение объектов" },
-    { icon: <Compass size={28} />, name: "Разведка месторождений" },
-    { icon: <Mountain size={28} />, name: "Горные работы" },
-    { icon: <Package size={28} />, name: "Инструменты и спецтехника" }
+  const services = [
+    {
+      icon: <Pickaxe size={28} />,
+      title: 'Буровые работы',
+      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
+    },
+    {
+      icon: <Factory size={28} />,
+      title: 'Взрывные работы',
+      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
+    },
+    {
+      icon: <Target size={28} />,
+      title: 'Специальные взрывные работы',
+      description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
+    },
+    {
+      icon: <Settings size={28} />,
+      title: 'Механический демонтаж',
+      description: 'Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.',
+    },
+    {
+      icon: <FileText size={28} />,
+      title: 'Маркшейдерские работы',
+      description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
+    },
+    {
+      icon: <Factory size={28} />,
+      title: 'Производство ЭВВ',
+      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
+    },
   ];
 
   return (
@@ -38,58 +55,17 @@ export const ServicesSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* 10 карточек для буровых работ с разными иконками */}
-        {drillingIcons.map((item, index) => (
+        {services.map((service, index) => (
           <div key={index} className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 50}ms` }}>
             <div className="mb-4 text-primary">
-              {item.icon}
+              {service.icon}
             </div>
-            <h3 className="text-xl font-semibold mb-3">{item.name}</h3>
+            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
             <p className="text-muted-foreground mb-4">
-              Профессиональное выполнение {item.name.toLowerCase()} с использованием современных технологий и оборудования в любых условиях.
+              {service.description}
             </p>
           </div>
         ))}
-        
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Factory size={28} />
-          </div>
-          <h3 className="text-xl font-semibold mb-3">Взрывные работы</h3>
-          <p className="text-muted-foreground mb-4">
-            Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.
-          </p>
-        </div>
-        
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Shield size={28} />
-          </div>
-          <h3 className="text-xl font-semibold mb-3">Специальные взрывные работы</h3>
-          <p className="text-muted-foreground mb-4">
-            Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.
-          </p>
-        </div>
-        
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Ruler size={28} />
-          </div>
-          <h3 className="text-xl font-semibold mb-3">Маркшейдерские работы</h3>
-          <p className="text-muted-foreground mb-4">
-            Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.
-          </p>
-        </div>
-        
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-800 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Earth size={28} />
-          </div>
-          <h3 className="text-xl font-semibold mb-3">Инженерно-технический консалтинг</h3>
-          <p className="text-muted-foreground mb-4">
-            Профессиональные решения для оптимизации буровзрывных, маркшейдерских и производственных процессов.
-          </p>
-        </div>
       </div>
     </div>
   );
