@@ -40,7 +40,6 @@ export function DatePickerField({ date, onDateChange }: DatePickerFieldProps) {
             initialFocus
             locale={ru}
             className="z-50 pointer-events-auto"
-            disabled={undefined}
           />
         </PopoverContent>
       </Popover>

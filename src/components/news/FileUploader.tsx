@@ -62,14 +62,27 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
       const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
       const filePath = `${fileName}`;
       
+      // Имитация прогресса загрузки
+      const progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 300);
+      
       // Загрузка файла в Supabase Storage
       const { data, error: uploadError } = await supabase.storage
         .from('news_images')
         .upload(filePath, file, {
           cacheControl: '3600',
           upsert: false,
-          contentType: file.type  // Добавляем Content-Type
+          contentType: file.type
         });
+      
+      clearInterval(progressInterval);
       
       if (uploadError) {
         throw uploadError;
