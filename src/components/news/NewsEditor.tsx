@@ -20,33 +20,44 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
     isEditing,
     handleChange,
     handleCategoryChange,
+    handleDateChange,
+    handleFileUpload,
     handleSubmit
   } = useNewsForm(initialData, onSuccess, onClose);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-3xl">
+      <DialogContent className="sm:max-w-3xl max-w-[95%] w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{isEditing ? 'Редактирование новости' : 'Создание новости'}</DialogTitle>
+          <DialogTitle className="text-xl md:text-2xl">
+            {isEditing ? 'Редактирование новости' : 'Создание новости'}
+          </DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <NewsFormFields 
             formData={formData} 
             handleChange={handleChange} 
-            handleCategoryChange={handleCategoryChange} 
+            handleCategoryChange={handleCategoryChange}
+            handleDateChange={handleDateChange}
+            handleFileUpload={handleFileUpload}
           />
           
-          <DialogFooter className="pt-4">
+          <DialogFooter className="pt-4 flex flex-col sm:flex-row gap-2">
             <Button 
               type="button" 
               variant="outline" 
               onClick={onClose}
               disabled={isLoading}
+              className="w-full sm:w-auto"
             >
               Отмена
             </Button>
-            <Button type="submit" disabled={isLoading}>
+            <Button 
+              type="submit" 
+              disabled={isLoading}
+              className="w-full sm:w-auto"
+            >
               {isLoading ? 'Сохранение...' : isEditing ? 'Обновить' : 'Создать'}
             </Button>
           </DialogFooter>

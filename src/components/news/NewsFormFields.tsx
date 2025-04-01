@@ -5,14 +5,27 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { categoryOptions } from './NewsEditorSchema';
+import { FileUploader } from './FileUploader';
+import { DatePickerField } from './DatePickerField';
 
 interface NewsFormFieldsProps {
   formData: any;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handleCategoryChange: (value: string) => void;
+  handleDateChange: (date: Date) => void;
+  handleFileUpload: (url: string) => void;
 }
 
-export function NewsFormFields({ formData, handleChange, handleCategoryChange }: NewsFormFieldsProps) {
+export function NewsFormFields({ 
+  formData, 
+  handleChange, 
+  handleCategoryChange, 
+  handleDateChange,
+  handleFileUpload
+}: NewsFormFieldsProps) {
+  // Преобразуем строку даты в объект Date для компонента DatePicker
+  const dateObject = formData.date ? new Date(formData.date) : new Date();
+  
   return (
     <div className="grid grid-cols-1 gap-4">
       <div className="space-y-2">
@@ -64,16 +77,10 @@ export function NewsFormFields({ formData, handleChange, handleCategoryChange }:
         />
       </div>
       
-      <div className="space-y-2">
-        <Label htmlFor="image">URL изображения</Label>
-        <Input
-          id="image"
-          name="image"
-          value={formData.image}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <FileUploader 
+        onFileUpload={handleFileUpload} 
+        currentImage={formData.image}
+      />
       
       <div className="space-y-2">
         <Label htmlFor="category">Категория</Label>
@@ -81,7 +88,7 @@ export function NewsFormFields({ formData, handleChange, handleCategoryChange }:
           value={formData.category} 
           onValueChange={handleCategoryChange}
         >
-          <SelectTrigger>
+          <SelectTrigger className="w-full">
             <SelectValue placeholder="Выберите категорию" />
           </SelectTrigger>
           <SelectContent>
@@ -93,6 +100,11 @@ export function NewsFormFields({ formData, handleChange, handleCategoryChange }:
           </SelectContent>
         </Select>
       </div>
+      
+      <DatePickerField
+        date={dateObject}
+        onDateChange={handleDateChange}
+      />
     </div>
   );
 }

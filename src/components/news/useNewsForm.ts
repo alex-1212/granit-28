@@ -38,6 +38,14 @@ export function useNewsForm(initialData: NewsItem | undefined, onSuccess: () => 
   const handleCategoryChange = (value: string) => {
     setFormData(prev => ({ ...prev, category: value }));
   };
+  
+  const handleDateChange = (date: Date) => {
+    setFormData(prev => ({ ...prev, date: date.toISOString() }));
+  };
+  
+  const handleFileUpload = (url: string) => {
+    setFormData(prev => ({ ...prev, image: url }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +99,8 @@ export function useNewsForm(initialData: NewsItem | undefined, onSuccess: () => 
     isEditing,
     handleChange,
     handleCategoryChange,
+    handleDateChange,
+    handleFileUpload,
     handleSubmit
   };
 }

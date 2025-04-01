@@ -1,8 +1,26 @@
 
 import React from 'react';
-import { Drill, Bomb, Target, Ruler, Hammer, Lightbulb } from 'lucide-react';
+import { 
+  Drill, Bomb, Target, Ruler, Hammer, Lightbulb, Wrench, 
+  Pickaxe, Shovel, Construction, Building, Compass, Mountain, 
+  Tools, Earth
+} from 'lucide-react';
 
 export const ServicesSection = () => {
+  // Все иконки для буровых работ
+  const drillingIcons = [
+    { icon: <Drill size={28} />, name: "Буровая установка" },
+    { icon: <Hammer size={28} />, name: "Ударные работы" },
+    { icon: <Wrench size={28} />, name: "Монтаж оборудования" },
+    { icon: <Pickaxe size={28} />, name: "Проходческие работы" },
+    { icon: <Shovel size={28} />, name: "Земляные работы" },
+    { icon: <Construction size={28} />, name: "Строительство" },
+    { icon: <Building size={28} />, name: "Возведение объектов" },
+    { icon: <Compass size={28} />, name: "Разведка месторождений" },
+    { icon: <Mountain size={28} />, name: "Горные работы" },
+    { icon: <Tools size={28} />, name: "Инструменты и спецтехника" }
+  ];
+
   return (
     <div className="mb-20 animate-on-scroll">
       <div className="text-center mb-12">
@@ -20,17 +38,20 @@ export const ServicesSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Drill size={28} />
+        {/* 10 карточек для буровых работ с разными иконками */}
+        {drillingIcons.map((item, index) => (
+          <div key={index} className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 50}ms` }}>
+            <div className="mb-4 text-primary">
+              {item.icon}
+            </div>
+            <h3 className="text-xl font-semibold mb-3">{item.name}</h3>
+            <p className="text-muted-foreground mb-4">
+              Профессиональное выполнение {item.name.toLowerCase()} с использованием современных технологий и оборудования в любых условиях.
+            </p>
           </div>
-          <h3 className="text-xl font-semibold mb-3">Буровые работы</h3>
-          <p className="text-muted-foreground mb-4">
-            Производим буровые работы с использованием современного оборудования в любых климатических условиях.
-          </p>
-        </div>
+        ))}
         
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Bomb size={28} />
           </div>
@@ -40,7 +61,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Target size={28} />
           </div>
@@ -50,7 +71,7 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
             <Ruler size={28} />
           </div>
@@ -60,19 +81,9 @@ export const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-800 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
-            <Hammer size={28} />
-          </div>
-          <h3 className="text-xl font-semibold mb-3">Механический демонтаж</h3>
-          <p className="text-muted-foreground mb-4">
-            Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.
-          </p>
-        </div>
-        
-        <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="mb-4 text-primary">
-            <Lightbulb size={28} />
+            <Earth size={28} />
           </div>
           <h3 className="text-xl font-semibold mb-3">Инженерно-технический консалтинг</h3>
           <p className="text-muted-foreground mb-4">
