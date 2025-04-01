@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { 
   Shield, Truck, Factory, FileText, Users, Settings, 
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
-  Building, Compass, Mountain, Tool, Map, Package, Earth, Landmark
+  Building, Compass, Mountain, Toolbox, Map, Package, Earth, Landmark
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -39,7 +40,7 @@ export const Services: React.FC = () => {
     <Building size={24} />,
     <Compass size={24} />,
     <Mountain size={24} />,
-    <Tool size={24} />
+    <Toolbox size={24} />
   ];
   
   // Выбираем случайную иконку из набора

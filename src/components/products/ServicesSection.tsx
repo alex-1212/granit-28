@@ -3,7 +3,7 @@ import React from 'react';
 import { 
   Drill, Factory, Shield, Ruler, Hammer, Lightbulb, Wrench, 
   Pickaxe, Shovel, Construction, Building, Compass, Mountain, 
-  Tool, Earth
+  Toolbox, Earth
 } from 'lucide-react';
 
 export const ServicesSection = () => {
@@ -18,7 +18,7 @@ export const ServicesSection = () => {
     { icon: <Building size={28} />, name: "Возведение объектов" },
     { icon: <Compass size={28} />, name: "Разведка месторождений" },
     { icon: <Mountain size={28} />, name: "Горные работы" },
-    { icon: <Tool size={28} />, name: "Инструменты и спецтехника" }
+    { icon: <Toolbox size={28} />, name: "Инструменты и спецтехника" }
   ];
 
   return (
@@ -53,7 +53,7 @@ export const ServicesSection = () => {
         
         <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-500 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
-            <Bomb size={28} />
+            <Factory size={28} />
           </div>
           <h3 className="text-xl font-semibold mb-3">Взрывные работы</h3>
           <p className="text-muted-foreground mb-4">
@@ -63,7 +63,7 @@ export const ServicesSection = () => {
         
         <div className="glass-card p-6 rounded-xl animate-on-scroll animate-delay-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="mb-4 text-primary">
-            <Target size={28} />
+            <Shield size={28} />
           </div>
           <h3 className="text-xl font-semibold mb-3">Специальные взрывные работы</h3>
           <p className="text-muted-foreground mb-4">

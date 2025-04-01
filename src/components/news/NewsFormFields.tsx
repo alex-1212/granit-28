@@ -78,7 +78,7 @@ export function NewsFormFields({
       </div>
       
       <FileUploader 
-        onFileUpload={handleFileUpload} 
+        onFileUploaded={handleFileUpload} 
         currentImage={formData.image}
       />
       
