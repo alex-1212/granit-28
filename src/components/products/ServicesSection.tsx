@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { 
-  Drill, Bomb, Target, Ruler, Hammer, Lightbulb, Wrench, 
+  Drill, Factory, Shield, Ruler, Hammer, Lightbulb, Wrench, 
   Pickaxe, Shovel, Construction, Building, Compass, Mountain, 
-  Tools, Earth
+  Tool, Earth
 } from 'lucide-react';
 
 export const ServicesSection = () => {
@@ -18,7 +18,7 @@ export const ServicesSection = () => {
     { icon: <Building size={28} />, name: "Возведение объектов" },
     { icon: <Compass size={28} />, name: "Разведка месторождений" },
     { icon: <Mountain size={28} />, name: "Горные работы" },
-    { icon: <Tools size={28} />, name: "Инструменты и спецтехника" }
+    { icon: <Tool size={28} />, name: "Инструменты и спецтехника" }
   ];
 
   return (

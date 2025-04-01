@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { 
   Shield, Truck, Factory, FileText, Users, Settings, 
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
-  Building, Compass, Mountain, Tools, Map, Package, Earth, Landmark
+  Building, Compass, Mountain, Tool, Map, Package, Earth, Landmark
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -40,7 +39,7 @@ export const Services: React.FC = () => {
     <Building size={24} />,
     <Compass size={24} />,
     <Mountain size={24} />,
-    <Tools size={24} />
+    <Tool size={24} />
   ];
   
   // Выбираем случайную иконку из набора
@@ -56,12 +55,12 @@ export const Services: React.FC = () => {
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
-      icon: <Bomb size={24} />,
+      icon: <Factory size={24} />,
       title: 'Взрывные работы',
       description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
     {
-      icon: <Target size={24} />,
+      icon: <Shield size={24} />,
       title: 'Специальные взрывные работы',
       description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
     },
