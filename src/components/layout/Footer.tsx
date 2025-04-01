@@ -13,8 +13,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-xl">Г</div>
-              <span className="text-xl font-display font-semibold">ООО «Гранит»</span>
+              <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-10" />
+              <span className="text-xl font-display font-semibold" style={{ fontFamily: 'Spaceland Ten Oblique, cursive' }}>ООО «Гранит»</span>
             </Link>
             <p className="text-muted-foreground mb-6">
               Специализированная компания по производству буровзрывных работ в сложных климатических условиях
@@ -144,4 +144,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-

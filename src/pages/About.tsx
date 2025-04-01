@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
@@ -64,7 +65,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="section-title mb-6 animate-on-scroll">
-                10 лет экспертизы в буровзрывных работах
+                Более 10 лет успешной практики в буровзрывных работах
               </h2>
               
               <p className="text-lg mb-6 animate-on-scroll">

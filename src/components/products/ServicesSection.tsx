@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { 
-  Pickaxe, Factory, Target, Settings, FileText
+  Pickaxe, Factory, Target, Settings, FileText, Bomb
 } from 'lucide-react';
 
 export const ServicesSection = () => {
@@ -12,7 +12,7 @@ export const ServicesSection = () => {
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
-      icon: <Factory size={28} />,
+      icon: <Bomb size={28} />,
       title: 'Взрывные работы',
       description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },

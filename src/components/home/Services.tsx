@@ -3,7 +3,7 @@ import React from 'react';
 import { 
   Shield, Truck, Factory, FileText, Users, Settings, 
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
-  Building, Compass, Mountain, Package, Map, Earth, Landmark, Target
+  Building, Compass, Mountain, Package, Map, Earth, Landmark, Target, Bomb
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -36,7 +36,7 @@ export const Services: React.FC = () => {
       description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
-      icon: <Factory size={24} />,
+      icon: <Bomb size={24} />,
       title: 'Взрывные работы',
       description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
