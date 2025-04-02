@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -5,37 +6,47 @@ import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-
-const navItems = [{
-  name: 'Главная',
-  path: '/'
-}, {
-  name: 'Продукты и услуги',
-  path: '/products'
-}, {
-  name: 'Галерея',
-  path: '/gallery'
-}, {
-  name: 'Новости',
-  path: '/news'
-}, {
-  name: 'О компании',
-  path: '/about'
-}, {
-  name: 'ЧаВо',
-  path: '/faq'
-}, {
-  name: 'Контакты',
-  path: '/contact'
-}];
+import { useLanguage } from '@/context/LanguageContext';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
+  const { t } = useLanguage();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const navItems = [
+    {
+      name: t('menu.home'),
+      path: '/'
+    }, 
+    {
+      name: t('menu.products'),
+      path: '/products'
+    }, 
+    {
+      name: t('menu.gallery'),
+      path: '/gallery'
+    }, 
+    {
+      name: t('menu.news'),
+      path: '/news'
+    }, 
+    {
+      name: t('menu.about'),
+      path: '/about'
+    }, 
+    {
+      name: t('menu.faq'),
+      path: '/faq'
+    }, 
+    {
+      name: t('menu.contact'),
+      path: '/contact'
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +66,7 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link to="/" className="flex items-center gap-3">
             <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="ООО «ГРАНИТ» логотип" className="h-16" />
-            <span className="font-display font-semibold sm:inline-block text-white" style={{
+            <span className="font-display font-semibold text-white inline-block" style={{
             fontFamily: 'Spaceland Ten Oblique, cursive',
             fontSize: '28px',
             lineHeight: '1.75rem',
