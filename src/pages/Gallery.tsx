@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
 interface ImageItem {
@@ -24,6 +24,7 @@ const galleryImages: ImageItem[] = [
 const Gallery = () => {
   useAnimateOnScroll();
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const modalRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -34,6 +35,10 @@ const Gallery = () => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedImage(null);
+      } else if (e.key === 'ArrowRight') {
+        handleNextImage();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrevImage();
       }
     };
     
@@ -57,11 +62,35 @@ const Gallery = () => {
   }, [selectedImage]);
   
   const openModal = (image: ImageItem) => {
+    const index = galleryImages.findIndex(img => img.id === image.id);
+    setCurrentIndex(index);
     setSelectedImage(image);
   };
   
   const closeModal = () => {
     setSelectedImage(null);
+  };
+  
+  const handleNextImage = () => {
+    if (currentIndex < galleryImages.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setSelectedImage(galleryImages[currentIndex + 1]);
+    } else {
+      // Зацикливаем галерею
+      setCurrentIndex(0);
+      setSelectedImage(galleryImages[0]);
+    }
+  };
+  
+  const handlePrevImage = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setSelectedImage(galleryImages[currentIndex - 1]);
+    } else {
+      // Зацикливаем галерею
+      setCurrentIndex(galleryImages.length - 1);
+      setSelectedImage(galleryImages[galleryImages.length - 1]);
+    }
   };
 
   return (
@@ -128,6 +157,24 @@ const Gallery = () => {
               </button>
             </div>
             
+            {/* Кнопка навигации влево */}
+            <button
+              onClick={handlePrevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors z-10"
+              aria-label="Предыдущее изображение"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            
+            {/* Кнопка навигации вправо */}
+            <button
+              onClick={handleNextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors z-10"
+              aria-label="Следующее изображение"
+            >
+              <ChevronRight size={24} />
+            </button>
+            
             <div className="flex items-center justify-center p-4 h-full">
               <img
                 src={selectedImage.src}
@@ -138,6 +185,9 @@ const Gallery = () => {
             
             <div className="p-4 border-t border-border">
               <p className="text-foreground">{selectedImage.alt}</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Изображение {currentIndex + 1} из {galleryImages.length}
+              </p>
             </div>
           </div>
         </div>

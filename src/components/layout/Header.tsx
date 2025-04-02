@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -6,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+
 const navItems = [{
   name: 'Главная',
   path: '/'
@@ -28,6 +28,7 @@ const navItems = [{
   name: 'Контакты',
   path: '/contact'
 }];
+
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -35,6 +36,7 @@ export const Header = () => {
   const isMobile = useIsMobile();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -42,18 +44,18 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   useEffect(() => {
     closeMenu();
   }, [location.pathname]);
 
-  // Добавим дополнительные классы для адаптивного отображения
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-2 bg-background/90 dark:bg-background/90 backdrop-blur-lg shadow-sm' : 'py-3 bg-transparent'}`;
   return <header className={headerClass}>
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link to="/" className="flex items-center gap-3">
             <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="ООО «ГРАНИТ» логотип" className="h-16" />
-            <span className="font-display font-semibold sm:inline-block" style={{
+            <span className="font-display font-semibold sm:inline-block text-white" style={{
             fontFamily: 'Spaceland Ten Oblique, cursive',
             fontSize: '28px',
             lineHeight: '1.75rem',
@@ -80,12 +82,9 @@ export const Header = () => {
 
           <div className="flex items-center gap-2">
             <UserMenu />
-            {/* Отображаем ThemeToggle вне Sheet для десктопов и для мобильных, если меню закрыто */}
             <div className="lg:hidden">
               <ThemeToggle />
             </div>
-            
-            {/* Используем компонент Sheet из shadcn/ui для мобильного меню */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <button className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden" aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}>

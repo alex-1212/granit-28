@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border">
@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
               <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-16 object-none" />
-              <span className="font-display font-semibold" style={{
+              <span className="font-display font-semibold text-white" style={{
               fontFamily: 'Spaceland Ten Oblique, cursive',
               fontSize: '28px',
               lineHeight: '1.75rem',
