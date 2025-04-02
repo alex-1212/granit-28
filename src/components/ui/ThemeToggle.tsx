@@ -12,11 +12,14 @@ import {
 export const ThemeToggle: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   
-  const languages: { code: Language; name: string }[] = [
-    { code: 'ru', name: t('language.ru') },
-    { code: 'en', name: t('language.en') },
-    { code: 'zh', name: t('language.zh') },
+  const languages: { code: Language; name: string; flag: string }[] = [
+    { code: 'ru', name: t('language.ru'), flag: '🇷🇺' },
+    { code: 'en', name: t('language.en'), flag: '🇬🇧' },
+    { code: 'zh', name: t('language.zh'), flag: '🇨🇳' },
   ];
+  
+  // Найти текущий язык для отображения флага
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
   
   return (
     <DropdownMenu>
@@ -25,7 +28,7 @@ export const ThemeToggle: React.FC = () => {
           aria-label={t('language')}
           className="p-2 rounded-lg bg-secondary/80 dark:bg-secondary/30 hover:bg-muted dark:hover:bg-muted transition-all duration-300 flex items-center gap-2"
         >
-          <Globe size={18} className="text-foreground" />
+          <span className="text-lg mr-1">{currentLanguage.flag}</span>
           <span className="hidden sm:inline-block">{language.toUpperCase()}</span>
         </button>
       </DropdownMenuTrigger>
@@ -36,6 +39,7 @@ export const ThemeToggle: React.FC = () => {
             onClick={() => setLanguage(lang.code)}
             className={language === lang.code ? "bg-primary/10 text-primary" : ""}
           >
+            <span className="text-lg mr-2">{lang.flag}</span>
             {lang.name}
           </DropdownMenuItem>
         ))}
