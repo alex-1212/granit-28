@@ -1,29 +1,22 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border">
+  return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-10" />
-              <span 
-                className="font-display font-semibold" 
-                style={{ 
-                  fontFamily: 'Spaceland Ten Oblique, cursive',
-                  fontSize: '28px',
-                  lineHeight: '1.75rem',
-                  textShadow: '0px 0px 7px #000000',
-                  letterSpacing: '1px'
-                }}
-              >
+              <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-16 object-none" />
+              <span className="font-display font-semibold" style={{
+              fontFamily: 'Spaceland Ten Oblique, cursive',
+              fontSize: '28px',
+              lineHeight: '1.75rem',
+              textShadow: '0px 0px 7px #000000',
+              letterSpacing: '1px'
+            }}>
                 ООО «ГРАНИТ»
               </span>
             </Link>
@@ -101,30 +94,19 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone size={20} className="mr-3 text-primary mt-0.5" />
-                <a 
-                  href="tel:+79145418570" 
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
+                <a href="tel:+79145418570" className="text-foreground/80 hover:text-primary transition-colors">
                   +7 914 541 85 70
                 </a>
               </li>
               <li className="flex items-start">
                 <Mail size={20} className="mr-3 text-primary mt-0.5" />
-                <a 
-                  href="mailto:granit-svg@mail.ru" 
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
+                <a href="mailto:granit-svg@mail.ru" className="text-foreground/80 hover:text-primary transition-colors">
                   granit-svg@mail.ru
                 </a>
               </li>
               <li className="flex items-start">
                 <MapPin size={20} className="mr-3 text-primary mt-0.5" />
-                <a 
-                  href="https://go.2gis.com/1YfhD"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
+                <a href="https://go.2gis.com/1YfhD" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-primary transition-colors">
                   г. Хабаровск ул. Строительная 28
                 </a>
               </li>
@@ -152,6 +134,5 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
