@@ -50,12 +50,22 @@ export const Header = () => {
     <header className={headerClass}>
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center gap-3">
             <img 
-              src="/lovable-uploads/0e1daff0-a362-4f16-82ea-1bc042b74471.png" 
-              alt="ООО «Гранит» логотип" 
-              className="h-10 sm:h-12"
+              src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" 
+              alt="ООО «ГРАНИТ» логотип" 
+              className="h-12"
             />
+            <span className="font-display font-semibold hidden sm:inline-block" style={{
+              fontFamily: 'Spaceland Ten Oblique, cursive',
+              fontSize: '28px',
+              lineHeight: '1.75rem',
+              textShadow: '0px 0px 7px #000000',
+              letterSpacing: '1px',
+              marginBottom: '-20px'
+            }}>
+              ООО «ГРАНИТ»
+            </span>
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-1">

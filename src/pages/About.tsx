@@ -1,28 +1,29 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
+
 const About = () => {
   useAnimateOnScroll();
   const advantages = [{
     icon: <Calendar className="h-6 w-6 text-primary" />,
     title: '10+ лет',
-    description: 'экспертизы в буровзрывных работах'
+    description: 'успешной практики в сфере буровзрывных работ'
   }, {
     icon: <Factory className="h-6 w-6 text-primary" />,
     title: '3 завода',
     description: 'в Забайкалье, Хабаровске и Якутии'
   }, {
     icon: <Users className="h-6 w-6 text-primary" />,
-    title: '200+ специалистов',
+    title: '150+ специалистов',
     description: 'высококвалифицированных сотрудников'
   }, {
     icon: <ShieldCheck className="h-6 w-6 text-primary" />,
     title: 'Безопасность',
     description: 'соответствие всем нормам и стандартам'
   }];
+
   return <div className="w-full">
       <Helmet>
         <title>О компании — ООО «Гранит»</title>
@@ -225,4 +226,5 @@ const About = () => {
       </section>
     </div>;
 };
+
 export default About;

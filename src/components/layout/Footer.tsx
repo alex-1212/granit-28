@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
@@ -15,7 +16,8 @@ export const Footer: React.FC = () => {
               fontSize: '28px',
               lineHeight: '1.75rem',
               textShadow: '0px 0px 7px #000000',
-              letterSpacing: '1px'
+              letterSpacing: '1px',
+              marginBottom: '-20px'
             }}>
                 ООО «ГРАНИТ»
               </span>
