@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
@@ -167,7 +168,7 @@ const About = () => {
                 </div>
               </div>
               
-              <Link to="/technologies" className="btn-primary inline-flex items-center gap-2">
+              <Link to="/products" className="btn-primary inline-flex items-center gap-2">
                 Все технологии
                 <ArrowRight size={18} />
               </Link>

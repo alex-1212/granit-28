@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
@@ -11,7 +12,7 @@ const AboutSection: React.FC = () => {
             </span>
             
             <h2 className="section-title mb-6 animate-on-scroll">
-              Экспертиза в буровзрывных работах и производстве взрывчатых веществ
+              Глубокая компетенция в сфере буровзрывных технологий и производства взрывчатых веществ
             </h2>
             
             <p className="text-muted-foreground mb-6 animate-on-scroll">

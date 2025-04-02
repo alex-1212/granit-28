@@ -57,6 +57,11 @@ export const Footer: React.FC = () => {
                   О компании
                 </Link>
               </li>
+              <li>
+                <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors">
+                  Контакты
+                </Link>
+              </li>
             </ul>
           </div>
           
