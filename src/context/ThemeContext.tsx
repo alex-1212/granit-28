@@ -12,13 +12,10 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const theme: Theme = 'dark';
 
-  // Принудительно применяем темную тему при загрузке и при любых изменениях
+  // Применяем темную тему при загрузке
   useEffect(() => {
     localStorage.setItem('theme', theme);
     document.documentElement.classList.add('dark');
-    
-    // Удаляем светлую тему, если она была установлена
-    document.documentElement.classList.remove('light');
   }, []);
 
   return (
