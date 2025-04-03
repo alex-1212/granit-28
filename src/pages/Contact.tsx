@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
   useAnimateOnScroll();
+  const { t } = useLanguage();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -12,28 +14,28 @@ const Contact = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    document.title = 'Контакты — ООО «Гранит»';
-  }, []);
+    document.title = t('contact.title') + ' — ООО «Гранит»';
+  }, [t]);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     
     if (!name.trim()) {
-      newErrors.name = 'Пожалуйста, введите ваше имя';
+      newErrors.name = t('contact.form.error.name', 'Пожалуйста, введите ваше имя');
     }
     
     if (!phone.trim()) {
-      newErrors.phone = 'Пожалуйста, введите ваш номер телефона';
+      newErrors.phone = t('contact.form.error.phoneRequired', 'Пожалуйста, введите ваш номер телефона');
     } else if (!/^\+?[0-9\s\-\(\)]{10,15}$/.test(phone)) {
-      newErrors.phone = 'Пожалуйста, введите корректный номер телефона';
+      newErrors.phone = t('contact.form.error.phoneInvalid', 'Пожалуйста, введите корректный номер телефона');
     }
     
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Пожалуйста, введите корректный email';
+      newErrors.email = t('contact.form.error.emailInvalid', 'Пожалуйста, введите корректный email');
     }
     
     if (!message.trim() || message.length < 10) {
-      newErrors.message = 'Сообщение должно содержать не менее 10 символов';
+      newErrors.message = t('contact.form.error.message', 'Сообщение должно содержать не менее 10 символов');
     }
     
     setErrors(newErrors);
@@ -48,7 +50,7 @@ const Contact = () => {
     }
     
     // Prepare WhatsApp message
-    const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nСообщение: ${message}`);
+    const whatsappText = encodeURIComponent(`${t('contact.form.whatsappIntro', 'Меня интересуют ваши услуги компании ООО Гранит')}\n\n${t('contact.form.name', 'Имя')}: ${name}\n${t('contact.form.phone', 'Телефон')}: ${phone}\n${t('contact.form.email', 'Email')}: ${email}\n\n${t('contact.form.message', 'Сообщение')}: ${message}`);
     const whatsappUrl = `https://wa.me/+79145418570?text=${whatsappText}`;
     
     // Open WhatsApp in a new tab
@@ -72,11 +74,11 @@ const Contact = () => {
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              Свяжитесь с нами
+              {t('contact.title')}
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Задайте вопросы эксперту и получите профессиональный ответ. При необходимости закажите расчет вашего проекта.
+              {t('contact.subtitle')}
             </p>
           </div>
         </div>
@@ -92,7 +94,7 @@ const Contact = () => {
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Телефон</h3>
+                  <h3 className="text-lg font-semibold mb-2">{t('contact.phoneTitle')}</h3>
                   <a 
                     href="tel:+79145418570" 
                     className="text-muted-foreground hover:text-primary transition-colors mb-2 block"
@@ -105,7 +107,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Написать в WhatsApp
+                    {t('contact.whatsapp', 'Написать в WhatsApp')}
                   </a>
                 </div>
               </div>
@@ -117,7 +119,7 @@ const Contact = () => {
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Почта</h3>
+                  <h3 className="text-lg font-semibold mb-2">{t('contact.emailTitle')}</h3>
                   <a 
                     href="mailto:granit-svg@mail.ru" 
                     className="text-muted-foreground hover:text-primary transition-colors mb-2 block"
@@ -125,7 +127,7 @@ const Contact = () => {
                     granit-svg@mail.ru
                   </a>
                   <p className="text-sm text-muted-foreground">
-                    Мы отвечаем в течение 24 часов
+                    {t('contact.emailResponse', 'Мы отвечаем в течение 24 часов')}
                   </p>
                 </div>
               </div>
@@ -137,9 +139,9 @@ const Contact = () => {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Адрес</h3>
+                  <h3 className="text-lg font-semibold mb-2">{t('contact.addressTitle')}</h3>
                   <p className="text-muted-foreground mb-2">
-                    г. Хабаровск ул. Строительная 28
+                    {t('contact.address')}
                   </p>
                   <a 
                     href="https://go.2gis.com/1YfhD" 
@@ -147,7 +149,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Открыть на карте
+                    {t('contact.viewMap', 'Открыть на карте')}
                   </a>
                 </div>
               </div>
@@ -162,13 +164,13 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="animate-on-scroll">
               <h2 className="text-2xl font-display font-semibold mb-6">
-                Отправить сообщение
+                {t('contact.form.title', 'Отправить сообщение')}
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-foreground font-medium mb-2">
-                    Имя*
+                    {t('contact.form.name', 'Имя')}*
                   </label>
                   <input
                     id="name"
@@ -178,7 +180,7 @@ const Contact = () => {
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.name ? 'border-destructive' : 'border-border'
                     } bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`}
-                    placeholder="Введите ваше имя"
+                    placeholder={t('contact.form.namePlaceholder', 'Введите ваше имя')}
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-destructive">{errors.name}</p>
@@ -187,7 +189,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="phone" className="block text-foreground font-medium mb-2">
-                    Телефон*
+                    {t('contact.form.phone', 'Телефон')}*
                   </label>
                   <input
                     id="phone"
@@ -206,7 +208,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="email" className="block text-foreground font-medium mb-2">
-                    Email (необязательно)
+                    {t('contact.form.email', 'Email')} ({t('contact.form.optional', 'необязательно')})
                   </label>
                   <input
                     id="email"
@@ -225,7 +227,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-foreground font-medium mb-2">
-                    Сообщение
+                    {t('contact.form.message', 'Сообщение')}
                   </label>
                   <textarea
                     id="message"
@@ -234,7 +236,7 @@ const Contact = () => {
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.message ? 'border-destructive' : 'border-border'
                     } bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 min-h-[120px]`}
-                    placeholder="Опишите ваш запрос или проект"
+                    placeholder={t('contact.form.messagePlaceholder', 'Опишите ваш запрос или проект')}
                   ></textarea>
                   {errors.message && (
                     <p className="mt-1 text-sm text-destructive">{errors.message}</p>
@@ -245,18 +247,18 @@ const Contact = () => {
                   type="submit" 
                   className="btn-primary w-full py-3"
                 >
-                  Отправить сообщение
+                  {t('contact.form.submit')}
                 </button>
                 
                 <p className="text-sm text-muted-foreground text-center">
-                  Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения
+                  {t('contact.form.whatsappRedirect', 'Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения')}
                 </p>
               </form>
             </div>
             
             <div className="animate-on-scroll">
               <h2 className="text-2xl font-display font-semibold mb-6">
-                Наше местоположение
+                {t('contact.location', 'Наше местоположение')}
               </h2>
               
               <div className="glass-card rounded-xl overflow-hidden h-[400px]">
@@ -268,7 +270,7 @@ const Contact = () => {
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Карта расположения ООО Гранит"
+                  title={t('contact.mapTitle', 'Карта расположения ООО Гранит')}
                 ></iframe>
               </div>
             </div>
