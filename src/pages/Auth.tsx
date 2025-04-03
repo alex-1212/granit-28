@@ -3,12 +3,10 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthForm } from '@/components/auth/AuthForm';
 import { useAuth } from '@/context/AuthContext';
-import { useLanguage } from '@/context/LanguageContext';
 
 const Auth = () => {
   const { user, isLoading } = useAuth();
   const navigate = useNavigate();
-  const { t } = useLanguage();
   
   useEffect(() => {
     document.title = 'Вход — ООО «Гранит»';
@@ -45,9 +43,9 @@ const Auth = () => {
       </Link>
       
       <div className="max-w-md w-full mb-8 text-center">
-        <h1 className="text-3xl font-bold mb-4">{t('auth.welcome')}</h1>
+        <h1 className="text-3xl font-bold mb-4">Добро пожаловать</h1>
         <p className="text-muted-foreground">
-          {t('auth.loginOrRegister')}
+          Войдите или зарегистрируйтесь для полного доступа к системе
         </p>
       </div>
       <AuthForm />

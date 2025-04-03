@@ -5,7 +5,6 @@ import {
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
   Building, Compass, Mountain, Package, Map, Earth, Landmark, Target, Bomb
 } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -30,38 +29,36 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
 };
 
 export const Services: React.FC = () => {
-  const { t } = useLanguage();
-
   const services = [
     {
       icon: <Pickaxe size={24} />,
-      title: t('services.drilling.title'),
-      description: t('services.drilling.description'),
+      title: 'Буровые работы',
+      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
       icon: <Bomb size={24} />,
-      title: t('services.blasting.title'),
-      description: t('services.blasting.description'),
+      title: 'Взрывные работы',
+      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
     {
       icon: <Target size={24} />,
-      title: t('services.special.title'),
-      description: t('services.special.description'),
+      title: 'Специальные взрывные работы',
+      description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
     },
     {
       icon: <Settings size={24} />,
-      title: t('services.mechanical.title'),
-      description: t('services.mechanical.description'),
+      title: 'Механический демонтаж',
+      description: 'Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.',
     },
     {
       icon: <FileText size={24} />,
-      title: t('services.surveying.title'),
-      description: t('services.surveying.description'),
+      title: 'Маркшейдерские работы',
+      description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
     },
     {
       icon: <Factory size={24} />,
-      title: t('services.production.title'),
-      description: t('services.production.description'),
+      title: 'Производство ЭВВ',
+      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
     },
   ];
 
@@ -71,9 +68,9 @@ export const Services: React.FC = () => {
       
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="section-title animate-on-scroll">{t('services.title')}</h2>
+          <h2 className="section-title animate-on-scroll">Наши услуги</h2>
           <p className="section-subtitle mx-auto animate-on-scroll">
-            {t('services.subtitle')}
+            Мы предлагаем полный спектр услуг в сфере буровзрывных работ, от разработки проекта до его реализации в самых сложных климатических условиях.
           </p>
         </div>
         

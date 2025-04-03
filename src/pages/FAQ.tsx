@@ -1,19 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useFaqData } from '@/data/faq';
+import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { useLanguage } from '@/context/LanguageContext';
 
 const FAQ = () => {
   useAnimateOnScroll();
-  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const faqData = useFaqData();
   
   useEffect(() => {
-    document.title = t('faq.title') + ' — ООО «Гранит»';
-  }, [t]);
+    document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
+  }, []);
   
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -29,11 +26,11 @@ const FAQ = () => {
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              {t('faq.title')}
+              Часто задаваемые вопросы
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              {t('faq.subtitle')}
+              Ответы на наиболее распространенные вопросы о нашей компании, услугах и технологиях
             </p>
           </div>
         </div>
@@ -86,18 +83,18 @@ const FAQ = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="section-title mb-6 animate-on-scroll">
-              {t('faq.notFound')}
+              Не нашли ответ на свой вопрос?
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
-              {t('faq.notFoundText')}
+              Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании
             </p>
             
             <a 
               href="/contact" 
               className="btn-primary inline-block animate-on-scroll"
             >
-              {t('faq.contactUs')}
+              Связаться с нами
             </a>
           </div>
         </div>
@@ -107,4 +104,3 @@ const FAQ = () => {
 };
 
 export default FAQ;
-

@@ -3,41 +3,38 @@ import React from 'react';
 import { 
   Pickaxe, Factory, Target, Settings, FileText, Bomb
 } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
 
 export const ServicesSection = () => {
-  const { t } = useLanguage();
-
   const services = [
     {
       icon: <Pickaxe size={28} />,
-      title: t('services.drilling.title'),
-      description: t('services.drilling.description'),
+      title: 'Буровые работы',
+      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
     },
     {
       icon: <Bomb size={28} />,
-      title: t('services.blasting.title'),
-      description: t('services.blasting.description'),
+      title: 'Взрывные работы',
+      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
     },
     {
       icon: <Target size={28} />,
-      title: t('services.special.title'),
-      description: t('services.special.description'),
+      title: 'Специальные взрывные работы',
+      description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
     },
     {
       icon: <Settings size={28} />,
-      title: t('services.mechanical.title'),
-      description: t('services.mechanical.description'),
+      title: 'Механический демонтаж',
+      description: 'Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.',
     },
     {
       icon: <FileText size={28} />,
-      title: t('services.surveying.title'),
-      description: t('services.surveying.description'),
+      title: 'Маркшейдерские работы',
+      description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
     },
     {
       icon: <Factory size={28} />,
-      title: t('services.production.title'),
-      description: t('services.production.description'),
+      title: 'Производство ЭВВ',
+      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
     },
   ];
 
@@ -45,15 +42,15 @@ export const ServicesSection = () => {
     <div className="mb-20 animate-on-scroll">
       <div className="text-center mb-12">
         <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
-          {t('products.services.badge')}
+          Комплексный подход
         </span>
         
         <h2 className="section-title mb-6">
-          {t('products.services.title')}
+          Услуги компании
         </h2>
         
         <p className="text-lg mx-auto max-w-3xl">
-          {t('products.services.description')}
+          Предоставляем полный спектр услуг в области буровзрывных работ, от проектирования до реализации проектов любой сложности
         </p>
       </div>
       
@@ -73,4 +70,3 @@ export const ServicesSection = () => {
     </div>
   );
 };
-
