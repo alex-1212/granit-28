@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { faqData } from '@/data/faq';
+import { useFaqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -9,6 +9,7 @@ const FAQ = () => {
   useAnimateOnScroll();
   const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const faqData = useFaqData();
   
   useEffect(() => {
     document.title = t('faq.title') + ' — ООО «Гранит»';
@@ -106,3 +107,4 @@ const FAQ = () => {
 };
 
 export default FAQ;
+

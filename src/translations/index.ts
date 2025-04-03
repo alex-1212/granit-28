@@ -88,7 +88,7 @@ export const translations = {
     },
     news: {
       title: 'Новости',
-      latestNews: 'Последние новости компании',
+      latestNews: 'Актуальная информация о наших проектах и достижениях',
       readMore: 'Читать далее',
       categories: {
         all: 'Все',
@@ -106,7 +106,41 @@ export const translations = {
       subtitle: 'Ответы на наиболее распространенные вопросы о нашей компании, услугах и технологиях',
       notFound: 'Не нашли ответ на свой вопрос?',
       notFoundText: 'Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании',
-      contactUs: 'Связаться с нами'
+      contactUs: 'Связаться с нами',
+      items: {
+        evv: {
+          question: 'Что такое ЭВВ и в чем их преимущества?',
+          answer: 'ЭВВ (эмульсионные взрывчатые вещества) – это современный тип промышленных взрывчатых веществ, представляющих собой эмульсию «вода в масле» с добавлением газогенерирующих добавок. Их преимущества включают высокую безопасность при транспортировке, водостойкость, экологичность (минимальное количество токсичных газов при взрыве), стабильность в различных климатических условиях и возможность точной настройки энергетических характеристик под конкретный проект.'
+        },
+        regions: {
+          question: 'Какие регионы обслуживает ООО «Гранит»?',
+          answer: 'ООО «Гранит» специализируется на выполнении буровзрывных работ на территории Дальнего Востока России, включая Забайкальский край, Хабаровский край, Республику Саха (Якутия), Камчатский край, Приморский край и Амурскую область. Наличие собственных производственных мощностей в Забайкалье, Хабаровске и Якутии позволяет нам эффективно работать даже в самых удаленных районах.'
+        },
+        shifts: {
+          question: 'Как организована работа вахтовым методом?',
+          answer: 'Компания организует работу вахтовым методом с графиком 2/2 месяца. Мы берем на себя все расходы, связанные с доставкой сотрудников от пункта сбора до места работы и обратно, включая перелеты и проживание в хостеле на время трудоустройства. Также компания компенсирует прохождение медицинской комиссии. Все сотрудники оформляются официально по ТК РФ с полным социальным пакетом и «белой» заработной платой.'
+        },
+        climate: {
+          question: 'Какие технологии использует компания для работы в экстремальных климатических условиях?',
+          answer: 'Для работы в суровых климатических условиях Дальнего Востока и Крайнего Севера мы используем специально разработанные составы ЭВВ, включая «холодную» эмульсию, сохраняющую свои свойства при крайне низких температурах. Техника компании адаптирована для работы в экстремальных условиях: используются бульдозеры SHANTUI с двигателями повышенной мощности (360 л.с.), вездеходы ТРЭКОЛ с бескамерными шинами для среднегорья, плавающие буровые платформы на базе ПТ-76 для работы в заболоченной местности.'
+        },
+        safety: {
+          question: 'Как ООО «Гранит» обеспечивает безопасность при проведении взрывных работ?',
+          answer: 'Безопасность – наш главный приоритет. Мы строго соблюдаем все нормативные требования и используем многоуровневую систему защиты: тщательное проектирование каждого взрыва с учетом особенностей местности, использование современных систем инициирования с электронным замедлением, применение защитных матов для предотвращения разлета породы, постоянный мониторинг сейсмического воздействия. Все сотрудники проходят регулярные тренинги по технике безопасности, а перед каждым взрывом проводится детальный инструктаж.'
+        },
+        eco: {
+          question: 'Какие экологические меры предпринимает компания?',
+          answer: 'ООО «Гранит» внедряет замкнутые циклы производства, включая программу переработки мешкотары в полиэтиленовые рукава для зарядки скважин и бытовых нужд. Наши ЭВВ экологичны: при детонации образуется минимальное количество токсичных газов. Мы проводим постоянный мониторинг воздействия работ на окружающую среду и внедряем технологии, минимизирующие нагрузку на экосистемы. На всех объектах действуют процедуры обращения с отходами, включая их сортировку и передачу на переработку.'
+        },
+        career: {
+          question: 'Какие карьерные возможности предлагает ООО «Гранит»?',
+          answer: 'Компания предоставляет широкие возможности для профессионального развития как опытным специалистам, так и молодым сотрудникам. Мы практикуем систему наставничества, проводим регулярные программы повышения квалификации и специализированные тренинги. Сотрудники могут участвовать в стратегических проектах, таких как строительство БАМ-2 и газопровода «Сила Сибири-2». Мы обеспечиваем конкурентоспособную «белую» заработную плату, полный социальный пакет, компенсацию проезда, медкомиссий и предоставляем возможности для санаторно-курортного лечения.'
+        },
+        remote: {
+          question: 'Как компания работает с заказчиками на удаленных объектах?',
+          answer: 'Для работы на удаленных объектах мы используем мобильные смесительно-зарядные установки (ПСЗУ), позволяющие производить ЭВВ непосредственно на месте проведения работ. Компания располагает собственным парком вездеходной и специализированной техники, что обеспечивает автономность работы в труднодоступных районах. Наши инженеры и технологи имеют опыт адаптации технологических процессов под конкретные условия площадки, независимо от ее удаленности и климатических особенностей.'
+        }
+      }
     },
     products: {
       title: 'Продукты и услуги',
@@ -209,7 +243,79 @@ export const translations = {
     buttons: {
       readMore: 'Подробнее',
       viewAll: 'Смотреть все'
-    }
+    },
+    products: {
+      services: {
+        badge: 'Комплексный подход',
+        title: 'Услуги компании',
+        description: 'Предоставляем полный спектр услуг в области буровзрывных работ, от проектирования до реализации проектов любой сложности'
+      },
+      equipment: {
+        badge: 'Передовая техника',
+        title: 'Смесительно-зарядные машины',
+        description: 'В нашем распоряжении современные смесительно-зарядные машины (СЗМ) от НИПИГОРМАШ и мобильные установки ПСЗУ для удалённых объектов.',
+        mobility: {
+          title: 'Высокая мобильность',
+          description: 'работа в любых климатических условиях'
+        },
+        features: {
+          mobility: {
+            title: 'Мобильность',
+            description: 'Возможность производить ЭВВ непосредственно на месте проведения работ.'
+          },
+          flexibility: {
+            title: 'Гибкость настройки',
+            description: 'Точная настройка состава ЭВВ под конкретные геологические условия.'
+          },
+          autonomy: {
+            title: 'Автономность',
+            description: 'Полная независимость от внешней инфраструктуры при работе на удаленных объектах.'
+          }
+        },
+        viewGallery: 'Смотреть галерею'
+      }
+    },
+    faq: {
+      title: 'Часто задаваемые вопросы',
+      subtitle: 'Ответы на наиболее распространенные вопросы о нашей компании, услугах и технологиях',
+      notFound: 'Не нашли ответ на свой вопрос?',
+      notFoundText: 'Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании',
+      contactUs: 'Связаться с нами',
+      items: {
+        evv: {
+          question: 'Что такое ЭВВ и в чем их преимущества?',
+          answer: 'ЭВВ (эмульсионные взрывчатые вещества) – это современный тип промышленных взрывчатых веществ, представляющих собой эмульсию «вода в масле» с добавлением газогенерирующих добавок. Их преимущества включают высокую безопасность при транспортировке, водостойкость, экологичность (минимальное количество токсичных газов при взрыве), стабильность в различных климатических условиях и возможность точной настройки энергетических характеристик под конкретный проект.'
+        },
+        regions: {
+          question: 'Какие регионы обслуживает ООО «Гранит»?',
+          answer: 'ООО «Гранит» специализируется на выполнении буровзрывных работ на территории Дальнего Востока России, включая Забайкальский край, Хабаровский край, Республику Саха (Якутия), Камчатский край, Приморский край и Амурскую область. Наличие собственных производственных мощностей в Забайкалье, Хабаровске и Якутии позволяет нам эффективно работать даже в самых удаленных районах.'
+        },
+        shifts: {
+          question: 'Как организована работа вахтовым методом?',
+          answer: 'Компания организует работу вахтовым методом с графиком 2/2 месяца. Мы берем на себя все расходы, связанные с доставкой сотрудников от пункта сбора до места работы и обратно, включая перелеты и проживание в хостеле на время трудоустройства. Также компания компенсирует прохождение медицинской комиссии. Все сотрудники оформляются официально по ТК РФ с полным социальным пакетом и «белой» заработной платой.'
+        },
+        climate: {
+          question: 'Какие технологии использует компания для работы в экстремальных климатических условиях?',
+          answer: 'Для работы в суровых климатических условиях Дальнего Востока и Крайнего Севера мы используем специально разработанные составы ЭВВ, включая «холодную» эмульсию, сохраняющую свои свойства при крайне низких температурах. Техника компании адаптирована для работы в экстремальных условиях: используются бульдозеры SHANTUI с двигателями повышенной мощности (360 л.с.), вездеходы ТРЭКОЛ с бескамерными шинами для среднегорья, плавающие буровые платформы на базе ПТ-76 для работы в заболоченной местности.'
+        },
+        safety: {
+          question: 'Как ООО «Гранит» обеспечивает безопасность при проведении взрывных работ?',
+          answer: 'Безопасность – наш главный приоритет. Мы строго соблюдаем все нормативные требования и используем многоуровневую систему защиты: тщательное проектирование каждого взрыва с учетом особенностей местности, использование современных систем инициирования с электронным замедлением, применение защитных матов для предотвращения разлета породы, постоянный мониторинг сейсмического воздействия. Все сотрудники проходят регулярные тренинги по технике безопасности, а перед каждым взрывом проводится детальный инструктаж.'
+        },
+        eco: {
+          question: 'Какие экологические меры предпринимает компания?',
+          answer: 'ООО «Гранит» внедряет замкнутые циклы производства, включая программу переработки мешкотары в полиэтиленовые рукава для зарядки скважин и бытовых нужд. Наши ЭВВ экологичны: при детонации образуется минимальное количество токсичных газов. Мы проводим постоянный мониторинг воздействия работ на окружающую среду и внедряем технологии, минимизирующие нагрузку на экосистемы. На всех объектах действуют процедуры обращения с отходами, включая их сортировку и передачу на переработку.'
+        },
+        career: {
+          question: 'Какие карьерные возможности предлагает ООО «Гранит»?',
+          answer: 'Компания предоставляет широкие возможности для профессионального развития как опытным специалистам, так и молодым сотрудникам. Мы практикуем систему наставничества, проводим регулярные программы повышения квалификации и специализированные тренинги. Сотрудники могут участвовать в стратегических проектах, таких как строительство БАМ-2 и газопровода «Сила Сибири-2». Мы обеспечиваем конкурентоспособную «белую» заработную плату, полный социальный пакет, компенсацию проезда, медкомиссий и предоставляем возможности для санаторно-курортного лечения.'
+        },
+        remote: {
+          question: 'Как компания работает с заказчиками на удаленных объектах?',
+          answer: 'Для работы на удаленных объектах мы используем мобильные смесительно-зарядные установки (ПСЗУ), позволяющие производить ЭВВ непосредственно на месте проведения работ. Компания располагает собственным парком вездеходной и специализированной техники, что обеспечивает автономность работы в труднодоступных районах. Наши инженеры и технологи имеют опыт адаптации технологических процессов под конкретные условия площадки, независимо от ее удаленности и климатических особенностей.'
+        }
+      }
+    },
   },
   en: {
     header: {
@@ -300,7 +406,7 @@ export const translations = {
     },
     news: {
       title: 'News',
-      latestNews: 'Latest company news',
+      latestNews: 'Current information about our projects and achievements',
       readMore: 'Read more',
       categories: {
         all: 'All',
@@ -318,7 +424,41 @@ export const translations = {
       subtitle: 'Answers to the most common questions about our company, services and technologies',
       notFound: 'Didn\'t find an answer to your question?',
       notFoundText: 'Our specialists are ready to answer any questions about drilling and blasting operations, technologies and company services',
-      contactUs: 'Contact us'
+      contactUs: 'Contact us',
+      items: {
+        evv: {
+          question: 'What are EEs and what are their advantages?',
+          answer: 'EE (emulsion explosives) is a modern type of industrial explosives, representing a "water in oil" emulsion with the addition of gas-generating additives. Their advantages include high safety during transportation, water resistance, environmental friendliness (minimal amount of toxic gases during explosion), stability in various climatic conditions, and the ability to fine-tune energy characteristics for a specific project.'
+        },
+        regions: {
+          question: 'Which regions does Granit LLC serve?',
+          answer: 'Granit LLC specializes in drilling and blasting operations in the Russian Far East, including Transbaikal Territory, Khabarovsk Territory, Republic of Sakha (Yakutia), Kamchatka Territory, Primorsky Territory, and Amur Region. The presence of our own production facilities in Transbaikalia, Khabarovsk, and Yakutia allows us to work effectively even in the most remote areas.'
+        },
+        shifts: {
+          question: 'How is the shift work organized?',
+          answer: 'The company organizes shift work with a 2/2 month schedule. We bear all expenses related to the delivery of employees from the collection point to the work location and back, including flights and accommodation in a hostel during employment. The company also compensates for medical examination. All employees are officially employed under the Russian Labor Code with a full social package and "white" salary.'
+        },
+        climate: {
+          question: 'What technologies does the company use to work in extreme climatic conditions?',
+          answer: 'For work in harsh climatic conditions of the Far East and the Far North, we use specially developed EE formulations, including "cold" emulsion that retains its properties at extremely low temperatures. The company\'s equipment is adapted for work in extreme conditions: SHANTUI bulldozers with high-power engines (360 hp), TRECOL all-terrain vehicles with tubeless tires for mid-mountain areas, floating drilling platforms based on PT-76 for work in swampy areas.'
+        },
+        safety: {
+          question: 'How does Granit LLC ensure safety during blasting operations?',
+          answer: 'Safety is our top priority. We strictly comply with all regulatory requirements and use a multi-level protection system: careful design of each explosion taking into account the peculiarities of the terrain, use of modern initiation systems with electronic delay, use of protective mats to prevent rock scattering, constant monitoring of seismic impact. All employees undergo regular safety training, and detailed instruction is provided before each explosion.'
+        },
+        eco: {
+          question: 'What environmental measures does the company take?',
+          answer: 'Granit LLC implements closed production cycles, including a program for recycling bags into polyethylene sleeves for charging wells and household needs. Our EEs are environmentally friendly: minimal toxic gases are formed during detonation. We conduct constant monitoring of the impact of work on the environment and implement technologies that minimize the load on ecosystems. All facilities have waste management procedures, including sorting and transfer for recycling.'
+        },
+        career: {
+          question: 'What career opportunities does Granit LLC offer?',
+          answer: 'The company provides ample opportunities for professional development for both experienced specialists and young employees. We practice a mentoring system, conduct regular advanced training programs and specialized training. Employees can participate in strategic projects such as the construction of BAM-2 and the Power of Siberia-2 gas pipeline. We provide a competitive "white" salary, a full social package, compensation for travel, medical examinations, and provide opportunities for spa treatment.'
+        },
+        remote: {
+          question: 'How does the company work with customers at remote sites?',
+          answer: 'For work at remote sites, we use mobile mixing and charging units (PSZU), allowing the production of EE directly at the site of operations. The company has its own fleet of all-terrain and specialized equipment, which ensures autonomous operation in hard-to-reach areas. Our engineers and technologists have experience in adapting technological processes to the specific conditions of the site, regardless of its remoteness and climatic features.'
+        }
+      }
     },
     products: {
       title: 'Products and Services',
@@ -421,218 +561,22 @@ export const translations = {
     buttons: {
       readMore: 'Read more',
       viewAll: 'View all'
-    }
-  },
-  zh: {
-    header: {
-      changeLanguage: '更改语言',
-      home: '首页',
-      products: '产品和服务',
-      gallery: '图库',
-      news: '新闻',
-      about: '关于我们',
-      faq: '常见问题',
-      contact: '联系我们',
-      team: '团队',
-      careers: '职业机会',
-      licenses: '许可证',
-      profile: '个人资料'
-    },
-    auth: {
-      welcome: '欢迎',
-      loginOrRegister: '登录或注册以获得对系统的完全访问权限'
-    },
-    hero: {
-      badge: '专业钻孔爆破工程',
-      title: '专业钻孔爆破作业公司',
-      description: '我们为远东地区的项目生产自己生产的乳化炸药（EE）。我们在艰难的气候条件下工作。',
-      contact: '提交请求',
-      about: '关于公司',
-      experience: '10+年经验',
-      experienceDesc: '在远东地区的钻孔爆破作业'
-    },
-    services: {
-      title: '我们的服务',
-      subtitle: '我们提供钻孔爆破领域的全方位服务，从项目开发到在最困难的气候条件下实施。',
-      drilling: {
-        title: '钻孔作业',
-        description: '我们使用现代设备在任何气候条件下进行钻孔作业。'
-      },
-      blasting: {
-        title: '爆破作业',
-        description: '我们在各种设施上使用自己的乳化炸药进行爆破作业。'
-      },
-      special: {
-        title: '特殊爆破作业',
-        description: '我们在难以到达的地区进行高复杂性的特殊爆破作业。'
-      },
-      mechanical: {
-        title: '机械拆除',
-        description: '我们严格遵守所有安全要求进行对象的机械拆除。'
-      },
-      surveying: {
-        title: '矿山测量',
-        description: '我们进行专业的矿山测量，以确保项目实施的准确性。'
-      },
-      production: {
-        title: 'EE生产',
-        description: '我们在外贝加尔和哈巴罗夫斯克的自有工厂生产乳化炸药。'
-      }
-    },
-    about: {
-      badge: '市场上10年',
-      title: '钻孔爆破技术和炸药生产方面的深厚专业知识',
-      description: 'Granit LLC是一家充满活力的公司，专门提供采矿业服务。在十年的历史中，我们在实施复杂项目、开发自己的技术和生产乳化炸药（EE）方面积累了独特的经验。',
-      advantages: {
-        independence: {
-          title: '独立于供应商',
-          description: '我们自己的EE生产保证了供应稳定性和质量控制。'
-        },
-        extremeConditions: {
-          title: '在恶劣条件下工作',
-          description: '我们专注于远东极端气候条件下的项目。'
-        },
-        production: {
-          title: '生产设施',
-          description: '在外贝加尔和哈巴罗夫斯克的工厂，在雅库特的生产线供应整个远东地区。'
-        }
-      },
-      more: '更多关于公司',
-      licenses: {
-        title: '许可证和证书',
-        description: '任何复杂工作的所有必要许可',
-        viewAll: '查看全部'
-      }
-    },
-    cta: {
-      ready: '准备讨论您的项目？',
-      description: '我们为采矿业提供全面解决方案，从设计到在最困难的条件下实施钻孔爆破作业。',
-      contact: '提交请求',
-      technologies: '我们的技术'
-    },
-    news: {
-      title: '新闻',
-      latestNews: '最新公司新闻',
-      readMore: '阅读更多',
-      categories: {
-        all: '全部',
-        projects: '项目',
-        technologies: '技术',
-        events: '活动'
-      },
-      noNews: '未找到新闻',
-      relatedNews: '相关新闻',
-      noRelatedNews: '未找到相关新闻',
-      share: '分享'
-    },
-    faq: {
-      title: '常见问题',
-      subtitle: '关于我们公司、服务和技术的最常见问题的答案',
-      notFound: '没有找到您问题的答案？',
-      notFoundText: '我们的专家准备回答关于钻孔爆破作业、技术和公司服务的任何问题',
-      contactUs: '联系我们'
     },
     products: {
-      title: '产品和服务',
-      subtitle: '钻孔爆破作业的综合解决方案',
-      evv: {
-        badge: '自主生产',
-        title: '乳化炸药',
-        description: 'Granit LLC在外贝加尔和哈巴罗夫斯克的自有工厂以及雅库特的生产线生产高质量乳化炸药。',
-        advantages: '我们乳化炸药的优势',
-        safety: {
-          title: '安全性',
-          description: '乳化炸药在运输和存储过程中具有高度安全性。'
-        },
-        efficiency: {
-          title: '高效率',
-          description: '提供爆炸和岩石破碎的最佳参数。'
-        },
-        eco: {
-          title: '环保性',
-          description: '爆炸时产生的有毒气体量最少。'
-        },
-        capacity: {
-          value: '3万吨/年',
-          description: '外贝加尔地区生产能力'
-        }
+      services: {
+        badge: 'Comprehensive approach',
+        title: 'Company services',
+        description: 'We provide a full range of services in the field of drilling and blasting, from design to implementation of projects of any complexity'
       },
       equipment: {
-        title: '混合和装药设备',
-        description: '我们公司使用现代设备混合和装载乳化炸药，确保作业的高质量和效率。'
-      },
-      initiation: {
-        badge: '先进解决方案',
-        title: '起爆系统',
-        description: '我们提供先进的起爆系统，确保在任何条件下安全有效地进行爆破作业。',
-        timing: {
-          title: '计时精度',
-          description: '微秒级精度，实现有效爆破和最佳岩石破碎。'
+        badge: 'Advanced equipment',
+        title: 'Mixing and Charging Machines',
+        description: 'We have modern mixing and charging machines (MCMs) from NIPIGORMASH and mobile PSZU units for remote sites.',
+        mobility: {
+          title: 'High mobility',
+          description: 'operation in any climatic conditions'
         },
-        safety: {
-          title: '高安全性',
-          description: '防电磁干扰和未授权爆炸。'
-        },
-        eco: {
-          title: '环保性',
-          description: '降低爆破作业对环境的有害影响。'
-        },
-        contact: '请求咨询',
-        precision: {
-          title: '电子精度',
-          description: '为完美结果'
-        }
-      },
-      auxiliary: {
-        title: '辅助设备',
-        description: '一套辅助设备，提供完整的钻孔爆破作业周期。',
-        bulldozers: {
-          title: 'SHANTUI推土机',
-          description: '配备康明斯发动机（360马力）的强大推土机，用于在困难条件下工作和准备钻探场地。'
-        },
-        allTerrainVehicles: {
-          title: 'TRECOL全地形车',
-          description: 'TRECOL 39294全地形车配备无内胎轮胎，用于中山区工作和将人员运送到难以到达的地区。'
-        },
-        trucks: {
-          title: '卡车',
-          description: 'URAL、GAZ、KAMAZ越野卡车，用于将设备、材料和人员运送到现场。'
-        }
-      },
-      innovation: {
-        title: '创新和技术',
-        description: '我们不断实施新技术和创新解决方案，以提高钻孔爆破作业的效率和安全性',
-        digitalTitle: '数字技术',
-        digitalDescription: '实施3D建模系统进行爆破设计和控制结果。使用现代软件计算爆破参数，考虑场地的地质特性。',
-        ecoTitle: '环保解决方案',
-        ecoDescription: '开发和应用最小化环境影响的技术。实施封闭生产循环和废物回收再利用。',
-        viewGallery: '查看技术画廊'
-      }
-    },
-    notFound: {
-      title: '页面未找到',
-      subtitle: '哎呀！看起来您迷路了',
-      description: '请求的页面已被移动、删除或从未存在。请返回首页。',
-      redirect: '自动重定向到首页，还有',
-      seconds: '秒...',
-      home: '去首页',
-      back: '返回',
-      contact: '联系我们',
-      error: '如果您认为这是一个错误，请'
-    },
-    footer: {
-      description: '专门从事艰难气候条件下钻孔爆破作业的公司',
-      writeUs: '给我们写信',
-      navigation: '导航',
-      sections: '栏目',
-      contacts: '联系方式',
-      rights: '版权所有。',
-      privacy: '隐私政策',
-      terms: '使用条款'
-    },
-    buttons: {
-      readMore: '了解更多',
-      viewAll: '查看全部'
-    }
-  }
-};
+        features: {
+          mobility: {
+            title: 'Mobility',
+            description:

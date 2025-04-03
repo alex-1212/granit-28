@@ -3,38 +3,41 @@ import React from 'react';
 import { 
   Pickaxe, Factory, Target, Settings, FileText, Bomb
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const ServicesSection = () => {
+  const { t } = useLanguage();
+
   const services = [
     {
       icon: <Pickaxe size={28} />,
-      title: 'Буровые работы',
-      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
+      title: t('services.drilling.title'),
+      description: t('services.drilling.description'),
     },
     {
       icon: <Bomb size={28} />,
-      title: 'Взрывные работы',
-      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
+      title: t('services.blasting.title'),
+      description: t('services.blasting.description'),
     },
     {
       icon: <Target size={28} />,
-      title: 'Специальные взрывные работы',
-      description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
+      title: t('services.special.title'),
+      description: t('services.special.description'),
     },
     {
       icon: <Settings size={28} />,
-      title: 'Механический демонтаж',
-      description: 'Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.',
+      title: t('services.mechanical.title'),
+      description: t('services.mechanical.description'),
     },
     {
       icon: <FileText size={28} />,
-      title: 'Маркшейдерские работы',
-      description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
+      title: t('services.surveying.title'),
+      description: t('services.surveying.description'),
     },
     {
       icon: <Factory size={28} />,
-      title: 'Производство ЭВВ',
-      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
+      title: t('services.production.title'),
+      description: t('services.production.description'),
     },
   ];
 
@@ -42,15 +45,15 @@ export const ServicesSection = () => {
     <div className="mb-20 animate-on-scroll">
       <div className="text-center mb-12">
         <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
-          Комплексный подход
+          {t('products.services.badge')}
         </span>
         
         <h2 className="section-title mb-6">
-          Услуги компании
+          {t('products.services.title')}
         </h2>
         
         <p className="text-lg mx-auto max-w-3xl">
-          Предоставляем полный спектр услуг в области буровзрывных работ, от проектирования до реализации проектов любой сложности
+          {t('products.services.description')}
         </p>
       </div>
       
@@ -70,3 +73,4 @@ export const ServicesSection = () => {
     </div>
   );
 };
+
