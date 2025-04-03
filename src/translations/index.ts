@@ -1,3 +1,4 @@
+
 export const translations = {
   ru: {
     header: {
@@ -579,4 +580,64 @@ export const translations = {
         features: {
           mobility: {
             title: 'Mobility',
-            description:
+            description: 'Ability to produce EE directly at the work site.'
+          },
+          flexibility: {
+            title: 'Flexibility',
+            description: 'Precise adjustment of EE composition for specific geological conditions.'
+          },
+          autonomy: {
+            title: 'Autonomy',
+            description: 'Complete independence from external infrastructure when working at remote sites.'
+          }
+        },
+        viewGallery: 'View gallery'
+      }
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Answers to the most common questions about our company, services and technologies',
+      notFound: 'Didn\'t find an answer to your question?',
+      notFoundText: 'Our specialists are ready to answer any questions about drilling and blasting operations, technologies and company services',
+      contactUs: 'Contact us',
+      items: {
+        evv: {
+          question: 'What are EEs and what are their advantages?',
+          answer: 'EE (emulsion explosives) is a modern type of industrial explosives, representing a "water in oil" emulsion with the addition of gas-generating additives. Their advantages include high safety during transportation, water resistance, environmental friendliness (minimal amount of toxic gases during explosion), stability in various climatic conditions, and the ability to fine-tune energy characteristics for a specific project.'
+        },
+        regions: {
+          question: 'Which regions does Granit LLC serve?',
+          answer: 'Granit LLC specializes in drilling and blasting operations in the Russian Far East, including Transbaikal Territory, Khabarovsk Territory, Republic of Sakha (Yakutia), Kamchatka Territory, Primorsky Territory, and Amur Region. The presence of our own production facilities in Transbaikalia, Khabarovsk, and Yakutia allows us to work effectively even in the most remote areas.'
+        },
+        shifts: {
+          question: 'How is the shift work organized?',
+          answer: 'The company organizes shift work with a 2/2 month schedule. We bear all expenses related to the delivery of employees from the collection point to the work location and back, including flights and accommodation in a hostel during employment. The company also compensates for medical examination. All employees are officially employed under the Russian Labor Code with a full social package and "white" salary.'
+        },
+        climate: {
+          question: 'What technologies does the company use to work in extreme climatic conditions?',
+          answer: 'For work in harsh climatic conditions of the Far East and the Far North, we use specially developed EE formulations, including "cold" emulsion that retains its properties at extremely low temperatures. The company\'s equipment is adapted for work in extreme conditions: SHANTUI bulldozers with high-power engines (360 hp), TRECOL all-terrain vehicles with tubeless tires for mid-mountain areas, floating drilling platforms based on PT-76 for work in swampy areas.'
+        },
+        safety: {
+          question: 'How does Granit LLC ensure safety during blasting operations?',
+          answer: 'Safety is our top priority. We strictly comply with all regulatory requirements and use a multi-level protection system: careful design of each explosion taking into account the peculiarities of the terrain, use of modern initiation systems with electronic delay, use of protective mats to prevent rock scattering, constant monitoring of seismic impact. All employees undergo regular safety training, and detailed instruction is provided before each explosion.'
+        },
+        eco: {
+          question: 'What environmental measures does the company take?',
+          answer: 'Granit LLC implements closed production cycles, including a program for recycling bags into polyethylene sleeves for charging wells and household needs. Our EEs are environmentally friendly: minimal toxic gases are formed during detonation. We conduct constant monitoring of the impact of work on the environment and implement technologies that minimize the load on ecosystems. All facilities have waste management procedures, including sorting and transfer for recycling.'
+        },
+        career: {
+          question: 'What career opportunities does Granit LLC offer?',
+          answer: 'The company provides ample opportunities for professional development for both experienced specialists and young employees. We practice a mentoring system, conduct regular advanced training programs and specialized training. Employees can participate in strategic projects such as the construction of BAM-2 and the Power of Siberia-2 gas pipeline. We provide a competitive "white" salary, a full social package, compensation for travel, medical examinations, and provide opportunities for spa treatment.'
+        },
+        remote: {
+          question: 'How does the company work with customers at remote sites?',
+          answer: 'For work at remote sites, we use mobile mixing and charging units (PSZU), allowing the production of EE directly at the site of operations. The company has its own fleet of all-terrain and specialized equipment, which ensures autonomous operation in hard-to-reach areas. Our engineers and technologists have experience in adapting technological processes to the specific conditions of the site, regardless of its remoteness and climatic features.'
+        }
+      }
+    }
+  },
+  zh: {
+    // Пока пусто, будет добавлено позже
+    // Empty for now, will be added later
+  }
+};
