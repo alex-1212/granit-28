@@ -3,12 +3,9 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthForm } from '@/components/auth/AuthForm';
 import { useAuth } from '@/context/AuthContext';
-import { useLanguage } from '@/context/LanguageContext';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const Auth = () => {
   const { user, isLoading } = useAuth();
-  const { t } = useLanguage();
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -31,10 +28,6 @@ const Auth = () => {
 
   return (
     <div className="container mx-auto px-4 py-16 flex flex-col items-center">
-      <div className="flex justify-end w-full mb-4">
-        <ThemeToggle />
-      </div>
-      
       <Link to="/" className="flex items-center gap-3 mb-8">
         <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-16 object-none" />
         <span className="font-display font-semibold text-white" style={{

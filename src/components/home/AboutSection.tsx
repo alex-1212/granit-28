@@ -2,25 +2,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
-
 const AboutSection: React.FC = () => {
-  const { t } = useLanguage();
-  
   return <section className="py-20 overflow-hidden relative w-full">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-on-scroll">
-              {t('about.years')}
+              10 лет на рынке
             </span>
             
             <h2 className="section-title mb-6 animate-on-scroll">
-              {t('about.title')}
+              Глубокая компетенция в сфере буровзрывных технологий и производства взрывчатых веществ
             </h2>
             
             <p className="text-muted-foreground mb-6 animate-on-scroll">
-              {t('about.description')}
+              ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ).
             </p>
             
             <div className="space-y-4 mb-8">
@@ -29,8 +25,8 @@ const AboutSection: React.FC = () => {
                   <Shield size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">{t('about.independence.title')}</h3>
-                  <p className="text-muted-foreground">{t('about.independence.description')}</p>
+                  <h3 className="font-semibold mb-1">Независимость от поставщиков</h3>
+                  <p className="text-muted-foreground">Собственное производство ЭВВ гарантирует стабильность поставок и контроль качества.</p>
                 </div>
               </div>
               
@@ -39,8 +35,8 @@ const AboutSection: React.FC = () => {
                   <Map size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">{t('about.conditions.title')}</h3>
-                  <p className="text-muted-foreground">{t('about.conditions.description')}</p>
+                  <h3 className="font-semibold mb-1">Работа в сложных условиях</h3>
+                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
                 </div>
               </div>
               
@@ -49,14 +45,14 @@ const AboutSection: React.FC = () => {
                   <Truck size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">{t('about.production.title')}</h3>
-                  <p className="text-muted-foreground">{t('about.production.description')}</p>
+                  <h3 className="font-semibold mb-1">Производственные мощности</h3>
+                  <p className="text-muted-foreground">Заводы в Забайкалье и Хабаровске, линия в Якутии для обеспечения всего Дальнего Востока.</p>
                 </div>
               </div>
             </div>
             
             <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
-              {t('about.cta')}
+              Подробнее о компании
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -83,5 +79,4 @@ const AboutSection: React.FC = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;
