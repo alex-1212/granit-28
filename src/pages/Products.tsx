@@ -10,15 +10,21 @@ import { AuxiliaryEquipmentSection } from '@/components/products/AuxiliaryEquipm
 import { InnovationSection } from '@/components/products/InnovationSection';
 import { CTASection } from '@/components/products/CTASection';
 import { Helmet } from 'react-helmet-async';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Products = () => {
   useAnimateOnScroll();
+  const { t } = useLanguage();
+  
+  useEffect(() => {
+    document.title = t('products.title') + ' — ООО «Гранит»';
+  }, [t]);
   
   return (
     <div className="w-full">
       <Helmet>
-        <title>Продукты и услуги — ООО «Гранит»</title>
-        <meta name="description" content="Комплексные решения для буровзрывных работ. Производство эмульсионных взрывчатых веществ (ЭВВ) и оказание услуг в сфере горнодобывающей промышленности." />
+        <title>{t('products.title')} — ООО «Гранит»</title>
+        <meta name="description" content={t('products.subtitle')} />
       </Helmet>
       
       {/* Hero Section */}

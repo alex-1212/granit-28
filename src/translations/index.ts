@@ -1,4 +1,3 @@
-
 export const translations = {
   ru: {
     header: {
@@ -113,105 +112,78 @@ export const translations = {
       title: 'Продукты и услуги',
       subtitle: 'Комплексные решения для буровзрывных работ',
       evv: {
+        badge: 'Собственное производство',
         title: 'Эмульсионные взрывчатые вещества',
-        description: 'Эмульсионные взрывчатые вещества (ЭВВ) — инновационные материалы, объединяющие высокую эффективность, безопасность и экологичность.',
-        advantages: 'Преимущества наших ЭВВ'
+        description: 'ООО «Гранит» производит высококачественные эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске, а также на линии в Якутии.',
+        advantages: 'Преимущества наших ЭВВ',
+        safety: {
+          title: 'Безопасность',
+          description: 'ЭВВ обладают высокой степенью безопасности при транспортировке и хранении.'
+        },
+        efficiency: {
+          title: 'Высокая эффективность',
+          description: 'Обеспечивают оптимальные параметры взрыва и дробления породы.'
+        },
+        eco: {
+          title: 'Экологичность',
+          description: 'Минимальное количество токсичных газов при детонации.'
+        },
+        capacity: {
+          value: '30 тыс. тонн/год',
+          description: 'мощность производства в Забайкалье'
+        }
       },
       equipment: {
         title: 'Смесительно-зарядное оборудование',
         description: 'Наша компания использует современное оборудование для смешивания и зарядки ЭВВ, обеспечивая высокое качество и эффективность работ.'
       },
       initiation: {
+        badge: 'Передовые решения',
         title: 'Системы инициирования',
-        description: 'Мы используем передовые системы инициирования для обеспечения безопасности и точности взрывных работ.'
+        description: 'Поставляем передовые системы инициирования для безопасного и эффективного проведения взрывных работ в любых условиях.',
+        timing: {
+          title: 'Точность синхронизации',
+          description: 'Микросекундная точность для эффективных взрывов и оптимального дробления породы.'
+        },
+        safety: {
+          title: 'Высокая безопасность',
+          description: 'Защита от электромагнитных помех и несанкционированного подрыва.'
+        },
+        eco: {
+          title: 'Экологичность',
+          description: 'Снижение вредного воздействия на окружающую среду при проведении взрывных работ.'
+        },
+        contact: 'Запросить консультацию',
+        precision: {
+          title: 'Электронная точность',
+          description: 'для идеального результата'
+        }
       },
       auxiliary: {
-        title: 'Вспомогательное оборудование',
-        description: 'Комплект вспомогательного оборудования для обеспечения полного цикла буровзрывных работ.'
+        title: 'Вспомогательная техника',
+        description: 'Комплект вспомогательного оборудования для обеспечения полного цикла буровзрывных работ.',
+        bulldozers: {
+          title: 'Бульдозеры SHANTUI',
+          description: 'Мощные бульдозеры с двигателем Cummins (360 л.с.) для работы в сложных условиях и подготовки площадок для буровых работ.'
+        },
+        allTerrainVehicles: {
+          title: 'Вездеходы ТРЭКОЛ',
+          description: 'Вездеходы ТРЭКОЛ 39294 с бескамерными шинами для работы в среднегорье и транспортировки персонала в труднодоступные районы.'
+        },
+        trucks: {
+          title: 'Грузовые автомобили',
+          description: 'Грузовые автомобили повышенной проходимости УРАЛ, ГАЗ, КАМАЗ для доставки оборудования, материалов и персонала на объекты.'
+        }
       },
       innovation: {
         title: 'Инновации и технологии',
-        description: 'Наша компания постоянно внедряет инновационные технологии для повышения эффективности и безопасности буровзрывных работ.'
+        description: 'Мы постоянно внедряем новые технологии и инновационные решения для повышения эффективности и безопасности буровзрывных работ',
+        digitalTitle: 'Цифровые технологии',
+        digitalDescription: 'Внедрение систем 3D-моделирования для проектирования взрывных работ и контроля их результатов. Использование современного программного обеспечения для расчета параметров взрыва с учетом геологических особенностей участка.',
+        ecoTitle: 'Экологичные решения',
+        ecoDescription: 'Разработка и применение технологий, минимизирующих воздействие на окружающую среду. Внедрение замкнутых циклов производства и переработка отходов для повторного использования.',
+        viewGallery: 'Смотреть галерею технологий'
       }
-    },
-    gallery: {
-      title: 'Галерея',
-      subtitle: 'Фотографии наших объектов, техники и производственных мощностей',
-      image: 'Изображение',
-      of: 'из',
-      close: 'Закрыть',
-      prev: 'Предыдущее изображение',
-      next: 'Следующее изображение'
-    },
-    team: {
-      title: 'Наша команда',
-      subtitle: 'Человек — ключевой ресурс развития. В ООО «Гранит» мы уверены: профессионализм и преданность сотрудников — основа нашего успеха.',
-      description: 'Каждый член команды — эксперт в своей области, а их опыт и навыки позволяют компании удерживать лидерство в сложных условиях Дальнего Востока. Инвестиции в кадры, социальную защиту и корпоративные ценности — залог долгосрочного роста и стабильности.',
-      expertise: {
-        title: 'Профессионализм и опыт',
-        experience: {
-          title: 'Стаж и экспертиза',
-          description: 'Ключевые специалисты имеют стаж от 10 лет в буровзрывных работах, геологоразведке и управлении техникой в экстремальных климатических условиях. Опыт работы в Забайкалье, Якутии, на Камчатке и других регионах с суровыми погодными условиями.'
-        },
-        youth: {
-          title: 'Работа с молодыми кадрами',
-          description: 'Компания сотрудничает с вузами и колледжами, предоставляя студентам практику на производственных участках. Это позволяет будущим специалистам получить навыки в реальных проектах, таких как строительство БАМ-2 и газопровода «Сила Сибири-2».'
-        }
-      },
-      training: {
-        title: 'Обучение и развитие',
-        qualification: {
-          title: 'Программы повышения квалификации',
-          description: 'Обучение работе с современным оборудованием, включая российские аналоги контроллеров «Овен» и уровнемеров «Титан». Регулярные тренинги по технике безопасности и новым технологиям бурения.'
-        },
-        mentorship: {
-          title: 'Наставничество',
-          description: 'Молодые сотрудники работают под руководством опытных наставников, что гарантирует преемственность знаний и снижает риски ошибок на объектах. Большое значение отводится обучению, стажировке и работе со студентами.'
-        },
-        education: {
-          title: 'Сотрудничество с учебными заведениями',
-          description: 'Компания на постоянной основе сотрудничает с профильными высшими и средне-профессиональными учебными заведениями. В рамках этого сотрудничества студентам предоставляется возможность пройти производственную и преддипломную практику на производственных участках.'
-        }
-      },
-      joinUs: {
-        title: 'Присоединяйтесь к нашей команде',
-        description: 'Мы всегда в поиске талантливых и преданных своему делу специалистов. Ознакомьтесь с текущими вакансиями и станьте частью нашей команды профессионалов.',
-        viewVacancies: 'Смотреть вакансии'
-      }
-    },
-    licenses: {
-      title: 'Лицензии и сертификаты',
-      subtitle: 'Документы, подтверждающие право ООО «Гранит» на осуществление деятельности'
-    },
-    careers: {
-      title: 'Вакансии',
-      subtitle: 'Присоединяйтесь к команде профессионалов ООО «Гранит»',
-      noVacancies: 'В настоящий момент открытых вакансий нет',
-      apply: 'Отправить резюме'
-    },
-    contact: {
-      title: 'Контакты',
-      subtitle: 'Свяжитесь с нами любым удобным способом',
-      form: {
-        name: 'Ваше имя',
-        email: 'Email',
-        phone: 'Телефон',
-        message: 'Сообщение',
-        submit: 'Отправить',
-        success: 'Ваше сообщение успешно отправлено',
-        error: 'Ошибка при отправке сообщения'
-      },
-      address: 'г. Хабаровск ул. Строительная 28',
-      addressTitle: 'Адрес',
-      phoneTitle: 'Телефон',
-      emailTitle: 'Email'
-    },
-    profile: {
-      title: 'Личный кабинет',
-      information: 'Информация пользователя',
-      email: 'Email:',
-      userId: 'ID пользователя:',
-      lastLogin: 'Последний вход:'
     },
     notFound: {
       title: 'Страница не найдена',
@@ -352,105 +324,78 @@ export const translations = {
       title: 'Products and Services',
       subtitle: 'Comprehensive solutions for drilling and blasting operations',
       evv: {
+        badge: 'Own production',
         title: 'Emulsion Explosives',
-        description: 'Emulsion explosives (EE) are innovative materials combining high efficiency, safety and environmental friendliness.',
-        advantages: 'Advantages of our EE'
+        description: 'Granit LLC produces high-quality emulsion explosives at its own factories in Transbaikalia and Khabarovsk, as well as at a production line in Yakutia.',
+        advantages: 'Advantages of our EE',
+        safety: {
+          title: 'Safety',
+          description: 'EE have a high degree of safety during transportation and storage.'
+        },
+        efficiency: {
+          title: 'High efficiency',
+          description: 'Provide optimal parameters for explosion and rock fragmentation.'
+        },
+        eco: {
+          title: 'Environmental friendliness',
+          description: 'Minimal amount of toxic gases during detonation.'
+        },
+        capacity: {
+          value: '30 thousand tons/year',
+          description: 'production capacity in Transbaikalia'
+        }
       },
       equipment: {
         title: 'Mixing and Charging Equipment',
         description: 'Our company uses modern equipment for mixing and charging EE, ensuring high quality and efficiency of operations.'
       },
       initiation: {
+        badge: 'Advanced solutions',
         title: 'Initiation Systems',
-        description: 'We use advanced initiation systems to ensure safety and accuracy of blasting operations.'
+        description: 'We supply advanced initiation systems for safe and efficient blasting operations in any conditions.',
+        timing: {
+          title: 'Timing accuracy',
+          description: 'Microsecond precision for effective explosions and optimal rock fragmentation.'
+        },
+        safety: {
+          title: 'High safety',
+          description: 'Protection against electromagnetic interference and unauthorized detonation.'
+        },
+        eco: {
+          title: 'Environmental friendliness',
+          description: 'Reducing harmful environmental impact during blasting operations.'
+        },
+        contact: 'Request consultation',
+        precision: {
+          title: 'Electronic precision',
+          description: 'for perfect results'
+        }
       },
       auxiliary: {
         title: 'Auxiliary Equipment',
-        description: 'A set of auxiliary equipment to provide a complete cycle of drilling and blasting operations.'
+        description: 'A set of auxiliary equipment to provide a complete cycle of drilling and blasting operations.',
+        bulldozers: {
+          title: 'SHANTUI Bulldozers',
+          description: 'Powerful bulldozers with Cummins engines (360 hp) for operating in difficult conditions and preparing sites for drilling operations.'
+        },
+        allTerrainVehicles: {
+          title: 'TRECOL All-Terrain Vehicles',
+          description: 'TRECOL 39294 all-terrain vehicles with tubeless tires for work in mid-mountain areas and personnel transportation to hard-to-reach areas.'
+        },
+        trucks: {
+          title: 'Trucks',
+          description: 'Off-road trucks URAL, GAZ, KAMAZ for delivering equipment, materials and personnel to sites.'
+        }
       },
       innovation: {
         title: 'Innovations and Technologies',
-        description: 'Our company constantly implements innovative technologies to improve the efficiency and safety of drilling and blasting operations.'
+        description: 'We constantly implement new technologies and innovative solutions to improve the efficiency and safety of drilling and blasting operations',
+        digitalTitle: 'Digital Technologies',
+        digitalDescription: 'Implementation of 3D modeling systems for blast design and control of their results. Use of modern software for calculating blast parameters taking into account the geological features of the site.',
+        ecoTitle: 'Eco-friendly Solutions',
+        ecoDescription: 'Development and application of technologies that minimize environmental impact. Implementation of closed production cycles and waste recycling for reuse.',
+        viewGallery: 'View technology gallery'
       }
-    },
-    gallery: {
-      title: 'Gallery',
-      subtitle: 'Photos of our facilities, equipment and production capacities',
-      image: 'Image',
-      of: 'of',
-      close: 'Close',
-      prev: 'Previous image',
-      next: 'Next image'
-    },
-    team: {
-      title: 'Our Team',
-      subtitle: 'People are the key resource for development. At Granit LLC, we are confident: the professionalism and dedication of employees is the foundation of our success.',
-      description: 'Each team member is an expert in their field, and their experience and skills allow the company to maintain leadership in the difficult conditions of the Far East. Investments in personnel, social protection and corporate values are the key to long-term growth and stability.',
-      expertise: {
-        title: 'Professionalism and Experience',
-        experience: {
-          title: 'Experience and expertise',
-          description: 'Key specialists have over 10 years of experience in drilling and blasting operations, geological exploration and equipment management in extreme climatic conditions. Experience in Transbaikalia, Yakutia, Kamchatka and other regions with harsh weather conditions.'
-        },
-        youth: {
-          title: 'Work with young personnel',
-          description: 'The company cooperates with universities and colleges, providing students with practice at production sites. This allows future specialists to gain skills in real projects, such as the construction of BAM-2 and the Power of Siberia-2 gas pipeline.'
-        }
-      },
-      training: {
-        title: 'Training and Development',
-        qualification: {
-          title: 'Training programs',
-          description: 'Training in working with modern equipment, including Russian analogues of Oven controllers and Titan level gauges. Regular training on safety and new drilling technologies.'
-        },
-        mentorship: {
-          title: 'Mentorship',
-          description: 'Young employees work under the guidance of experienced mentors, which guarantees the continuity of knowledge and reduces the risk of errors at facilities. Great importance is attached to training, internships and work with students.'
-        },
-        education: {
-          title: 'Cooperation with educational institutions',
-          description: 'The company cooperates on an ongoing basis with specialized higher and secondary professional educational institutions. As part of this cooperation, students are given the opportunity to undergo industrial and pre-diploma practice at production sites.'
-        }
-      },
-      joinUs: {
-        title: 'Join our team',
-        description: 'We are always looking for talented and dedicated professionals. Check out current vacancies and become part of our team of professionals.',
-        viewVacancies: 'View vacancies'
-      }
-    },
-    licenses: {
-      title: 'Licenses and Certificates',
-      subtitle: 'Documents confirming the right of Granit LLC to carry out activities'
-    },
-    careers: {
-      title: 'Careers',
-      subtitle: 'Join the team of professionals at Granit LLC',
-      noVacancies: 'There are currently no open vacancies',
-      apply: 'Send resume'
-    },
-    contact: {
-      title: 'Contact Us',
-      subtitle: 'Get in touch with us in any convenient way',
-      form: {
-        name: 'Your name',
-        email: 'Email',
-        phone: 'Phone',
-        message: 'Message',
-        submit: 'Submit',
-        success: 'Your message has been successfully sent',
-        error: 'Error sending message'
-      },
-      address: 'Khabarovsk, Stroitelnaya st. 28',
-      addressTitle: 'Address',
-      phoneTitle: 'Phone',
-      emailTitle: 'Email'
-    },
-    profile: {
-      title: 'Personal Account',
-      information: 'User Information',
-      email: 'Email:',
-      userId: 'User ID:',
-      lastLogin: 'Last login:'
     },
     notFound: {
       title: 'Page not found',
@@ -591,105 +536,78 @@ export const translations = {
       title: '产品和服务',
       subtitle: '钻孔爆破作业的综合解决方案',
       evv: {
+        badge: '自主生产',
         title: '乳化炸药',
-        description: '乳化炸药（EE）是结合高效率、安全性和环保性的创新材料。',
-        advantages: '我们EE的优势'
+        description: 'Granit LLC在外贝加尔和哈巴罗夫斯克的自有工厂以及雅库特的生产线生产高质量乳化炸药。',
+        advantages: '我们乳化炸药的优势',
+        safety: {
+          title: '安全性',
+          description: '乳化炸药在运输和存储过程中具有高度安全性。'
+        },
+        efficiency: {
+          title: '高效率',
+          description: '提供爆炸和岩石破碎的最佳参数。'
+        },
+        eco: {
+          title: '环保性',
+          description: '爆炸时产生的有毒气体量最少。'
+        },
+        capacity: {
+          value: '3万吨/年',
+          description: '外贝加尔地区生产能力'
+        }
       },
       equipment: {
         title: '混合和装药设备',
-        description: '我们公司使用现代设备混合和装载EE，确保作业的高质量和效率。'
+        description: '我们公司使用现代设备混合和装载乳化炸药，确保作业的高质量和效率。'
       },
       initiation: {
+        badge: '先进解决方案',
         title: '起爆系统',
-        description: '我们使用先进的起爆系统，确保爆破作业的安全性和准确性。'
+        description: '我们提供先进的起爆系统，确保在任何条件下安全有效地进行爆破作业。',
+        timing: {
+          title: '计时精度',
+          description: '微秒级精度，实现有效爆破和最佳岩石破碎。'
+        },
+        safety: {
+          title: '高安全性',
+          description: '防电磁干扰和未授权爆炸。'
+        },
+        eco: {
+          title: '环保性',
+          description: '降低爆破作业对环境的有害影响。'
+        },
+        contact: '请求咨询',
+        precision: {
+          title: '电子精度',
+          description: '为完美结果'
+        }
       },
       auxiliary: {
         title: '辅助设备',
-        description: '一套辅助设备，提供完整的钻孔爆破作业周期。'
+        description: '一套辅助设备，提供完整的钻孔爆破作业周期。',
+        bulldozers: {
+          title: 'SHANTUI推土机',
+          description: '配备康明斯发动机（360马力）的强大推土机，用于在困难条件下工作和准备钻探场地。'
+        },
+        allTerrainVehicles: {
+          title: 'TRECOL全地形车',
+          description: 'TRECOL 39294全地形车配备无内胎轮胎，用于中山区工作和将人员运送到难以到达的地区。'
+        },
+        trucks: {
+          title: '卡车',
+          description: 'URAL、GAZ、KAMAZ越野卡车，用于将设备、材料和人员运送到现场。'
+        }
       },
       innovation: {
         title: '创新和技术',
-        description: '我们公司不断实施创新技术，以提高钻孔爆破作业的效率和安全性。'
+        description: '我们不断实施新技术和创新解决方案，以提高钻孔爆破作业的效率和安全性',
+        digitalTitle: '数字技术',
+        digitalDescription: '实施3D建模系统进行爆破设计和控制结果。使用现代软件计算爆破参数，考虑场地的地质特性。',
+        ecoTitle: '环保解决方案',
+        ecoDescription: '开发和应用最小化环境影响的技术。实施封闭生产循环和废物回收再利用。',
+        viewGallery: '查看技术画廊'
       }
-    },
-    gallery: {
-      title: '图库',
-      subtitle: '我们的设施、设备和生产能力的照片',
-      image: '图片',
-      of: '/',
-      close: '关闭',
-      prev: '上一张图片',
-      next: '下一张图片'
-    },
-    team: {
-      title: '我们的团队',
-      subtitle: '人是发展的关键资源。在Granit LLC，我们相信：员工的专业精神和奉献精神是我们成功的基础。',
-      description: '每个团队成员都是其领域的专家，他们的经验和技能使公司能够在远东艰难条件下保持领导地位。对人员、社会保障和企业价值观的投资是长期增长和稳定的关键。',
-      expertise: {
-        title: '专业和经验',
-        experience: {
-          title: '经验和专业知识',
-          description: '关键专家在钻孔爆破作业、地质勘探和极端气候条件下设备管理方面拥有超过10年的经验。在外贝加尔、雅库特、堪察加和其他气候恶劣地区的工作经验。'
-        },
-        youth: {
-          title: '与年轻人才合作',
-          description: '公司与大学和学院合作，为学生提供在生产现场的实践机会。这使未来的专家能够在实际项目中获得技能，如BAM-2和西伯利亚力量-2天然气管道的建设。'
-        }
-      },
-      training: {
-        title: '培训和发展',
-        qualification: {
-          title: '培训项目',
-          description: '培训使用现代设备，包括Oven控制器和Titan液位计的俄罗斯类似物。定期进行安全和新钻探技术培训。'
-        },
-        mentorship: {
-          title: '导师制',
-          description: '年轻员工在经验丰富的导师指导下工作，这保证了知识的连续性并减少了设施出错的风险。非常重视培训、实习和与学生的工作。'
-        },
-        education: {
-          title: '与教育机构合作',
-          description: '公司持续与专业高等和中等专业教育机构合作。作为此合作的一部分，学生有机会在生产现场进行工业和毕业前实习。'
-        }
-      },
-      joinUs: {
-        title: '加入我们的团队',
-        description: '我们一直在寻找有才华和敬业的专业人士。查看当前职位空缺，成为我们专业团队的一部分。',
-        viewVacancies: '查看职位空缺'
-      }
-    },
-    licenses: {
-      title: '许可证和证书',
-      subtitle: '确认Granit LLC开展活动权利的文件'
-    },
-    careers: {
-      title: '职业机会',
-      subtitle: '加入Granit LLC的专业团队',
-      noVacancies: '目前没有空缺职位',
-      apply: '发送简历'
-    },
-    contact: {
-      title: '联系我们',
-      subtitle: '以任何方便的方式与我们联系',
-      form: {
-        name: '您的姓名',
-        email: '电子邮件',
-        phone: '电话',
-        message: '留言',
-        submit: '提交',
-        success: '您的留言已成功发送',
-        error: '发送留言时出错'
-      },
-      address: '哈巴罗夫斯克，Stroitelnaya街28号',
-      addressTitle: '地址',
-      phoneTitle: '电话',
-      emailTitle: '电子邮件'
-    },
-    profile: {
-      title: '个人账户',
-      information: '用户信息',
-      email: '电子邮件:',
-      userId: '用户ID:',
-      lastLogin: '上次登录:'
     },
     notFound: {
       title: '页面未找到',
