@@ -2,21 +2,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+
 const AboutSection: React.FC = () => {
-  return <section className="py-20 overflow-hidden relative w-full">
+  const { t } = useLanguage();
+  
+  return (
+    <section className="py-20 overflow-hidden relative w-full">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-on-scroll">
-              10 лет на рынке
+              {t('about.badge')}
             </span>
             
             <h2 className="section-title mb-6 animate-on-scroll">
-              Глубокая компетенция в сфере буровзрывных технологий и производства взрывчатых веществ
+              {t('about.title')}
             </h2>
             
             <p className="text-muted-foreground mb-6 animate-on-scroll">
-              ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ).
+              {t('about.description')}
             </p>
             
             <div className="space-y-4 mb-8">
@@ -25,8 +30,8 @@ const AboutSection: React.FC = () => {
                   <Shield size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Независимость от поставщиков</h3>
-                  <p className="text-muted-foreground">Собственное производство ЭВВ гарантирует стабильность поставок и контроль качества.</p>
+                  <h3 className="font-semibold mb-1">{t('about.advantages.independence.title')}</h3>
+                  <p className="text-muted-foreground">{t('about.advantages.independence.description')}</p>
                 </div>
               </div>
               
@@ -35,8 +40,8 @@ const AboutSection: React.FC = () => {
                   <Map size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Работа в сложных условиях</h3>
-                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
+                  <h3 className="font-semibold mb-1">{t('about.advantages.extremeConditions.title')}</h3>
+                  <p className="text-muted-foreground">{t('about.advantages.extremeConditions.description')}</p>
                 </div>
               </div>
               
@@ -45,14 +50,14 @@ const AboutSection: React.FC = () => {
                   <Truck size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Производственные мощности</h3>
-                  <p className="text-muted-foreground">Заводы в Забайкалье и Хабаровске, линия в Якутии для обеспечения всего Дальнего Востока.</p>
+                  <h3 className="font-semibold mb-1">{t('about.advantages.production.title')}</h3>
+                  <p className="text-muted-foreground">{t('about.advantages.production.description')}</p>
                 </div>
               </div>
             </div>
             
             <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
-              Подробнее о компании
+              {t('about.more')}
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -66,17 +71,19 @@ const AboutSection: React.FC = () => {
             <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
               <div className="flex items-center gap-3 mb-2">
                 <Scroll className="text-primary" size={20} />
-                <h4 className="font-semibold">Лицензии и сертификаты</h4>
+                <h4 className="font-semibold">{t('about.licenses.title')}</h4>
               </div>
-              <p className="text-sm text-inherit">Все необходимые разрешения для проведения работ любой сложности</p>
+              <p className="text-sm text-inherit">{t('about.licenses.description')}</p>
               <Link to="/licenses" className="text-primary text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline">
-                Смотреть все
+                {t('about.licenses.viewAll')}
                 <ArrowRight size={14} />
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;
