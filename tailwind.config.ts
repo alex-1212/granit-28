@@ -115,7 +115,7 @@ export default {
 			},
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
-                display: ['Montserrat', 'system-ui', 'sans-serif']
+                display: ['Inter', 'system-ui', 'sans-serif']
             },
             boxShadow: {
                 'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',

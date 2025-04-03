@@ -1,6 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ThemeToggle } from '../ui/ThemeToggle';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
@@ -73,18 +73,10 @@ export const Header = () => {
           }}>
                 {item.name}
               </Link>)}
-            <div className="ml-4 animate-fade-in" style={{
-            animationDelay: `${navItems.length * 100}ms`
-          }}>
-              <ThemeToggle />
-            </div>
           </nav>
 
           <div className="flex items-center gap-2">
             <UserMenu />
-            <div className="lg:hidden">
-              <ThemeToggle />
-            </div>
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <button className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden" aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}>

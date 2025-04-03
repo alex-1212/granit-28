@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
@@ -11,7 +12,7 @@ export const Footer: React.FC = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
               <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-16 object-none" />
-              <span className="font-display font-semibold text-white" style={{
+              <span className="text-white" style={{
               fontFamily: 'Spaceland Ten Oblique, cursive',
               fontSize: '28px',
               lineHeight: '1.75rem',
@@ -35,7 +36,7 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-display font-semibold text-lg mb-5">Навигация</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Навигация</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-foreground/80 hover:text-primary transition-colors">
@@ -66,7 +67,7 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-display font-semibold text-lg mb-5">Разделы</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Разделы</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/gallery" className="text-foreground/80 hover:text-primary transition-colors">
@@ -97,7 +98,7 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-display font-semibold text-lg mb-5">Контакты</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Контакты</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone size={20} className="mr-3 text-primary mt-0.5" />
