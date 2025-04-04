@@ -59,7 +59,7 @@ export const SzmSection = () => {
           </div>
         </div>
         
-        <Link to="/gallery" className="btn-primary">
+        <Link to="/gallery" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
           <Image size={18} />
           Смотреть галерею
           <ArrowRight size={16} />

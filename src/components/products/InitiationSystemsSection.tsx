@@ -49,7 +49,7 @@ export const InitiationSystemsSection = () => {
           </div>
         </div>
         
-        <Link to="/contact" className="btn-primary">
+        <Link to="/contact" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
           <MessageSquare size={18} />
           Запросить консультацию
           <ArrowRight size={16} />

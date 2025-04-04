@@ -51,7 +51,7 @@ const AboutSection: React.FC = () => {
               </div>
             </div>
             
-            <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <Link to="/about" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Info size={18} />
               Подробнее о компании
               <ArrowRight size={18} />
@@ -66,7 +66,7 @@ const AboutSection: React.FC = () => {
             
             <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">
               <div className="flex items-center gap-3 mb-2">
-                <Scroll className="text-primary" size={20} />
+                <Scroll className="text-primary" size={40} /> {/* Увеличен размер иконки в 2 раза */}
                 <h4 className="font-semibold">Лицензии и сертификаты</h4>
               </div>
               <p className="text-sm text-inherit">Все необходимые разрешения для проведения работ любой сложности</p>
