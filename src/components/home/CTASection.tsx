@@ -24,7 +24,7 @@ const CTASection: React.FC = () => {
               Оставить заявку
             </Link>
             
-            <Link to="/technologies" className="btn-outline shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <Link to="/products" className="btn-outline shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Rocket size={18} />
               Наши технологии
             </Link>

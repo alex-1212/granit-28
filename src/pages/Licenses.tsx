@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState, useRef } from 'react';
-import { X, FileText } from 'lucide-react';
+import { X, FileText, Search } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+
 interface LicenseItem {
   id: number;
   src: string;
@@ -101,6 +103,12 @@ const Licenses = () => {
                   <div className="aspect-[3/4] overflow-hidden relative">
                     <img src={license.src} alt={license.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    {/* Иконка лупы при наведении */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-14 h-14 rounded-full bg-black/50 flex items-center justify-center">
+                        <Search size={24} className="text-white" />
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="p-4">

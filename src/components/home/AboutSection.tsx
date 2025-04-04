@@ -20,9 +20,9 @@ const AboutSection: React.FC = () => {
             </p>
             
             <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3 animate-on-scroll">
-                <div className="mt-1 text-primary">
-                  <Shield size={20} />
+              <div className="flex items-start gap-4 animate-on-scroll">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Shield className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Независимость от поставщиков</h3>
@@ -30,9 +30,9 @@ const AboutSection: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-3 animate-on-scroll">
-                <div className="mt-1 text-primary">
-                  <Map size={20} />
+              <div className="flex items-start gap-4 animate-on-scroll">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Map className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Работа в сложных условиях</h3>
@@ -40,9 +40,9 @@ const AboutSection: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-3 animate-on-scroll">
-                <div className="mt-1 text-primary">
-                  <Truck size={20} />
+              <div className="flex items-start gap-4 animate-on-scroll">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Truck className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Производственные мощности</h3>
