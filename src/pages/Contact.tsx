@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
@@ -172,7 +173,7 @@ const Contact = () => {
                   {errors.message && <p className="mt-1 text-sm text-destructive">{errors.message}</p>}
                 </div>
                 
-                <button type="submit" className="btn-primary w-full py-3">
+                <button type="submit" className="btn-primary inline-flex py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                   <Send size={18} />
                   Отправить сообщение
                 </button>

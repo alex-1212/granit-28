@@ -19,12 +19,12 @@ export const CTASection = () => {
           </p>
           
           <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
-            <Link to="/contact" className="btn-primary">
+            <Link to="/contact" className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Send size={18} />
               Связаться с нами
             </Link>
             
-            <Link to="/licenses" className="btn-outline">
+            <Link to="/licenses" className="btn-outline inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <FileText size={18} />
               Наши лицензии
             </Link>

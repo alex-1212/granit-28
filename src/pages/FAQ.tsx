@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, MessageCircle } from 'lucide-react';
 import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
@@ -92,8 +92,9 @@ const FAQ = () => {
             
             <a 
               href="/contact" 
-              className="btn-primary inline-block animate-on-scroll"
+              className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
             >
+              <MessageCircle size={18} />
               Связаться с нами
             </a>
           </div>

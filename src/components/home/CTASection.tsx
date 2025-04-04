@@ -19,12 +19,12 @@ const CTASection: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
-            <Link to="/contact" className="btn-primary">
+            <Link to="/contact" className="btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Send size={18} />
               Оставить заявку
             </Link>
             
-            <Link to="/technologies" className="btn-outline">
+            <Link to="/technologies" className="btn-outline shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Rocket size={18} />
               Наши технологии
             </Link>

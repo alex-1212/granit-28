@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Map, Truck, Scroll } from 'lucide-react';
+import { ArrowRight, Shield, Map, Truck, Scroll, Info } from 'lucide-react';
 const AboutSection: React.FC = () => {
   return <section className="py-20 overflow-hidden relative w-full">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -51,7 +51,8 @@ const AboutSection: React.FC = () => {
               </div>
             </div>
             
-            <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
+            <Link to="/about" className="btn-primary inline-flex items-center gap-2 animate-on-scroll shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+              <Info size={18} />
               Подробнее о компании
               <ArrowRight size={18} />
             </Link>
