@@ -1,10 +1,8 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
-
 const About = () => {
   useAnimateOnScroll();
   const advantages = [{
@@ -24,7 +22,6 @@ const About = () => {
     title: 'Безопасность',
     description: 'соответствие всем нормам и стандартам'
   }];
-
   return <div className="w-full">
       <Helmet>
         <title>О компании — ООО «Гранит»</title>
@@ -42,9 +39,7 @@ const About = () => {
               О компании
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">
-              ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов.
-            </p>
+            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">Компания ООО «Гранит», основанная в 2015 году, зарекомендовала себя как надежный игрок на рынке буровзрывных работ. За прошедшие годы компания превратилась в надежного партнера для многих предприятий горнодобывающей отрасли ДФО и Якутии, предлагая передовые решения и профессиональный подход к каждому проекту.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
@@ -227,5 +222,4 @@ const About = () => {
       </section>
     </div>;
 };
-
 export default About;
