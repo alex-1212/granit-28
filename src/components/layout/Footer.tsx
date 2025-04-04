@@ -1,12 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border">
+  return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
