@@ -32,7 +32,7 @@ export const SzmSection = () => {
               <Truck className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Мобильность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Мобильность</h3>
               <p className="text-muted-foreground">Возможность производить ЭВВ непосредственно на месте проведения работ.</p>
             </div>
           </div>
@@ -42,7 +42,7 @@ export const SzmSection = () => {
               <Settings className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Гибкость настройки</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Гибкость настройки</h3>
               <p className="text-muted-foreground">Точная настройка состава ЭВВ под конкретные геологические условия.</p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const SzmSection = () => {
               <Factory className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Автономность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Автономность</h3>
               <p className="text-muted-foreground">Полная независимость от внешней инфраструктуры при работе на удаленных объектах.</p>
             </div>
           </div>
