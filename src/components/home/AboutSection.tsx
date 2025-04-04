@@ -24,7 +24,7 @@ const AboutSection: React.FC = () => {
                   <Shield className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold text-zinc-100 my-[8px] py-0 mx-0 px-0 text-lg">Независимость от поставщиков</h3>
+                  <h3 className="mb-1 text-3xl font-semibold text-zinc-100 my-[8px] py-0 mx-0 px-0">Независимость от поставщиков</h3>
                   <p className="text-muted-foreground">Собственное производство ЭВВ гарантирует стабильность поставок и контроль качества.</p>
                 </div>
               </div>
@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
                   <Map className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Работа в сложных условиях</h3>
+                  <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Работа в сложных условиях</h3>
                   <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
                 </div>
               </div>
@@ -44,7 +44,7 @@ const AboutSection: React.FC = () => {
                   <Truck className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Производственные мощности</h3>
+                  <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-3xl">Производственные мощности</h3>
                   <p className="text-muted-foreground">Заводы в Забайкалье и Хабаровске, линия в Якутии для обеспечения всего Дальнего Востока.</p>
                 </div>
               </div>
