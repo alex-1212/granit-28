@@ -139,7 +139,7 @@ const About = () => {
                     <Building className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">
+                    <h3 className="text-lg font-semibold mb-2 my-[8px] text-zinc-100">
                       Мобильные установки
                     </h3>
                     <p className="text-muted-foreground">
@@ -153,7 +153,7 @@ const About = () => {
                     <Award className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">
+                    <h3 className="text-lg font-semibold mb-2 my-[8px] text-zinc-100">
                       Российское оборудование
                     </h3>
                     <p className="text-muted-foreground">
