@@ -1,6 +1,7 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Building, Calendar, Factory, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
 const About = () => {
@@ -49,7 +50,7 @@ const About = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 mb-4">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                <h3 className="about-advantage-title mb-2">{item.title}</h3>
                 <p className="text-muted-foreground">{item.description}</p>
               </div>)}
           </div>
@@ -210,10 +211,12 @@ const About = () => {
             </p>
           <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
+                <Mail size={18} />
                 Связаться с нами
               </Link>
               
               <Link to="/careers" className="btn-outline">
+                <UserPlus size={18} />
                 Присоединиться к команде
               </Link>
             </div>
