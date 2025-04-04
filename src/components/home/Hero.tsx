@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Send, Info } from 'lucide-react';
 export const Hero: React.FC = () => {
   return <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden w-full">
       <div className="absolute inset-0 z-0">
@@ -24,12 +25,13 @@ export const Hero: React.FC = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 animate-fade-in animate-delay-300">
-              <Link to="/contact" className="btn-primary flex items-center gap-2">
+              <Link to="/contact" className="btn-primary">
+                <Send size={18} />
                 Оставить заявку
-                <ChevronRight size={18} className="mt-0.5" />
               </Link>
               
               <Link to="/about" className="btn-outline">
+                <Info size={18} />
                 О компании
               </Link>
             </div>

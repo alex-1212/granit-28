@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Truck, Settings, Factory } from 'lucide-react';
+import { ArrowRight, Truck, Settings, Factory, Image } from 'lucide-react';
 export const SzmSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="order-2 lg:order-1 relative animate-on-scroll">
@@ -27,9 +28,9 @@ export const SzmSection = () => {
         </p>
         
         <div className="space-y-4 mb-8">
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <Truck size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <Truck className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Мобильность</h3>
@@ -37,9 +38,9 @@ export const SzmSection = () => {
             </div>
           </div>
           
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <Settings size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <Settings className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Гибкость настройки</h3>
@@ -47,9 +48,9 @@ export const SzmSection = () => {
             </div>
           </div>
           
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <Factory size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <Factory className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Автономность</h3>
@@ -58,9 +59,10 @@ export const SzmSection = () => {
           </div>
         </div>
         
-        <Link to="/gallery" className="btn-primary inline-flex items-center gap-2">
+        <Link to="/gallery" className="btn-primary">
+          <Image size={18} />
           Смотреть галерею
-          <ArrowRight size={18} />
+          <ArrowRight size={16} />
         </Link>
       </div>
     </div>;

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Send, Rocket } from 'lucide-react';
 
 const CTASection: React.FC = () => {
   return (
@@ -19,10 +20,12 @@ const CTASection: React.FC = () => {
           
           <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
             <Link to="/contact" className="btn-primary">
+              <Send size={18} />
               Оставить заявку
             </Link>
             
             <Link to="/technologies" className="btn-outline">
+              <Rocket size={18} />
               Наши технологии
             </Link>
           </div>

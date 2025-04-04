@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -26,7 +27,8 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                  <MessageSquare size={16} />
                   Напишите нам
                 </Button>
               </a>

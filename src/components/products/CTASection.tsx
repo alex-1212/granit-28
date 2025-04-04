@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Send, FileText } from 'lucide-react';
 
 export const CTASection = () => {
   return (
@@ -19,10 +20,12 @@ export const CTASection = () => {
           
           <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
             <Link to="/contact" className="btn-primary">
+              <Send size={18} />
               Связаться с нами
             </Link>
             
             <Link to="/licenses" className="btn-outline">
+              <FileText size={18} />
               Наши лицензии
             </Link>
           </div>

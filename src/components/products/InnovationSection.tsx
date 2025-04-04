@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Image } from 'lucide-react';
 
 export const InnovationSection = () => {
   return (
@@ -36,9 +36,10 @@ export const InnovationSection = () => {
         </div>
         
         <div className="mt-16 text-center animate-on-scroll">
-          <Link to="/gallery" className="btn-primary inline-flex items-center gap-2">
+          <Link to="/gallery" className="btn-primary">
+            <Image size={18} />
             Смотреть галерею технологий
-            <ArrowRight size={18} />
+            <ArrowRight size={16} />
           </Link>
         </div>
       </div>

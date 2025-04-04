@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, BarChart, FileText } from 'lucide-react';
+import { ArrowRight, Shield, BarChart, FileText, Image } from 'lucide-react';
 export const EvvSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
@@ -17,9 +18,9 @@ export const EvvSection = () => {
         </p>
         
         <div className="space-y-4 mb-8">
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <Shield size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <Shield className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Безопасность</h3>
@@ -27,9 +28,9 @@ export const EvvSection = () => {
             </div>
           </div>
           
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <BarChart size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <BarChart className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Высокая эффективность</h3>
@@ -37,9 +38,9 @@ export const EvvSection = () => {
             </div>
           </div>
           
-          <div className="flex items-start gap-3">
-            <div className="mt-1 text-primary">
-              <FileText size={20} />
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <FileText className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1">Экологичность</h3>
@@ -48,9 +49,10 @@ export const EvvSection = () => {
           </div>
         </div>
         
-        <Link to="/gallery" className="btn-primary inline-flex items-center gap-2">
+        <Link to="/gallery" className="btn-primary">
+          <Image size={18} />
           Смотреть галерею
-          <ArrowRight size={18} />
+          <ArrowRight size={16} />
         </Link>
       </div>
       
