@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
@@ -40,7 +39,7 @@ const About = () => {
               О компании
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">Компания ООО «Гранит», основанная в 2015 году, зарекомендовала себя как надежный игрок на рынке буровзрывных работ. За прошедшие годы компания превратилась в надежного партнера для многих предприятий горнодобывающей отрасли ДФО и Якутии, предлагая передовые решения и профессиональный подход к каждому проекту.</p>
+            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">Компания ООО «Гранит» зарекомендовала себя как стабильный и ответственный участник рынка буровзрывных работ. За годы активной деятельности она стала ключевым партнером для ряда компаний горнодобывающего сектора Дальнего Востока и Якутии, предлагая современные технологии и безупречный подход к выполнению задач.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
