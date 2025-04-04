@@ -22,7 +22,7 @@ export const EvvSection = () => {
               <Shield className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Безопасность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Безопасность</h3>
               <p className="text-muted-foreground">ЭВВ обладают высокой степенью безопасности при транспортировке и хранении.</p>
             </div>
           </div>
@@ -32,7 +32,7 @@ export const EvvSection = () => {
               <BarChart className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Высокая эффективность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Высокая эффективность</h3>
               <p className="text-muted-foreground">Обеспечивают оптимальные параметры взрыва и дробления породы.</p>
             </div>
           </div>
@@ -42,7 +42,7 @@ export const EvvSection = () => {
               <FileText className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Экологичность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Экологичность</h3>
               <p className="text-muted-foreground">Минимальное количество токсичных газов при детонации.</p>
             </div>
           </div>
