@@ -22,7 +22,7 @@ export const InitiationSystemsSection = () => {
               <Clock className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Точность синхронизации</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Точность синхронизации</h3>
               <p className="text-muted-foreground">Микросекундная точность для эффективных взрывов и оптимального дробления породы.</p>
             </div>
           </div>
@@ -32,7 +32,7 @@ export const InitiationSystemsSection = () => {
               <Shield className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Высокая безопасность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Высокая безопасность</h3>
               <p className="text-muted-foreground">Защита от электромагнитных помех и несанкционированного подрыва.</p>
             </div>
           </div>
@@ -42,7 +42,7 @@ export const InitiationSystemsSection = () => {
               <Leaf className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-3xl text-zinc-100">Экологичность</h3>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Экологичность</h3>
               <p className="text-muted-foreground">Снижение вредного воздействия на окружающую среду при проведении взрывных работ.</p>
             </div>
           </div>
