@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-
 const NewsHero = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Новости компании — ООО «Гранит»</title>
         <meta name="description" content="Актуальная информация о проектах, достижениях и технологиях компании ООО «Гранит». Последние новости в сфере буровзрывных работ на Дальнем Востоке." />
@@ -21,14 +18,10 @@ const NewsHero = () => {
               Новости компании
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Актуальная информация о наших проектах, достижениях и технологиях
-            </p>
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">Актуальная информация о наших услугах, проектах, достижениях и технологиях</p>
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default NewsHero;
