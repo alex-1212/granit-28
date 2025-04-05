@@ -1,23 +1,12 @@
-
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail, Send } from 'lucide-react';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 const Evv = () => {
   useAnimateOnScroll();
-
-  return (
-    <div className="w-full">
+  return <div className="w-full">
       <Helmet>
         <title>Эмульсионно-взрывчатые вещества (ЭВВ) — ООО «Гранит»</title>
         <meta name="description" content="Производство и поставка эмульсионных взрывчатых веществ высокого качества под маркой ГРАНИТ для горнодобывающей промышленности. Инновационные взрывчатые материалы с высоким КПД и минимальным воздействием на окружающую среду." />
@@ -96,35 +85,47 @@ const Evv = () => {
 
             <h3 className="text-xl font-semibold mb-4">Линейка продукции:</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '0ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '0ms'
+            }}>
                 <p className="font-semibold mb-2">1. Промышленное взрывчатое вещество первого класса «ГРАНИТ»</p>
                 <p className="text-sm">ТУ 20.51.11-003-39269764-2021</p>
                 <p className="text-sm">Разрешение на постоянное применение №РВВ-0931 от 17.03.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '50ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '50ms'
+            }}>
                 <p className="font-semibold mb-2">2. Вещества взрывчатые промышленные «Гранит ПХ»</p>
                 <p className="text-sm">ТУ 20.51.11-005-39269764-2021</p>
                 <p className="text-sm">Разрешение на постоянное применение №РВВ-0950 от 31.08.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '100ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '100ms'
+            }}>
                 <p className="font-semibold mb-2">3. ЭВВ «ГРАНИТ-ПД»</p>
                 <p className="text-sm">ТУ 20.51.11-011-39269764-2023</p>
                 <p className="text-sm">(проводятся приемочные испытания)</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '150ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '150ms'
+            }}>
                 <p className="font-semibold mb-2">4. Газогенерирующая добавка «ГРАНИТ»</p>
                 <p className="text-sm">ТУ 20.15.60-004-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '200ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '200ms'
+            }}>
                 <p className="font-semibold mb-2">5. Эмульсионная матрица «ГРАНИТ П»</p>
                 <p className="text-sm">ТУ 20.15.20-006-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '250ms' }}>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '250ms'
+            }}>
                 <p className="font-semibold mb-2">6. ЭВВ «ГРАНИТ-ПД»</p>
                 <p className="text-sm">ТУ 20.51.11-011-39269764-2023</p>
                 <p className="text-sm">(проводятся приемочные испытания)</p>
@@ -145,7 +146,7 @@ const Evv = () => {
                   <Layers className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">1. Пластичность</h3>
+                  <h3 className="text-lg font-semibold mb-2">Пластичность</h3>
                   <p className="text-muted-foreground">
                     ЭВВ — это пластичное взрывчатое вещество, что полностью исключает пыление при заряжании скважин.
                     Это делает процесс работы более безопасным и комфортным.
@@ -202,7 +203,9 @@ const Evv = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '0ms' }}>
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '0ms'
+            }}>
                 <div className="mb-4 text-primary">
                   <Image className="h-8 w-8" />
                 </div>
@@ -212,7 +215,9 @@ const Evv = () => {
                 </p>
               </div>
 
-              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '100ms' }}>
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '100ms'
+            }}>
                 <div className="mb-4 text-primary">
                   <Layers className="h-8 w-8" />
                 </div>
@@ -222,7 +227,9 @@ const Evv = () => {
                 </p>
               </div>
 
-              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '200ms' }}>
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '200ms'
+            }}>
                 <div className="mb-4 text-primary">
                   <BarChart className="h-8 w-8" />
                 </div>
@@ -315,8 +322,6 @@ const Evv = () => {
           </section>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Evv;
