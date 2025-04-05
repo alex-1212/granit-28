@@ -39,7 +39,6 @@ export const InnovationSection = () => {
           <Link to="/gallery" className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
             <Image size={18} />
             Смотреть галерею технологий
-            <ArrowRight size={16} />
           </Link>
         </div>
       </div>

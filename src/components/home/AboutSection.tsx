@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll, Info } from 'lucide-react';
@@ -53,7 +54,6 @@ const AboutSection: React.FC = () => {
             <Link to="/about" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Info size={18} />
               Подробнее о компании
-              <ArrowRight size={18} />
             </Link>
           </div>
           
