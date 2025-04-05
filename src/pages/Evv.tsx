@@ -86,7 +86,7 @@ const Evv = () => {
             </div>
           </div>
 
-          {/* Наши разработки */}
+          {/* Наши разработки - изменена сетка на 3x3 и добавлена анимация */}
           <div className="mb-20 animate-on-scroll">
             <h2 className="section-title mb-6">Наши разработки</h2>
             <p className="mb-6">
@@ -96,34 +96,35 @@ const Evv = () => {
 
             <h3 className="text-xl font-semibold mb-4">Линейка продукции:</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="glass-card-solid p-5 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '0ms' }}>
                 <p className="font-semibold mb-2">1. Промышленное взрывчатое вещество первого класса «ГРАНИТ»</p>
                 <p className="text-sm">ТУ 20.51.11-003-39269764-2021</p>
                 <p className="text-sm">Разрешение на постоянное применение №РВВ-0931 от 17.03.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '50ms' }}>
                 <p className="font-semibold mb-2">2. Вещества взрывчатые промышленные «Гранит ПХ»</p>
                 <p className="text-sm">ТУ 20.51.11-005-39269764-2021</p>
                 <p className="text-sm">Разрешение на постоянное применение №РВВ-0950 от 31.08.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg">
-                <p className="font-semibold mb-2">3. Эмульсионная матрица «ГРАНИТ»</p>
-                <p className="text-sm">ТУ 20.15.20-002-39269764-2021</p>
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '100ms' }}>
+                <p className="font-semibold mb-2">3. ЭВВ «ГРАНИТ-ПД»</p>
+                <p className="text-sm">ТУ 20.51.11-011-39269764-2023</p>
+                <p className="text-sm">(проводятся приемочные испытания)</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '150ms' }}>
                 <p className="font-semibold mb-2">4. Газогенерирующая добавка «ГРАНИТ»</p>
                 <p className="text-sm">ТУ 20.15.60-004-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '200ms' }}>
                 <p className="font-semibold mb-2">5. Эмульсионная матрица «ГРАНИТ П»</p>
                 <p className="text-sm">ТУ 20.15.20-006-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-5 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '250ms' }}>
                 <p className="font-semibold mb-2">6. ЭВВ «ГРАНИТ-ПД»</p>
                 <p className="text-sm">ТУ 20.51.11-011-39269764-2023</p>
                 <p className="text-sm">(проводятся приемочные испытания)</p>
@@ -193,7 +194,7 @@ const Evv = () => {
             </div>
           </div>
 
-          {/* Области применения */}
+          {/* Области применения - изменено на формат как в услугах компании */}
           <div className="mb-20 animate-on-scroll">
             <h2 className="section-title mb-6">Области применения</h2>
             <p className="mb-6">
@@ -201,25 +202,34 @@ const Evv = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-card-solid p-6 rounded-lg flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-                  <Image className="h-8 w-8 text-primary" />
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '0ms' }}>
+                <div className="mb-4 text-primary">
+                  <Image className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Открытые горные работы</h3>
+                <h3 className="text-xl font-semibold mb-3">Открытые горные работы</h3>
+                <p className="text-muted-foreground mb-4">
+                  Эффективное применение для взрывных работ на открытых месторождениях различных полезных ископаемых.
+                </p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-                  <Layers className="h-8 w-8 text-primary" />
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '100ms' }}>
+                <div className="mb-4 text-primary">
+                  <Layers className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Подземные горные выработки</h3>
+                <h3 className="text-xl font-semibold mb-3">Подземные горные выработки</h3>
+                <p className="text-muted-foreground mb-4">
+                  Специальные составы для максимально безопасного применения в подземных условиях.
+                </p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-                  <BarChart className="h-8 w-8 text-primary" />
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: '200ms' }}>
+                <div className="mb-4 text-primary">
+                  <BarChart className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Нефтегазовая отрасль</h3>
+                <h3 className="text-xl font-semibold mb-3">Нефтегазовая отрасль</h3>
+                <p className="text-muted-foreground mb-4">
+                  Инновационные решения для интенсификации добычи нефти и газа с применением взрывных технологий.
+                </p>
               </div>
             </div>
           </div>
@@ -279,7 +289,7 @@ const Evv = () => {
             </div>
           </div>
 
-          {/* Сотрудничество - изменено на стиль как в CTASection */}
+          {/* Сотрудничество - стилизовано как секция "Готовы обсудить ваш проект?" */}
           <section className="py-12 bg-primary/5 dark:bg-primary/10 relative overflow-hidden rounded-2xl mb-10">
             <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
             
