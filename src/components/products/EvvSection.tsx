@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, BarChart, FileText, Image } from 'lucide-react';
+import { Shield, BarChart, FileText, Image } from 'lucide-react';
+
 export const EvvSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
@@ -51,7 +53,6 @@ export const EvvSection = () => {
         <Link to="/gallery" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
           <Image size={18} />
           Смотреть галерею
-          <ArrowRight size={16} />
         </Link>
       </div>
       

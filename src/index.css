@@ -134,6 +134,14 @@
     @apply bg-white/50 dark:bg-white/5 backdrop-blur-md shadow-glass dark:shadow-glass-dark border border-white/20 dark:border-white/10;
   }
 
+  .glass-card:is(.dark *) {
+    border-color: #ffffff1a;
+    background-color: #ffffff0d;
+    --tw-shadow: 0 4px 30px rgba(0, 0, 0, .3);
+    --tw-shadow-colored: 0 4px 30px var(--tw-shadow-color);
+    box-shadow: 0 0 1px #9aa0b90d, 0 15px 40px #0000007f;
+  }
+
   .glass-card-accent {
     @apply glass-card bg-accent/5 hover:bg-accent/10 dark:bg-accent/5 dark:hover:bg-accent/10 transition-all duration-300;
   }
