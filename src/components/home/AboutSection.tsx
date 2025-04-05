@@ -35,7 +35,7 @@ const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Работа в сложных условиях</h3>
-                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях ДФО,Якутии и Камчатки.</p>
+                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях ДФО, Якутии и Камчатки.</p>
                 </div>
               </div>
               
