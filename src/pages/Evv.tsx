@@ -172,7 +172,7 @@ const Evv = () => {
                   <Shield className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">3. Низкое содержание ядовитых газов</h3>
+                  <h3 className="text-lg font-semibold mb-2">Низкое содержание ядовитых газов</h3>
                   <p className="text-muted-foreground">
                     При использовании ЭВВ образуется значительно меньше токсичных продуктов взрыва, что снижает 
                     негативное воздействие на атмосферу и здоровье персонала.
