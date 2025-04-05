@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail } from 'lucide-react';
+import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail, Send } from 'lucide-react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -95,38 +95,38 @@ const Evv = () => {
             </p>
 
             <h3 className="text-xl font-semibold mb-4">Линейка продукции:</h3>
-            <div className="space-y-4">
-              <div className="glass-card-solid p-6 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">1. Промышленное взрывчатое вещество первого класса «ГРАНИТ»</p>
-                <p>ТУ 20.51.11-003-39269764-2021</p>
-                <p>Разрешение на постоянное применение №РВВ-0931 от 17.03.2023 г.</p>
+                <p className="text-sm">ТУ 20.51.11-003-39269764-2021</p>
+                <p className="text-sm">Разрешение на постоянное применение №РВВ-0931 от 17.03.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">2. Вещества взрывчатые промышленные «Гранит ПХ»</p>
-                <p>ТУ 20.51.11-005-39269764-2021</p>
-                <p>Разрешение на постоянное применение №РВВ-0950 от 31.08.2023 г.</p>
+                <p className="text-sm">ТУ 20.51.11-005-39269764-2021</p>
+                <p className="text-sm">Разрешение на постоянное применение №РВВ-0950 от 31.08.2023 г.</p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">3. Эмульсионная матрица «ГРАНИТ»</p>
-                <p>ТУ 20.15.20-002-39269764-2021</p>
+                <p className="text-sm">ТУ 20.15.20-002-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">4. Газогенерирующая добавка «ГРАНИТ»</p>
-                <p>ТУ 20.15.60-004-39269764-2021</p>
+                <p className="text-sm">ТУ 20.15.60-004-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">5. Эмульсионная матрица «ГРАНИТ П»</p>
-                <p>ТУ 20.15.20-006-39269764-2021</p>
+                <p className="text-sm">ТУ 20.15.20-006-39269764-2021</p>
               </div>
 
-              <div className="glass-card-solid p-6 rounded-lg">
+              <div className="glass-card-solid p-5 rounded-lg">
                 <p className="font-semibold mb-2">6. ЭВВ «ГРАНИТ-ПД»</p>
-                <p>ТУ 20.51.11-011-39269764-2023</p>
-                <p>(проводятся приемочные испытания)</p>
+                <p className="text-sm">ТУ 20.51.11-011-39269764-2023</p>
+                <p className="text-sm">(проводятся приемочные испытания)</p>
               </div>
             </div>
           </div>
@@ -279,21 +279,30 @@ const Evv = () => {
             </div>
           </div>
 
-          {/* Сотрудничество */}
-          <div className="mb-10 animate-on-scroll">
-            <h2 className="section-title mb-6">Сотрудничество с ООО «Гранит»</h2>
-            <p className="mb-8">
-              ООО «Гранит» готово предложить вам индивидуальные решения для ваших задач. Мы гарантируем высокое
-              качество продукции, оперативную доставку и профессиональную поддержку на всех этапах сотрудничества.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                <Mail size={18} />
-                Связаться с нами
-              </Link>
+          {/* Сотрудничество - изменено на стиль как в CTASection */}
+          <section className="py-12 bg-primary/5 dark:bg-primary/10 relative overflow-hidden rounded-2xl mb-10">
+            <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.07] bg-repeat bg-[length:30px_30px]"></div>
+            
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="section-title mb-6 animate-on-scroll">
+                  Сотрудничество с ООО «Гранит»
+                </h2>
+                
+                <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
+                  ООО «Гранит» готово предложить вам индивидуальные решения для ваших задач. Мы гарантируем высокое
+                  качество продукции, оперативную доставку и профессиональную поддержку на всех этапах сотрудничества.
+                </p>
+                
+                <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+                  <Link to="/contact" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                    <Send size={18} />
+                    Связаться с нами
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
     </div>
