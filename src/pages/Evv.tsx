@@ -159,7 +159,7 @@ const Evv = () => {
                   <BarChart className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">2. Высокий КПД</h3>
+                  <h3 className="text-lg font-semibold mb-2">Высокий КПД</h3>
                   <p className="text-muted-foreground">
                     Благодаря уникальным физико-химическим характеристикам, наши ЭВВ обеспечивают максимальный 
                     коэффициент полезного действия при взрыве, что повышает эффективность горных работ.
