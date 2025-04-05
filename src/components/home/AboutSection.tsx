@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Map, Truck, Scroll, Info } from 'lucide-react';
@@ -36,7 +35,7 @@ const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Работа в сложных условиях</h3>
-                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях Дальнего Востока.</p>
+                  <p className="text-muted-foreground">Специализируемся на проектах в экстремальных климатических условиях ДФО,Якутии и Камчатки.</p>
                 </div>
               </div>
               
@@ -54,6 +53,7 @@ const AboutSection: React.FC = () => {
             <Link to="/about" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <Info size={18} />
               Подробнее о компании
+              <ArrowRight size={18} />
             </Link>
           </div>
           
