@@ -64,7 +64,7 @@ const Evv = () => {
 
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                <img src="https://granit-svg.ru/img-granit/products1.webp" alt="ЭВВ Гранит" className="object-cover w-full h-full" />
+                <img alt="ЭВВ Гранит" className="object-cover w-full h-full" src="/lovable-uploads/31ebe712-ed0c-4fd5-bf19-fe0739ff8325.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">ЭВВ «ГРАНИТ»</p>
