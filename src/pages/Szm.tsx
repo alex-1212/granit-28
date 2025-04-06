@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
@@ -6,12 +5,9 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Send, FileText, Truck, Settings, Factory, Shield, BarChart } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
-
 const Szm = () => {
   useAnimateOnScroll();
-  
-  return (
-    <div className="w-full">
+  return <div className="w-full">
       <Helmet>
         <title>Смесительно-зарядные машины (СЗМ) и ПСЗУ — ООО «Гранит»</title>
         <meta name="description" content="Современные смесительно-зарядные машины (СЗМ) от НИПИГОРМАШ и передвижные смесительно-зарядные установки (ПСЗУ) собственной разработки для буровзрывных работ." />
@@ -28,9 +24,7 @@ const Szm = () => {
               Смесительно-зарядные машины (СЗМ) и ПСЗУ
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Современные решения для буровзрывных работ с использованием передовых технологий
-            </p>
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">Высокотехнологичное оборудование для ваших взрывных работ. Мобильность и надёжность в каждой экспедиции.</p>
           </div>
         </div>
       </section>
@@ -320,8 +314,6 @@ const Szm = () => {
       
       {/* CTA секция */}
       <CTASection />
-    </div>
-  );
+    </div>;
 };
-
 export default Szm;
