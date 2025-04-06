@@ -165,7 +165,7 @@ const Szm = () => {
                   <img src="https://granit-svg.ru/img-granit/products1.webp" alt="Производство СЗМ" className="object-cover w-full h-full" />
                 </div>
                 <div className="absolute -top-6 -left-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
-                  <p className="font-semibold">Отечественное производство</p>
+                  <p className="font-semibold">СЗМ</p>
                   <p className="text-sm text-inherit">Безопасность, скорость, результат – всё в одной машине!</p>
                 </div>
               </div>
