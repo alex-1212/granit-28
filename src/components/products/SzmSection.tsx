@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Truck, Settings, Factory, Image } from 'lucide-react';
+import { ArrowRight, Truck, Settings, Factory } from 'lucide-react';
+
 export const SzmSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="order-2 lg:order-1 relative animate-on-scroll">
@@ -22,7 +24,7 @@ export const SzmSection = () => {
           Смесительно-зарядные машины
         </h2>
         
-        <p className="text-lg mb-6">В нашем распоряжении современные смесительно-зарядные машины (СЗМ) от и мобильные установки смесительно-зарядных устройств (ПСЗУ) для удалённых объектов.</p>
+        <p className="text-lg mb-6">В нашем распоряжении современные смесительно-зарядные машины (СЗМ) от и мобильные установки смесительно-зарядных устройств (ПСЗУ) для удалённых объектов.</p>
         
         <div className="space-y-4 mb-8">
           <div className="flex items-start gap-4">
@@ -56,10 +58,9 @@ export const SzmSection = () => {
           </div>
         </div>
         
-        <Link to="/gallery" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-          <Image size={18} />
-          Смотреть галерею
-          <ArrowRight size={16} />
+        <Link to="/szm" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+          <ArrowRight size={18} />
+          Подробнее
         </Link>
       </div>
     </div>;

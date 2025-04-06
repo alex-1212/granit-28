@@ -26,6 +26,7 @@ import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Evv from "./pages/Evv";
+import Szm from "./pages/Szm";
 
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
@@ -62,6 +63,7 @@ const AppRoutes = () => (
     <Route path="/about" element={<About />} />
     <Route path="/products" element={<Products />} />
     <Route path="/evv" element={<Evv />} />
+    <Route path="/szm" element={<Szm />} />
     <Route path="/gallery" element={<Gallery />} />
     <Route path="/licenses" element={<Licenses />} />
     <Route path="/news" element={<News />} />
