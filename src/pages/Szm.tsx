@@ -1,10 +1,12 @@
+
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Send, FileText, Truck, Settings, Factory, Shield, BarChart } from 'lucide-react';
+import { Send, FileText, Truck, Settings, Factory, Shield, BarChart, Image, Layers } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
+
 const Szm = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -77,32 +79,25 @@ const Szm = () => {
                 </ul>
                 
                 <h3 className="text-xl font-semibold mb-4">Преимущества ПСЗУ:</h3>
-                <ul className="space-y-4 mb-8 list-none pl-0">
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Полная автономность работы.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Возможность быстрой доставки и развертывания на объекте.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Эффективность в условиях сложного рельефа и отсутствия инфраструктуры.</span>
-                  </li>
-                </ul>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '0ms'
+                }}>
+                    <p className="font-semibold mb-2">Полная автономность работы</p>
+                  </div>
+
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '50ms'
+                }}>
+                    <p className="font-semibold mb-2">Быстрая доставка и развертывание</p>
+                  </div>
+
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '100ms'
+                }}>
+                    <p className="font-semibold mb-2">Эффективность в сложных условиях</p>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -143,35 +138,28 @@ const Szm = () => {
                 </ul>
                 
                 <h3 className="text-xl font-semibold mb-4">Преимущества наших СЗМ:</h3>
-                <ul className="space-y-4 mb-8 list-none pl-0">
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Доступная цена: Наши машины будут стоить дешевле, чем качественные аналоги, доставленные из других регионов.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Короткие сроки поставки: Мы обеспечиваем быстрое выполнение заказов, что особенно важно для клиентов на Дальнем Востоке.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                      <svg className="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>Высокое качество: Все машины соответствуют строгим стандартам безопасности и производительности.</span>
-                  </li>
-                </ul>
-                
-                <h3 className="text-xl font-semibold mb-4">Цена вопроса:</h3>
-                <p>Точные цены на наши СЗМ будут объявлены после выхода проекта на завершающую стадию. Однако мы гарантируем конкурентоспособные и выгодные условия для клиентов.</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '0ms'
+                }}>
+                    <p className="font-semibold mb-2">Доступная цена</p>
+                    <p className="text-sm">Дешевле качественных аналогов</p>
+                  </div>
+
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '50ms'
+                }}>
+                    <p className="font-semibold mb-2">Короткие сроки поставки</p>
+                    <p className="text-sm">Быстрое выполнение заказов</p>
+                  </div>
+
+                  <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+                  animationDelay: '100ms'
+                }}>
+                    <p className="font-semibold mb-2">Высокое качество</p>
+                    <p className="text-sm">Соответствие стандартам безопасности</p>
+                  </div>
+                </div>
               </div>
               
               <div className="order-1 lg:order-2 relative animate-on-scroll">
@@ -229,31 +217,43 @@ const Szm = () => {
               </div>
             </div>
             
-            {/* Области применения */}
+            {/* Области применения - скопировано со страницы EVV */}
             <h2 className="section-title mb-8">Области применения</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-on-scroll">
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-6">
-                  <Truck className="w-8 h-8 text-primary" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '0ms'
+            }}>
+                <div className="mb-4 text-primary">
+                  <Image className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Открытые горные работы</h3>
-                <p className="text-muted-foreground">Оптимальное решение для масштабных карьерных разработок с возможностью мобильного перемещения между участками.</p>
+                <h3 className="text-xl font-semibold mb-3">Открытые горные работы</h3>
+                <p className="text-muted-foreground mb-4">
+                  Оптимальное решение для масштабных карьерных разработок с возможностью мобильного перемещения между участками.
+                </p>
               </div>
-              
-              <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-on-scroll">
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-6">
-                  <Factory className="w-8 h-8 text-primary" />
+
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '100ms'
+            }}>
+                <div className="mb-4 text-primary">
+                  <Layers className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Подземные горные выработки</h3>
-                <p className="text-muted-foreground">Специализированные решения для безопасного ведения взрывных работ в условиях ограниченного пространства.</p>
+                <h3 className="text-xl font-semibold mb-3">Подземные горные выработки</h3>
+                <p className="text-muted-foreground mb-4">
+                  Специализированные решения для безопасного ведения взрывных работ в условиях ограниченного пространства.
+                </p>
               </div>
-              
-              <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-on-scroll">
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-6">
-                  <Settings className="w-8 h-8 text-primary" />
+
+              <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
+              animationDelay: '200ms'
+            }}>
+                <div className="mb-4 text-primary">
+                  <BarChart className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Гражданское строительство</h3>
-                <p className="text-muted-foreground">Эффективное проведение взрывных работ при строительстве дорог, туннелей и других инфраструктурных объектов.</p>
+                <h3 className="text-xl font-semibold mb-3">Гражданское строительство</h3>
+                <p className="text-muted-foreground mb-4">
+                  Эффективное проведение взрывных работ при строительстве дорог, туннелей и других инфраструктурных объектов.
+                </p>
               </div>
             </div>
             
@@ -311,9 +311,7 @@ const Szm = () => {
           </div>
         </div>
       </section>
-      
-      {/* CTA секция */}
-      <CTASection />
     </div>;
 };
+
 export default Szm;
