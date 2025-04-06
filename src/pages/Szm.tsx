@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
@@ -6,7 +5,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Send, FileText, Truck, Settings, Factory, Shield, BarChart, Image, Layers } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
-
 const Szm = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -49,8 +47,8 @@ const Szm = () => {
                   <img src="https://granit-svg.ru/img-granit/galery-1.webp" alt="ПСЗУ" className="object-cover w-full h-full" />
                 </div>
                 <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
-                  <p className="font-semibold">6 установок</p>
-                  <p className="text-sm text-inherit">в постоянной работе</p>
+                  <p className="font-semibold">ПСЗУ</p>
+                  <p className="text-sm text-inherit">Где другие останавливаются, наши установки только начинают</p>
                 </div>
               </div>
               
@@ -313,5 +311,4 @@ const Szm = () => {
       </section>
     </div>;
 };
-
 export default Szm;
