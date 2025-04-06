@@ -43,9 +43,7 @@ const Evv = () => {
               Эмульсионно-взрывчатые вещества (ЭВВ)
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Инновационные решения для горнодобывающей промышленности
-            </p>
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">мощь, на которую можно положиться. Эти вещества созданы для сложных задач и безупречного результата.</p>
           </div>
         </div>
       </section>
