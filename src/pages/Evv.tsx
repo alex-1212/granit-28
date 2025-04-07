@@ -225,10 +225,8 @@ const Evv = () => {
                 <div className="mb-4 text-primary">
                   <BarChart className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Нефтегазовая отрасль</h3>
-                <p className="text-muted-foreground mb-4">
-                  Инновационные решения для интенсификации добычи нефти и газа с применением взрывных технологий.
-                </p>
+                <h3 className="text-xl font-semibold mb-3">Гражданское строительство</h3>
+                <p className="text-muted-foreground mb-4">Эффективное проведение взрывных работ при строительстве дорог, туннелей и других инфраструктурных объектов.</p>
               </div>
             </div>
           </div>
