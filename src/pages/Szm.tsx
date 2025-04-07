@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
@@ -6,7 +5,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Send, FileText, Truck, Settings, Factory, Shield, BarChart, Image, Layers } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
-
 const Szm = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -252,10 +250,8 @@ const Szm = () => {
                 <div className="mb-4 text-primary">
                   <BarChart className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Нефтегазовая отрасль</h3>
-                <p className="text-muted-foreground mb-4">
-                  Инновационные решения для интенсификации добычи нефти и газа с применением взрывных технологий.
-                </p>
+                <h3 className="text-xl font-semibold mb-3">Гражданское строительство</h3>
+                <p className="text-muted-foreground mb-4">Эффективное проведение взрывных работ при строительстве дорог, туннелей и других инфраструктурных объектов.</p>
               </div>
             </div>
             
@@ -313,5 +309,4 @@ const Szm = () => {
       </section>
     </div>;
 };
-
 export default Szm;
