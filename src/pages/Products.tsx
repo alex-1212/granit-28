@@ -27,13 +27,14 @@ const Products = () => {
       {/* ЭВВ Production */}
       <section className="py-20 w-full">
         <div className="container mx-auto px-4 max-w-7xl">
+          {/* Системы инициирования - перемещена в начало */}
+          <InitiationSystemsSection />
+          
+          {/* ЭВВ Section - теперь идет после систем инициирования */}
           <EvvSection />
           
           {/* Equipment */}
           <SzmSection />
-          
-          {/* Системы инициирования */}
-          <InitiationSystemsSection />
           
           {/* Услуги компании */}
           <ServicesSection />

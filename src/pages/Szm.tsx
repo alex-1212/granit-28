@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
@@ -53,6 +54,10 @@ const Szm = () => {
               <div className="animate-on-scroll">
                 <p className="text-lg mb-6">
                   Наши ПСЗУ — это мобильное решение для удалённых объектов.
+                </p>
+                
+                <p className="text-lg mb-6">
+                  Предназначена для смешивания компонентов эмульсионного взрывчатого вещества и заряжания в зарядных рукавах в сухие и обводненные скважины на открытых горных разработках в труднодоступных местах.
                 </p>
                 
                 <ul className="space-y-4 mb-8 list-none pl-0">
