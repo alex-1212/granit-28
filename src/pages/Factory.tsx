@@ -26,9 +26,7 @@ const Factory = () => {
               Завод по производству ВВ и линия патронирования
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Полный технологический цикл от производства компонентов до готовых эмульсионных боевиков. Инновационные мощности и экологичность.
-            </p>
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">Полный технологический цикл от производства компонентов до готовых эмульсионных боевиков.</p>
           </div>
         </div>
       </section>
