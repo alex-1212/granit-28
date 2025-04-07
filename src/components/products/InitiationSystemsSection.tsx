@@ -38,8 +38,8 @@ export const InitiationSystemsSection = () => {
               <Leaf className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Экологичность</h3>
-              <p className="text-muted-foreground">Снижение вредного воздействия на окружающую среду при проведении взрывных работ.</p>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Экологичность и безопасность</h3>
+              <p className="text-muted-foreground">Собственное производство полиэтиленового рукава из вторичного сырья, что снижает себестоимость и минимизирует отходы.</p>
             </div>
           </div>
         </div>
