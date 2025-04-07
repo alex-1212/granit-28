@@ -55,7 +55,7 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link to="/" className="flex items-center gap-3">
             <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="ООО «ГРАНИТ» логотип" className="h-16" />
-            <span className="font-display font-semibold sm:inline-block text-white" style={{
+            <span className="text-white" style={{
             fontFamily: 'Spaceland Ten Oblique, cursive',
             fontSize: '28px',
             lineHeight: '1.75rem',
