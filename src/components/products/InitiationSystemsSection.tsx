@@ -55,8 +55,8 @@ export const InitiationSystemsSection = () => {
           <img src="https://granit-svg.ru/img-granit/system-ii.webp" alt="Системы инициирования" className="object-cover w-full h-full" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
-          <p className="font-semibold">Электронная точность</p>
-          <p className="text-sm text-inherit">для идеального результата</p>
+          <p className="font-semibold">ООО «Гранит»</p>
+          <p className="text-sm text-inherit">передовые технологии, экологичность и стратегическая логистика</p>
         </div>
       </div>
     </div>;
