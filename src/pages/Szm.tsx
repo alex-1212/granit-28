@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
@@ -5,6 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Send, FileText, Truck, Settings, Factory, Shield, BarChart, Image, Layers } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
+
 const Szm = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -39,6 +41,9 @@ const Szm = () => {
             
             {/* Блок ПСЗУ */}
             <h2 className="section-title mb-8">Передвижные Смесительно-Зарядные Установки (ПСЗУ)</h2>
+            <p className="mb-6">
+              Предназначена для смешивания компонентов эмульсионного взрывчатого вещества и заряжания в зарядных рукавах в сухие и обводненные скважины на открытых горных разработках в труднодоступных местах.
+            </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
               <div className="relative animate-on-scroll">
                 <div className="glass-card rounded-2xl overflow-hidden aspect-video">
@@ -213,9 +218,10 @@ const Szm = () => {
               </div>
             </div>
             
-            {/* Области применения - скопировано со страницы EVV */}
+            {/* Области применения - копируем с EVV */}
             <h2 className="section-title mb-8">Области применения</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
               animationDelay: '0ms'
             }}>
@@ -224,7 +230,7 @@ const Szm = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Открытые горные работы</h3>
                 <p className="text-muted-foreground mb-4">
-                  Оптимальное решение для масштабных карьерных разработок с возможностью мобильного перемещения между участками.
+                  Эффективное применение для взрывных работ на открытых месторождениях различных полезных ископаемых.
                 </p>
               </div>
 
@@ -236,7 +242,7 @@ const Szm = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Подземные горные выработки</h3>
                 <p className="text-muted-foreground mb-4">
-                  Специализированные решения для безопасного ведения взрывных работ в условиях ограниченного пространства.
+                  Специальные составы для максимально безопасного применения в подземных условиях.
                 </p>
               </div>
 
@@ -246,14 +252,14 @@ const Szm = () => {
                 <div className="mb-4 text-primary">
                   <BarChart className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Гражданское строительство</h3>
+                <h3 className="text-xl font-semibold mb-3">Нефтегазовая отрасль</h3>
                 <p className="text-muted-foreground mb-4">
-                  Эффективное проведение взрывных работ при строительстве дорог, туннелей и других инфраструктурных объектов.
+                  Инновационные решения для интенсификации добычи нефти и газа с применением взрывных технологий.
                 </p>
               </div>
             </div>
             
-            <p className="text-lg mb-6">Наши машины используются для приготовления промышленных эмульсионных взрывчатых веществ (ВВ) и гранулитов непосредственно на объекте.</p>
+            <p className="text-lg mb-6 mt-8">Наши машины используются для приготовления промышленных эмульсионных взрывчатых веществ (ВВ) и гранулитов непосредственно на объекте.</p>
             
             <ul className="space-y-4 mb-8 list-none pl-0">
               <li className="flex items-start gap-3">
@@ -307,4 +313,5 @@ const Szm = () => {
       </section>
     </div>;
 };
+
 export default Szm;

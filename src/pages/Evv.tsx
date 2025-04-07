@@ -1,11 +1,14 @@
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail, Send } from 'lucide-react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+
 const Evv = () => {
   useAnimateOnScroll();
+  
   return <div className="w-full">
       <Helmet>
         <title>Эмульсионно-взрывчатые вещества (ЭВВ) — ООО «Гранит»</title>
@@ -43,7 +46,9 @@ const Evv = () => {
               Эмульсионно-взрывчатые вещества (ЭВВ)
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">мощь, на которую можно положиться. Эти вещества созданы для сложных задач и безупречного результата.</p>
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
+              Высокотехнологичные взрывчатые материалы для ваших задач. Инновационные решения с высокой эффективностью и безопасностью.
+            </p>
           </div>
         </div>
       </section>
@@ -314,4 +319,5 @@ const Evv = () => {
       </section>
     </div>;
 };
+
 export default Evv;

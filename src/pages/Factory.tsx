@@ -25,15 +25,18 @@ const Factory = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-background/90 to-background">
-        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.03] bg-repeat"></div>
+      <section className="pt-16 pb-20 relative overflow-hidden w-full">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
+        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
+        
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
               Завод по производству ВВ и линия патронирования
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 animate-fade-in delay-200">
-              Полный технологический цикл от производства компонентов до готовых эмульсионных боевиков
+            
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
+              Полный технологический цикл от производства компонентов до готовых эмульсионных боевиков. Инновационные мощности и экологичность.
             </p>
           </div>
         </div>
@@ -241,34 +244,6 @@ const Factory = () => {
                   <p className="text-muted-foreground">Склады в ключевых транспортных узлах (ж/д, море, автотрассы).</p>
                 </CardContent>
               </Card>
-            </div>
-            
-            <h3 className="text-2xl font-semibold mb-8 text-center">Почему мы?</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center p-6 animate-on-scroll">
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <FactoryIcon className="h-8 w-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-2">Технологичность</h4>
-                <p className="text-muted-foreground">Инновационное оборудование и автоматизация процессов.</p>
-              </div>
-              
-              <div className="text-center p-6 animate-on-scroll" style={{ animationDelay: "150ms" }}>
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <RecycleIcon className="h-8 w-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-2">Экологичность</h4>
-                <p className="text-muted-foreground">Переработка отходов и снижение углеродного следа.</p>
-              </div>
-              
-              <div className="text-center p-6 animate-on-scroll" style={{ animationDelay: "300ms" }}>
-                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <Truck className="h-8 w-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-2">Покрытие рынка</h4>
-                <p className="text-muted-foreground">Наличие складов в трёх федеральных округах и выход к морским портам.</p>
-              </div>
             </div>
             
             <div className="text-center animate-on-scroll">
