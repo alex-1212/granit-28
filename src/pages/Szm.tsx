@@ -160,7 +160,7 @@ const Szm = () => {
               
               <div className="order-1 lg:order-2 relative animate-on-scroll">
                 <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                  <img src="https://granit-svg.ru/img-granit/products1.webp" alt="Производство СЗМ" className="object-cover w-full h-full" />
+                  <img alt="Производство СЗМ" className="object-cover w-full h-full" src="/lovable-uploads/f3e9183a-c245-4956-806c-fed7d5c08ecf.jpg" />
                 </div>
                 <div className="absolute -top-6 -left-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                   <p className="font-semibold">СЗМ</p>
