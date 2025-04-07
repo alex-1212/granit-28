@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
@@ -241,19 +242,6 @@ const Factory = () => {
                   <p className="text-muted-foreground">Склады в ключевых транспортных узлах (ж/д, море, автотрассы).</p>
                 </CardContent>
               </Card>
-            </div>
-            
-            <div className="text-center animate-on-scroll">
-              <p className="text-lg mb-6">
-                Готовы обеспечить ваш проект надёжными взрывчатыми материалами? Оставьте заявку, и мы рассчитаем оптимальные условия поставки!
-              </p>
-              
-              <Link to="/contact">
-                <Button size="lg" className="font-medium">
-                  Оставить заявку
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
             </div>
           </div>
         </div>

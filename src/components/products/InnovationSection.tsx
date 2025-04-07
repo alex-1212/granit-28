@@ -34,13 +34,6 @@ export const InnovationSection = () => {
             </p>
           </div>
         </div>
-        
-        <div className="mt-16 text-center animate-on-scroll">
-          <Link to="/gallery" className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-            <Image size={18} />
-            Смотреть галерею технологий
-          </Link>
-        </div>
       </div>
     </section>
   );
