@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Shield, Leaf, MessageSquare } from 'lucide-react';
@@ -9,13 +8,9 @@ export const InitiationSystemsSection = () => {
           Передовые решения
         </span>
         
-        <h2 className="section-title mb-6">
-          Системы инициирования
-        </h2>
+        <h2 className="section-title mb-6">Завод по производству ВВ и линия патронирования</h2>
         
-        <p className="text-lg mb-6">
-          Поставляем передовые системы инициирования для безопасного и эффективного проведения взрывных работ в любых условиях.
-        </p>
+        <p className="text-lg mb-6">Высокотехнологичный завод по выпуску компонентов эмульсионных взрывчатых веществ (ЭВВ) и мобильная линия патронирования</p>
         
         <div className="space-y-4 mb-8">
           <div className="flex items-start gap-4">
