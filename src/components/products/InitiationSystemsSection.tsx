@@ -18,8 +18,8 @@ export const InitiationSystemsSection = () => {
               <Clock className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Точность синхронизации</h3>
-              <p className="text-muted-foreground">Микросекундная точность для эффективных взрывов и оптимального дробления породы.</p>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Полный производственный цикл</h3>
+              <p className="text-muted-foreground">От синтеза компонентов ЭВВ до выпуска готовых эмульсионных боевиков (32 мм и 60 мм).</p>
             </div>
           </div>
           
@@ -28,8 +28,8 @@ export const InitiationSystemsSection = () => {
               <Shield className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Высокая безопасность</h3>
-              <p className="text-muted-foreground">Защита от электромагнитных помех и несанкционированного подрыва.</p>
+              <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Стратегическая логистика и инфраструктура</h3>
+              <p className="text-muted-foreground">Склады в Забайкалье (с железнодорожным тупиком), Хабаровском крае (портовая зона) и на Камчатке (выход к морю).</p>
             </div>
           </div>
           
