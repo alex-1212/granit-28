@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Shield, Leaf, MessageSquare } from 'lucide-react';
@@ -44,9 +45,9 @@ export const InitiationSystemsSection = () => {
           </div>
         </div>
         
-        <Link to="/contact" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-          <MessageSquare size={18} />
-          Запросить консультацию
+        <Link to="/factory" className="inline-flex btn-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+          Подробнее
+          <ArrowRight size={18} />
         </Link>
       </div>
       
