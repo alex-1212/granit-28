@@ -146,14 +146,14 @@ const Szm = () => {
                   animationDelay: '50ms'
                 }}>
                     <p className="font-semibold mb-2">Короткие сроки поставки</p>
-                    <p className="text-sm">Быстрое выполнение заказов</p>
+                    
                   </div>
 
                   <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{
                   animationDelay: '100ms'
                 }}>
                     <p className="font-semibold mb-2">Высокое качество</p>
-                    <p className="text-sm">Соответствие стандартам безопасности</p>
+                    
                   </div>
                 </div>
               </div>
