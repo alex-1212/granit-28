@@ -1,24 +1,15 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { ArrowRight, RecycleIcon, Truck, Factory as FactoryIcon, Package, ShieldCheck } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { CTASection } from '@/components/products/CTASection';
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
 const Factory = () => {
   useAnimateOnScroll();
-  
-  return (
-    <div className="w-full">
+  return <div className="w-full">
       <Helmet>
         <title>Завод по производству ВВ и линия патронирования — ООО «Гранит»</title>
         <meta name="description" content="ООО «Гранит» — ведущий производитель взрывчатых материалов полного цикла. Наше предприятие объединяет высокотехнологичный завод по выпуску компонентов эмульсионных взрывчатых веществ (ЭВВ) и мобильную линию патронирования." />
@@ -54,7 +45,7 @@ const Factory = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                <img src="https://granit-svg.ru/img-granit/system-ii.webp" alt="Завод по производству ВВ" className="object-cover w-full h-full" />
+                <img alt="Завод по производству ВВ" className="object-cover w-full h-full" src="/lovable-uploads/cfa9afc0-31d9-4b6a-804f-fb3c470c17ac.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">ООО «Гранит»</p>
@@ -87,7 +78,9 @@ const Factory = () => {
                 </CardContent>
               </Card>
               
-              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{ animationDelay: "200ms" }}>
+              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{
+              animationDelay: "200ms"
+            }}>
                 <CardContent className="p-6">
                   <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0 mb-4">
                     <Package className="h-6 w-6 text-primary" />
@@ -224,21 +217,27 @@ const Factory = () => {
                 </CardContent>
               </Card>
               
-              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{ animationDelay: "100ms" }}>
+              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{
+              animationDelay: "100ms"
+            }}>
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-3">Гибкость</h3>
                   <p className="text-muted-foreground">Мобильная линия ММП-1000 работает даже в труднодоступных регионах.</p>
                 </CardContent>
               </Card>
               
-              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{ animationDelay: "200ms" }}>
+              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{
+              animationDelay: "200ms"
+            }}>
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-3">Снижение издержек</h3>
                   <p className="text-muted-foreground">Использование вторсырья и оптимизация логистики.</p>
                 </CardContent>
               </Card>
               
-              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{ animationDelay: "300ms" }}>
+              <Card className="bg-primary/5 border-primary/10 animate-on-scroll" style={{
+              animationDelay: "300ms"
+            }}>
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-3">Надёжность</h3>
                   <p className="text-muted-foreground">Склады в ключевых транспортных узлах (ж/д, море, автотрассы).</p>
@@ -285,8 +284,6 @@ const Factory = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Factory;
