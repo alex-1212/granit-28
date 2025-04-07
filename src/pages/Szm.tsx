@@ -42,7 +42,7 @@ const Szm = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
               <div className="relative animate-on-scroll">
                 <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                  <img src="https://granit-svg.ru/img-granit/galery-1.webp" alt="ПСЗУ" className="object-cover w-full h-full" />
+                  <img alt="ПСЗУ" className="object-cover w-full h-full" src="/lovable-uploads/cf8c95da-d145-405c-8f08-560759910d07.jpg" />
                 </div>
                 <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                   <p className="font-semibold">ПСЗУ</p>
