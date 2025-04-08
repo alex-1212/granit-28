@@ -229,7 +229,7 @@ const Factory = () => {
             }}>
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-3 text-xl">Снижение издержек</h3>
-                  <p className="text-muted-foreground">Использование переработанного вторсырья и оптимизация логистики.</p>
+                  <p className="text-muted-foreground">Задействование вторичного сырья и оптимизация цепей поставок.</p>
                 </CardContent>
               </Card>
               
