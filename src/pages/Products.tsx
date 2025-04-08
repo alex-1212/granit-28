@@ -32,7 +32,7 @@ const Products = () => {
           {/* Equipment */}
           <SzmSection />
           
-          {/* Системы инициирования */}
+          {/*  Завод */}
           <InitiationSystemsSection />
           {/* Услуги компании */}
           <ServicesSection />
