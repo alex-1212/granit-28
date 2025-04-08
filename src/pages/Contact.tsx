@@ -1,327 +1,39 @@
 
-import React, { useEffect, useState } from 'react';
-import { Mail, MapPin, Phone, Send, RefreshCw } from 'lucide-react';
+import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-
-// Импортируем компоненты формы из shadcn/ui
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-// Типы для капчи
-type CaptchaOperation = '+' | '-' | '*';
-type Captcha = {
-  num1: number;
-  num2: number;
-  operation: CaptchaOperation;
-  solution: number;
-};
+import ContactHero from '@/components/contact/ContactHero';
+import ContactInfoCards from '@/components/contact/ContactInfoCards';
+import ContactForm from '@/components/contact/ContactForm';
+import ContactMap from '@/components/contact/ContactMap';
 
 const Contact = () => {
   useAnimateOnScroll();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [serviceType, setServiceType] = useState('');
-  const [captchaInput, setCaptchaInput] = useState('');
-  const [captcha, setCaptcha] = useState<Captcha | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Генерация новой капчи
-  const generateCaptcha = () => {
-    const operations: CaptchaOperation[] = ['+', '-', '*'];
-    const operation = operations[Math.floor(Math.random() * operations.length)];
-    
-    // Для сложения и умножения используем небольшие числа
-    let num1 = Math.floor(Math.random() * 10) + 1;
-    let num2 = Math.floor(Math.random() * 10) + 1;
-    
-    // Для вычитания убедимся, что первое число больше второго
-    if (operation === '-') {
-      num1 = Math.floor(Math.random() * 10) + 10;
-      num2 = Math.floor(Math.random() * num1);
-    }
-    
-    let solution;
-    switch (operation) {
-      case '+':
-        solution = num1 + num2;
-        break;
-      case '-':
-        solution = num1 - num2;
-        break;
-      case '*':
-        solution = num1 * num2;
-        break;
-    }
-    
-    setCaptcha({ num1, num2, operation, solution });
-    setCaptchaInput('');
-  };
-
-  // Генерируем капчу при первой загрузке
+  
   useEffect(() => {
-    generateCaptcha();
     document.title = 'Контакты — ООО «Гранит»';
   }, []);
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-    if (!name.trim()) {
-      newErrors.name = 'Пожалуйста, введите ваше имя';
-    }
-    if (!phone.trim()) {
-      newErrors.phone = 'Пожалуйста, введите ваш номер телефона';
-    } else if (!/^\+?[0-9\s\-\(\)]{10,15}$/.test(phone)) {
-      newErrors.phone = 'Пожалуйста, введите корректный номер телефона';
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Пожалуйста, введите корректный email';
-    }
-    if (!serviceType) {
-      newErrors.serviceType = 'Пожалуйста, выберите тип продукции';
-    }
-    if (!message.trim() || message.length < 10) {
-      newErrors.message = 'Сообщение должно содержать не менее 10 символов';
-    }
-    if (!captchaInput.trim()) {
-      newErrors.captcha = 'Пожалуйста, решите капчу';
-    } else if (captcha && parseInt(captchaInput) !== captcha.solution) {
-      newErrors.captcha = 'Неверный ответ, попробуйте еще раз';
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
-
-    // Prepare WhatsApp message with service type
-    const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nТип продукции: ${serviceType}\n\nСообщение: ${message}`);
-    const whatsappUrl = `https://wa.me/+79145418570?text=${whatsappText}`;
-
-    // Open WhatsApp in a new tab
-    window.open(whatsappUrl, '_blank');
-
-    // Reset form
-    setName('');
-    setPhone('');
-    setEmail('');
-    setServiceType('');
-    setMessage('');
-    setCaptchaInput('');
-    setErrors({});
-    generateCaptcha(); // Generate new captcha
-  };
-
-  return <div className="w-full">
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              Свяжитесь с нами
-            </h1>
-            
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">Остались вопросы? Мы готовы помочь! Получите индивидуальное решение: свяжитесь с нашей командой</p>
-          </div>
-        </div>
-      </section>
-      
-      {/* Contact Information */}
-      <section className="py-16 w-full">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="animate-on-scroll">
-              <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Телефон</h3>
-                  <a href="tel:+79145418570" className="text-muted-foreground hover:text-primary transition-colors mb-2 block">
-                    +7 914 541 85 70
-                  </a>
-                  <a href="https://wa.me/+79145418570" className="text-primary text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-                    Написать в WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="animate-on-scroll">
-              <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Почта</h3>
-                  <a href="mailto:granit-svg@mail.ru" className="text-muted-foreground hover:text-primary transition-colors mb-2 block">
-                    granit-svg@mail.ru
-                  </a>
-                  <p className="text-sm text-muted-foreground">
-                    Мы отвечаем в течение 24 часов
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="animate-on-scroll">
-              <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Адрес</h3>
-                  <p className="text-muted-foreground mb-2">
-                    г. Хабаровск ул. Строительная 28
-                  </p>
-                  <a href="https://go.2gis.com/1YfhD" className="text-primary text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-                    Открыть на карте
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  return (
+    <div className="w-full">
+      <ContactHero />
+      <ContactInfoCards />
       
       {/* Contact Form and Map */}
       <section className="py-16 w-full">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="animate-on-scroll">
-              <h2 className="text-2xl font-display font-semibold mb-6">
-                Отправить сообщение
-              </h2>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-foreground font-medium mb-2">
-                    Имя*
-                  </label>
-                  <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} placeholder="Введите ваше имя" />
-                  {errors.name && <p className="mt-1 text-sm text-destructive">{errors.name}</p>}
-                </div>
-                
-                <div>
-                  <label htmlFor="phone" className="block text-foreground font-medium mb-2">
-                    Телефон*
-                  </label>
-                  <input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} placeholder="+7 (___) ___-__-__" />
-                  {errors.phone && <p className="mt-1 text-sm text-destructive">{errors.phone}</p>}
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-foreground font-medium mb-2">
-                    Email (необязательно)
-                  </label>
-                  <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} placeholder="example@email.com" />
-                  {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email}</p>}
-                </div>
-                
-                <div>
-                  <label htmlFor="serviceType" className="block text-foreground font-medium mb-2">
-                    Какой тип продукции наиболее соответствует вашим потребностям?*
-                  </label>
-                  <Select value={serviceType} onValueChange={setServiceType}>
-                    <SelectTrigger className={`w-full px-4 py-3 rounded-lg border ${errors.serviceType ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 h-auto`}>
-                      <SelectValue placeholder="Выберите тип продукции" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="Буровые работы">Буровые работы</SelectItem>
-                        <SelectItem value="Взрывные работы">Взрывные работы</SelectItem>
-                        <SelectItem value="Механический демонтаж">Механический демонтаж</SelectItem>
-                        <SelectItem value="Маркшейдерские работы">Маркшейдерские работы</SelectItem>
-                        <SelectItem value="Смесительно-зарядные машины">Смесительно-зарядные машины</SelectItem>
-                        <SelectItem value="Производство и поставка эмульсионных ВВ">Производство и поставка эмульсионных ВВ</SelectItem>
-                        <SelectItem value="Другое">Другое</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  {errors.serviceType && <p className="mt-1 text-sm text-destructive">{errors.serviceType}</p>}
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-foreground font-medium mb-2">
-                    Сообщение
-                  </label>
-                  <textarea id="message" value={message} onChange={e => setMessage(e.target.value)} className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 min-h-[120px]`} placeholder="Опишите ваш запрос или проект"></textarea>
-                  {errors.message && <p className="mt-1 text-sm text-destructive">{errors.message}</p>}
-                </div>
-                
-                <div>
-                  <label htmlFor="captcha" className="block text-foreground font-medium mb-2">
-                    Проверка*
-                  </label>
-                  <div className="flex items-center gap-4">
-                    <div className="glass-card-solid rounded-lg p-3 flex items-center gap-2 flex-grow">
-                      {captcha && (
-                        <span className="text-lg font-medium">
-                          {captcha.num1} {captcha.operation} {captcha.num2} = ?
-                        </span>
-                      )}
-                    </div>
-                    <button 
-                      type="button" 
-                      onClick={generateCaptcha}
-                      className="p-3 rounded-lg border border-border bg-background hover:bg-accent transition-colors"
-                      aria-label="Обновить капчу"
-                    >
-                      <RefreshCw size={20} />
-                    </button>
-                    <input 
-                      type="text" 
-                      id="captcha"
-                      value={captchaInput}
-                      onChange={e => setCaptchaInput(e.target.value)}
-                      className={`w-20 px-4 py-3 rounded-lg border ${errors.captcha ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} 
-                      placeholder="?"
-                    />
-                  </div>
-                  {errors.captcha && <p className="mt-1 text-sm text-destructive">{errors.captcha}</p>}
-                </div>
-                
-                <button type="submit" className="btn-primary inline-flex py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                  <Send size={18} />
-                  Отправить сообщение
-                </button>
-                
-                <p className="text-sm text-muted-foreground text-center">
-                  Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения
-                </p>
-              </form>
+              <ContactForm />
             </div>
             
             <div className="animate-on-scroll">
-              <h2 className="text-2xl font-display font-semibold mb-6">
-                Наше местоположение
-              </h2>
-              
-              <div className="glass-card rounded-xl overflow-hidden h-[400px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.4302175116087!2d135.07920999999998!3d48.4804697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5efae9dc22927c3b%3A0xd5fc815212362d9!2z0KHRgtGA0L7QuNGC0LXQu9GM0L3QsNGPINGD0LsuLCAyOCwg0KXQsNCx0LDRgNC-0LLRgdC6!5e0!3m2!1sru!2sru!4v1717091235400!5m2!1sru!2sru!4v1717091235400!5m2!1sru!2sru" width="100%" height="100%" style={{
-                border: 0
-              }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Карта расположения ООО Гранит"></iframe>
-              </div>
+              <ContactMap />
             </div>
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
 
 export default Contact;
