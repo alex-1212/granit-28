@@ -12,12 +12,12 @@ interface LicenseItem {
 const licensesData: LicenseItem[] = [{
   id: 1,
   src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_1.webp',
-  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения',
-  number: 'ВМ-00-015946'
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 1',
+  number: 'ВМ-00-015946 от 11.04.2016г.'
 }, {
   id: 2,
   src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_2.webp',
-  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения',
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 2',
   number: 'ВМ-00-015946'
 }, {
   id: 3,
@@ -27,28 +27,27 @@ const licensesData: LicenseItem[] = [{
 }, {
   id: 4,
   src: 'https://granit-svg.ru/assets/images/licensy_na_polzovanie_nedrami.webp',
-  title: 'Лицензия на осуществление погрузочно-разгрузочной деятельности применительно к опасным грузам на ЖД транспорте',
-  number: 'Серия ПРД №2707892'
+  title: 'Лицензия на пользование недрами',
+  number: 'Серия ХАБ №00613 тип ТЭ от 08.08.2022г.'
 }, {
   id: 5,
   src: 'https://granit-svg.ru/assets/images/razreshenie_na_primenenie_vv.webp',
-  title: 'Разрешение на применение технических устройств Комплекс Игла в вариантах комплектации Р и Э',
-  number: 'РРС 00-377966'
+  title: 'Разрешение на применение технических веществ и изделий на их основе',
+  number: 'РВВ 0437 от 13.03.2017'
 }, {
   id: 6,
   src: 'https://granit-svg.ru/assets/images/razreshenie_na_primenenie_vv_gr.webp',
-  title: 'Лицензия на осуществление деятельности по перевозкам',
-  number: 'АК-71-123456'
+  title: 'Разрешение на применение технических веществ и изделий на их основе',
+  number: 'РВВ 0931 от 17.03.2023'
 }, {
   id: 7,
   src: 'https://granit-svg.ru/assets/images/sertificat_sootvetstviya.webp',
-  title: 'Лицензия на осуществление деятельности по перевозкам',
-  number: 'АК-71-123456'
-}, {
+  title: 'Сертификат соответствия (Евразийский Экономический Союз)',
+  number: 'Серия RU №0390327 от 28.03.2023г.'}, {
   id: 8,
   src: 'https://granit-svg.ru/assets/images/svietelstvo_o_reg.webp',
-  title: 'Лицензия на осуществление деятельности по перевозкам',
-  number: 'АК-71-123456'
+  title: 'Свидетельство о регистрации зарегестрированных в гос. реестре опасных производственных обьектов',
+  number: 'А71-02548'
 }];
 const Licenses = () => {
   useAnimateOnScroll();
