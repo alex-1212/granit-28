@@ -23,8 +23,6 @@ const Products = () => {
       
       {/* Hero Section */}
       <ProductsHero />
-               {/* Системы инициирования */}
-          <InitiationSystemsSection />
       
       {/* ЭВВ Production */}
       <section className="py-20 w-full">
@@ -34,7 +32,8 @@ const Products = () => {
           {/* Equipment */}
           <SzmSection />
           
-          
+          {/* Системы инициирования */}
+          <InitiationSystemsSection />
           {/* Услуги компании */}
           <ServicesSection />
         </div>
