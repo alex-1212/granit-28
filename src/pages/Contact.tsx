@@ -1,7 +1,27 @@
 
 import React, { useEffect, useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, RefreshCw } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+
+// Импортируем компоненты формы из shadcn/ui
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+// Типы для капчи
+type CaptchaOperation = '+' | '-' | '*';
+type Captcha = {
+  num1: number;
+  num2: number;
+  operation: CaptchaOperation;
+  solution: number;
+};
 
 const Contact = () => {
   useAnimateOnScroll();
@@ -9,9 +29,46 @@ const Contact = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [serviceType, setServiceType] = useState('');
+  const [captchaInput, setCaptchaInput] = useState('');
+  const [captcha, setCaptcha] = useState<Captcha | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // Генерация новой капчи
+  const generateCaptcha = () => {
+    const operations: CaptchaOperation[] = ['+', '-', '*'];
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+    
+    // Для сложения и умножения используем небольшие числа
+    let num1 = Math.floor(Math.random() * 10) + 1;
+    let num2 = Math.floor(Math.random() * 10) + 1;
+    
+    // Для вычитания убедимся, что первое число больше второго
+    if (operation === '-') {
+      num1 = Math.floor(Math.random() * 10) + 10;
+      num2 = Math.floor(Math.random() * num1);
+    }
+    
+    let solution;
+    switch (operation) {
+      case '+':
+        solution = num1 + num2;
+        break;
+      case '-':
+        solution = num1 - num2;
+        break;
+      case '*':
+        solution = num1 * num2;
+        break;
+    }
+    
+    setCaptcha({ num1, num2, operation, solution });
+    setCaptchaInput('');
+  };
+
+  // Генерируем капчу при первой загрузке
   useEffect(() => {
+    generateCaptcha();
     document.title = 'Контакты — ООО «Гранит»';
   }, []);
 
@@ -28,8 +85,16 @@ const Contact = () => {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Пожалуйста, введите корректный email';
     }
+    if (!serviceType) {
+      newErrors.serviceType = 'Пожалуйста, выберите тип продукции';
+    }
     if (!message.trim() || message.length < 10) {
       newErrors.message = 'Сообщение должно содержать не менее 10 символов';
+    }
+    if (!captchaInput.trim()) {
+      newErrors.captcha = 'Пожалуйста, решите капчу';
+    } else if (captcha && parseInt(captchaInput) !== captcha.solution) {
+      newErrors.captcha = 'Неверный ответ, попробуйте еще раз';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -41,8 +106,8 @@ const Contact = () => {
       return;
     }
 
-    // Prepare WhatsApp message
-    const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nСообщение: ${message}`);
+    // Prepare WhatsApp message with service type
+    const whatsappText = encodeURIComponent(`Меня интересуют ваши услуги компании ООО Гранит\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nТип продукции: ${serviceType}\n\nСообщение: ${message}`);
     const whatsappUrl = `https://wa.me/+79145418570?text=${whatsappText}`;
 
     // Open WhatsApp in a new tab
@@ -52,8 +117,11 @@ const Contact = () => {
     setName('');
     setPhone('');
     setEmail('');
+    setServiceType('');
     setMessage('');
+    setCaptchaInput('');
     setErrors({});
+    generateCaptcha(); // Generate new captcha
   };
 
   return <div className="w-full">
@@ -166,11 +234,66 @@ const Contact = () => {
                 </div>
                 
                 <div>
+                  <label htmlFor="serviceType" className="block text-foreground font-medium mb-2">
+                    Какой тип продукции наиболее соответствует вашим потребностям?*
+                  </label>
+                  <Select value={serviceType} onValueChange={setServiceType}>
+                    <SelectTrigger className={`w-full px-4 py-3 rounded-lg border ${errors.serviceType ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 h-auto`}>
+                      <SelectValue placeholder="Выберите тип продукции" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="Буровые работы">Буровые работы</SelectItem>
+                        <SelectItem value="Взрывные работы">Взрывные работы</SelectItem>
+                        <SelectItem value="Механический демонтаж">Механический демонтаж</SelectItem>
+                        <SelectItem value="Маркшейдерские работы">Маркшейдерские работы</SelectItem>
+                        <SelectItem value="Смесительно-зарядные машины">Смесительно-зарядные машины</SelectItem>
+                        <SelectItem value="Производство и поставка эмульсионных ВВ">Производство и поставка эмульсионных ВВ</SelectItem>
+                        <SelectItem value="Другое">Другое</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  {errors.serviceType && <p className="mt-1 text-sm text-destructive">{errors.serviceType}</p>}
+                </div>
+                
+                <div>
                   <label htmlFor="message" className="block text-foreground font-medium mb-2">
                     Сообщение
                   </label>
                   <textarea id="message" value={message} onChange={e => setMessage(e.target.value)} className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 min-h-[120px]`} placeholder="Опишите ваш запрос или проект"></textarea>
                   {errors.message && <p className="mt-1 text-sm text-destructive">{errors.message}</p>}
+                </div>
+                
+                <div>
+                  <label htmlFor="captcha" className="block text-foreground font-medium mb-2">
+                    Проверка*
+                  </label>
+                  <div className="flex items-center gap-4">
+                    <div className="glass-card-solid rounded-lg p-3 flex items-center gap-2 flex-grow">
+                      {captcha && (
+                        <span className="text-lg font-medium">
+                          {captcha.num1} {captcha.operation} {captcha.num2} = ?
+                        </span>
+                      )}
+                    </div>
+                    <button 
+                      type="button" 
+                      onClick={generateCaptcha}
+                      className="p-3 rounded-lg border border-border bg-background hover:bg-accent transition-colors"
+                      aria-label="Обновить капчу"
+                    >
+                      <RefreshCw size={20} />
+                    </button>
+                    <input 
+                      type="text" 
+                      id="captcha"
+                      value={captchaInput}
+                      onChange={e => setCaptchaInput(e.target.value)}
+                      className={`w-20 px-4 py-3 rounded-lg border ${errors.captcha ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} 
+                      placeholder="?"
+                    />
+                  </div>
+                  {errors.captcha && <p className="mt-1 text-sm text-destructive">{errors.captcha}</p>}
                 </div>
                 
                 <button type="submit" className="btn-primary inline-flex py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
