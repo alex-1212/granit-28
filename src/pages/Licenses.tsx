@@ -22,7 +22,7 @@ const licensesData: LicenseItem[] = [{
 }, {
   id: 3,
   src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_3.webp',
-  title: 'Приложение к Лицензии',
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Приложение',
   number: 'ВМ-00-015946'
 }, {
   id: 4,
