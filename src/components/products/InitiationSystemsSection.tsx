@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Factory, Building, Leaf, MessageSquare } from 'lucide-react';
@@ -57,7 +56,7 @@ export const InitiationSystemsSection = () => {
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">ООО «Гранит»</p>
-          <p className="text-sm text-inherit">передовые технологии, экологичность и стратегическая логистика</p>
+          <p className="text-sm text-inherit">передовые решения, экологичность и стратегическая логистика</p>
         </div>
       </div>
     </div>;
