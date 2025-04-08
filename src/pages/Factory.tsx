@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
@@ -112,7 +111,7 @@ const Factory = () => {
             
             <Accordion type="single" collapsible className="mb-8">
               <AccordionItem value="item-1">
-                <AccordionTrigger className="text-lg font-semibold">
+                <AccordionTrigger className="text-lg font-semibold text-left">
                   Забайкальский склад с железнодорожным тупиком
                 </AccordionTrigger>
                 <AccordionContent className="text-base">
@@ -130,7 +129,7 @@ const Factory = () => {
               </AccordionItem>
               
               <AccordionItem value="item-2">
-                <AccordionTrigger className="text-lg font-semibold">
+                <AccordionTrigger className="text-lg font-semibold text-left">
                   Советская Гавань (Хабаровский край)
                 </AccordionTrigger>
                 <AccordionContent className="text-base">
@@ -148,7 +147,7 @@ const Factory = () => {
               </AccordionItem>
               
               <AccordionItem value="item-3">
-                <AccordionTrigger className="text-lg font-semibold">
+                <AccordionTrigger className="text-lg font-semibold text-left">
                   Камчатский склад
                 </AccordionTrigger>
                 <AccordionContent className="text-base">
