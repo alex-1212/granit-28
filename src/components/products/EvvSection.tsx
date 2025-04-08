@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, BarChart, FileText, ArrowRight } from 'lucide-react';
+import { Shield, BarChart, Leaf, ArrowRight } from 'lucide-react';
 export const EvvSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
@@ -40,7 +40,7 @@ export const EvvSection = () => {
           
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-              <FileText className="h-5 w-5 text-primary" />
+              <Leaf className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h3 className="font-semibold mb-1 my-[8px] text-zinc-100 text-lg">Экологичность</h3>

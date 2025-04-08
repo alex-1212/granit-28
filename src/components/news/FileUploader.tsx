@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Check, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,35 +20,77 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 МБ
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
   const FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
+  const validateFile = (selectedFile: File): boolean => {
     setError(null);
-    
-    if (!selectedFile) return;
     
     if (!ALLOWED_TYPES.includes(selectedFile.type)) {
       setError(`Неподдерживаемый формат файла. Допустимые форматы: ${FILE_EXTENSIONS.join(', ')}`);
-      return;
+      return false;
     }
     
     if (selectedFile.size > MAX_FILE_SIZE) {
       setError(`Размер файла превышает 10 МБ`);
-      return;
+      return false;
     }
     
-    setFile(selectedFile);
+    return true;
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
     
-    // Создание превью
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreview(reader.result as string);
-    };
-    reader.readAsDataURL(selectedFile);
+    if (!selectedFile) return;
+    
+    if (validateFile(selectedFile)) {
+      setFile(selectedFile);
+      
+      // Создание превью
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    
+    const selectedFile = e.dataTransfer.files?.[0];
+    
+    if (!selectedFile) return;
+    
+    if (validateFile(selectedFile)) {
+      setFile(selectedFile);
+      
+      // Создание превью
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
   };
 
   const uploadFile = async () => {
@@ -116,6 +158,15 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
   const clearFile = () => {
     setFile(null);
     setPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const openFileSelector = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   return (
@@ -146,7 +197,14 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
         )}
         
         {!preview && (
-          <div className="border border-dashed border-gray-300 dark:border-gray-700 rounded-md p-6 text-center">
+          <div 
+            className={`border border-dashed ${isDragging ? 'border-primary bg-primary/5' : 'border-gray-300 dark:border-gray-700'} rounded-md p-6 text-center cursor-pointer`}
+            onClick={openFileSelector}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDragEnter={handleDragOver}
+          >
             <Upload className="mx-auto h-10 w-10 text-muted-foreground" />
             <p className="mt-2 text-sm text-muted-foreground">
               Перетащите изображение сюда или нажмите для выбора файла
@@ -163,6 +221,7 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
         
         <div className="flex items-center gap-2">
           <input
+            ref={fileInputRef}
             id="image-upload"
             type="file"
             accept=".jpg,.jpeg,.png,.webp"
@@ -174,7 +233,7 @@ export function FileUploader({ onFileUploaded, currentImage }: FileUploaderProps
           <Button
             type="button"
             variant="outline"
-            onClick={() => document.getElementById('image-upload')?.click()}
+            onClick={openFileSelector}
             disabled={uploading}
             className="w-full"
           >
