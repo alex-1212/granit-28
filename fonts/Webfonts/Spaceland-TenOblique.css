@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'spaceland_ten_oblique';
+	src: url('http://granit-svg.ru/fonts/Webfonts/Spaceland-TenOblique.woff2') format('WOFF2'),
+		url('https://granit-svg.ru/fonts/Webfonts/Spaceland-TenOblique.woff') format('WOFF'),
+		url('https://granit-svg.ru/fonts/Webfonts/Spaceland-TenOblique.eot') format('EOT'),
+		url('https://granit-svg.ru/fonts/Webfonts/Spaceland-TenOblique.svg') format('SVG');
+	font-weight: normal;
+	font-style: normal;
+}
