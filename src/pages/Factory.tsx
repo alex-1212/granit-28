@@ -190,7 +190,7 @@ const Factory = () => {
                 <RecycleIcon className="w-10 h-10 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="mb-2 text-xl font-semibold">Переработка отходов</h3>
-                  <p className="text-zinc-200">Перерабатываем производственные отходы в сырьё для полиэтиленовых рукавов.</p>
+                  <p className="text-muted-foreground">Перерабатываем производственные отходы в сырьё для полиэтиленовых рукавов.</p>
                 </div>
               </div>
               
@@ -198,7 +198,7 @@ const Factory = () => {
                 <ShieldCheck className="w-10 h-10 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="mb-2 text-xl font-semibold">Безопасность превыше всего</h3>
-                  <p className="text-zinc-200">Соблюдаем строгие стандарты безопасности при хранении и транспортировке ВМ.</p>
+                  <p className="text-muted-foreground">Соблюдаем строгие стандарты безопасности при хранении и транспортировке ВМ.</p>
                 </div>
               </div>
             </div>
