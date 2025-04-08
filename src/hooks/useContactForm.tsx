@@ -56,8 +56,8 @@ export const useContactForm = () => {
     }
     if (!phone.trim()) {
       newErrors.phone = 'Пожалуйста, введите ваш номер телефона';
-    } else if (!/^\+?[0-9\s\-\(\)]{10,15}$/.test(phone)) {
-      newErrors.phone = 'Пожалуйста, введите корректный номер телефона';
+    } else if (!/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(phone)) {
+      newErrors.phone = 'Пожалуйста, введите корректный номер телефона в формате +7 (XXX) XXX-XX-XX';
     }
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Пожалуйста, введите корректный email';

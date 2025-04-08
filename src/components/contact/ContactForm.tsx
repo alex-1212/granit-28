@@ -45,7 +45,7 @@ const ContactForm: React.FC = () => {
           label="Имя"
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
           placeholder="Введите ваше имя"
           error={errors.name}
           required
@@ -56,10 +56,17 @@ const ContactForm: React.FC = () => {
           label="Телефон"
           type="tel"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(value: string | React.ChangeEvent<HTMLInputElement>) => {
+            if (typeof value === 'string') {
+              setPhone(value);
+            } else {
+              setPhone(value.target.value);
+            }
+          }}
           placeholder="+7 (___) ___-__-__"
           error={errors.phone}
           required
+          isPhone
         />
         
         <FormField
@@ -67,7 +74,7 @@ const ContactForm: React.FC = () => {
           label="Email (необязательно)"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           placeholder="example@email.com"
           error={errors.email}
         />
@@ -100,7 +107,7 @@ const ContactForm: React.FC = () => {
           label="Сообщение"
           type="text"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
           placeholder="Опишите ваш запрос или проект"
           error={errors.message}
           isTextarea
