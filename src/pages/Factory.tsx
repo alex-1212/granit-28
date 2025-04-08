@@ -210,7 +210,7 @@ const Factory = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               <Card className="bg-primary/5 border-primary/10 animate-on-scroll">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-3">Полный цикл под ключ</h3>
+                  <h3 className="mb-3 text-xl font-semibold">Полный цикл под ключ</h3>
                   <p className="text-muted-foreground">От производства компонентов до готовых эмульсионных боевиков.</p>
                 </CardContent>
               </Card>
@@ -219,7 +219,7 @@ const Factory = () => {
               animationDelay: "100ms"
             }}>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-3">Гибкость</h3>
+                  <h3 className="font-semibold mb-3 text-xl">Гибкость</h3>
                   <p className="text-muted-foreground">Мобильная линия ММП-1000 работает даже в труднодоступных регионах.</p>
                 </CardContent>
               </Card>
@@ -228,7 +228,7 @@ const Factory = () => {
               animationDelay: "200ms"
             }}>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-3">Снижение издержек</h3>
+                  <h3 className="font-semibold mb-3 text-xl">Снижение издержек</h3>
                   <p className="text-muted-foreground">Использование вторсырья и оптимизация логистики.</p>
                 </CardContent>
               </Card>
@@ -237,7 +237,7 @@ const Factory = () => {
               animationDelay: "300ms"
             }}>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-3">Надёжность</h3>
+                  <h3 className="mb-3 font-semibold text-xl">Надёжность</h3>
                   <p className="text-muted-foreground">Склады в ключевых транспортных узлах (ж/д, море, автотрассы).</p>
                 </CardContent>
               </Card>
