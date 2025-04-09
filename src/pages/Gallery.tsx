@@ -13,12 +13,11 @@ const galleryImages: ImageItem[] = [
   { id: 2, src: 'https://granit-svg.ru/img-granit/galery-2.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
   { id: 3, src: 'https://granit-svg.ru/img-granit/galery-3.webp', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
   { id: 4, src: 'https://granit-svg.ru/img-granit/galery-4.jpg', alt: 'Смесительно-зарядная машина МЗУ-14-НПБ с возможностью заряжания скважин смесевыми эмульсионными и гранулированными ВВ в количестве 14 тонн' },
-  { id: 5, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Взрывные работы' },
-  { id: 6, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Заводская линия в Якутии' },
-  { id: 7, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Работа на БАМ-2' },
-  { id: 8, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Техника компании' },
-  { id: 9, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Производство патронов ЭВВ' },
-  { id: 10, src: 'https://granit-svg.ru/assets/images/22f85f65d02d0c86c3db4ccf3ba42899.jpg', alt: 'Команда на объекте' },
+  { id: 5, src: 'https://granit-svg.ru/img-granit/galery-5.jpg', alt: 'Тракторный экскаватор с гусеничным ходом, оснащенный специальным оборудованием для горных работ.' },
+  { id: 6, src: 'https://granit-svg.ru/img-granit/galery-6.jpg', alt: 'Буровая установка Epiroc работает на открытой местности в условиях зимы.' },
+  { id: 7, src: 'https://granit-svg.ru/img-granit/galery-7.jpg', alt: 'Буровая техника с буровым оборудованием "Алмазгеобур", готовая к проведению геологических исследований.' },
+  { id: 8, src: 'https://granit-svg.ru/img-granit/galery-8.jpg', alt: 'Буровая машина Epiroc с высоким буровым столбом, предназначенная для горных или строительных работ.' },
+  { id: 9, src: 'https://granit-svg.ru/img-granit/galery-9.jpg', alt: 'Буровая машина с гусеничным ходом движется по дороге в зимних условиях, оснащенный дополнительным оборудованием для работы в сложных погодных условиях.' },
 ];
 
 const Gallery = () => {
