@@ -1,23 +1,17 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
-
 const PrivacyPolicy = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Политика конфиденциальности - ООО «Гранит»</title>
-        <meta 
-          name="description" 
-          content="Политика конфиденциальности сайта компании ООО «Гранит»"
-        />
+        <meta name="description" content="Политика конфиденциальности сайта компании ООО «Гранит»" />
       </Helmet>
       <div className="py-12 bg-muted/30">
         <Container>
           <h1 className="text-3xl font-bold mb-6">Политика конфиденциальности</h1>
-          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none">
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none mx-[84px] px-[36px] py-[42px]">
             <p>
               Настоящая Политика конфиденциальности (далее – Политика) действует в отношении всей 
               информации, которую Общество с ограниченной ответственностью «Гранит» (далее – Компания), 
@@ -85,8 +79,6 @@ const PrivacyPolicy = () => {
           </div>
         </Container>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default PrivacyPolicy;
