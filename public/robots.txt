@@ -10,7 +10,7 @@ Allow: /team
 Allow: /contact
 
 # Карта сайта
-Sitemap: https://granite-corp.ru/sitemap.xml
+Sitemap: https://granit-svg.ru/sitemap.xml
 
 # Отключаем доступ к авторизации и профилю
 Disallow: /auth
