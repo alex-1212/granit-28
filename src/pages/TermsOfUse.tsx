@@ -11,7 +11,7 @@ const TermsOfUse = () => {
       </Helmet>
       <div className="py-12 bg-muted/30">
         <Container>
-          <h1 className="text-3xl font-bold mb-6">Условия использования сайта</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">Условия использования сайта</h1>
           <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[36px] py-[42px] mx-[84px]">
             <p>
               Настоящие Условия использования (далее – Условия) регулируют порядок использования сайта www.granit-svg.ru, 
