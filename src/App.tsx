@@ -28,6 +28,8 @@ import NotFound from "./pages/NotFound";
 import Evv from "./pages/Evv";
 import Szm from "./pages/Szm";
 import Factory from "./pages/Factory";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
@@ -75,6 +77,8 @@ const AppRoutes = () => (
     <Route path="/faq" element={<FAQ />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/auth" element={<Auth />} />
+    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+    <Route path="/terms-of-use" element={<TermsOfUse />} />
     <Route 
       path="/profile" 
       element={
