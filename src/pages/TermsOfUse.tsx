@@ -1,24 +1,18 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
-
 const TermsOfUse = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Условия использования - ООО «Гранит»</title>
-        <meta 
-          name="description" 
-          content="Условия использования сайта компании ООО «Гранит»"
-        />
+        <meta name="description" content="Условия использования сайта компании ООО «Гранит»" />
       </Helmet>
       <div className="py-12 bg-muted/30">
         <Container>
           <h1 className="text-3xl font-bold mb-6">Условия использования сайта</h1>
-          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none">
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[36px] py-[42px] mx-[84px]">
             <p>
               Настоящие Условия использования (далее – Условия) регулируют порядок использования сайта www.granit-svg.ru, 
               принадлежащего Обществу с ограниченной ответственностью «Гранит» (далее – Компания). 
@@ -86,8 +80,6 @@ const TermsOfUse = () => {
           </div>
         </Container>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default TermsOfUse;
