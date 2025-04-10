@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
@@ -6,7 +5,6 @@ import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-
 const TermsOfUse = () => {
   return <>
       <Helmet>
@@ -24,7 +22,7 @@ const TermsOfUse = () => {
             </Link>
           </div>
           
-          <h1 className="text-3xl font-bold mb-6 text-center">Условия использования сайта</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">Условия использования</h1>
           <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[36px] py-[42px] mx-[84px]">
             <p>
               Настоящие Условия использования (далее – Условия) регулируют порядок использования сайта www.granit-svg.ru, 
