@@ -1,8 +1,12 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
+
 const TermsOfUse = () => {
   return <>
       <Helmet>
@@ -11,6 +15,15 @@ const TermsOfUse = () => {
       </Helmet>
       <div className="py-12 bg-muted/30">
         <Container>
+          <div className="mb-8">
+            <Link to="/">
+              <Button variant="outline" className="mb-4 flex items-center gap-2">
+                <ArrowLeft size={16} />
+                Вернуться на главную
+              </Button>
+            </Link>
+          </div>
+          
           <h1 className="text-3xl font-bold mb-6 text-center">Условия использования сайта</h1>
           <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[36px] py-[42px] mx-[84px]">
             <p>

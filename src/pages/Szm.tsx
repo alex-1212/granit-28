@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
 import { Helmet } from 'react-helmet-async';
@@ -33,7 +33,7 @@ const Szm = () => {
       {/* Основное содержание */}
       <section className="py-16 w-full">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="prose dark:prose-invert max-w-none mb-16 animate-on-scroll">
+          <div className="prose dark:prose-invert max-w-none mb-16">
             <p className="text-lg mb-8">ООО «Гранит» предлагает современные решения для буровзрывных работ (БВР) с использованием передовых технологий. В нашем распоряжении находятся смесительно-зарядные машины (СЗМ) и передвижные смесительно-зарядные установки (ПСЗУ) собственной разработки. Эти машины обеспечивают безопасность, высокую производительность и универсальность применения в любых условиях.</p>
             
             <hr className="my-12" />

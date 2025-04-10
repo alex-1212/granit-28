@@ -129,14 +129,14 @@ export const Footer: React.FC = () => {
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
-                <a href="#" className="text-foreground/80 hover:text-primary transition-colors">
+                <Link to="/privacy-policy" className="text-foreground/80 hover:text-primary transition-colors">
                   Политика конфиденциальности
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-foreground/80 hover:text-primary transition-colors">
+                <Link to="/terms-of-use" className="text-foreground/80 hover:text-primary transition-colors">
                   Условия использования
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

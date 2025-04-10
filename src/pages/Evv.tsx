@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail, Send } from 'lucide-react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+
 const Evv = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -18,26 +18,6 @@ const Evv = () => {
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-          <Breadcrumb className="mb-6">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Главная</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/products">Продукты и услуги</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Эмульсионно-взрывчатые вещества (ЭВВ)</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
               Эмульсионно-взрывчатые вещества (ЭВВ)
@@ -54,7 +34,7 @@ const Evv = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="animate-on-scroll">
               <p className="text-lg mb-6">
-                Компания ООО «Гранит» специализируется на разработке, производстве и поставке высококачественных 
+                Компания ООО «Гранит» специализируется на разработке, прои��водстве и поставке высококачественных 
                 эмульсионных взрывчатых веществ (ЭВВ), которые зарекомендовали себя как надежное и эффективное 
                 решение для горнодобывающей промышленности. Наши продукты под маркой «ГРАНИТ» соответствуют 
                 самым строгим стандартам качества и безопасности, обеспечивая максимальную производительность 
