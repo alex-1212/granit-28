@@ -7,6 +7,13 @@ import { cn } from '@/lib/utils';
 // Добавим новый класс для стилизации кнопки обновления
 const refreshButtonClass = 'hover:bg-blue-500 hover:border-blue-500 hover:text-white';
 
+export interface Captcha {
+  num1: number;
+  num2: number;
+  operation: '+' | '-' | '*';
+  solution: number;
+}
+
 interface CaptchaComponentProps {
   value: string;
   onChange: (value: string) => void;
