@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Loader2, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Добавим новый класс для стилизации кнопки обновления
-const refreshButtonClass = 'hover:bg-blue-500 hover:border-blue-500 hover:text-white';
+// Обновляем стиль кнопки обновления
+const refreshButtonClass = 'hover:bg-primary hover:border-primary hover:text-primary-foreground shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300';
 
 export interface Captcha {
   num1: number;

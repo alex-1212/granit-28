@@ -17,7 +17,10 @@ const PrivacyPolicy = () => {
         <Container>
           <div className="mb-8">
             <Link to="/">
-              <Button variant="outline" className="mb-4 flex items-center gap-2">
+              <Button 
+                variant="outline" 
+                className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+              >
                 <ArrowLeft size={16} />
                 Вернуться на главную
               </Button>

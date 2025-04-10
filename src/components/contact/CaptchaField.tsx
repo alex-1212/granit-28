@@ -2,6 +2,7 @@
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
 import { Captcha } from './CaptchaComponent';
+import { cn } from '@/lib/utils';
 
 interface CaptchaFieldProps {
   captcha: Captcha | null;
@@ -34,7 +35,7 @@ const CaptchaField: React.FC<CaptchaFieldProps> = ({
         <button 
           type="button" 
           onClick={generateCaptcha}
-          className="p-3 rounded-lg border border-border bg-background hover:bg-accent transition-colors"
+          className="p-3 rounded-lg border border-border bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           aria-label="Обновить капчу"
         >
           <RefreshCw size={20} />

@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
-                <Button variant="outline" size="sm" className="flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
+                <Button variant="outline" size="sm" className="flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
                   <MessageSquare size={16} />
                   Напишите нам
                 </Button>
@@ -101,19 +101,19 @@ export const Footer: React.FC = () => {
             <h4 className="font-sans font-semibold text-lg mb-5">Контакты</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <Phone size={20} className="mr-3 text-primary mt-0.5" />
+                <Phone size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
                 <a href="tel:+79145418570" className="text-foreground/80 hover:text-primary transition-colors">
                   +7 914 541 85 70
                 </a>
               </li>
               <li className="flex items-start">
-                <Mail size={20} className="mr-3 text-primary mt-0.5" />
+                <Mail size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
                 <a href="mailto:granit-svg@mail.ru" className="text-foreground/80 hover:text-primary transition-colors">
                   granit-svg@mail.ru
                 </a>
               </li>
               <li className="flex items-start">
-                <MapPin size={20} className="mr-3 text-primary mt-0.5" />
+                <MapPin size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
                 <a href="https://go.2gis.com/1YfhD" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-primary transition-colors">
                  680001, г. Хабаровск ул. Строительная 28, офис 1
                 </a>
