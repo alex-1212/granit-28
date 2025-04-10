@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, BarChart, Leaf, ArrowRight } from 'lucide-react';
@@ -57,7 +56,7 @@ export const EvvSection = () => {
       
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img src="https://granit-svg.ru/img-granit/products1.webp" alt="Производство ЭВВ" className="object-cover w-full h-full" />
+          <img alt="Производство ЭВВ" className="object-cover w-full h-full" src="/lovable-uploads/d5b976d8-81ba-493c-a2dc-0cee44e5ee3c.jpg" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">30 тыс. тонн/год</p>
