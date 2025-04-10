@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, Settings, Factory } from 'lucide-react';
@@ -6,7 +5,7 @@ export const SzmSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="order-2 lg:order-1 relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img src="https://granit-svg.ru/img-granit/galery-1.webp" alt="Смесительно-зарядные машины" className="object-cover w-full h-full" />
+          <img alt="Смесительно-зарядные машины" className="object-cover w-full h-full" src="/lovable-uploads/7432ffb9-b7a2-4ec9-aca0-8382f090c181.jpg" />
         </div>
         <div className="absolute -bottom-6 -left-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">Высокая мобильность</p>
