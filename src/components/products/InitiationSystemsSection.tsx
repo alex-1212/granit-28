@@ -52,7 +52,7 @@ export const InitiationSystemsSection = () => {
       
       <div className="relative animate-on-scroll">
         <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-          <img src="https://granit-svg.ru/img-granit/system-ii.webp" alt="Системы инициирования" className="object-cover w-full h-full" />
+          <img alt="Системы инициирования" className="object-cover w-full h-full" src="/lovable-uploads/51b7a486-fd3b-4bba-b226-bc334ebe8e70.jpg" />
         </div>
         <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
           <p className="font-semibold">ООО «Гранит»</p>
