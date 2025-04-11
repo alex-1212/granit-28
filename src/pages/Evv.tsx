@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Shield, BarChart, FileText, Image, Layers, CheckCircle, Mail, Send } from 'lucide-react';
-
 const Evv = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -44,7 +43,7 @@ const Evv = () => {
 
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                <img alt="ЭВВ Гранит" className="object-cover w-full h-full" src="/lovable-uploads/31ebe712-ed0c-4fd5-bf19-fe0739ff8325.jpg" />
+                <img alt="ЭВВ Гранит" className="object-cover w-full h-full" src="/lovable-uploads/fcf0f4ec-15e8-4d96-bca9-0744e6914835.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">ЭВВ «ГРАНИТ»</p>
