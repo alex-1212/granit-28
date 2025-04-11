@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
@@ -5,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+
 const TermsOfUse = () => {
   return <>
       <Helmet>
@@ -93,4 +95,5 @@ const TermsOfUse = () => {
       </div>
     </>;
 };
+
 export default TermsOfUse;
