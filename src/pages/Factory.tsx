@@ -43,7 +43,7 @@ const Factory = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                <img alt="Завод по производству ВВ" className="object-cover w-full h-full" src="/lovable-uploads/cfa9afc0-31d9-4b6a-804f-fb3c470c17ac.jpg" />
+                <img alt="Завод по производству ВВ" className="object-cover w-full h-full" src="/lovable-uploads/efa32f80-5cad-436f-b210-450577a74ba4.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">ООО «Гранит»</p>
