@@ -13,13 +13,13 @@ interface LicenseItem {
 const licensesData: LicenseItem[] = [
   {
     id: 1,
-    src: '/lovable-uploads/035fb7ed-7a99-4918-9269-0679557bba5d.png',
+    src: 'public/lovable-uploads/074bedd1-f77a-4482-be5f-18f099487be5.jpg',
     title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 1',
     number: 'ВМ-00-015946 от 11.04.2016г.'
   }, 
   {
     id: 2,
-    src: '/lovable-uploads/88141c4f-18d8-45cc-8f12-efe810ffe1ce.png',
+    src: 'https://alex-1212.github.io/sdn/lic/licensy_na%20_osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_1.jpg',
     title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 2',
     number: 'ВМ-00-015946'
   }, 
