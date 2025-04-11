@@ -87,7 +87,7 @@ const About = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-[4/3]">
-                <img src="https://granit-svg.ru/img-granit/about1.webp" alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" />
+                <img alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" src="/lovable-uploads/9e4e87de-0ace-473f-96eb-ce42740d1ce7.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">Собственное производство</p>
