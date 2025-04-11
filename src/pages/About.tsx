@@ -87,7 +87,7 @@ const About = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-[4/3]">
-                <img src="https://granit-svg.ru/img-granit/about1.webp" alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" />
+                <img alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" src="/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg" />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                 <p className="font-semibold">Собственное производство</p>
@@ -125,7 +125,7 @@ const About = () => {
           {/* Innovation and Technology */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1 animate-on-scroll">
-              <img src="https://granit-svg.ru/img-granit/szm1.webp" alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" />
+              <img alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" src="/lovable-uploads/d12d2cee-c48a-46f8-bda1-e1176d299cdd.jpg" />
             </div>
             
             <div className="order-1 lg:order-2 animate-on-scroll">
