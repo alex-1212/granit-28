@@ -60,7 +60,7 @@ const AboutSection: React.FC = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-2xl animate-on-scroll"></div>
             <div className="glass-card rounded-2xl overflow-hidden aspect-video relative animate-on-scroll">
-              <img alt="О компании ООО Гранит" className="object-cover w-full h-full" src="/lovable-uploads/92a861ee-6daf-40ef-968f-46d823ba3342.jpg" />
+              <img src="https://granit-svg.ru/img-granit/expert1.webp" alt="О компании ООО Гранит" className="object-cover w-full h-full" />
             </div>
             
             <div className="absolute -bottom-8 -left-8 glass-card-accent rounded-xl p-4 max-w-[250px] animate-on-scroll">

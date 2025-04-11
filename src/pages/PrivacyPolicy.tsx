@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
@@ -5,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+
 const PrivacyPolicy = () => {
   return <>
       <Helmet>
@@ -15,7 +17,10 @@ const PrivacyPolicy = () => {
         <Container>
           <div className="mb-8">
             <Link to="/">
-              <Button variant="outline" className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
+              <Button 
+                variant="outline" 
+                className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+              >
                 <ArrowLeft size={16} />
                 Вернуться на главную
               </Button>
@@ -23,7 +28,7 @@ const PrivacyPolicy = () => {
           </div>
           
           <h1 className="text-3xl font-bold mb-6 text-center">Политика конфиденциальности</h1>
-          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none py-[15px] px-[5px] mx-[10px]">
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none mx-[84px] px-[36px] py-[42px]">
             <p>
               Настоящая Политика конфиденциальности (далее – Политика) действует в отношении всей 
               информации, которую Общество с ограниченной ответственностью «Гранит» (далее – Компания), 

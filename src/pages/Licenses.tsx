@@ -9,101 +9,81 @@ interface LicenseItem {
   title: string;
   number: string;
 }
-
-const licensesData: LicenseItem[] = [
-  {
-    id: 1,
-    src: '/lovable-uploads/58baed52-fe27-45d4-9a12-311bbbfc9977.png',
-    title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 1',
-    number: 'ВМ-00-015946 от 11.04.2016г.'
-  }, 
-  {
-    id: 2,
-    src: '/lovable-uploads/98aaeb02-edf8-4b09-a857-ebb7636056a0.png',
-    title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 2',
-    number: 'ВМ-00-015946'
-  }, 
-  {
-    id: 3,
-    src: '/lovable-uploads/140a6535-9d83-4e56-b256-4bd520f1d860.png',
-    title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Приложение',
-    number: 'ВМ-00-015946'
-  }, 
-  {
-    id: 4,
-    src: '/lovable-uploads/b59d1486-ca03-40c4-869a-d2eb596614b0.png',
-    title: 'Лицензия на пользование недрами',
-    number: 'Серия ХАБ №00613 тип ТЭ от 08.08.2022г.'
-  }, 
-  {
-    id: 5,
-    src: '/lovable-uploads/4477c6ec-d723-413a-a5b1-9d78627979ba.png',
-    title: 'Разрешение на применение взрывчатых веществ и изделий на их основе',
-    number: 'РВВ 0437 от 13.03.2017'
-  }, 
-  {
-    id: 6,
-    src: '/lovable-uploads/f318f1c9-4959-4e98-b42f-e70b7e646e66.png',
-    title: 'Разрешение на применение взрывчатых веществ и изделий на их основе',
-    number: 'РВВ 0931 от 17.03.2023'
-  }, 
-  {
-    id: 7,
-    src: '/lovable-uploads/f8d0bd99-8860-4c13-8ad7-733a1b16eb54.png',
-    title: 'Сертификат соответствия (Евразийский Экономический Союз)',
-    number: 'Серия RU №0390327 от 28.03.2023г.'
-  }, 
-  {
-    id: 8,
-    src: '/lovable-uploads/9c83b320-ac3b-49c8-aa0e-fc04340e92ad.png',
-    title: 'Свидетельство о регистрации в государственном реестре опасных производственных объектов',
-    number: 'А71-02548'
-  }
-];
-
+const licensesData: LicenseItem[] = [{
+  id: 1,
+  src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_1.webp',
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 1',
+  number: 'ВМ-00-015946 от 11.04.2016г.'
+}, {
+  id: 2,
+  src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_2.webp',
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Сторона 2',
+  number: 'ВМ-00-015946'
+}, {
+  id: 3,
+  src: 'https://granit-svg.ru/assets/images/licensy_na _osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_3.webp',
+  title: 'Лицензия на осуществление деятельности связанная с обращением взрывчатых материалов промышленного назначения. Приложение',
+  number: 'ВМ-00-015946'
+}, {
+  id: 4,
+  src: 'https://granit-svg.ru/assets/images/licensy_na_polzovanie_nedrami.webp',
+  title: 'Лицензия на пользование недрами',
+  number: 'Серия ХАБ №00613 тип ТЭ от 08.08.2022г.'
+}, {
+  id: 5,
+  src: 'https://granit-svg.ru/assets/images/razreshenie_na_primenenie_vv.webp',
+  title: 'Разрешение на применение технических веществ и изделий на их основе',
+  number: 'РВВ 0437 от 13.03.2017'
+}, {
+  id: 6,
+  src: 'https://granit-svg.ru/assets/images/razreshenie_na_primenenie_vv_gr.webp',
+  title: 'Разрешение на применение технических веществ и изделий на их основе',
+  number: 'РВВ 0931 от 17.03.2023'
+}, {
+  id: 7,
+  src: 'https://granit-svg.ru/assets/images/sertificat_sootvetstviya.webp',
+  title: 'Сертификат соответствия (Евразийский Экономический Союз)',
+  number: 'Серия RU №0390327 от 28.03.2023г.'}, {
+  id: 8,
+  src: 'https://granit-svg.ru/assets/images/svietelstvo_o_reg.webp',
+  title: 'Свидетельство о регистрации зарегестрированных в гос. реестре опасных производственных обьектов',
+  number: 'А71-02548'
+}];
 const Licenses = () => {
   useAnimateOnScroll();
   const [selectedLicense, setSelectedLicense] = useState<LicenseItem | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     document.title = 'Лицензии — ООО «Гранит»';
   }, []);
-
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedLicense(null);
       }
     };
-
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         setSelectedLicense(null);
       }
     };
-
     if (selectedLicense) {
       document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleEsc);
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.body.style.overflow = '';
       document.removeEventListener('keydown', handleEsc);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [selectedLicense]);
-
   const openModal = (license: LicenseItem) => {
     setSelectedLicense(license);
   };
-
   const closeModal = () => {
     setSelectedLicense(null);
   };
-
   return <div>
       {/* Hero Section */}
       <section className="pt-16 pb-20 relative overflow-hidden">
@@ -174,5 +154,4 @@ const Licenses = () => {
         </div>}
     </div>;
 };
-
 export default Licenses;

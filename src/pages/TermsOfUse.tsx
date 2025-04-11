@@ -6,7 +6,6 @@ import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-
 const TermsOfUse = () => {
   return <>
       <Helmet>
@@ -17,7 +16,10 @@ const TermsOfUse = () => {
         <Container>
           <div className="mb-8">
             <Link to="/">
-              <Button variant="outline" className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
+              <Button 
+                variant="outline" 
+                className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+              >
                 <ArrowLeft size={16} />
                 Вернуться на главную
               </Button>
@@ -25,7 +27,7 @@ const TermsOfUse = () => {
           </div>
           
           <h1 className="text-3xl font-bold mb-6 text-center">Условия использования</h1>
-          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 mx-[10px] px-[5px] py-[15px]">
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[36px] py-[42px] mx-[84px]">
             <p>
               Настоящие Условия использования (далее – Условия) регулируют порядок использования сайта www.granit-svg.ru, 
               принадлежащего Обществу с ограниченной ответственностью «Гранит» (далее – Компания). 
@@ -95,5 +97,4 @@ const TermsOfUse = () => {
       </div>
     </>;
 };
-
 export default TermsOfUse;

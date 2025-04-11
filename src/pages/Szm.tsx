@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Send, FileText, Truck, Settings, Factory, Shield, BarChart, Image, Layers } from 'lucide-react';
 import { CTASection } from '@/components/products/CTASection';
+
 const Szm = () => {
   useAnimateOnScroll();
   return <div className="w-full">
@@ -45,7 +46,7 @@ const Szm = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
               <div className="relative animate-on-scroll">
                 <div className="glass-card rounded-2xl overflow-hidden aspect-video">
-                  <img alt="ПСЗУ" className="object-cover w-full h-full" src="/lovable-uploads/0e7f48be-3ac6-4026-9e37-d11daf9ae4f6.jpg" />
+                  <img alt="ПСЗУ" className="object-cover w-full h-full" src="/lovable-uploads/cf8c95da-d145-405c-8f08-560759910d07.jpg" />
                 </div>
                 <div className="absolute -bottom-6 -left-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
                   <p className="font-semibold">ПСЗУ</p>
@@ -309,4 +310,5 @@ const Szm = () => {
       </section>
     </div>;
 };
+
 export default Szm;
