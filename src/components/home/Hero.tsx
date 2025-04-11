@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
             <div className="relative w-full max-w-md">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl"></div>
               <div className="relative glass-card rounded-2xl overflow-hidden aspect-[4/3] animate-float">
-                <img alt="Буровзрывные работы ООО Гранит" className="object-cover w-full h-full" loading="eager" src="https://alex-1212.github.io/sdn/lic/licensy_na%20_osyshestvlenie_deyatelnosti_svyazannoy_s_obrasheniem_vv_prom_1.jpg" />
+                <img alt="Буровзрывные работы ООО Гранит" className="object-cover w-full h-full" loading="eager" src="/lovable-uploads/70f9c3f7-a1ba-450a-a44f-1bb8754efd8c.jpg" />
               </div>
               
               <div className="absolute -bottom-4 -right-4 glass-card-accent rounded-xl p-4 max-w-[200px] animate-fade-in animate-delay-400">
