@@ -125,7 +125,7 @@ const About = () => {
           {/* Innovation and Technology */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1 animate-on-scroll">
-              <img src="https://granit-svg.ru/img-granit/szm1.webp" alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" />
+              <img alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" src="/lovable-uploads/8acd71c0-4c90-461e-850a-f4277ad3c5d3.jpg" />
             </div>
             
             <div className="order-1 lg:order-2 animate-on-scroll">
