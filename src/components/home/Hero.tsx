@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Send, Info } from 'lucide-react';
@@ -41,7 +40,7 @@ export const Hero: React.FC = () => {
             <div className="relative w-full max-w-md">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl"></div>
               <div className="relative glass-card rounded-2xl overflow-hidden aspect-[4/3] animate-float">
-                <img src="https://granit-svg.ru/img-granit/hero1.webp" alt="Буровзрывные работы ООО Гранит" className="object-cover w-full h-full" loading="eager" />
+                <img alt="Буровзрывные работы ООО Гранит" className="object-cover w-full h-full" loading="eager" src="/lovable-uploads/43c855fc-d94d-4fe3-aa60-73efc1bc8193.jpg" />
               </div>
               
               <div className="absolute -bottom-4 -right-4 glass-card-accent rounded-xl p-4 max-w-[200px] animate-fade-in animate-delay-400">
