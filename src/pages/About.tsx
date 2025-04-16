@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
+
 const About = () => {
   useAnimateOnScroll();
+  
   const advantages = [{
     icon: <Calendar className="h-6 w-6 text-primary" />,
     title: '10+ лет',
@@ -22,36 +24,49 @@ const About = () => {
     title: 'Безопасность',
     description: 'соответствие всем нормам и стандартам'
   }];
-  return <div className="w-full">
+
+  return (
+    <div className="w-full">
       <Helmet>
-        <title>О компании — ООО «Гранит»</title>
-        <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы." />
+        <title>О компании ООО «Гранит» — Производство и поставка ЭВВ</title>
+        <meta name="description" content="ООО «Гранит» — ведущий производитель эмульсионных взрывчатых веществ с собственными заводами в Забайкалье, Хабаровске и Якутии. 10 лет опыта в буровзрывных работах." />
+        <meta property="og:title" content="О компании ООО «Гранит» — Производство и поставка ЭВВ" />
+        <meta property="og:description" content="ООО «Гранит» — ведущий производитель эмульсионных взрывчатых веществ с собственными заводами в Забайкалье, Хабаровске и Якутии. 10 лет опыта в буровзрывных работах." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg" />
+        <link rel="canonical" href="https://granit-svg.ru/about" />
       </Helmet>
       
       {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden w-full">
+      <section className="pt-16 pb-20 relative overflow-hidden w-full" aria-label="О компании">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              О компании
+              О компании ООО «Гранит»
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">Компания ООО «Гранит» зарекомендовала себя как стабильный и ответственный участник рынка буровзрывных работ. За годы активной деятельности мы стали ключевым партнером для ряда компаний горнодобывающего сектора Дальнего Востока и Якутии, предлагая современные технологии и безупречный подход к выполнению задач.</p>
+            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">
+              Ведущий производитель эмульсионных взрывчатых веществ с 10-летним опытом работы в горнодобывающей промышленности
+            </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
-            {advantages.map((item, index) => <div key={index} className="glass-card rounded-xl p-6 text-center animate-fade-in" style={{
-            animationDelay: `${(index + 2) * 100}ms`
-          }}>
+            {advantages.map((item, index) => (
+              <div 
+                key={index} 
+                className="glass-card rounded-xl p-6 text-center animate-fade-in" 
+                style={{animationDelay: `${(index + 2) * 100}ms`}}
+              >
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 mb-4">
                   {item.icon}
                 </div>
-                <h3 className="about-advantage-title mb-2">{item.title}</h3>
+                <h2 className="about-advantage-title mb-2 text-xl font-semibold">{item.title}</h2>
                 <p className="text-muted-foreground">{item.description}</p>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -61,12 +76,12 @@ const About = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
-              <h2 className="section-title mb-6 animate-on-scroll">
+              <h2 className="section-title mb-6 animate-on-scroll text-3xl font-bold">
                 Более 10 лет успешной практики в буровзрывных работах
               </h2>
               
               <p className="text-lg mb-6 animate-on-scroll">
-                ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ), что позволяет нам быть независимыми от внешних поставщиков.
+                ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности.
               </p>
               
               <p className="text-muted-foreground mb-6 animate-on-scroll">
@@ -87,17 +102,24 @@ const About = () => {
             
             <div className="relative animate-on-scroll">
               <div className="glass-card rounded-2xl overflow-hidden aspect-[4/3]">
-                <img alt="Производственный комплекс ООО Гранит" className="object-cover w-full h-full" src="/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg" />
+                <img 
+                  alt="Производственный комплекс ООО Гранит - современное оборудование и технологии" 
+                  className="object-cover w-full h-full" 
+                  src="/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg"
+                  loading="lazy"
+                />
               </div>
               <div className="absolute -bottom-6 -right-6 glass-card-accent rounded-xl p-4 max-w-[200px]">
-                <p className="font-semibold">Собственное производство</p>
+                <h3 className="font-semibold text-lg">Собственное производство</h3>
                 <p className="text-sm text-inherit">Контроль качества на всех этапах</p>
               </div>
             </div>
           </div>
           
           {/* Production Facilities */}
-          <h2 className="section-title text-center mb-12 animate-on-scroll">Производственные мощности</h2>
+          <h2 className="section-title text-center mb-12 animate-on-scroll text-3xl font-bold">
+            Производственные мощности
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
@@ -125,11 +147,16 @@ const About = () => {
           {/* Innovation and Technology */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1 animate-on-scroll">
-              <img alt="Инновации и технологии" className="w-full rounded-2xl glass-card overflow-hidden" src="/lovable-uploads/d12d2cee-c48a-46f8-bda1-e1176d299cdd.jpg" />
+              <img 
+                alt="Инновационные технологии производства ЭВВ в ООО Гранит" 
+                className="w-full rounded-2xl glass-card overflow-hidden" 
+                src="/lovable-uploads/d12d2cee-c48a-46f8-bda1-e1176d299cdd.jpg"
+                loading="lazy"
+              />
             </div>
             
             <div className="order-1 lg:order-2 animate-on-scroll">
-              <h2 className="section-title mb-6">
+              <h2 className="section-title mb-6 text-3xl font-bold">
                 Инновации и технологии
               </h2>
               
@@ -173,7 +200,7 @@ const About = () => {
           {/* Environmental Responsibility */}
           <div className="bg-primary/5 dark:bg-primary/10 rounded-2xl p-8 md:p-12 mb-20 animate-on-scroll">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="section-title mb-6">
+              <h2 className="section-title mb-6 text-3xl font-bold">
                 Экологическая ответственность
               </h2>
               
@@ -201,14 +228,15 @@ const About = () => {
           
           {/* Team */}
           <div className="text-center mb-12 animate-on-scroll">
-            <h2 className="section-title mb-6">
+            <h2 className="section-title mb-6 text-3xl font-bold">
               Стратегия развития
             </h2>
             
             <p className="text-lg mb-8 max-w-3xl mx-auto">
 Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
             </p>
-          <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+            
+            <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
                 <Mail size={18} />
                 Связаться с нами
@@ -222,6 +250,8 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default About;
