@@ -8,7 +8,7 @@ const ContactMap: React.FC = () => {
   return (
     <div>
       <h2 className="text-2xl font-display font-semibold mb-6">
-        Наше местоположение
+        Расположение офиса
       </h2>
       
       <div className="glass-card rounded-xl overflow-hidden h-[400px]">
@@ -20,7 +20,8 @@ const ContactMap: React.FC = () => {
           allowFullScreen={true} 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade" 
-          title="Карта расположения ООО Гранит"
+          title="Карта расположения офиса ООО Гранит"
+          aria-label="Интерактивная карта с расположением офиса ООО Гранит"
         ></iframe>
       </div>
     </div>

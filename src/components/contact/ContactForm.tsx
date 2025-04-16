@@ -36,7 +36,7 @@ const ContactForm: React.FC = () => {
   return (
     <div>
       <h2 className="text-2xl font-display font-semibold mb-6">
-        Отправить сообщение
+        Форма обратной связи
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
