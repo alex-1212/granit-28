@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -20,12 +19,6 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
     const wordsPerMinute = 200; // Среднее количество слов в минуту
     const words = content.trim().split(/\s+/).length;
     return Math.ceil(words / wordsPerMinute);
-  };
-
-  // Получаем время публикации
-  const getPublishTime = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   };
 
   const readingTime = calculateReadingTime(newsItem.content);
@@ -63,7 +56,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground">
           <div className="flex items-center">
             <Calendar size={isMobile ? 12 : 14} className="mr-1" />
-            <span>{formatDate(newsItem.date)} {getPublishTime(newsItem.date)}</span>
+            <span>{formatDate(newsItem.date)}</span>
           </div>
           <div className="flex items-center">
             <Clock size={isMobile ? 12 : 14} className="mr-1" />
