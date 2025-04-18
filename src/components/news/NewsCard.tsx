@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { NewsItem } from '@/services/newsService';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -15,6 +15,21 @@ interface NewsCardProps {
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   const isMobile = useIsMobile();
 
+  // Функция для расчёта примерного времени чтения
+  const calculateReadingTime = (content: string): number => {
+    const wordsPerMinute = 200; // Среднее количество слов в минуту
+    const words = content.trim().split(/\s+/).length;
+    return Math.ceil(words / wordsPerMinute);
+  };
+
+  // Получаем время публикации
+  const getPublishTime = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const readingTime = calculateReadingTime(newsItem.content);
+
   return (
     <Card className="h-full flex flex-col overflow-hidden news-card hover:shadow-lg transition-all duration-300 group">
       <div className="relative overflow-hidden aspect-video">
@@ -23,7 +38,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
             src={newsItem.image} 
             alt={newsItem.title} 
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-            loading="lazy" // Добавляем ленивую загрузку
+            loading="lazy"
           />
           <div className="absolute top-2 md:top-3 right-2 md:right-3">
             <Badge 
@@ -45,9 +60,15 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
       </CardContent>
       
       <CardFooter className="px-3 md:px-5 pb-3 md:pb-5 pt-0 flex items-center justify-between">
-        <div className="flex items-center text-xs md:text-sm text-muted-foreground">
-          <Calendar size={isMobile ? 12 : 14} className="mr-1" />
-          <span>{formatDate(newsItem.date)}</span>
+        <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground">
+          <div className="flex items-center">
+            <Calendar size={isMobile ? 12 : 14} className="mr-1" />
+            <span>{formatDate(newsItem.date)} {getPublishTime(newsItem.date)}</span>
+          </div>
+          <div className="flex items-center">
+            <Clock size={isMobile ? 12 : 14} className="mr-1" />
+            <span>{readingTime} мин</span>
+          </div>
         </div>
         
         <Link 
