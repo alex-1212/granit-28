@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Filter, Plus } from 'lucide-react';
+import { Filter, Plus, Grid2X2, Briefcase, Cpu, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
 
@@ -14,13 +14,19 @@ interface NewsFiltersProps {
 
 const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
   const { user } = useAuth();
+
+  const categoryIcons = {
+    'Все': <Grid2X2 size={16} />,
+    'Проекты': <Briefcase size={16} />,
+    'Технологии': <Cpu size={16} />,
+    'События': <Calendar size={16} />
+  };
   
   return (
     <div className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-on-scroll">
       <h2 className="text-2xl font-semibold">Все публикации</h2>
       
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        {/* Add News Button - Only visible to authenticated users */}
         {user && (
           <Button 
             onClick={onCreateNews}
@@ -38,12 +44,13 @@ const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
+                className={`px-4 py-1.5 rounded-full text-sm transition-colors inline-flex items-center gap-2 ${
                   filter === category
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-secondary/80 hover:bg-secondary text-foreground'
                 }`}
               >
+                {categoryIcons[category]}
                 {category}
               </button>
             ))}
