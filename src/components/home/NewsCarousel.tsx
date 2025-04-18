@@ -29,6 +29,18 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
     return Math.max(1, Math.ceil(words / wordsPerMinute)); // Минимум 1 минута
   };
 
+  // Функция форматирования даты по умолчанию
+  const defaultFormatDate = (dateString: string) => {
+    try {
+      const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('ru-RU', options);
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return dateString;
+    }
+  };
+
   const formatDateFn = formatDate || defaultFormatDate;
 
   useEffect(() => {
