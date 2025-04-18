@@ -6,6 +6,7 @@ import { useDelayedLoading } from '@/hooks/use-delayed-loading';
 import {
   Carousel,
   CarouselContent,
+  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
