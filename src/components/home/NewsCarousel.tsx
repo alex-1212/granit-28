@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { NewsItem, getAllNews } from '@/services/newsService';
 import NewsCardSkeleton from '@/components/news/NewsCardSkeleton';
 import { useDelayedLoading } from '@/hooks/use-delayed-loading';
@@ -19,20 +20,13 @@ interface NewsCarouselProps {
 const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
-  
-  // Use delayed loading with 800ms minimum duration
   const isLoading = useDelayedLoading(isInitialLoading);
 
-  // Default date formatter if none provided
-  const defaultFormatDate = (dateString: string) => {
-    try {
-      const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-      const date = new Date(dateString);
-      return date.toLocaleDateString('ru-RU', options);
-    } catch (error) {
-      console.error('Error formatting date:', error);
-      return dateString;
-    }
+  // Функция для расчёта примерного времени чтения (100 слов в минуту)
+  const calculateReadingTime = (content: string): number => {
+    const wordsPerMinute = 100; // Среднее количество слов в минуту
+    const words = content.trim().split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / wordsPerMinute)); // Минимум 1 минута
   };
 
   const formatDateFn = formatDate || defaultFormatDate;
@@ -104,9 +98,16 @@ const NewsCarousel = ({ formatDate }: NewsCarouselProps) => {
                   <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground rounded-full">
                     {item.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    {formatDateFn(item.date)}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground flex items-center">
+                      <Calendar size={12} className="mr-1" />
+                      {formatDateFn(item.date)}
+                    </span>
+                    <span className="text-xs text-muted-foreground flex items-center">
+                      <Clock size={12} className="mr-1" />
+                      {calculateReadingTime(item.content)} мин
+                    </span>
+                  </div>
                 </div>
                 
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">

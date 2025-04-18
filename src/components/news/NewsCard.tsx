@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -14,11 +15,11 @@ interface NewsCardProps {
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   const isMobile = useIsMobile();
 
-  // Функция для расчёта примерного времени чтения
+  // Функция для расчёта примерного времени чтения (100 слов в минуту)
   const calculateReadingTime = (content: string): number => {
-    const wordsPerMinute = 200; // Среднее количество слов в минуту
+    const wordsPerMinute = 100; // Среднее количество слов в минуту
     const words = content.trim().split(/\s+/).length;
-    return Math.ceil(words / wordsPerMinute);
+    return Math.max(1, Math.ceil(words / wordsPerMinute)); // Минимум 1 минута
   };
 
   const readingTime = calculateReadingTime(newsItem.content);
