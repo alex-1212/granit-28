@@ -15,7 +15,7 @@ const languageFlags = {
     label: 'Русский',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 rounded-sm bg-gradient-to-r from-white via-blue-500 to-red-500"></span>
+        <span className="mr-2 text-lg">🇷🇺</span>
         Русский
       </span>
     )
@@ -24,7 +24,7 @@ const languageFlags = {
     label: 'English',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 rounded-sm bg-gradient-to-r from-red-600 via-white to-blue-600"></span>
+        <span className="mr-2 text-lg">🇺🇸</span>
         English
       </span>
     )
@@ -33,10 +33,7 @@ const languageFlags = {
     label: '中文',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 bg-red-600 relative">
-          <span className="absolute top-0 left-0 text-yellow-300 text-[0.5rem]">★</span>
-          <span className="absolute bottom-0 right-0 text-yellow-300 text-[0.5rem]">★</span>
-        </span>
+        <span className="mr-2 text-lg">🇨🇳</span>
         中文
       </span>
     )
@@ -44,7 +41,7 @@ const languageFlags = {
 };
 
 export const LanguageSwitcher = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   return (
     <DropdownMenu>
@@ -55,7 +52,8 @@ export const LanguageSwitcher = () => {
           className="flex items-center gap-2 px-3 bg-secondary/30 hover:bg-secondary/50 transition-colors"
         >
           <Languages size={16} className="opacity-70" />
-          <span className="text-sm font-medium">
+          <span className="text-sm font-medium flex items-center">
+            <span className="mr-2 text-lg">{language === 'ru' ? '🇷🇺' : language === 'en' ? '🇺🇸' : '🇨🇳'}</span>
             {languageFlags[language].label}
           </span>
         </Button>
@@ -74,3 +72,4 @@ export const LanguageSwitcher = () => {
     </DropdownMenu>
   );
 };
+
