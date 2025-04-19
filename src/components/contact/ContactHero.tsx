@@ -1,11 +1,9 @@
 
 import React from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { useLanguage } from '@/context/LanguageContext';
 
 const ContactHero: React.FC = () => {
   useAnimateOnScroll();
-  const { t } = useLanguage();
   
   return (
     <section className="pt-16 pb-20 relative overflow-hidden w-full">
@@ -16,11 +14,11 @@ const ContactHero: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-            {t('pages.contact.title')}
+            Контакты ООО «Гранит»
           </h1>
           
           <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-            {t('pages.contact.subtitle')}
+            Свяжитесь с нашей командой для получения профессиональной консультации по буровзрывным работам
           </p>
         </div>
       </div>

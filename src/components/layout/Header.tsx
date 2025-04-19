@@ -4,41 +4,38 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
-import { LanguageSwitcher } from './LanguageSwitcher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useLanguage } from '@/context/LanguageContext';
+
+const navItems = [{
+  name: 'Главная',
+  path: '/'
+}, {
+  name: 'Продукты и услуги',
+  path: '/products'
+}, {
+  name: 'Галерея',
+  path: '/gallery'
+}, {
+  name: 'Новости',
+  path: '/news'
+}, {
+  name: 'О компании',
+  path: '/about'
+}, {
+  name: 'ЧаВо',
+  path: '/faq'
+}, {
+  name: 'Контакты',
+  path: '/contact'
+}];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
-  const { t } = useLanguage();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-
-  const navItems = [{
-    name: t('menu.home'),
-    path: '/'
-  }, {
-    name: t('menu.products'),
-    path: '/products'
-  }, {
-    name: t('menu.gallery'),
-    path: '/gallery'
-  }, {
-    name: t('menu.news'),
-    path: '/news'
-  }, {
-    name: t('menu.about'),
-    path: '/about'
-  }, {
-    name: t('menu.faq'),
-    path: '/faq'
-  }, {
-    name: t('menu.contact'),
-    path: '/contact'
-  }];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,44 +68,26 @@ export const Header = () => {
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item, index) => (
-              <Link 
-                key={item.path} 
-                to={item.path} 
-                className={`nav-link animate-fade-in ${location.pathname === item.path || item.path !== '/' && location.pathname.startsWith(item.path) ? 'nav-link-active' : ''}`} 
-                style={{
-                  animationDelay: `${index * 100}ms`
-                }}
-              >
+            {navItems.map((item, index) => <Link key={item.path} to={item.path} className={`nav-link animate-fade-in ${location.pathname === item.path || item.path !== '/' && location.pathname.startsWith(item.path) ? 'nav-link-active' : ''}`} style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 {item.name}
-              </Link>
-            ))}
+              </Link>)}
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageSwitcher />
             <UserMenu />
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
-                <button 
-                  className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden" 
-                  aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
-                >
+                <button className="p-2 rounded-md hover:bg-secondary/50 transition-colors lg:hidden" aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}>
                   {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
                 </button>
               </SheetTrigger>
               <SheetContent side="right" className="p-0 pt-2 w-full sm:w-[300px] overflow-y-auto">
                 <nav className="pt-10 px-2 flex flex-col h-full">
-                  {navItems.map((item, index) => (
-                    <Link 
-                      key={item.path} 
-                      to={item.path} 
-                      className={`py-3 px-4 rounded-lg text-lg font-medium my-1 transition-colors ${location.pathname === item.path || item.path !== '/' && location.pathname.startsWith(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground' : 'hover:bg-muted/50'}`} 
-                      onClick={closeMenu}
-                    >
+                  {navItems.map((item, index) => <Link key={item.path} to={item.path} className={`py-3 px-4 rounded-lg text-lg font-medium my-1 transition-colors ${location.pathname === item.path || item.path !== '/' && location.pathname.startsWith(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground' : 'hover:bg-muted/50'}`} onClick={closeMenu}>
                       {item.name}
-                    </Link>
-                  ))}
+                    </Link>)}
                   
                   <div className="mt-auto pt-4 border-t border-border mt-6">
                     <p className="text-sm text-muted-foreground px-4 py-2">

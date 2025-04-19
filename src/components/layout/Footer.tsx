@@ -3,14 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/context/LanguageContext';
-
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
-  
-  return (
-    <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
+  return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
@@ -24,86 +19,86 @@ export const Footer: React.FC = () => {
               letterSpacing: '1px',
               marginBottom: '-20px'
             }}>
-                {t('footer.company')}
+                ООО «ГРАНИТ»
               </span>
             </Link>
             <p className="text-muted-foreground mb-6">
-              {t('footer.description')}
+              Специализированная компания по производству буровзрывных работ в сложных климатических условиях
             </p>
             <div className="flex space-x-4">
               <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
                 <Button variant="outline" size="sm" className="flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
                   <MessageSquare size={16} />
-                  {t('footer.writeToUs')}
+                  Напишите нам
                 </Button>
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.navigation')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Навигация</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.home')}
+                  Главная
                 </Link>
               </li>
               <li>
                 <Link to="/products" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.products')}
+                  Продукты и услуги
                 </Link>
               </li>
               <li>
                 <Link to="/news" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.news')}
+                  Новости
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.about')}
+                  О компании
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.contact')}
+                  Контакты
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.sections')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Разделы</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/gallery" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.gallery')}
+                  Галерея
                 </Link>
               </li>
               <li>
                 <Link to="/licenses" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.licenses')}
+                  Лицензии
                 </Link>
               </li>
               <li>
                 <Link to="/team" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.team')}
+                  Сотрудники
                 </Link>
               </li>
               <li>
                 <Link to="/careers" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.careers')}
+                  Вакансии
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.faq')}
+                  ЧаВо
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.contacts')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Контакты</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
@@ -130,23 +125,22 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {currentYear} {t('footer.company')}. {t('footer.rights')}
+              © {currentYear} ООО «ГРАНИТ». Все права защищены.
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
                 <Link to="/privacy-policy" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.privacyPolicy')}
+                  Политика конфиденциальности
                 </Link>
               </li>
               <li>
                 <Link to="/terms-of-use" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.termsOfUse')}
+                  Условия использования
                 </Link>
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
