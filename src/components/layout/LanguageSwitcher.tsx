@@ -15,7 +15,7 @@ const languageFlags = {
     label: 'Русский',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 rounded-sm bg-gradient-to-r from-white via-blue-500 to-red-500"></span>
+        <span className="mr-2 text-lg">🇷🇺</span>
         Русский
       </span>
     )
@@ -24,7 +24,7 @@ const languageFlags = {
     label: 'English',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 rounded-sm bg-gradient-to-r from-red-600 via-white to-blue-600"></span>
+        <span className="mr-2 text-lg">🇺🇸</span>
         English
       </span>
     )
@@ -33,10 +33,7 @@ const languageFlags = {
     label: '中文',
     icon: () => (
       <span className="flex items-center">
-        <span className="mr-2 w-5 h-3 bg-red-600 relative">
-          <span className="absolute top-0 left-0 text-yellow-300 text-[0.5rem]">★</span>
-          <span className="absolute bottom-0 right-0 text-yellow-300 text-[0.5rem]">★</span>
-        </span>
+        <span className="mr-2 text-lg">🇨🇳</span>
         中文
       </span>
     )
@@ -56,13 +53,7 @@ export const LanguageSwitcher = () => {
         >
           <Languages size={16} className="opacity-70" />
           <span className="text-sm font-medium flex items-center">
-            <span 
-              className={`mr-2 w-6 h-4 rounded inline-block bg-cover bg-center ${
-                language === 'ru' ? 'bg-[url("/public/images/ru-flag.png")]' : 
-                language === 'en' ? 'bg-[url("/public/images/us-flag.png")]' : 
-                'bg-[url("/public/images/cn-flag.png")]'
-              }`}
-            ></span>
+            <span className="mr-2 text-lg">{language === 'ru' ? '🇷🇺' : language === 'en' ? '🇺🇸' : '🇨🇳'}</span>
             {languageFlags[language].label}
           </span>
         </Button>
@@ -72,19 +63,13 @@ export const LanguageSwitcher = () => {
           <DropdownMenuItem 
             key={lang} 
             onClick={() => setLanguage(lang as 'ru' | 'en' | 'zh')} 
-            className="cursor-pointer hover:bg-secondary/30 transition-colors flex items-center"
+            className="cursor-pointer hover:bg-secondary/30 transition-colors"
           >
-            <span 
-              className={`mr-2 w-6 h-4 rounded inline-block bg-cover bg-center ${
-                lang === 'ru' ? 'bg-[url("/public/images/ru-flag.png")]' : 
-                lang === 'en' ? 'bg-[url("/public/images/us-flag.png")]' : 
-                'bg-[url("/public/images/cn-flag.png")]'
-              }`}
-            ></span>
-            {languageFlags[lang].label}
+            {languageFlags[lang].icon()}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
+
