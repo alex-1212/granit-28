@@ -52,5 +52,27 @@ export const en = {
     backToNews: 'Back to News',
     edit: 'Edit',
     delete: 'Delete',
+  },
+  // Footer
+  footer: {
+    company: 'GRANIT LLC',
+    description: 'Specialized company for drilling and blasting operations in harsh climatic conditions',
+    writeToUs: 'Write to us',
+    navigation: 'Navigation',
+    sections: 'Sections',
+    contacts: 'Contacts',
+    home: 'Home',
+    products: 'Products & Services',
+    news: 'News',
+    about: 'About Us',
+    contact: 'Contact',
+    gallery: 'Gallery',
+    licenses: 'Licenses',
+    team: 'Team',
+    careers: 'Careers',
+    faq: 'FAQ',
+    rights: 'All rights reserved.',
+    privacyPolicy: 'Privacy Policy',
+    termsOfUse: 'Terms of Use'
   }
 };

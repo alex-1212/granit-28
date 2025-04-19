@@ -52,5 +52,27 @@ export const zh = {
     backToNews: '返回新闻',
     edit: '编辑',
     delete: '删除',
+  },
+  // 页脚
+  footer: {
+    company: '格拉尼特有限责任公司',
+    description: '在恶劣气候条件下专业从事钻孔爆破作业的公司',
+    writeToUs: '给我们留言',
+    navigation: '导航',
+    sections: '章节',
+    contacts: '联系方式',
+    home: '首页',
+    products: '产品和服务',
+    news: '新闻',
+    about: '关于我们',
+    contact: '联系我们',
+    gallery: '图库',
+    licenses: '许可证',
+    team: '团队',
+    careers: '职业',
+    faq: '常见问题',
+    rights: '版权所有。',
+    privacyPolicy: '隐私政策',
+    termsOfUse: '使用条款'
   }
 };
