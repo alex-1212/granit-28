@@ -17,40 +17,32 @@ const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
   const { user } = useAuth();
   const { t, language } = useLanguage();
 
-  // Маппинг категорий для разных языков
-  const categoryMapping: Record<string, Category> = {
-    'ru': {
-      'all': 'Все',
-      'projects': 'Проекты',
-      'technologies': 'Технологии',
-      'events': 'События'
-    },
-    'en': {
-      'all': 'Все',
-      'projects': 'Проекты',
-      'technologies': 'Технологии',
-      'events': 'События'
-    },
-    'zh': {
-      'all': 'Все',
-      'projects': 'Проекты',
-      'technologies': 'Технологии',
-      'events': 'События'
-    }
-  };
-
+  // Получаем переводы категорий из файлов локализации
   const categories: Category[] = [
-    categoryMapping[language].all,
-    categoryMapping[language].projects,
-    categoryMapping[language].technologies,
-    categoryMapping[language].events
+    'Все',
+    'Проекты',
+    'Технологии',
+    'События'
   ];
 
+  // Соответствие категорий и иконок
   const categoryIcons = {
     'Все': <Grid2X2 size={16} />,
     'Проекты': <Briefcase size={16} />,
     'Технологии': <Cpu size={16} />,
     'События': <Calendar size={16} />
+  };
+  
+  // Функция для получения перевода категории
+  const getTranslatedCategory = (category: Category): string => {
+    const translationMap: Record<Category, string> = {
+      'Все': t('pages.news.filters.all'),
+      'Проекты': t('pages.news.filters.projects'),
+      'Технологии': t('pages.news.filters.technologies'),
+      'События': t('pages.news.filters.events')
+    };
+    
+    return translationMap[category];
   };
   
   return (
@@ -82,7 +74,7 @@ const NewsFilters = ({ filter, setFilter, onCreateNews }: NewsFiltersProps) => {
                 }`}
               >
                 {categoryIcons[category]}
-                {category}
+                {getTranslatedCategory(category)}
               </button>
             ))}
           </div>
