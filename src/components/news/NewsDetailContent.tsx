@@ -1,8 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
 import ShareButtons from '@/components/news/ShareButtons';
+import { Hashtag } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 interface NewsDetailContentProps {
   news: NewsItem;
@@ -10,6 +12,7 @@ interface NewsDetailContentProps {
 
 const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
   const { theme } = useTheme();
+  const [hashtags, setHashtags] = useState<string[]>([]);
 
   useEffect(() => {
     // Обновляем title при загрузке новости
@@ -37,9 +40,42 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
       document.head.appendChild(link);
     }
     
+    // Генерируем хэштеги на основе категории, заголовка и содержания
+    generateHashtags();
+    
     console.log('NewsDetailContent rendering with news:', news);
     console.log('News content:', news.content);
   }, [news]);
+
+  // Функция для генерации хэштегов на основе данных новости
+  const generateHashtags = () => {
+    const tags: string[] = [];
+    
+    // Добавляем категорию новости
+    tags.push(news.category);
+    
+    // Добавляем ключевые слова из заголовка
+    const titleWords = news.title.split(' ')
+      .filter(word => word.length > 5)
+      .slice(0, 2);
+    
+    // Создаем хэштеги для промышленности
+    const industryTags = ['ГранитБВР', 'Взрывработы', 'Промышленность', 'ЭВВ'];
+    
+    // Объединяем все теги
+    const allTags = [...tags, ...titleWords, ...industryTags];
+    
+    // Убираем пробелы и делаем первую букву большой
+    const formattedTags = allTags.map(tag => {
+      // Убираем все не-буквенно-цифровые символы и пробелы
+      const cleanTag = tag.replace(/[^\wа-яА-Я]/g, '');
+      // Делаем первую букву заглавной
+      return cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1);
+    });
+    
+    // Убираем дубликаты
+    setHashtags([...new Set(formattedTags)]);
+  };
 
   return (
     <section className="py-16">
@@ -62,6 +98,22 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
                 dangerouslySetInnerHTML={{ __html: news.content }}
               />
               
+              {hashtags.length > 0 && (
+                <div className="mt-8 mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Hashtag size={18} className="text-primary" />
+                    <h3 className="font-semibold">Хэштеги</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {hashtags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="text-sm">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
               <ShareButtons 
                 title={news.title}
                 url={window.location.href}
@@ -76,3 +128,4 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
 };
 
 export default NewsDetailContent;
+
