@@ -89,7 +89,11 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
                   <h3 className="text-lg font-semibold mb-3">Хэштеги:</h3>
                   <div className="flex flex-wrap gap-2">
                     {hashtags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-sm">
+                      <Badge 
+                        key={index} 
+                        variant="secondary" 
+                        className="text-sm transform transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-primary-foreground cursor-pointer"
+                      >
                         #{tag}
                       </Badge>
                     ))}
