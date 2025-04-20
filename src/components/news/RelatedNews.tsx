@@ -61,6 +61,10 @@ const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
                       <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'} group-hover:text-primary transition-colors`}>
                         {item.title}
                       </h3>
+
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {item.summary}
+                      </p>
                       
                       <Link 
                         to={`/news/${item.id}`}

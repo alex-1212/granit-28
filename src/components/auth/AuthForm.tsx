@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
@@ -19,9 +18,8 @@ const authFormSchema = z.object({
 type AuthFormValues = z.infer<typeof authFormSchema>;
 
 export const AuthForm = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   
   const form = useForm<AuthFormValues>({
@@ -36,42 +34,22 @@ export const AuthForm = () => {
     setIsLoading(true);
     
     try {
-      if (isSignIn) {
-        // Вход
-        const { error } = await signIn(values.email, values.password);
-        
-        if (error) {
-          toast({
-            title: 'Ошибка входа',
-            description: error.message,
-            variant: 'destructive',
-          });
-          return;
-        }
-        
+      const { error } = await signIn(values.email, values.password);
+      
+      if (error) {
         toast({
-          title: 'Успешный вход',
-          description: 'Вы успешно вошли в систему',
+          title: 'Ошибка входа',
+          description: error.message,
+          variant: 'destructive',
         });
-        navigate('/');
-      } else {
-        // Регистрация
-        const { error } = await signUp(values.email, values.password);
-        
-        if (error) {
-          toast({
-            title: 'Ошибка регистрации',
-            description: error.message,
-            variant: 'destructive',
-          });
-          return;
-        }
-        
-        toast({
-          title: 'Регистрация успешна',
-          description: 'Пожалуйста, проверьте свою почту для подтверждения',
-        });
+        return;
       }
+      
+      toast({
+        title: 'Успешный вход',
+        description: 'Вы успешно вошли в систему',
+      });
+      navigate('/');
     } catch (error) {
       toast({
         title: 'Произошла ошибка',
@@ -86,10 +64,8 @@ export const AuthForm = () => {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle>{isSignIn ? 'Вход в систему' : 'Регистрация'}</CardTitle>
-        <CardDescription>
-          {isSignIn ? 'Введите свои данные для входа' : 'Создайте аккаунт для доступа к системе'}
-        </CardDescription>
+        <CardTitle>Вход в систему</CardTitle>
+        <CardDescription>Введите свои данные для входа</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -125,28 +101,11 @@ export const AuthForm = () => {
               className="w-full" 
               disabled={isLoading}
             >
-              {isLoading 
-                ? 'Загрузка...' 
-                : isSignIn 
-                  ? 'Войти' 
-                  : 'Зарегистрироваться'
-              }
+              {isLoading ? 'Загрузка...' : 'Войти'}
             </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        <Button 
-          variant="link" 
-          onClick={() => setIsSignIn(!isSignIn)} 
-          className="text-sm"
-        >
-          {isSignIn 
-            ? 'Нет аккаунта? Зарегистрироваться' 
-            : 'Уже есть аккаунт? Войти'
-          }
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
