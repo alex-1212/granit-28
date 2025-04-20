@@ -14,10 +14,8 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
   const [hashtags, setHashtags] = useState<string[]>([]);
 
   useEffect(() => {
-    // Обновляем title при загрузке новости
     document.title = `${news.title} — ООО «Гранит» | Новости`;
     
-    // Обновляем meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', news.summary);
@@ -28,7 +26,6 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
       document.head.appendChild(meta);
     }
     
-    // Обновляем canonical URL
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) {
       canonicalLink.setAttribute('href', `https://granite-corp.ru/news/${news.slug}`);
@@ -39,41 +36,31 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
       document.head.appendChild(link);
     }
     
-    // Генерируем хэштеги на основе категории, заголовка и содержания
     generateHashtags();
     
     console.log('NewsDetailContent rendering with news:', news);
     console.log('News content:', news.content);
   }, [news]);
 
-  // Функция для генерации хэштегов на основе данных новости
   const generateHashtags = () => {
     const tags: string[] = [];
     
-    // Добавляем категорию новости
     tags.push(news.category);
     
-    // Добавляем ключевые слова из заголовка
     const titleWords = news.title.split(' ')
       .filter(word => word.length > 5)
       .slice(0, 2);
     
-    // Создаем хэштеги для промышленности
     const industryTags = ['ГранитБВР', 'Взрывработы', 'Промышленность', 'ЭВВ'];
     
-    // Объединяем все теги
     const allTags = [...tags, ...titleWords, ...industryTags];
     
-    // Убираем пробелы и делаем первую букву большой
     const formattedTags = allTags.map(tag => {
-      // Убираем все не-буквенно-цифровые символы и пробелы
       const cleanTag = tag.replace(/[^\wа-яА-Я]/g, '');
-      // Делаем первую букву заглавной
       return cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1);
     });
     
-    // Убираем дубликаты
-    setHashtags([...new Set(formattedTags)]);
+    setHashtags([...new Set(formattedTags)].slice(0, 10));
   };
 
   return (
@@ -99,10 +86,7 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
               
               {hashtags.length > 0 && (
                 <div className="mt-8 mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Hash size={18} className="text-primary" />
-                    <h3 className="font-semibold">Хэштеги</h3>
-                  </div>
+                  <h3 className="text-lg font-semibold mb-3">Хэштеги:</h3>
                   <div className="flex flex-wrap gap-2">
                     {hashtags.map((tag, index) => (
                       <Badge key={index} variant="secondary" className="text-sm">
