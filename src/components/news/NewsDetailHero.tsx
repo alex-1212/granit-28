@@ -1,19 +1,22 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Edit, Tag, Trash } from 'lucide-react';
+import { ArrowLeft, Calendar, Edit, Tag, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NewsItem } from '@/services/newsService';
+import { calculateReadingTime } from '@/components/home/utils/newsUtils';
 
 interface NewsDetailHeroProps {
   news: NewsItem;
   formatDate: (dateString: string) => string;
-  user: any; // Using any to match the existing code
+  user: any;
   onEdit: () => void;
   onDelete: () => void;
 }
 
 const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetailHeroProps) => {
+  const readingTime = calculateReadingTime(news.content);
+
   return (
     <section className="pt-16 pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
@@ -72,6 +75,11 @@ const NewsDetailHero = ({ news, formatDate, user, onEdit, onDelete }: NewsDetail
               <div className="flex items-center gap-1.5">
                 <Tag size={18} className="text-primary" />
                 <span>{news.category}</span>
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <Clock size={18} className="text-primary" />
+                <span>{readingTime} мин. чтения</span>
               </div>
             </div>
           </header>
