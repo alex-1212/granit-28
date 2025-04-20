@@ -101,21 +101,21 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-3">Завод в Забайкалье</h3>
+              <h3 className="text-xl font-semibold mb-3 text-center">Завод в Забайкалье</h3>
               <p className="text-muted-foreground mb-4">
                 С 2024 года запущено производство компонентов ЭВВ мощностью 30 тыс. тонн/год, включая «холодную» эмульсию для экстремальных условий.
               </p>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-3">Линия в Якутии</h3>
+              <h3 className="text-xl font-semibold mb-3 text-center">Линия в Якутии</h3>
               <p className="text-muted-foreground mb-4">
                 Выпуск эмульсионных патронов для заказчиков Дальнего Востока. Стратегическое расположение для минимизации логистических затрат.
               </p>
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-3">Производство в Хабаровске</h3>
+              <h3 className="text-xl font-semibold mb-3 text-center">Производство в Хабаровске</h3>
               <p className="text-muted-foreground mb-4">
                 Патроны, сенсибилизированные микросферами (диаметры 32–90 мм), для автономного применения на удаленных объектах.
               </p>
