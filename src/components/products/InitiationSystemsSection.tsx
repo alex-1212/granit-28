@@ -4,9 +4,7 @@ import { ArrowRight, Factory, Building, Leaf, MessageSquare } from 'lucide-react
 export const InitiationSystemsSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="animate-on-scroll">
-        <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
-          Передовые решения
-        </span>
+        <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">Инновационные решения</span>
         
         <h2 className="section-title mb-6">Завод по производству ВВ и линия патронирования</h2>
         
