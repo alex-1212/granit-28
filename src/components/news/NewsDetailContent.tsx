@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
 import ShareButtons from '@/components/news/ShareButtons';
-import { Hashtag } from 'lucide-react';
+import { Hash } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface NewsDetailContentProps {
@@ -101,7 +100,7 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
               {hashtags.length > 0 && (
                 <div className="mt-8 mb-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <Hashtag size={18} className="text-primary" />
+                    <Hash size={18} className="text-primary" />
                     <h3 className="font-semibold">Хэштеги</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -128,4 +127,3 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
 };
 
 export default NewsDetailContent;
-
