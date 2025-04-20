@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Edit, Tag, Clock } from 'lucide-react';
+import { ArrowLeft, Calendar, Edit, Tag, Clock, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NewsItem } from '@/services/newsService';
 import { calculateReadingTime } from '@/components/home/utils/newsUtils';
