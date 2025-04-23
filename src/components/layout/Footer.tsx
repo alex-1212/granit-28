@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import WorkingHours from '@/components/common/WorkingHours';
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
@@ -117,6 +119,11 @@ export const Footer: React.FC = () => {
                 <a href="https://go.2gis.com/1YfhD" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-primary transition-colors">
                  680001, г. Хабаровск ул. Строительная 28, офис 1
                 </a>
+              </li>
+              {/* Добавляем статус работы */}
+              <li className="flex items-start">
+                <div className="mr-3 mt-0.5 w-5 flex-shrink-0"></div>
+                <WorkingHours />
               </li>
             </ul>
           </div>
