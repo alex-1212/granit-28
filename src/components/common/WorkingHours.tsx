@@ -1,12 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Clock, Check, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-// ДО: интерфейс был неявный, исправляем на строго типизированный массив
 const schedule: {
-  day: number; // 0 - вс ... 6 - сб
+  day: number;
   label: string;
   short: string;
   open?: string;
@@ -40,7 +38,6 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
   const [currentDay, setCurrentDay] = useState<number>(new Date().getDay());
   const [currentTime, setCurrentTime] = useState<string>('');
   
-  // актуализация статуса каждую минуту
   useEffect(() => {
     const updateStatus = () => {
       const now = new Date();
@@ -59,8 +56,10 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
       if (!today?.open || !today.close) return;
 
       const nowMinutes = hours * 60 + minutes;
-      const openMinutes = parseInt(today.open) * 60 + parseInt(today.open.split(':')[1]);
-      const closeMinutes = parseInt(today.close) * 60 + parseInt(today.close.split(':')[1]);
+      const [hOpen, mOpen] = today.open.split(':').map(Number);
+      const [hClose, mClose] = today.close.split(':').map(Number);
+      const openMinutes = hOpen * 60 + mOpen;
+      const closeMinutes = hClose * 60 + mClose;
       const isWorkTime = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
 
       setIsOpen(isWorkTime);
@@ -75,7 +74,6 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
         setNextOpenTime(`сегодня в ${today?.open}`);
         return;
       }
-      // ищем следующий рабочий день
       let add = 1, d = (fromDay + 1) % 7;
       while (getScheduleByDay(d)?.closed) {
         d = (d + 1) % 7;
@@ -92,49 +90,48 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  // ТАЙЛЫ для страницы контакты
   if (variant === 'tiles') {
     return (
-      <div className={cn('w-full', className)}>
-        <div className="flex gap-3 overflow-x-auto pb-1">
+      <div className={cn('w-full', className, "bg-transparent shadow-none px-0 pb-0")}>
+        <div className="flex gap-1 justify-between w-full overflow-x-hidden pb-1 select-none">
           {schedule.map((day, idx) => {
             const isToday = day.day === currentDay;
             return (
               <div
                 key={day.day}
                 className={cn(
-                  "flex flex-col items-center px-4 py-3 rounded-lg min-w-[92px] shadow-md bg-white dark:bg-card border transition-all duration-200",
+                  "flex flex-col items-center px-1.5 py-1.5 sm:px-2 sm:py-2 rounded-md min-w-0 flex-1 transition-all duration-200",
                   isToday
-                    ? "bg-orange-500 text-white dark:bg-orange-500 font-bold scale-105"
-                    : "bg-white text-foreground hover:bg-accent/30 dark:bg-card dark:hover:bg-muted"
+                    ? "bg-orange-500 text-white font-bold scale-105"
+                    : "bg-white/80 text-foreground hover:bg-accent/30 dark:bg-card dark:hover:bg-muted"
                 )}
                 style={{
                   border: isToday ? '2px solid #fc984a' : '1px solid #ececec',
-                  boxShadow: isToday
-                    ? '0 2px 12px #fcc79444'
-                    : '0 1px 6px #0002'
+                  boxShadow: 'none',
+                  fontSize: "0.89rem",
+                  maxWidth: "50px",
                 }}
               >
-                <div className="text-base font-semibold mb-1">{day.short}</div>
+                <div className="text-xs font-semibold mb-1">{day.short}</div>
                 {day.closed
-                  ? <span className="text-sm text-gray-400 dark:text-gray-300">выходной</span>
-                  : <span className="text-sm">{day.open}-{day.close}</span>
+                  ? <span className="text-[11px] text-gray-400 dark:text-gray-300">выходной</span>
+                  : <span className="text-[11px]">{day.open}-{day.close}</span>
                 }
               </div>
             );
           })}
         </div>
-        <div className="mt-4 flex items-center gap-2 pl-1">
+        <div className="mt-3 flex items-center gap-2 pl-1 text-sm min-h-[25px]">
           {isOpen ? (
             <>
-              <Check size={18} className="text-green-500" />
+              <Check size={16} className="text-green-500" />
               <span className="font-medium">Открыто сейчас</span>
             </>
           ) : (
             <>
-              <X size={18} className="text-red-500" />
+              <X size={16} className="text-red-500" />
               <span className="font-medium">Закрыто</span>
-              <span className="ml-3 text-muted-foreground text-sm">Откроется {nextOpenTime}</span>
+              <span className="ml-2 text-muted-foreground text-xs">Откроется {nextOpenTime}</span>
             </>
           )}
         </div>
@@ -142,7 +139,6 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     );
   }
 
-  // КОМПАКТНЫЙ вариант только для футера с Popover
   if (variant === 'compact') {
     return (
       <div className={cn("flex items-center gap-2", className)}>
@@ -215,9 +211,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     );
   }
 
-  // ПОЛНЫЙ (старый) режим не используется, fallback только
   return <div>Режим работы</div>;
 };
 
 export default WorkingHours;
-
