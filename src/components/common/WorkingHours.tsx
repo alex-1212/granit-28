@@ -4,40 +4,28 @@ import { Clock, Check, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-// Данные о режиме работы
-const workingHours = {
-  1: { open: '9:00', close: '18:00' }, // Понедельник
-  2: { open: '9:00', close: '18:00' }, // Вторник
-  3: { open: '9:00', close: '18:00' }, // Среда
-  4: { open: '9:00', close: '18:00' }, // Четверг
-  5: { open: '9:00', close: '18:00' }, // Пятница
-  6: { closed: true }, // Суббота
-  0: { closed: true }, // Воскресенье
-};
+// ДО: интерфейс был неявный, исправляем на строго типизированный массив
+const schedule: {
+  day: number; // 0 - вс ... 6 - сб
+  label: string;
+  short: string;
+  open?: string;
+  close?: string;
+  closed?: boolean;
+}[] = [
+  { day: 1, label: 'Понедельник', short: 'Пн', open: '9:00', close: '18:00' },
+  { day: 2, label: 'Вторник', short: 'Вт', open: '9:00', close: '18:00' },
+  { day: 3, label: 'Среда', short: 'Ср', open: '9:00', close: '18:00' },
+  { day: 4, label: 'Четверг', short: 'Чт', open: '9:00', close: '18:00' },
+  { day: 5, label: 'Пятница', short: 'Пт', open: '9:00', close: '18:00' },
+  { day: 6, label: 'Суббота', short: 'Сб', closed: true },
+  { day: 0, label: 'Воскресенье', short: 'Вс', closed: true },
+];
 
-// Названия дней недели
-const dayNames = {
-  0: 'Воскресенье',
-  1: 'Понедельник',
-  2: 'Вторник',
-  3: 'Среда',
-  4: 'Четверг',
-  5: 'Пятница',
-  6: 'Суббота',
-};
-
-const shortDayNames = {
-  0: 'Вс',
-  1: 'Пн',
-  2: 'Вт',
-  3: 'Ср',
-  4: 'Чт',
-  5: 'Пт',
-  6: 'Сб',
-};
+const getScheduleByDay = (jsDay: number) => schedule.find(item => item.day === jsDay);
 
 interface WorkingHoursProps {
-  variant?: 'compact' | 'full';
+  variant?: 'compact' | 'full' | 'tiles';
   className?: string;
   showSchedule?: boolean;
 }
@@ -51,211 +39,185 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
   const [nextOpenTime, setNextOpenTime] = useState<string>('');
   const [currentDay, setCurrentDay] = useState<number>(new Date().getDay());
   const [currentTime, setCurrentTime] = useState<string>('');
-
-  // Функция для проверки, открыто ли сейчас
-  const checkIsOpen = () => {
-    const now = new Date();
-    const day = now.getDay(); // 0-6, где 0 - воскресенье
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const currentTimeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    
-    setCurrentDay(day);
-    setCurrentTime(currentTimeStr);
-    
-    // Если сегодня выходной, то закрыто
-    if (workingHours[day as keyof typeof workingHours].closed) {
-      setIsOpen(false);
-      calculateNextOpenTime(day);
-      return;
-    }
-    
-    // Получаем время открытия и закрытия для текущего дня
-    const dayHours = workingHours[day as keyof typeof workingHours];
-    const openTimeParts = dayHours.open.split(':').map(Number);
-    const closeTimeParts = dayHours.close.split(':').map(Number);
-    
-    // Переводим всё в минуты для удобства сравнения
-    const openTimeMinutes = openTimeParts[0] * 60 + openTimeParts[1];
-    const closeTimeMinutes = closeTimeParts[0] * 60 + closeTimeParts[1];
-    const currentTimeMinutes = hours * 60 + minutes;
-    
-    // Проверяем, находимся ли в рабочее время
-    const isWithinWorkingHours = currentTimeMinutes >= openTimeMinutes && currentTimeMinutes < closeTimeMinutes;
-    setIsOpen(isWithinWorkingHours);
-    
-    // Если закрыто, рассчитываем следующее время открытия
-    if (!isWithinWorkingHours) {
-      calculateNextOpenTime(day, currentTimeMinutes < openTimeMinutes);
-    }
-  };
   
-  // Функция для расчета следующего времени открытия
-  const calculateNextOpenTime = (currentDay: number, isBeforeOpening: boolean = false) => {
-    // Если сегодня рабочий день и еще не открылись
-    if (!workingHours[currentDay as keyof typeof workingHours].closed && isBeforeOpening) {
-      setNextOpenTime(`сегодня в ${workingHours[currentDay as keyof typeof workingHours].open}`);
-      return;
-    }
-    
-    // Иначе ищем следующий рабочий день
-    let nextDay = (currentDay + 1) % 7;
-    let daysToAdd = 1;
-    
-    // Пока не найдем рабочий день
-    while (workingHours[nextDay as keyof typeof workingHours].closed) {
-      nextDay = (nextDay + 1) % 7;
-      daysToAdd++;
-    }
-    
-    // Определяем сообщение в зависимости от того, когда следующий рабочий день
-    if (daysToAdd === 1) {
-      setNextOpenTime(`завтра в ${workingHours[nextDay as keyof typeof workingHours].open}`);
-    } else if (daysToAdd === 2 && currentDay === 5) { // Если сегодня пятница, то следующий - понедельник
-      setNextOpenTime(`в понедельник в ${workingHours[nextDay as keyof typeof workingHours].open}`);
-    } else {
-      setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${workingHours[nextDay as keyof typeof workingHours].open}`);
-    }
-  };
-  
-  // Проверяем статус каждую минуту
+  // актуализация статуса каждую минуту
   useEffect(() => {
-    checkIsOpen();
-    const interval = setInterval(checkIsOpen, 60000); // Каждую минуту
+    const updateStatus = () => {
+      const now = new Date();
+      const day = now.getDay();
+      setCurrentDay(day);
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      setCurrentTime(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
+
+      const today = getScheduleByDay(day);
+      if (today?.closed) {
+        setIsOpen(false);
+        calcNextOpen(day);
+        return;
+      }
+      if (!today?.open || !today.close) return;
+
+      const nowMinutes = hours * 60 + minutes;
+      const openMinutes = parseInt(today.open) * 60 + parseInt(today.open.split(':')[1]);
+      const closeMinutes = parseInt(today.close) * 60 + parseInt(today.close.split(':')[1]);
+      const isWorkTime = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
+
+      setIsOpen(isWorkTime);
+      if (!isWorkTime) {
+        calcNextOpen(day, nowMinutes < openMinutes);
+      }
+    };
+
+    const calcNextOpen = (fromDay: number, beforeOpen = false) => {
+      if (beforeOpen) {
+        const today = getScheduleByDay(fromDay);
+        setNextOpenTime(`сегодня в ${today?.open}`);
+        return;
+      }
+      // ищем следующий рабочий день
+      let add = 1, d = (fromDay + 1) % 7;
+      while (getScheduleByDay(d)?.closed) {
+        d = (d + 1) % 7;
+        add += 1;
+      }
+      const openDay = getScheduleByDay(d);
+      if (add === 1) setNextOpenTime(`завтра в ${openDay?.open}`);
+      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`в понедельник в ${openDay.open}`);
+      else setNextOpenTime(`в ${openDay?.label.toLowerCase()} в ${openDay?.open}`);
+    };
+
+    updateStatus();
+    const interval = setInterval(updateStatus, 60000);
     return () => clearInterval(interval);
   }, []);
-  
-  // Полное расписание для попапа
-  const renderFullSchedule = () => {
+
+  // ТАЙЛЫ для страницы контакты
+  if (variant === 'tiles') {
     return (
-      <div className="space-y-2">
-        {Array.from({ length: 7 }, (_, i) => {
-          // Начинаем с понедельника (индекс 1)
-          const dayIndex = (i + 1) % 7;
-          const dayInfo = workingHours[dayIndex as keyof typeof workingHours];
-          const isCurrentDay = dayIndex === currentDay;
-          
-          return (
-            <div 
-              key={dayIndex} 
-              className={cn(
-                "flex justify-between",
-                isCurrentDay && "font-bold text-primary"
-              )}
-            >
-              <span>{shortDayNames[dayIndex as keyof typeof shortDayNames]}:</span>
-              <span>
-                {dayInfo.closed 
-                  ? "Выходной" 
-                  : `${dayInfo.open} - ${dayInfo.close}`
-                }
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-  
-  // Компактный вариант отображения
-  if (variant === 'compact') {
-    return (
-      <div className={cn("flex items-center gap-2", className)}>
-        {showSchedule ? (
-          <Popover>
-            <PopoverTrigger asChild>
-              <button 
-                className="flex items-center gap-2 hover:text-primary transition-colors"
-                aria-label="Показать режим работы"
+      <div className={cn('w-full', className)}>
+        <div className="flex gap-3 overflow-x-auto pb-1">
+          {schedule.map((day, idx) => {
+            const isToday = day.day === currentDay;
+            return (
+              <div
+                key={day.day}
+                className={cn(
+                  "flex flex-col items-center px-4 py-3 rounded-lg min-w-[92px] shadow-md bg-white dark:bg-card border transition-all duration-200",
+                  isToday
+                    ? "bg-orange-500 text-white dark:bg-orange-500 font-bold scale-105"
+                    : "bg-white text-foreground hover:bg-accent/30 dark:bg-card dark:hover:bg-muted"
+                )}
+                style={{
+                  border: isToday ? '2px solid #fc984a' : '1px solid #ececec',
+                  boxShadow: isToday
+                    ? '0 2px 12px #fcc79444'
+                    : '0 1px 6px #0002'
+                }}
               >
-                {isOpen ? (
-                  <Clock size={20} className="text-green-500" />
-                ) : (
-                  <Clock size={20} className="text-red-500" />
-                )}
-                <span>
-                  {isOpen ? 'Открыто' : 'Закрыто'}
-                </span>
-              </button>
-            </PopoverTrigger>
-            <PopoverContent 
-              className="bg-secondary/90 backdrop-blur-sm border-border text-foreground p-4 w-64"
-              sideOffset={5}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 font-semibold">
-                  {isOpen ? (
-                    <>
-                      <Check size={20} className="text-green-500" />
-                      <span>Открыто сейчас</span>
-                    </>
-                  ) : (
-                    <>
-                      <X size={20} className="text-red-500" />
-                      <span>Закрыто</span>
-                    </>
-                  )}
-                </div>
-                
-                {!isOpen && (
-                  <div className="text-sm text-muted-foreground">
-                    Откроется {nextOpenTime}
-                  </div>
-                )}
-                
-                <div className="pt-2 border-t border-border">
-                  <h4 className="text-sm font-medium mb-2">Режим работы:</h4>
-                  {renderFullSchedule()}
-                </div>
+                <div className="text-base font-semibold mb-1">{day.short}</div>
+                {day.closed
+                  ? <span className="text-sm text-gray-400 dark:text-gray-300">выходной</span>
+                  : <span className="text-sm">{day.open}-{day.close}</span>
+                }
               </div>
-            </PopoverContent>
-          </Popover>
-        ) : (
-          <div className="flex items-center gap-2">
-            {isOpen ? (
-              <Clock size={20} className="text-green-500" />
-            ) : (
-              <Clock size={20} className="text-red-500" />
-            )}
-            <span>
-              {isOpen ? 'Открыто' : 'Закрыто'}
-            </span>
-          </div>
-        )}
-      </div>
-    );
-  }
-  
-  // Полный вариант для страницы контактов
-  return (
-    <div className={cn("space-y-4", className)}>
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
+            );
+          })}
+        </div>
+        <div className="mt-4 flex items-center gap-2 pl-1">
           {isOpen ? (
             <>
-              <Check size={20} className="text-green-500" />
+              <Check size={18} className="text-green-500" />
               <span className="font-medium">Открыто сейчас</span>
             </>
           ) : (
             <>
-              <X size={20} className="text-red-500" />
+              <X size={18} className="text-red-500" />
               <span className="font-medium">Закрыто</span>
+              <span className="ml-3 text-muted-foreground text-sm">Откроется {nextOpenTime}</span>
             </>
           )}
         </div>
-        
-        {!isOpen && (
-          <div className="text-sm text-muted-foreground">
-            Откроется {nextOpenTime}
-          </div>
-        )}
       </div>
-      
-      <div className="space-y-2">
-        {renderFullSchedule()}
+    );
+  }
+
+  // КОМПАКТНЫЙ вариант только для футера с Popover
+  if (variant === 'compact') {
+    return (
+      <div className={cn("flex items-center gap-2", className)}>
+        <Popover>
+          <PopoverTrigger asChild>
+            <button
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+              aria-label="Показать режим работы"
+              type="button"
+            >
+              {isOpen ? (
+                <Clock size={20} className="text-green-500" />
+              ) : (
+                <Clock size={20} className="text-red-500" />
+              )}
+              <span>
+                {isOpen ? 'Открыто' : 'Закрыто'}
+              </span>
+            </button>
+          </PopoverTrigger>
+          <PopoverContent
+            className="bg-gray-800 text-white border-none shadow-xl w-64 dark:bg-gray-900"
+            sideOffset={5}
+          >
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 font-semibold">
+                {isOpen ? (
+                  <>
+                    <Check size={20} className="text-green-400" />
+                    <span>Открыто сейчас</span>
+                  </>
+                ) : (
+                  <>
+                    <X size={20} className="text-red-400" />
+                    <span>Закрыто</span>
+                  </>
+                )}
+              </div>
+              {!isOpen && (
+                <div className="text-sm text-white/80">
+                  Откроется {nextOpenTime}
+                </div>
+              )}
+              <div className="pt-2 border-t border-white/10">
+                <h4 className="text-sm font-medium mb-2">Режим работы:</h4>
+                <div className="space-y-2">
+                  {schedule.map(day => (
+                    <div
+                      key={day.day}
+                      className={cn(
+                        "flex justify-between",
+                        day.day === currentDay && "font-bold text-orange-400"
+                      )}
+                    >
+                      <span>{day.short}:</span>
+                      <span>
+                        {day.closed
+                          ? "выходной"
+                          : `${day.open}-${day.close}`
+                        }
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // ПОЛНЫЙ (старый) режим не используется, fallback только
+  return <div>Режим работы</div>;
 };
 
 export default WorkingHours;
+
