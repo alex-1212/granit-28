@@ -1,19 +1,22 @@
 
 import React from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import WorkingHours from '@/components/common/WorkingHours';
 import { Button } from '@/components/ui/button';
 import { MapPin, Map } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+
 const OFFICE_ADDRESS = 'г. Хабаровск, ул. Строительная 28';
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/dir/?api=1&destination=г.+Хабаровск,+ул.+Строительная+28';
 const YANDEX_MAPS_URL = 'https://yandex.ru/maps/?rtext=~г.+Хабаровск,+ул.+Строительная+28';
 
 const ContactMap: React.FC = () => {
   useAnimateOnScroll();
+  const { t } = useLanguage();
+  
   return (
     <div>
       <h2 className="text-2xl font-display font-semibold mb-6">
-        Расположение офиса
+        {t('contact.officeLocation')}
       </h2>
       
       {/* 1. Карта */}
@@ -40,7 +43,7 @@ const ContactMap: React.FC = () => {
             className="w-full min-w-[0] text-xs py-2 px-2 font-semibold flex gap-2 justify-center border-primary hover:bg-primary/10 text-zinc-50"
           >
             <Map className="mr-2" size={16} />
-            Проложить путь: Google Maps
+            {t('contact.routeGoogle')}
           </Button>
         </a>
         <a href={YANDEX_MAPS_URL} className="flex-1" target="_blank" rel="noopener noreferrer">
@@ -50,15 +53,9 @@ const ContactMap: React.FC = () => {
             className="w-full min-w-[0] text-xs py-2 px-2 font-semibold flex gap-2 justify-center text-[#ffcc00] border-[#ffcc00] hover:bg-[#ffcc0055]"
           >
             <MapPin className="mr-2" size={16} />
-            Проложить путь: Яндекс.Карты
+            {t('contact.routeYandex')}
           </Button>
         </a>
-      </div>
-
-      {/* 3. Блок режим работы, без заднего фона */}
-      <div className="pt-2 pb-1 px-0 bg-transparent shadow-none">
-        <h3 className="text-xl font-semibold mb-3 pl-2">Режим работы</h3>
-        <WorkingHours variant="tiles" className="w-full mt-0" />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Clock, Check, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 const schedule: {
   day: number;
@@ -37,6 +39,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
   const [nextOpenTime, setNextOpenTime] = useState<string>('');
   const [currentDay, setCurrentDay] = useState<number>(new Date().getDay());
   const [currentTime, setCurrentTime] = useState<string>('');
+  const { t, language } = useLanguage();
   
   useEffect(() => {
     const updateStatus = () => {
@@ -71,7 +74,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     const calcNextOpen = (fromDay: number, beforeOpen = false) => {
       if (beforeOpen) {
         const today = getScheduleByDay(fromDay);
-        setNextOpenTime(`сегодня в ${today?.open}`);
+        setNextOpenTime(`${t('common.today')} ${t('common.openAt')} ${today?.open}`);
         return;
       }
       let add = 1, d = (fromDay + 1) % 7;
@@ -80,65 +83,17 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
         add += 1;
       }
       const openDay = getScheduleByDay(d);
-      if (add === 1) setNextOpenTime(`завтра в ${openDay?.open}`);
-      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`в понедельник в ${openDay.open}`);
-      else setNextOpenTime(`в ${openDay?.label.toLowerCase()} в ${openDay?.open}`);
+      if (add === 1) setNextOpenTime(`${t('common.tomorrow')} ${t('common.openAt')} ${openDay?.open}`);
+      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`${t('common.monday')} ${t('common.openAt')} ${openDay.open}`);
+      else setNextOpenTime(`${openDay?.label.toLowerCase()} ${t('common.openAt')} ${openDay?.open}`);
     };
 
     updateStatus();
     const interval = setInterval(updateStatus, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [t, language]);
 
-  if (variant === 'tiles') {
-    return (
-      <div className={cn('w-full', className, "bg-transparent shadow-none px-0 pb-0")}>
-        <div className="flex gap-1 justify-between w-full overflow-x-hidden pb-1 select-none">
-          {schedule.map((day, idx) => {
-            const isToday = day.day === currentDay;
-            return (
-              <div
-                key={day.day}
-                className={cn(
-                  "flex flex-col items-center px-1.5 py-1.5 sm:px-2 sm:py-2 rounded-md min-w-0 flex-1 transition-all duration-200",
-                  isToday
-                    ? "bg-orange-500 text-white font-bold scale-105"
-                    : "bg-white/80 text-foreground hover:bg-accent/30 dark:bg-card dark:hover:bg-muted"
-                )}
-                style={{
-                  border: isToday ? '2px solid #fc984a' : '1px solid #ececec',
-                  boxShadow: 'none',
-                  fontSize: "0.89rem",
-                  maxWidth: "50px",
-                }}
-              >
-                <div className="text-xs font-semibold mb-1">{day.short}</div>
-                {day.closed
-                  ? <span className="text-[11px] text-gray-400 dark:text-gray-300">выходной</span>
-                  : <span className="text-[11px]">{day.open}-{day.close}</span>
-                }
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-3 flex items-center gap-2 pl-1 text-sm min-h-[25px]">
-          {isOpen ? (
-            <>
-              <Check size={16} className="text-green-500" />
-              <span className="font-medium">Открыто сейчас</span>
-            </>
-          ) : (
-            <>
-              <X size={16} className="text-red-500" />
-              <span className="font-medium">Закрыто</span>
-              <span className="ml-2 text-muted-foreground text-xs">Откроется {nextOpenTime}</span>
-            </>
-          )}
-        </div>
-      </div>
-    );
-  }
-
+  // Удаляем вариант tiles, так как его нужно удалить со страницы Контакты
   if (variant === 'compact') {
     return (
       <div className={cn("flex items-center gap-2", className)}>
@@ -155,7 +110,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                 <Clock size={20} className="text-red-500" />
               )}
               <span>
-                {isOpen ? 'Открыто' : 'Закрыто'}
+                {isOpen ? `${t('common.openNow')}` : `${t('common.closed')}`}
               </span>
             </button>
           </PopoverTrigger>
@@ -168,22 +123,22 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                 {isOpen ? (
                   <>
                     <Check size={20} className="text-green-400" />
-                    <span>Открыто сейчас</span>
+                    <span>{t('common.openNow')}</span>
                   </>
                 ) : (
                   <>
                     <X size={20} className="text-red-400" />
-                    <span>Закрыто</span>
+                    <span>{t('common.closed')}</span>
                   </>
                 )}
               </div>
               {!isOpen && (
                 <div className="text-sm text-white/80">
-                  Откроется {nextOpenTime}
+                  {nextOpenTime}
                 </div>
               )}
               <div className="pt-2 border-t border-white/10">
-                <h4 className="text-sm font-medium mb-2">Режим работы:</h4>
+                <h4 className="text-sm font-medium mb-2">{t('common.workingHours')}:</h4>
                 <div className="space-y-2">
                   {schedule.map(day => (
                     <div
@@ -193,10 +148,10 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                         day.day === currentDay && "font-bold text-orange-400"
                       )}
                     >
-                      <span>{day.short}:</span>
+                      <span>{t(`common.days.${day.short.toLowerCase()}` as any)}:</span>
                       <span>
                         {day.closed
-                          ? "выходной"
+                          ? t('common.dayOff')
                           : `${day.open}-${day.close}`
                         }
                       </span>
@@ -211,7 +166,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     );
   }
 
-  return <div>Режим работы</div>;
+  return <div>{t('common.workingHours')}</div>;
 };
 
 export default WorkingHours;
