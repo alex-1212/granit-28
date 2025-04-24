@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
 import ContactHero from '@/components/contact/ContactHero';
-import ContactInfoCards from '@/components/contact/ContactInfoCards';
+import { ContactInfoCards } from '@/components/contact/ContactInfoCards';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactMap from '@/components/contact/ContactMap';
 
