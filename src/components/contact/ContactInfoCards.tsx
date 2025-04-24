@@ -10,10 +10,10 @@ import { useLanguage } from '@/context/LanguageContext';
 export const ContactInfoCards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-      <div className="glass-card p-8 rounded-xl animate-on-scroll">
+      <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
         <div className="flex flex-col items-center text-center">
-          <div className="w-14 h-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-            <Phone className="h-7 w-7 text-primary" />
+          <div className="mb-4 text-primary">
+            <Phone className="h-8 w-8" />
           </div>
           <h3 className="text-xl font-medium mb-4">Телефон для связи</h3>
           <a 
@@ -31,10 +31,10 @@ export const ContactInfoCards = () => {
         </div>
       </div>
       
-      <div className="glass-card p-8 rounded-xl animate-on-scroll">
+      <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
         <div className="flex flex-col items-center text-center">
-          <div className="w-14 h-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-            <Mail className="h-7 w-7 text-primary" />
+          <div className="mb-4 text-primary">
+            <Mail className="h-8 w-8" />
           </div>
           <h3 className="text-xl font-medium mb-4">Электронная почта</h3>
           <a 
@@ -49,10 +49,10 @@ export const ContactInfoCards = () => {
         </div>
       </div>
       
-      <div className="glass-card p-8 rounded-xl animate-on-scroll">
+      <div className="glass-card-solid p-5 rounded-lg animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
         <div className="flex flex-col items-center text-center">
-          <div className="w-14 h-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-            <MapPin className="h-7 w-7 text-primary" />
+          <div className="mb-4 text-primary">
+            <MapPin className="h-8 w-8" />
           </div>
           <h3 className="text-xl font-medium mb-4">Адрес офиса</h3>
           <p className="text-lg font-semibold mb-2">
@@ -70,3 +70,4 @@ export const ContactInfoCards = () => {
     </div>
   );
 };
+
