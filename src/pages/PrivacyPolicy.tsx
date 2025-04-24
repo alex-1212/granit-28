@@ -1,57 +1,96 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLanguage } from '@/context/LanguageContext';
-import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-
+import { Container } from '@/components/ui/container';
+import { Separator } from '@/components/ui/separator';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 const PrivacyPolicy = () => {
-  useAnimateOnScroll();
-  const { t } = useLanguage();
-  
-  useEffect(() => {
-    document.title = t('privacy.title') + ' — ООО «Гранит»';
-  }, [t]);
-
-  return (
-    <div className="w-full">
+  return <>
       <Helmet>
-        <title>{t('privacy.title')} — ООО «Гранит»</title>
+        <title>Политика конфиденциальности - ООО «Гранит»</title>
+        <meta name="description" content="Политика конфиденциальности сайта компании ООО «Гранит»" />
       </Helmet>
-      
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              {t('privacy.title')}
-            </h1>
+      <div className="py-12 bg-muted/30">
+        <Container>
+          <div className="mb-8">
+            <Link to="/">
+              <Button variant="outline" className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                <ArrowLeft size={16} />
+                Вернуться на главную
+              </Button>
+            </Link>
           </div>
-        </div>
-      </section>
-      
-      {/* Content Section */}
-      <section className="py-16 w-full">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="prose dark:prose-invert prose-headings:font-display prose-img:rounded-xl prose-img:mx-auto max-w-none">
-            <p>{t('privacy.content')}</p>
-
-            <div className="my-8 p-6 border border-border rounded-xl bg-card/50">
-              <p className="italic">
-                {t('privacy.content')}
-              </p>
-            </div>
+          
+          <h1 className="text-3xl font-bold mb-6 text-center">Политика конфиденциальности</h1>
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none px-[5px] mx-[11px] my-0 py-[15px]">
+            <p>
+              Настоящая Политика конфиденциальности (далее – Политика) действует в отношении всей 
+              информации, которую Общество с ограниченной ответственностью «Гранит» (далее – Компания), 
+              может получить о пользователе во время использования им сайта granit-svg.ru.
+            </p>
+            <p>
+              Использование сайта www.granit-svg.ru означает безоговорочное согласие пользователя с настоящей Политикой 
+              и указанными в ней условиями обработки его персональной информации. В случае несогласия с этими условиями 
+              пользователь должен воздержаться от использования сайта.
+            </p>
+            <Separator className="my-6" />
             
-            <div className="my-8">
-              <p>{t('privacy.content')}</p>
+            <h2 className="text-xl font-bold mt-8">1. Персональная информация пользователей, которую получает и обрабатывает Компания</h2>
+            <p>1.1. В рамках настоящей Политики под «персональной информацией пользователя» понимаются:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Имя, фамилия, email, телефон, которые пользователь предоставляет о себе самостоятельно через формы регистрации или обратной связи на сайте.</li>
+            </ul>
+            <p>1.2. Настоящая Политика применима только к сайту Компании www.granit-svg.ru. Компания не контролирует и не несет ответственность за сайты третьих лиц, на которые пользователь может перейти по ссылкам, доступным на сайте. На таких сайтах у пользователя может собираться или запрашиваться иная персональная информация, а также могут совершаться иные действия.</p>
+            <p>1.3. Компания исходит из того, что пользователь предоставляет достоверную и достаточную персональную информацию по вопросам, предлагаемым в формах регистрации, и поддерживает эту информацию в актуальном состоянии.</p>
+            
+            <h2 className="text-xl font-bold mt-8">2. Цели сбора и обработки персональной информации пользователей</h2>
+            <p>Компания собирает и хранит только те персональные данные, которые необходимы для улучшения качества сервиса и взаимодействия с пользователями.</p>
+            <p>Персональную информацию пользователя Компания может использовать в следующих целях:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Улучшение качества работы сайта и сервисов Компании.</li>
+              <li>Связь с пользователем, включая направление уведомлений, запросов и информации, касающихся использования сайта или оказания услуг.</li>
+              <li>Обработка заявок и запросов от пользователя.</li>
+            </ul>
+            
+            <h2 className="text-xl font-bold mt-8">3. Условия обработки персональной информации пользователя и её передачи третьим лицам</h2>
+            <p>3.1. Компания хранит персональную информацию пользователей до завершения взаимодействия с пользователем, если иное не предусмотрено законодательством РФ.</p>
+            <p>3.2. В отношении персональной информации пользователя сохраняется её конфиденциальность, кроме случаев добровольного предоставления пользователем информации о себе для общего доступа неограниченному кругу лиц.</p>
+            <p>3.3. Компания вправе передать персональную информацию пользователя третьим лицам (например, партнёрам, подрядчикам, платёжным системам) в следующих случаях:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Пользователь выразил свое согласие на такие действия.</li>
+              <li>Передача необходима в рамках использования пользователем определенного сервиса либо для оказания услуги пользователю.</li>
+              <li>Передача предусмотрена российским законодательством в рамках установленной законодательством процедуры.</li>
+            </ul>
+            <p>3.4. При обработке персональных данных пользователей Компания руководствуется Федеральным законом РФ № 152-ФЗ «О персональных данных».</p>
+            
+            <h2 className="text-xl font-bold mt-8">4. Права пользователей</h2>
+            <p>4.1. Пользователь имеет право на доступ к своим персональным данным. Для реализации этого права пользователь может обратиться в Компанию через форму обратной связи на сайте или по электронной почте: granit-svg@mail.ru.</p>
+            
+            <h2 className="text-xl font-bold mt-8">5. Меры, применяемые для защиты персональной информации пользователей</h2>
+            <p>5.1. Компания принимает необходимые и достаточные организационные и технические меры для защиты персональной информации пользователя от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения и иных неправомерных действий третьих лиц. К таким мерам относятся:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Шифрование данных.</li>
+              <li>Защита от несанкционированного доступа.</li>
+              <li>Регулярные аудиты безопасности.</li>
+            </ul>
+            
+            <h2 className="text-xl font-bold mt-8">6. Изменение Политики конфиденциальности</h2>
+            <p>6.1. Компания имеет право вносить изменения в настоящую Политику конфиденциальности. При внесении изменений в актуальной редакции указывается дата последнего обновления. Новая редакция Политики вступает в силу с момента её размещения, если иное не предусмотрено новой редакцией Политики.</p>
+            
+            <h2 className="text-xl font-bold mt-8">7. Обратная связь. Вопросы и предложения</h2>
+            <p>Все предложения и/или вопросы по поводу настоящей Политики следует сообщать в Компанию:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Через форму обратной связи на сайте www.granit-svg.ru.</li>
+              <li>По электронной почте: granit-svg@mail.ru.</li>
+            </ul>
+            
+            <div className="text-muted-foreground text-sm mt-8 italic">
+              Дата последнего обновления: 08.04.2025
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
+        </Container>
+      </div>
+    </>;
 };
-
 export default PrivacyPolicy;

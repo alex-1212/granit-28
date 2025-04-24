@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -93,10 +94,10 @@ const AppRoutes = () => (
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <LanguageProvider>
-        <ThemeProvider>
-          <TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <HelmetProvider>
+          <LanguageProvider>
             <BrowserRouter>
               <ScrollToTop />
               <AuthProvider>
@@ -112,10 +113,10 @@ const App = () => (
               <Sonner />
               <PageProgressBar />
             </BrowserRouter>
-          </TooltipProvider>
-        </ThemeProvider>
-      </LanguageProvider>
-    </HelmetProvider>
+          </LanguageProvider>
+        </HelmetProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

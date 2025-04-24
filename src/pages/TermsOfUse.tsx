@@ -1,57 +1,96 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLanguage } from '@/context/LanguageContext';
-import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-
+import { Container } from '@/components/ui/container';
+import { Separator } from '@/components/ui/separator';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 const TermsOfUse = () => {
-  useAnimateOnScroll();
-  const { t } = useLanguage();
-  
-  useEffect(() => {
-    document.title = t('terms.title') + ' — ООО «Гранит»';
-  }, [t]);
-
-  return (
-    <div className="w-full">
+  return <>
       <Helmet>
-        <title>{t('terms.title')} — ООО «Гранит»</title>
+        <title>Условия использования - ООО «Гранит»</title>
+        <meta name="description" content="Условия использования сайта компании ООО «Гранит»" />
       </Helmet>
-      
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
-        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              {t('terms.title')}
-            </h1>
+      <div className="py-12 bg-muted/30">
+        <Container>
+          <div className="mb-8">
+            <Link to="/">
+              <Button variant="outline" className="mb-4 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                <ArrowLeft size={16} />
+                Вернуться на главную
+              </Button>
+            </Link>
           </div>
-        </div>
-      </section>
-      
-      {/* Content Section */}
-      <section className="py-16 w-full">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="prose dark:prose-invert prose-headings:font-display prose-img:rounded-xl prose-img:mx-auto max-w-none">
-            <p>{t('terms.content')}</p>
-
-            <div className="my-8 p-6 border border-border rounded-xl bg-card/50">
-              <p className="italic">
-                {t('terms.content')}
-              </p>
-            </div>
+          
+          <h1 className="text-3xl font-bold mb-6 text-center">Условия использования</h1>
+          <div className="bg-card rounded-lg shadow-sm p-6 md:p-8 prose prose-gray dark:prose-invert max-w-none my-0 px-[5px] mx-[10px] py-[15px]">
+            <p>
+              Настоящие Условия использования (далее – Условия) регулируют порядок использования сайта www.granit-svg.ru, 
+              принадлежащего Обществу с ограниченной ответственностью «Гранит» (далее – Компания). 
+              Использование сайта означает безоговорочное согласие пользователя с настоящими Условиями. 
+              Если вы не согласны с какими-либо положениями, пожалуйста, воздержитесь от использования сайта.
+            </p>
+            <Separator className="my-6" />
             
-            <div className="my-8">
-              <p>{t('terms.content')}</p>
+            <h2 className="text-xl font-bold mt-8">1. Общие положения</h2>
+            <p>1.1. Сайт www.granit-svg.ru предназначен для предоставления информации о деятельности Компании, включая буровые и взрывные работы, а также для обработки запросов пользователей.</p>
+            <p>1.2. Настоящие Условия распространяются на всех посетителей и пользователей сайта.</p>
+            <p>1.3. Использование сайта подразумевает согласие пользователя с <Link to="/privacy-policy" className="text-primary hover:underline">Политикой конфиденциальности</Link>, которая является неотъемлемой частью настоящих Условий.</p>
+            
+            <h2 className="text-xl font-bold mt-8">2. Права и обязанности пользователя</h2>
+            <p>2.1. Пользователь обязуется:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Предоставлять достоверную информацию при заполнении форм регистрации или обратной связи.</li>
+              <li>Не использовать сайт в противоправных целях, включая распространение вредоносного программного обеспечения, спам или другие незаконные действия.</li>
+              <li>Не нарушать права других пользователей или третьих лиц.</li>
+            </ul>
+            <p>2.2. Пользователь имеет право:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Использовать сайт в личных и законных целях.</li>
+              <li>Получать доступ к персональным данным, предоставленным Компании, и требовать их удаления в соответствии с <Link to="/privacy-policy" className="text-primary hover:underline">Политикой конфиденциальности</Link>.</li>
+            </ul>
+            
+            <h2 className="text-xl font-bold mt-8">3. Права и обязанности Компании</h2>
+            <p>3.1. Компания обязуется:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Обеспечивать защиту персональных данных пользователей в соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».</li>
+              <li>Принимать необходимые меры для защиты сайта от несанкционированного доступа, включая шифрование данных, защиту от утечек и регулярные аудиты безопасности.</li>
+            </ul>
+            <p>3.2. Компания имеет право:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>В одностороннем порядке изменять настоящие Условия. Изменения вступают в силу с момента их публикации на сайте.</li>
+              <li>Ограничить или прекратить доступ пользователя к сайту в случае нарушения настоящих Условий.</li>
+            </ul>
+            
+            <h2 className="text-xl font-bold mt-8">4. Интеллектуальная собственность</h2>
+            <p>4.1. Все материалы, размещённые на сайте www.granit-svg.ru, включая тексты, изображения, логотипы, товарные знаки и другие элементы, являются интеллектуальной собственностью Компании или её партнёров.</p>
+            <p>4.2. Использование материалов сайта без предварительного письменного согласия Компании запрещено.</p>
+            
+            <h2 className="text-xl font-bold mt-8">5. Ответственность сторон</h2>
+            <p>5.1. Компания не несёт ответственности за:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Любые прямые или косвенные убытки, возникшие в результате использования или невозможности использования сайта.</li>
+              <li>Действия или контент сторонних сайтов, на которые могут вести ссылки с сайта www.granit-svg.ru.</li>
+            </ul>
+            <p>5.2. Пользователь несёт полную ответственность за любые действия, совершённые им на сайте, а также за все материалы, размещённые им на сайте.</p>
+            
+            <h2 className="text-xl font-bold mt-8">6. Законодательство и разрешение споров</h2>
+            <p>6.1. Настоящие Условия регулируются и толкуются в соответствии с законодательством Российской Федерации.</p>
+            <p>6.2. Все споры и разногласия, возникающие в связи с использованием сайта, разрешаются путём переговоров. В случае невозможности достижения соглашения спор передаётся на рассмотрение в суд по месту нахождения Компании.</p>
+            
+            <h2 className="text-xl font-bold mt-8">7. Обратная связь</h2>
+            <p>7.1. Для связи с Компанией по вопросам, связанным с настоящими Условиями, вы можете использовать следующие контакты:</p>
+            <ul className="list-disc pl-6 mt-4">
+              <li>Электронная почта: granit-svg@mail.ru.</li>
+              <li>Форма обратной связи на сайте www.granit-svg.ru.</li>
+            </ul>
+            
+            <div className="text-muted-foreground text-sm mt-8 italic">
+              Дата последнего обновления: 08.04.2025
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
+        </Container>
+      </div>
+    </>;
 };
-
 export default TermsOfUse;

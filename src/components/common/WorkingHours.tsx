@@ -13,13 +13,13 @@ const schedule: {
   close?: string;
   closed?: boolean;
 }[] = [
-  { day: 1, label: 'Понедельник', short: 'пн', open: '9:00', close: '18:00' },
-  { day: 2, label: 'Вторник', short: 'вт', open: '9:00', close: '18:00' },
-  { day: 3, label: 'Среда', short: 'ср', open: '9:00', close: '18:00' },
-  { day: 4, label: 'Четверг', short: 'чт', open: '9:00', close: '18:00' },
-  { day: 5, label: 'Пятница', short: 'пт', open: '9:00', close: '18:00' },
-  { day: 6, label: 'Суббота', short: 'сб', closed: true },
-  { day: 0, label: 'Воскресенье', short: 'вс', closed: true },
+  { day: 1, label: 'Понедельник', short: 'Пн', open: '9:00', close: '18:00' },
+  { day: 2, label: 'Вторник', short: 'Вт', open: '9:00', close: '18:00' },
+  { day: 3, label: 'Среда', short: 'Ср', open: '9:00', close: '18:00' },
+  { day: 4, label: 'Четверг', short: 'Чт', open: '9:00', close: '18:00' },
+  { day: 5, label: 'Пятница', short: 'Пт', open: '9:00', close: '18:00' },
+  { day: 6, label: 'Суббота', short: 'Сб', closed: true },
+  { day: 0, label: 'Воскресенье', short: 'Вс', closed: true },
 ];
 
 const getScheduleByDay = (jsDay: number) => schedule.find(item => item.day === jsDay);
@@ -84,7 +84,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
       }
       const openDay = getScheduleByDay(d);
       if (add === 1) setNextOpenTime(`${t('common.opensNext')} ${openDay?.open}`);
-      else if (add > 1 && openDay?.short === 'пн') setNextOpenTime(`${t('common.opensMonday')} ${openDay.open}`);
+      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`${t('common.opensMonday')} ${openDay.open}`);
       else setNextOpenTime(`${openDay?.label.toLowerCase()} ${t('common.openAt')} ${openDay?.open}`);
     };
 
@@ -147,7 +147,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                         day.day === currentDay && "font-bold text-orange-400"
                       )}
                     >
-                      <span>{t(`common.days.${day.short}`)}</span>
+                      <span>{t(`common.days.${day.short.toLowerCase()}`)}</span>
                       <span>
                         {day.closed
                           ? t('common.dayOff')
