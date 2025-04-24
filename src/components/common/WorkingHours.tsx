@@ -143,11 +143,11 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                     <div
                       key={day.day}
                       className={cn(
-                        "flex justify-between text-sm",
+                        "flex justify-between",
                         day.day === currentDay && "font-bold text-orange-400"
                       )}
                     >
-                      <span>{day.label}:</span>
+                      <span>{t(`common.days.${day.short}`)}</span>
                       <span>
                         {day.closed
                           ? t('common.dayOff')
