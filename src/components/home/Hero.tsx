@@ -1,7 +1,12 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Send, Info } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+
 export const Hero: React.FC = () => {
+  const { t } = useLanguage();
+  
   return <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden w-full">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
@@ -12,26 +17,26 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
             <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-fade-in">
-              Профессиональные буровзрывные работы
+              {t('hero.tagline')}
             </span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 animate-fade-in animate-delay-100">
-              Специализированная компания по производству буровзрывных работ
+              {t('hero.title')}
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg animate-fade-in animate-delay-200">
-              Производим эмульсионные взрывчатые вещества (ЭВВ) собственного производства для проектов на Дальнем Востоке. Работаем в сложных климатических условиях.
+              {t('hero.subtitle')}
             </p>
             
             <div className="flex flex-wrap gap-4 animate-fade-in animate-delay-300">
               <Link to="/contact" className="btn-primary">
                 <Send size={18} />
-                Оставить заявку
+                {t('hero.contactButton')}
               </Link>
               
               <Link to="/about" className="btn-outline">
                 <Info size={18} />
-                О компании
+                {t('hero.aboutButton')}
               </Link>
             </div>
           </div>
@@ -44,8 +49,8 @@ export const Hero: React.FC = () => {
               </div>
               
               <div className="absolute -bottom-4 -right-4 glass-card-accent rounded-xl p-4 max-w-[200px] animate-fade-in animate-delay-400">
-                <p className="font-semibold mb-1">10+ лет опыта</p>
-                <p className="text-sm text-inherit">в буровзрывных работах на Дальнем Востоке</p>
+                <p className="font-semibold mb-1">{t('hero.experience')}</p>
+                <p className="text-sm text-inherit">{t('hero.experienceDesc')}</p>
               </div>
             </div>
           </div>

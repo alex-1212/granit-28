@@ -5,6 +5,7 @@ import {
   Drill, Hammer, Wrench, Pickaxe, Shovel, Construction,
   Building, Compass, Mountain, Package, Map, Earth, Landmark, Target, Bomb
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -29,37 +30,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
 };
 
 export const Services: React.FC = () => {
-  const services = [
-    {
-      icon: <Pickaxe size={24} />,
-      title: 'Буровые работы',
-      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
-    },
-    {
-      icon: <Bomb size={24} />,
-      title: 'Взрывные работы',
-      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
-    },
-    {
-      icon: <Target size={24} />,
-      title: 'Специальные взрывные работы',
-      description: 'Выполняем специальные взрывные работы повышенной сложности в труднодоступных районах.',
-    },
-    {
-      icon: <Settings size={24} />,
-      title: 'Механический демонтаж',
-      description: 'Осуществляем работы по механическому демонтажу объектов с соблюдением всех требований безопасности.',
-    },
-    {
-      icon: <FileText size={24} />,
-      title: 'Маркшейдерские работы',
-      description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
-    },
-    {
-      icon: <Factory size={24} />,
-      title: 'Производство ЭВВ',
-      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
-    },
+  const { t } = useLanguage();
+  
+  const icons = [
+    <Pickaxe size={24} />,
+    <Bomb size={24} />,
+    <Target size={24} />,
+    <Settings size={24} />,
+    <FileText size={24} />,
+    <Factory size={24} />,
   ];
 
   return (
@@ -68,17 +47,17 @@ export const Services: React.FC = () => {
       
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="section-title animate-on-scroll">Наши услуги</h2>
+          <h2 className="section-title animate-on-scroll">{t('services.title')}</h2>
           <p className="section-subtitle mx-auto animate-on-scroll">
-            Мы предлагаем полный спектр услуг в сфере буровзрывных работ, от разработки проекта до его реализации в самых сложных климатических условиях.
+            {t('services.subtitle')}
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => (
+          {t('services.items').map((service, index) => (
             <ServiceCard
               key={index}
-              icon={service.icon}
+              icon={icons[index]}
               title={service.title}
               description={service.description}
               delay={index * 100}

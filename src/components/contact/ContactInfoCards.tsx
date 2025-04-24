@@ -1,77 +1,86 @@
 
 import React from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
-import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import {
+  Mail,
+  MapPin,
+  Phone,
+  ExternalLink
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
-const ContactInfoCards: React.FC = () => {
-  useAnimateOnScroll();
+export const ContactInfoCards = () => {
+  const { t } = useLanguage();
   
   return (
-    <section className="py-16 w-full" aria-labelledby="contact-methods">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h2 id="contact-methods" className="sr-only">Способы связи</h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="animate-on-scroll">
-            <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                <Phone className="h-6 w-6 text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  Телефон для связи
-                </h3>
-                <a href="tel:+79145418570" className="text-muted-foreground hover:text-primary transition-colors mb-2 block">
-                  +7 914 541 85 70
-                </a>
-                <a href="https://wa.me/+79145418570" className="text-primary text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-                  Написать в WhatsApp
-                </a>
-              </div>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="glass-card p-6 rounded-lg animate-on-scroll">
+        <div className="mb-4 flex items-center">
+          <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
+            <Phone className="h-5 w-5 text-primary" />
           </div>
-          
-          <div className="animate-on-scroll">
-            <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  Электронная почта
-                </h3>
-                <a href="mailto:granit-svg@mail.ru" className="text-muted-foreground hover:text-primary transition-colors mb-2 block">
-                  granit-svg@mail.ru
-                </a>
-                <p className="text-sm text-muted-foreground">
-                  Среднее время ответа: 24 часа
-                </p>
-              </div>
-            </div>
+          <h3 className="text-lg font-medium">{t('contact.phoneNumber')}</h3>
+        </div>
+        <div className="space-y-2">
+          <a 
+            href="tel:+79145418570" 
+            className="block text-lg font-semibold hover:text-primary transition-colors"
+          >
+            +7 (914) 541-85-70
+          </a>
+        </div>
+      </div>
+      
+      <div className="glass-card p-6 rounded-lg animate-on-scroll">
+        <div className="mb-4 flex items-center">
+          <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
+            <Mail className="h-5 w-5 text-primary" />
           </div>
+          <h3 className="text-lg font-medium">{t('contact.email')}</h3>
+        </div>
+        <div className="space-y-2">
+          <a 
+            href="mailto:granit-svg@mail.ru" 
+            className="block text-lg font-semibold hover:text-primary transition-colors"
+          >
+            granit-svg@mail.ru
+          </a>
+        </div>
+      </div>
+      
+      <div className="glass-card p-6 rounded-lg animate-on-scroll">
+        <div className="mb-4 flex items-center">
+          <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
+            <MapPin className="h-5 w-5 text-primary" />
+          </div>
+          <h3 className="text-lg font-medium">{t('contact.address')}</h3>
+        </div>
+        <div className="space-y-2">
+          <p className="mb-4">
+            680001, г. Хабаровск<br /> 
+            ул. Строительная 28, офис 1
+          </p>
           
-          <div className="animate-on-scroll">
-            <div className="glass-card-solid rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  Адрес офиса
-                </h3>
-                <p className="text-muted-foreground mb-2">
-                  г. Хабаровск ул. Строительная 28
-                </p>
-                <a href="https://go.2gis.com/1YfhD" className="text-primary text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-                  Открыть на карте
-                </a>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a 
+              href="https://goo.gl/maps/HTjw9T1sXb8ZJHRQA" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-outline flex items-center justify-center gap-2 text-sm px-3 py-2 w-full sm:w-auto"
+            >
+              <ExternalLink size={16} /> {t('contact.routeGoogle')}
+            </a>
+            <a 
+              href="https://go.2gis.com/1YfhD" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-outline flex items-center justify-center gap-2 text-sm px-3 py-2 w-full sm:w-auto"
+            >
+              <ExternalLink size={16} /> {t('contact.routeYandex')}
+            </a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
-
-export default ContactInfoCards;

@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
-import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -11,8 +10,8 @@ const FAQ = () => {
   const { t } = useLanguage();
   
   useEffect(() => {
-    document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
-  }, []);
+    document.title = t('faq.title') + ' — ООО «Гранит»';
+  }, [t]);
   
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -43,7 +42,7 @@ const FAQ = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
-              {faqData.map((item, index) => (
+              {t('faq.questions').map((item, index) => (
                 <div 
                   key={index} 
                   className="rounded-xl glass-card-solid animate-on-scroll"

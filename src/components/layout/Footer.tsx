@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
               </span>
             </Link>
             <p className="text-muted-foreground mb-6">
-              Специализированная компания по производству буровзрывных работ в сложных климатических условиях
+              {t('footer.companyDescription')}
             </p>
             <div className="flex space-x-4">
               <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
