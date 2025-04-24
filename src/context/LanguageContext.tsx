@@ -5,9 +5,9 @@ import { SupportedLanguage, TranslationKeys, translations } from '@/translations
 interface LanguageContextProps {
   language: SupportedLanguage;
   setLanguage: (lang: SupportedLanguage) => void;
-  t: <K extends keyof TranslationKeys>(
+  t: <K extends string>(
     key: K
-  ) => TranslationKeys[K];
+  ) => string;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
@@ -37,7 +37,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   };
 
   // Функция для получения перевода по ключу
-  const t = <K extends keyof TranslationKeys>(key: K): TranslationKeys[K] => {
+  const t = <K extends string>(key: K): string => {
     // Разбиваем ключ на части для доступа к вложенным объектам
     const keys = String(key).split('.');
     let result: any = translations[language];
@@ -54,12 +54,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
             if (fallback && fk in fallback) {
               fallback = fallback[fk];
             } else {
-              return key as any; // Возвращаем сам ключ, если перевод не найден
+              return key; // Возвращаем сам ключ, если перевод не найден
             }
           }
           return fallback;
         }
-        return key as any; // Возвращаем сам ключ, если перевод не найден
+        return key; // Возвращаем сам ключ, если перевод не найден
       }
     }
     

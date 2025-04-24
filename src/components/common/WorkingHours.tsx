@@ -110,7 +110,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                 <Clock size={20} className="text-red-500" />
               )}
               <span>
-                {isOpen ? `${t('common.openNow')}` : `${t('common.closed')}`}
+                {isOpen ? t('common.openNow') : t('common.closed')}
               </span>
             </button>
           </PopoverTrigger>
@@ -148,7 +148,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                         day.day === currentDay && "font-bold text-orange-400"
                       )}
                     >
-                      <span>{t(`common.days.${day.short.toLowerCase()}` as any)}:</span>
+                      <span>{t(`common.days.${day.short.toLowerCase()}`)}</span>
                       <span>
                         {day.closed
                           ? t('common.dayOff')
