@@ -15,12 +15,18 @@ export const zhTranslations = {
     contacts: '联系方式',
     rights: '版权所有',
     privacyPolicy: '隐私政策',
-    termsOfUse: '使用条款'
+    termsOfUse: '使用条款',
+    licenses: '许可证',
+    team: '团队',
+    careers: '职业机会'
   },
   common: {
     openNow: '现在营业',
+    closedNow: '现在关闭',
     closed: '已关闭',
-    openAt: '开放时间',
+    openAt: '在',
+    opensNext: '明天开放于',
+    opensMonday: '星期一开放于',
     workingHours: '营业时间',
     today: '今天',
     tomorrow: '明天',
@@ -44,5 +50,21 @@ export const zhTranslations = {
     email: '电子邮件',
     address: '地址',
     sendMessage: '发送消息'
+  },
+  faq: {
+    title: '常见问题',
+    subtitle: '关于我们公司、服务和技术的最常见问题的答案',
+    notFound: '没有找到您问题的答案？',
+    contactUs: '我们的专家随时准备回答您关于钻探和爆破作业、技术和公司服务的任何问题',
+    contactButton: '联系我们'
+  },
+  gallery: {
+    title: '图库',
+    subtitle: '我们的工作和设备照片',
+    imageOf: '图片',
+    nextImage: '下一张图片',
+    prevImage: '上一张图片',
+    closeGallery: '关闭图库',
+    imageCounter: '图片 {current}/{total}'
   }
 };

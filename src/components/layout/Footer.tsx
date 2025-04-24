@@ -81,17 +81,17 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/licenses" className="text-foreground/80 hover:text-primary transition-colors">
-                  Лицензии
+                  {t('footer.licenses')}
                 </Link>
               </li>
               <li>
                 <Link to="/team" className="text-foreground/80 hover:text-primary transition-colors">
-                  Сотрудники
+                  {t('footer.team')}
                 </Link>
               </li>
               <li>
                 <Link to="/careers" className="text-foreground/80 hover:text-primary transition-colors">
-                  Вакансии
+                  {t('footer.careers')}
                 </Link>
               </li>
               <li>

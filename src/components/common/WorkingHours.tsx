@@ -83,8 +83,8 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
         add += 1;
       }
       const openDay = getScheduleByDay(d);
-      if (add === 1) setNextOpenTime(`${t('common.tomorrow')} ${t('common.openAt')} ${openDay?.open}`);
-      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`${t('common.monday')} ${t('common.openAt')} ${openDay.open}`);
+      if (add === 1) setNextOpenTime(`${t('common.opensNext')} ${openDay?.open}`);
+      else if (add > 1 && openDay?.short === 'Пн') setNextOpenTime(`${t('common.opensMonday')} ${openDay.open}`);
       else setNextOpenTime(`${openDay?.label.toLowerCase()} ${t('common.openAt')} ${openDay?.open}`);
     };
 
@@ -93,7 +93,6 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     return () => clearInterval(interval);
   }, [t, language]);
 
-  // Удаляем вариант tiles, так как его нужно удалить со страницы Контакты
   if (variant === 'compact') {
     return (
       <div className={cn("flex items-center gap-2", className)}>
@@ -110,7 +109,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                 <Clock size={20} className="text-red-500" />
               )}
               <span>
-                {isOpen ? t('common.openNow') : t('common.closed')}
+                {isOpen ? t('common.openNow') : t('common.closedNow')}
               </span>
             </button>
           </PopoverTrigger>
@@ -128,7 +127,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                 ) : (
                   <>
                     <X size={20} className="text-red-400" />
-                    <span>{t('common.closed')}</span>
+                    <span>{t('common.closedNow')}</span>
                   </>
                 )}
               </div>

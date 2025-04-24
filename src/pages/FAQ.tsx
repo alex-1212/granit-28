@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
 import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { useLanguage } from '@/context/LanguageContext';
 
 const FAQ = () => {
   useAnimateOnScroll();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLanguage();
   
   useEffect(() => {
     document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
@@ -26,11 +28,11 @@ const FAQ = () => {
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              Часто задаваемые вопросы
+              {t('faq.title')}
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Ответы на наиболее распространенные вопросы о нашей компании, услугах и технологиях
+              {t('faq.subtitle')}
             </p>
           </div>
         </div>
@@ -83,11 +85,11 @@ const FAQ = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="section-title mb-6 animate-on-scroll">
-              Не нашли ответ на свой вопрос?
+              {t('faq.notFound')}
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
-              Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании
+              {t('faq.contactUs')}
             </p>
             
             <a 
@@ -95,7 +97,7 @@ const FAQ = () => {
               className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
             >
               <MessageCircle size={18} />
-              Связаться с нами
+              {t('faq.contactButton')}
             </a>
           </div>
         </div>

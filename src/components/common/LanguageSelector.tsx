@@ -10,10 +10,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { SupportedLanguage, supportedLanguages, getLanguageFlag } from '@/translations';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const LanguageSelector: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleLanguageChange = (lang: SupportedLanguage) => {
     setLanguage(lang);
@@ -28,11 +30,17 @@ const LanguageSelector: React.FC = () => {
           size="sm" 
           className="flex items-center gap-1 px-2 hover:bg-primary/10"
         >
-          <Languages size={18} className="mr-1" />
-          <span className="flex items-center">
-            {getLanguageFlag(language)} <span className="ml-1 text-xs font-bold">{language.toUpperCase()}</span>
-          </span>
-          <ChevronDown size={14} className={`ml-1 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+          {isMobile ? (
+            <Languages size={18} />
+          ) : (
+            <>
+              <Languages size={18} className="mr-1" />
+              <span className="flex items-center">
+                {getLanguageFlag(language)} <span className="ml-1 text-xs font-bold">{language.toUpperCase()}</span>
+              </span>
+              <ChevronDown size={14} className={`ml-1 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+            </>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={5} className="w-[150px]">

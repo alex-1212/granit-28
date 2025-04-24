@@ -4,6 +4,7 @@ import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Button } from '@/components/ui/button';
 import { MapPin, Map } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const OFFICE_ADDRESS = 'г. Хабаровск, ул. Строительная 28';
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/dir/?api=1&destination=г.+Хабаровск,+ул.+Строительная+28';
@@ -12,6 +13,7 @@ const YANDEX_MAPS_URL = 'https://yandex.ru/maps/?rtext=~г.+Хабаровск,+
 const ContactMap: React.FC = () => {
   useAnimateOnScroll();
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   
   return (
     <div>
@@ -35,8 +37,8 @@ const ContactMap: React.FC = () => {
       </div>
 
       {/* 2. Кнопки прокладки маршрута */}
-      <div className="flex gap-3 mb-5 w-full">
-        <a href={GOOGLE_MAPS_URL} className="flex-1" target="_blank" rel="noopener noreferrer">
+      <div className={`flex ${isMobile ? 'flex-col' : 'gap-3'} mb-5 w-full`}>
+        <a href={GOOGLE_MAPS_URL} className={`${isMobile ? 'mb-3' : 'flex-1'}`} target="_blank" rel="noopener noreferrer">
           <Button
             variant="outline"
             size="sm"
@@ -46,7 +48,7 @@ const ContactMap: React.FC = () => {
             {t('contact.routeGoogle')}
           </Button>
         </a>
-        <a href={YANDEX_MAPS_URL} className="flex-1" target="_blank" rel="noopener noreferrer">
+        <a href={YANDEX_MAPS_URL} className={`${isMobile ? '' : 'flex-1'}`} target="_blank" rel="noopener noreferrer">
           <Button
             variant="outline"
             size="sm"
