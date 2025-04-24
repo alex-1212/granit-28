@@ -1,4 +1,3 @@
-
 export const zhTranslations = {
   navigation: {
     home: '首页',
@@ -32,13 +31,13 @@ export const zhTranslations = {
     tomorrow: '明天',
     monday: '星期一',
     days: {
-      mon: '周一',
-      tue: '周二',
-      wed: '周三',
-      thu: '周四',
-      fri: '周五',
-      sat: '周六',
-      sun: '周日'
+      mon: '星期一',
+      tue: '星期二',
+      wed: '星期三',
+      thu: '星期四',
+      fri: '星期五',
+      sat: '星期六',
+      sun: '星期日'
     },
     dayOff: '休息日'
   },

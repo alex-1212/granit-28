@@ -1,5 +1,3 @@
-
-// Здесь добавим файл переводов для русского языка
 export const ruTranslations = {
   navigation: {
     home: 'Главная',
@@ -33,13 +31,13 @@ export const ruTranslations = {
     tomorrow: 'завтра',
     monday: 'понедельник',
     days: {
-      mon: 'Пн',
-      tue: 'Вт',
-      wed: 'Ср',
-      thu: 'Чт',
-      fri: 'Пт',
-      sat: 'Сб',
-      sun: 'Вс'
+      mon: 'Понедельник',
+      tue: 'Вторник',
+      wed: 'Среда',
+      thu: 'Четверг',
+      fri: 'Пятница',
+      sat: 'Суббота',
+      sun: 'Воскресенье'
     },
     dayOff: 'выходной'
   },

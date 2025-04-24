@@ -1,14 +1,15 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
-import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { useLanguage } from '@/context/LanguageContext';
+import { useFaqData } from '@/data/faq';
 
 const FAQ = () => {
   useAnimateOnScroll();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = React.useState<number | null>(0);
   const { t } = useLanguage();
+  const faqData = useFaqData();
   
   useEffect(() => {
     document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
@@ -54,7 +55,7 @@ const FAQ = () => {
                     aria-expanded={openIndex === index}
                     aria-controls={`faq-content-${index}`}
                   >
-                    <h3 className="text-lg font-semibold">{item.question}</h3>
+                    <h3 className="text-lg font-semibold">{item.questionKey}</h3>
                     <ChevronDown 
                       className={`h-5 w-5 text-primary transition-transform duration-300 ${
                         openIndex === index ? 'transform rotate-180' : ''
@@ -70,7 +71,7 @@ const FAQ = () => {
                   >
                     <div className="px-6 pb-5 text-muted-foreground">
                       <div className="pt-1 border-t border-border"></div>
-                      <p className="pt-4">{item.answer}</p>
+                      <p className="pt-4">{item.answerKey}</p>
                     </div>
                   </div>
                 </div>
