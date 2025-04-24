@@ -47,8 +47,8 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
           {/* Image container */}
           <div className="flex-1 flex items-center justify-center p-4 overflow-hidden">
             <img 
-              src={selectedImage.url} 
-              alt={`${t('gallery.imageOf')} ${selectedImage.title || ''}`} 
+              src={selectedImage.src} 
+              alt={`${t('gallery.imageOf')} ${selectedImage.alt || ''}`} 
               className="max-h-full max-w-full object-contain"
             />
           </div>
@@ -57,12 +57,10 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
           <div className="p-4 border-t bg-background">
             <div className="flex justify-between items-center">
               <div>
-                {selectedImage.title && (
-                  <h3 className="font-semibold text-lg">{selectedImage.title}</h3>
+                {selectedImage.alt && (
+                  <h3 className="font-semibold text-lg">{selectedImage.alt}</h3>
                 )}
-                {selectedImage.description && (
-                  <p className="text-muted-foreground">{selectedImage.description}</p>
-                )}
+                {/* Удаляем описание, которого нет в типе ImageItem */}
               </div>
               
               <div className="flex items-center gap-2">
