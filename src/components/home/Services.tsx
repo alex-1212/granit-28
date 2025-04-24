@@ -41,8 +41,6 @@ export const Services: React.FC = () => {
     <Factory size={24} />,
   ];
 
-  const serviceItems = t('services.items');
-  
   return (
     <section className="py-20 relative overflow-hidden w-full">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/30 dark:to-primary/5 -z-10"></div>
@@ -56,7 +54,7 @@ export const Services: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {Array.isArray(serviceItems) && serviceItems.map((service, index) => (
+          {t('services.items').map((service, index) => (
             <ServiceCard
               key={index}
               icon={icons[index]}

@@ -17,8 +17,6 @@ export const ServicesSection = () => {
     <Factory size={28} />
   ];
   
-  const serviceItems = t('services.items');
-  
   return (
     <div className="mb-20 animate-on-scroll">
       <div className="text-center mb-12">
@@ -36,7 +34,7 @@ export const ServicesSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.isArray(serviceItems) && serviceItems.map((service, index) => (
+        {t('services.items').map((service, index) => (
           <div key={index} className="glass-card p-6 rounded-xl animate-on-scroll hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 50}ms` }}>
             <div className="mb-4 text-primary">
               {icons[index]}

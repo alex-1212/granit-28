@@ -17,8 +17,6 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqQuestions = t('faq.questions');
-
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -44,7 +42,7 @@ const FAQ = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
-              {Array.isArray(faqQuestions) && faqQuestions.map((item, index) => (
+              {t('faq.questions').map((item, index) => (
                 <div 
                   key={index} 
                   className="rounded-xl glass-card-solid animate-on-scroll"
