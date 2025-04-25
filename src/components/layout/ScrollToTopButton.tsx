@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
 interface ScrollToTopButtonProps {
@@ -14,19 +15,29 @@ export const ScrollToTopButton = ({
   className
 }: ScrollToTopButtonProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Отслеживание прокрутки страницы
+  // Отслеживание прокрутки страницы и расчет прогресса
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > showOffset) {
+    const calculateScrollProgress = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      
+      // Показываем кнопку только после определенной прокрутки
+      if (scrollTop > showOffset) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
+      
+      // Вычисляем процент прокрутки
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+      setScrollProgress(Math.min(Math.round(scrollPercent), 100));
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', calculateScrollProgress);
+    return () => window.removeEventListener('scroll', calculateScrollProgress);
   }, [showOffset]);
 
   // Прокрутка наверх
@@ -38,18 +49,48 @@ export const ScrollToTopButton = ({
   };
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      className={cn(
-        'fixed bottom-6 right-6 z-50 rounded-full shadow-md hover:shadow-lg bg-primary/90 hover:bg-primary border-none text-white transition-all duration-300 transform',
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none',
-        className
-      )}
-      onClick={scrollToTop}
-      aria-label="Прокрутить наверх"
-    >
-      <ArrowUp size={20} />
-    </Button>
+    <div className={cn(
+      'fixed bottom-6 right-6 z-50 h-10 w-10 transition-all duration-300',
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none',
+      className
+    )}>
+      {/* Круговой прогресс-бар */}
+      <div className="absolute inset-0">
+        <svg className="w-full h-full -rotate-90">
+          <circle
+            className="text-muted stroke-current"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="transparent"
+            r="18"
+            cx="20"
+            cy="20"
+          />
+          <circle
+            className="text-primary stroke-current"
+            strokeWidth="2"
+            strokeDasharray={113}
+            strokeDashoffset={113 - (113 * scrollProgress) / 100}
+            strokeLinecap="round"
+            stroke="currentColor"
+            fill="transparent"
+            r="18"
+            cx="20"
+            cy="20"
+          />
+        </svg>
+      </div>
+      
+      {/* Кнопка */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="relative w-full h-full rounded-full shadow-md hover:shadow-lg bg-background hover:bg-accent border-none transition-all duration-300"
+        onClick={scrollToTop}
+        aria-label="Прокрутить наверх"
+      >
+        <ArrowUp size={20} className="text-primary" />
+      </Button>
+    </div>
   );
 };
