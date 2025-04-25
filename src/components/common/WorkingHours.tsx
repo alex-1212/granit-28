@@ -4,8 +4,23 @@ import { Clock, Check, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
+// Определяем типы для рабочих часов
+interface WorkingDay {
+  open: string;
+  close: string;
+  closed?: false;
+}
+
+interface ClosedDay {
+  closed: true;
+  open?: never;
+  close?: never;
+}
+
+type DaySchedule = WorkingDay | ClosedDay;
+
 // Данные о режиме работы
-const workingHours = {
+const workingHours: Record<string, DaySchedule> = {
   1: { open: '9:00', close: '18:00' }, // Понедельник
   2: { open: '9:00', close: '18:00' }, // Вторник
   3: { open: '9:00', close: '18:00' }, // Среда
@@ -63,38 +78,44 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     setCurrentDay(day);
     setCurrentTime(currentTimeStr);
     
+    // Проверяем тип дня и наличие свойства closed
+    const daySchedule = workingHours[day.toString()];
+    
     // Если сегодня выходной, то закрыто
-    if (workingHours[day as keyof typeof workingHours].closed) {
+    if (daySchedule && 'closed' in daySchedule && daySchedule.closed) {
       setIsOpen(false);
       calculateNextOpenTime(day);
       return;
     }
     
     // Получаем время открытия и закрытия для текущего дня
-    const dayHours = workingHours[day as keyof typeof workingHours];
-    const openTimeParts = dayHours.open.split(':').map(Number);
-    const closeTimeParts = dayHours.close.split(':').map(Number);
-    
-    // Переводим всё в минуты для удобства сравнения
-    const openTimeMinutes = openTimeParts[0] * 60 + openTimeParts[1];
-    const closeTimeMinutes = closeTimeParts[0] * 60 + closeTimeParts[1];
-    const currentTimeMinutes = hours * 60 + minutes;
-    
-    // Проверяем, находимся ли в рабочее время
-    const isWithinWorkingHours = currentTimeMinutes >= openTimeMinutes && currentTimeMinutes < closeTimeMinutes;
-    setIsOpen(isWithinWorkingHours);
-    
-    // Если закрыто, рассчитываем следующее время открытия
-    if (!isWithinWorkingHours) {
-      calculateNextOpenTime(day, currentTimeMinutes < openTimeMinutes);
+    if (!('closed' in daySchedule) && daySchedule.open && daySchedule.close) {
+      const openTimeParts = daySchedule.open.split(':').map(Number);
+      const closeTimeParts = daySchedule.close.split(':').map(Number);
+      
+      // Переводим всё в минуты для удобства сравнения
+      const openTimeMinutes = openTimeParts[0] * 60 + openTimeParts[1];
+      const closeTimeMinutes = closeTimeParts[0] * 60 + closeTimeParts[1];
+      const currentTimeMinutes = hours * 60 + minutes;
+      
+      // Проверяем, находимся ли в рабочее время
+      const isWithinWorkingHours = currentTimeMinutes >= openTimeMinutes && currentTimeMinutes < closeTimeMinutes;
+      setIsOpen(isWithinWorkingHours);
+      
+      // Если закрыто, рассчитываем следующее время открытия
+      if (!isWithinWorkingHours) {
+        calculateNextOpenTime(day, currentTimeMinutes < openTimeMinutes);
+      }
     }
   };
   
   // Функция для расчета следующего времени открытия
   const calculateNextOpenTime = (currentDay: number, isBeforeOpening: boolean = false) => {
+    const daySchedule = workingHours[currentDay.toString()];
+    
     // Если сегодня рабочий день и еще не открылись
-    if (!workingHours[currentDay as keyof typeof workingHours].closed && isBeforeOpening) {
-      setNextOpenTime(`сегодня в ${workingHours[currentDay as keyof typeof workingHours].open}`);
+    if (daySchedule && !('closed' in daySchedule) && isBeforeOpening) {
+      setNextOpenTime(`сегодня в ${daySchedule.open}`);
       return;
     }
     
@@ -103,18 +124,19 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     let daysToAdd = 1;
     
     // Пока не найдем рабочий день
-    while (workingHours[nextDay as keyof typeof workingHours].closed) {
+    while ('closed' in workingHours[nextDay.toString()] && workingHours[nextDay.toString()].closed) {
       nextDay = (nextDay + 1) % 7;
       daysToAdd++;
     }
     
     // Определяем сообщение в зависимости от того, когда следующий рабочий день
-    if (daysToAdd === 1) {
-      setNextOpenTime(`завтра в ${workingHours[nextDay as keyof typeof workingHours].open}`);
-    } else if (daysToAdd === 2 && currentDay === 5) { // Если сегодня пятница, то следующий - понедельник
-      setNextOpenTime(`в понедельник в ${workingHours[nextDay as keyof typeof workingHours].open}`);
-    } else {
-      setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${workingHours[nextDay as keyof typeof workingHours].open}`);
+    const nextDaySchedule = workingHours[nextDay.toString()];
+    if (!('closed' in nextDaySchedule) && daysToAdd === 1) {
+      setNextOpenTime(`завтра в ${nextDaySchedule.open}`);
+    } else if (!('closed' in nextDaySchedule) && daysToAdd === 2 && currentDay === 5) { // Если сегодня пятница, то следующий - понедельник
+      setNextOpenTime(`в понедельник в ${nextDaySchedule.open}`);
+    } else if (!('closed' in nextDaySchedule)) {
+      setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${nextDaySchedule.open}`);
     }
   };
   
@@ -132,7 +154,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
         {Array.from({ length: 7 }, (_, i) => {
           // Начинаем с понедельника (индекс 1)
           const dayIndex = (i + 1) % 7;
-          const dayInfo = workingHours[dayIndex as keyof typeof workingHours];
+          const dayInfo = workingHours[dayIndex.toString()];
           const isCurrentDay = dayIndex === currentDay;
           
           return (
@@ -145,9 +167,9 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
             >
               <span>{shortDayNames[dayIndex as keyof typeof shortDayNames]}:</span>
               <span>
-                {dayInfo.closed 
+                {('closed' in dayInfo && dayInfo.closed)
                   ? "Выходной" 
-                  : `${dayInfo.open} - ${dayInfo.close}`
+                  : `${(dayInfo as WorkingDay).open} - ${(dayInfo as WorkingDay).close}`
                 }
               </span>
             </div>
