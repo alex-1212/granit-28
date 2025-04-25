@@ -1,18 +1,9 @@
-
 import React from 'react';
 import { Send } from 'lucide-react';
 import { useContactForm } from '@/hooks/useContactForm';
 import FormField from './FormField';
 import CaptchaField from './CaptchaField';
-import { 
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 const ContactForm: React.FC = () => {
   const {
     name,
@@ -32,52 +23,23 @@ const ContactForm: React.FC = () => {
     generateCaptcha,
     handleSubmit
   } = useContactForm();
-
-  return (
-    <div>
+  return <div>
       <h2 className="text-2xl font-display font-semibold mb-6">
         Форма обратной связи
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
-        <FormField
-          id="name"
-          label="Имя"
-          type="text"
-          value={name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-          placeholder="Введите ваше имя"
-          error={errors.name}
-          required
-        />
+        <FormField id="name" label="Имя" type="text" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} placeholder="Введите ваше имя" error={errors.name} required />
         
-        <FormField
-          id="phone"
-          label="Телефон"
-          type="tel"
-          value={phone}
-          onChange={(value: string | React.ChangeEvent<HTMLInputElement>) => {
-            if (typeof value === 'string') {
-              setPhone(value);
-            } else {
-              setPhone(value.target.value);
-            }
-          }}
-          placeholder="+7 (___) ___-__-__"
-          error={errors.phone}
-          required
-          isPhone
-        />
+        <FormField id="phone" label="Телефон" type="tel" value={phone} onChange={(value: string | React.ChangeEvent<HTMLInputElement>) => {
+        if (typeof value === 'string') {
+          setPhone(value);
+        } else {
+          setPhone(value.target.value);
+        }
+      }} placeholder="+7 (___) ___-__-__" error={errors.phone} required isPhone />
         
-        <FormField
-          id="email"
-          label="Email (необязательно)"
-          type="email"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          placeholder="example@email.com"
-          error={errors.email}
-        />
+        <FormField id="email" label="Email (необязательно)" type="email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} placeholder="example@email.com" error={errors.email} />
         
         <div>
           <label htmlFor="serviceType" className="block text-foreground font-medium mb-2">
@@ -99,27 +61,12 @@ const ContactForm: React.FC = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          {errors.serviceType && <p className="mt-1 text-sm text-destructive">{errors.serviceType}</p>}
+          {errors.serviceType && <p className="mt-1 text-sm my-[3px] font-normal text-red-600">{errors.serviceType}</p>}
         </div>
         
-        <FormField
-          id="message"
-          label="Сообщение"
-          type="text"
-          value={message}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-          placeholder="Опишите ваш запрос или проект"
-          error={errors.message}
-          isTextarea
-        />
+        <FormField id="message" label="Сообщение" type="text" value={message} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)} placeholder="Опишите ваш запрос или проект" error={errors.message} isTextarea />
         
-        <CaptchaField
-          captcha={captcha}
-          captchaInput={captchaInput}
-          setCaptchaInput={setCaptchaInput}
-          generateCaptcha={generateCaptcha}
-          error={errors.captcha}
-        />
+        <CaptchaField captcha={captcha} captchaInput={captchaInput} setCaptchaInput={setCaptchaInput} generateCaptcha={generateCaptcha} error={errors.captcha} />
         
         <button type="submit" className="btn-primary inline-flex py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
           <Send size={18} />
@@ -130,8 +77,6 @@ const ContactForm: React.FC = () => {
           Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения
         </p>
       </form>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactForm;
