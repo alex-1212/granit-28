@@ -1,15 +1,12 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
+import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { useLanguage } from '@/context/LanguageContext';
-import { useFaqData } from '@/data/faq';
 
 const FAQ = () => {
   useAnimateOnScroll();
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0);
-  const { t } = useLanguage();
-  const faqData = useFaqData();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   
   useEffect(() => {
     document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
@@ -29,11 +26,11 @@ const FAQ = () => {
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              {t('faq.title')}
+              Часто задаваемые вопросы
             </h1>
             
             <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              {t('faq.subtitle')}
+              Ответы на наиболее распространенные вопросы о нашей компании, услугах и технологиях
             </p>
           </div>
         </div>
@@ -55,7 +52,7 @@ const FAQ = () => {
                     aria-expanded={openIndex === index}
                     aria-controls={`faq-content-${index}`}
                   >
-                    <h3 className="text-lg font-semibold">{item.questionKey}</h3>
+                    <h3 className="text-lg font-semibold">{item.question}</h3>
                     <ChevronDown 
                       className={`h-5 w-5 text-primary transition-transform duration-300 ${
                         openIndex === index ? 'transform rotate-180' : ''
@@ -71,7 +68,7 @@ const FAQ = () => {
                   >
                     <div className="px-6 pb-5 text-muted-foreground">
                       <div className="pt-1 border-t border-border"></div>
-                      <p className="pt-4">{item.answerKey}</p>
+                      <p className="pt-4">{item.answer}</p>
                     </div>
                   </div>
                 </div>
@@ -86,11 +83,11 @@ const FAQ = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="section-title mb-6 animate-on-scroll">
-              {t('faq.notFound')}
+              Не нашли ответ на свой вопрос?
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
-              {t('faq.contactUs')}
+              Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании
             </p>
             
             <a 
@@ -98,7 +95,7 @@ const FAQ = () => {
               className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
             >
               <MessageCircle size={18} />
-              {t('faq.contactButton')}
+              Связаться с нами
             </a>
           </div>
         </div>

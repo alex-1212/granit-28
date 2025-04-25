@@ -6,11 +6,9 @@ import GalleryGrid from '@/components/gallery/GalleryGrid';
 import GalleryModal from '@/components/gallery/GalleryModal';
 import { galleryImages } from '@/components/gallery/galleryData';
 import { useGallery } from '@/components/gallery/useGallery';
-import { useLanguage } from '@/context/LanguageContext';
 
 const Gallery = () => {
   useAnimateOnScroll();
-  const { t } = useLanguage();
   
   const { 
     selectedImage, 
@@ -22,8 +20,8 @@ const Gallery = () => {
   } = useGallery(galleryImages);
   
   useEffect(() => {
-    document.title = t('gallery.title') + ' — ООО «Гранит»';
-  }, [t]);
+    document.title = 'Галерея — ООО «Гранит»';
+  }, []);
 
   return (
     <div className="w-full">

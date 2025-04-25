@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import WorkingHours from '@/components/common/WorkingHours';
-import { useLanguage } from '@/context/LanguageContext';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
-  
   return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -41,69 +38,69 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.navigation')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Навигация</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.home')}
+                  Главная
                 </Link>
               </li>
               <li>
                 <Link to="/products" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.products')}
+                  Продукты и услуги
                 </Link>
               </li>
               <li>
                 <Link to="/news" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.news')}
+                  Новости
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.about')}
+                  О компании
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.contact')}
+                  Контакты
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.sections')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Разделы</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/gallery" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.gallery')}
+                  Галерея
                 </Link>
               </li>
               <li>
                 <Link to="/licenses" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.licenses')}
+                  Лицензии
                 </Link>
               </li>
               <li>
                 <Link to="/team" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.team')}
+                  Сотрудники
                 </Link>
               </li>
               <li>
                 <Link to="/careers" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.careers')}
+                  Вакансии
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('navigation.faq')}
+                  ЧаВо
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">{t('footer.contacts')}</h4>
+            <h4 className="font-sans font-semibold text-lg mb-5">Контакты</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
@@ -135,17 +132,17 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {currentYear} ООО «ГРАНИТ». {t('footer.rights')}.
+              © {currentYear} ООО «ГРАНИТ». Все права защищены.
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
                 <Link to="/privacy-policy" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.privacyPolicy')}
+                  Политика конфиденциальности
                 </Link>
               </li>
               <li>
                 <Link to="/terms-of-use" className="text-foreground/80 hover:text-primary transition-colors">
-                  {t('footer.termsOfUse')}
+                  Условия использования
                 </Link>
               </li>
             </ul>

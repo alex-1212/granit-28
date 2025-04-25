@@ -1,13 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogClose } from '@/components/ui/dialog';
-import { GalleryImage } from './galleryData';
-import { useLanguage } from '@/context/LanguageContext';
+import { ImageItem } from './galleryData';
 
 interface GalleryModalProps {
-  selectedImage: GalleryImage | null;
+  selectedImage: ImageItem | null;
   currentIndex: number;
   totalImages: number;
   onClose: () => void;
@@ -15,119 +12,98 @@ interface GalleryModalProps {
   onPrev: () => void;
 }
 
-const GalleryModal: React.FC<GalleryModalProps> = ({
-  selectedImage,
-  currentIndex,
-  totalImages,
-  onClose,
-  onNext,
-  onPrev
-}) => {
-  const { t } = useLanguage();
+const GalleryModal = ({ 
+  selectedImage, 
+  currentIndex, 
+  totalImages, 
+  onClose, 
+  onNext, 
+  onPrev 
+}: GalleryModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  // Блокируем прокрутку при открытом модальном окне
   useEffect(() => {
-    if (selectedImage) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedImage]);
-  
-  // Добавляем обработчики клавиатуры
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedImage) return;
-      
-      if (e.key === 'ArrowRight') {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.key === 'ArrowRight') {
         onNext();
       } else if (e.key === 'ArrowLeft') {
         onPrev();
-      } else if (e.key === 'Escape') {
+      }
+    };
+    
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         onClose();
       }
     };
     
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, onNext, onPrev, onClose]);
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleEsc);
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [selectedImage, onClose, onNext, onPrev]);
 
   if (!selectedImage) return null;
 
-  const imageCounter = t('gallery.imageCounter')
-    .replace('{current}', (currentIndex + 1).toString())
-    .replace('{total}', totalImages.toString());
-
   return (
-    <Dialog open={!!selectedImage} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent 
-        className="w-full max-w-6xl p-0 bg-black/95 border-zinc-800" 
-        onInteractOutside={onClose}
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4 py-8 backdrop-blur-sm">
+      <div 
+        ref={modalRef}
+        className="relative bg-card rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-scale-in"
       >
-        <div className="relative flex flex-col h-[85vh] md:h-[90vh]">
-          {/* Верхняя панель с кнопкой закрытия */}
-          <div className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 z-20 bg-black/50">
-            <div className="text-white/90 text-sm">
-              {imageCounter}
-            </div>
-            <DialogClose asChild>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="text-white/90 hover:bg-white/20 rounded-full"
-                onClick={onClose}
-                aria-label={t('gallery.closeGallery')}
-              >
-                <X size={24} />
-              </Button>
-            </DialogClose>
-          </div>
-          
-          {/* Контейнер с изображением */}
-          <div className="flex-1 flex items-center justify-center overflow-hidden p-4 pt-16">
-            <div className="relative w-full h-full flex items-center justify-center">
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-h-full max-w-full object-contain"
-              />
-            </div>
-          </div>
-          
-          {/* Подпись к изображению */}
-          {selectedImage.description && (
-            <div className="p-4 bg-black/50 text-white/90 text-center">
-              <p>{selectedImage.description}</p>
-            </div>
-          )}
-          
-          {/* Кнопки навигации */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white/90 hover:bg-white/20 rounded-full"
-            onClick={onPrev}
-            aria-label={t('gallery.prevImage')}
+        <div className="absolute top-4 right-4 z-10">
+          <button
+            onClick={onClose}
+            className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            aria-label="Закрыть"
           >
-            <ChevronLeft size={36} />
-          </Button>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white/90 hover:bg-white/20 rounded-full"
-            onClick={onNext}
-            aria-label={t('gallery.nextImage')}
-          >
-            <ChevronRight size={36} />
-          </Button>
+            <X size={20} />
+          </button>
         </div>
-      </DialogContent>
-    </Dialog>
+        
+        {/* Кнопка навигации влево */}
+        <button
+          onClick={onPrev}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors z-10"
+          aria-label="Предыдущее изображение"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        
+        {/* Кнопка навигации вправо */}
+        <button
+          onClick={onNext}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors z-10"
+          aria-label="Следующее изображение"
+        >
+          <ChevronRight size={24} />
+        </button>
+        
+        <div className="flex items-center justify-center p-4 h-full">
+          <img
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            className="max-w-full max-h-[80vh] object-contain"
+          />
+        </div>
+        
+        <div className="p-4 border-t border-border">
+          <p className="text-foreground">{selectedImage.alt}</p>
+          <p className="text-muted-foreground text-sm mt-1">
+            Изображение {currentIndex + 1} из {totalImages}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

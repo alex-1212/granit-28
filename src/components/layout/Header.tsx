@@ -5,40 +5,37 @@ import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { UserMenu } from './UserMenu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import LanguageSelector from '@/components/common/LanguageSelector';
-import { useLanguage } from '@/context/LanguageContext';
 
-const Header = () => {
+const navItems = [{
+  name: 'Главная',
+  path: '/'
+}, {
+  name: 'Продукты и услуги',
+  path: '/products'
+}, {
+  name: 'Галерея',
+  path: '/gallery'
+}, {
+  name: 'Новости',
+  path: '/news'
+}, {
+  name: 'О компании',
+  path: '/about'
+}, {
+  name: 'ЧаВо',
+  path: '/faq'
+}, {
+  name: 'Контакты',
+  path: '/contact'
+}];
+
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
-  const { t } = useLanguage();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-
-  const navItems = [{
-    name: t('navigation.home'),
-    path: '/'
-  }, {
-    name: t('navigation.products'),
-    path: '/products'
-  }, {
-    name: t('navigation.gallery'),
-    path: '/gallery'
-  }, {
-    name: t('navigation.news'),
-    path: '/news'
-  }, {
-    name: t('navigation.about'),
-    path: '/about'
-  }, {
-    name: t('navigation.faq'),
-    path: '/faq'
-  }, {
-    name: t('navigation.contact'),
-    path: '/contact'
-  }];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +76,6 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageSelector />
             <UserMenu />
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
@@ -89,9 +85,6 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="p-0 pt-2 w-full sm:w-[300px] overflow-y-auto">
                 <nav className="pt-10 px-2 flex flex-col h-full">
-                  <div className="px-4 mb-4">
-                    <LanguageSelector />
-                  </div>
                   {navItems.map((item, index) => <Link key={item.path} to={item.path} className={`py-3 px-4 rounded-lg text-lg font-medium my-1 transition-colors ${location.pathname === item.path || item.path !== '/' && location.pathname.startsWith(item.path) ? 'bg-primary/10 text-primary dark:text-primary-foreground' : 'hover:bg-muted/50'}`} onClick={closeMenu}>
                       {item.name}
                     </Link>)}
@@ -109,5 +102,3 @@ const Header = () => {
       </div>
     </header>;
 };
-
-export { Header };
