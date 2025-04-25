@@ -2,9 +2,14 @@
 import React from 'react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import WorkingHours from '@/components/common/WorkingHours';
+import { Button } from '@/components/ui/button';
+import { Navigation } from 'lucide-react';
 
 const ContactMap: React.FC = () => {
   useAnimateOnScroll();
+  
+  const address = "г. Хабаровск ул. Строительная 28";
+  const encodedAddress = encodeURIComponent(address);
   
   return (
     <div>
@@ -26,7 +31,25 @@ const ContactMap: React.FC = () => {
         ></iframe>
       </div>
 
-      {/* Добавляем блок с режимом работы */}
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <Button 
+          variant="default"
+          className="flex-1"
+          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`, '_blank')}
+        >
+          <Navigation className="mr-2" />
+          Проложить путь: Google Maps
+        </Button>
+        <Button 
+          variant="default"
+          className="flex-1"
+          onClick={() => window.open(`https://yandex.ru/maps/?rtext=~${encodedAddress}`, '_blank')}
+        >
+          <Navigation className="mr-2" />
+          Проложить путь: Яндекс карты
+        </Button>
+      </div>
+
       <div className="glass-card-solid rounded-xl p-6">
         <h3 className="text-xl font-semibold mb-4">Режим работы</h3>
         <WorkingHours variant="full" showSchedule={false} />

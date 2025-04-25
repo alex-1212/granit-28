@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Clock, Check, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-// Определяем типы для рабочих часов
 interface WorkingDay {
   open: string;
   close: string;
@@ -19,18 +17,16 @@ interface ClosedDay {
 
 type DaySchedule = WorkingDay | ClosedDay;
 
-// Данные о режиме работы
 const workingHours: Record<string, DaySchedule> = {
-  1: { open: '9:00', close: '18:00' }, // Понедельник
-  2: { open: '9:00', close: '18:00' }, // Вторник
-  3: { open: '9:00', close: '18:00' }, // Среда
-  4: { open: '9:00', close: '18:00' }, // Четверг
-  5: { open: '9:00', close: '18:00' }, // Пятница
-  6: { closed: true }, // Суббота
-  0: { closed: true }, // Воскресенье
+  1: { open: '9:00', close: '18:00' },
+  2: { open: '9:00', close: '18:00' },
+  3: { open: '9:00', close: '18:00' },
+  4: { open: '9:00', close: '18:00' },
+  5: { open: '9:00', close: '18:00' },
+  6: { closed: true },
+  0: { closed: true },
 };
 
-// Названия дней недели
 const dayNames = {
   0: 'Воскресенье',
   1: 'Понедельник',
@@ -67,10 +63,9 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
   const [currentDay, setCurrentDay] = useState<number>(new Date().getDay());
   const [currentTime, setCurrentTime] = useState<string>('');
 
-  // Функция для проверки, открыто ли сейчас
   const checkIsOpen = () => {
     const now = new Date();
-    const day = now.getDay(); // 0-6, где 0 - воскресенье
+    const day = now.getDay();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const currentTimeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
@@ -78,81 +73,67 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
     setCurrentDay(day);
     setCurrentTime(currentTimeStr);
     
-    // Проверяем тип дня и наличие свойства closed
     const daySchedule = workingHours[day.toString()];
     
-    // Если сегодня выходной, то закрыто
     if (daySchedule && 'closed' in daySchedule && daySchedule.closed) {
       setIsOpen(false);
       calculateNextOpenTime(day);
       return;
     }
     
-    // Получаем время открытия и закрытия для текущего дня
     if (!('closed' in daySchedule) && daySchedule.open && daySchedule.close) {
       const openTimeParts = daySchedule.open.split(':').map(Number);
       const closeTimeParts = daySchedule.close.split(':').map(Number);
       
-      // Переводим всё в минуты для удобства сравнения
       const openTimeMinutes = openTimeParts[0] * 60 + openTimeParts[1];
       const closeTimeMinutes = closeTimeParts[0] * 60 + closeTimeParts[1];
       const currentTimeMinutes = hours * 60 + minutes;
       
-      // Проверяем, находимся ли в рабочее время
       const isWithinWorkingHours = currentTimeMinutes >= openTimeMinutes && currentTimeMinutes < closeTimeMinutes;
       setIsOpen(isWithinWorkingHours);
       
-      // Если закрыто, рассчитываем следующее время открытия
       if (!isWithinWorkingHours) {
         calculateNextOpenTime(day, currentTimeMinutes < openTimeMinutes);
       }
     }
   };
-  
-  // Функция для расчета следующего времени открытия
+
   const calculateNextOpenTime = (currentDay: number, isBeforeOpening: boolean = false) => {
     const daySchedule = workingHours[currentDay.toString()];
     
-    // Если сегодня рабочий день и еще не открылись
     if (daySchedule && !('closed' in daySchedule) && isBeforeOpening) {
       setNextOpenTime(`сегодня в ${daySchedule.open}`);
       return;
     }
     
-    // Иначе ищем следующий рабочий день
     let nextDay = (currentDay + 1) % 7;
     let daysToAdd = 1;
     
-    // Пока не найдем рабочий день
     while ('closed' in workingHours[nextDay.toString()] && workingHours[nextDay.toString()].closed) {
       nextDay = (nextDay + 1) % 7;
       daysToAdd++;
     }
     
-    // Определяем сообщение в зависимости от того, когда следующий рабочий день
     const nextDaySchedule = workingHours[nextDay.toString()];
     if (!('closed' in nextDaySchedule) && daysToAdd === 1) {
       setNextOpenTime(`завтра в ${nextDaySchedule.open}`);
-    } else if (!('closed' in nextDaySchedule) && daysToAdd === 2 && currentDay === 5) { // Если сегодня пятница, то следующий - понедельник
+    } else if (!('closed' in nextDaySchedule) && daysToAdd === 2 && currentDay === 5) {
       setNextOpenTime(`в понедельник в ${nextDaySchedule.open}`);
     } else if (!('closed' in nextDaySchedule)) {
       setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${nextDaySchedule.open}`);
     }
   };
-  
-  // Проверяем статус каждую минуту
+
   useEffect(() => {
     checkIsOpen();
-    const interval = setInterval(checkIsOpen, 60000); // Каждую минуту
+    const interval = setInterval(checkIsOpen, 60000);
     return () => clearInterval(interval);
   }, []);
-  
-  // Полное расписание для попапа
+
   const renderFullSchedule = () => {
     return (
       <div className="space-y-2">
         {Array.from({ length: 7 }, (_, i) => {
-          // Начинаем с понедельника (индекс 1)
           const dayIndex = (i + 1) % 7;
           const dayInfo = workingHours[dayIndex.toString()];
           const isCurrentDay = dayIndex === currentDay;
@@ -178,8 +159,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
       </div>
     );
   };
-  
-  // Компактный вариант отображения
+
   if (variant === 'compact') {
     return (
       <div className={cn("flex items-center gap-2", className)}>
@@ -196,7 +176,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                   <Clock size={20} className="text-red-500" />
                 )}
                 <span>
-                  {isOpen ? 'Открыто' : 'Закрыто'}
+                  {isOpen ? 'Открыто сейчас' : 'Закрыто сейчас'}
                 </span>
               </button>
             </PopoverTrigger>
@@ -214,7 +194,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
                   ) : (
                     <>
                       <X size={20} className="text-red-500" />
-                      <span>Закрыто</span>
+                      <span>Закрыто сейчас</span>
                     </>
                   )}
                 </div>
@@ -240,15 +220,14 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
               <Clock size={20} className="text-red-500" />
             )}
             <span>
-              {isOpen ? 'Открыто' : 'Закрыто'}
+              {isOpen ? 'Открыто сейчас' : 'Закрыто сейчас'}
             </span>
           </div>
         )}
       </div>
     );
   }
-  
-  // Полный вариант для страницы контактов
+
   return (
     <div className={cn("space-y-4", className)}>
       <div className="flex items-center justify-between mb-2">
@@ -261,7 +240,7 @@ const WorkingHours: React.FC<WorkingHoursProps> = ({
           ) : (
             <>
               <X size={20} className="text-red-500" />
-              <span className="font-medium">Закрыто</span>
+              <span className="font-medium">Закрыто сейчас</span>
             </>
           )}
         </div>
