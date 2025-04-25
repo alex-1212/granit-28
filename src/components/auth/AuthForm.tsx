@@ -154,7 +154,7 @@ export const AuthForm = () => {
                   <FormControl>
                     <Input type="password" placeholder="••••••" {...field} />
                   </FormControl>
-                  <FormMessage className="text-red-600 font-normal text-base my-[9px]" />
+                  <FormMessage className="text-red-600 my-[9px] font-normal text-sm" />
                 </FormItem>} />
             {/* Добавим капчу */}
             <CaptchaField captcha={captcha} captchaInput={captchaInput} setCaptchaInput={setCaptchaInput} generateCaptcha={generateCaptcha} error={captchaError} />
