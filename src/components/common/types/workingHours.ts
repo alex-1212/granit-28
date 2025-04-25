@@ -40,11 +40,11 @@ export const shortDayNames = {
 } as const;
 
 export const workingHours: Record<string, DaySchedule> = {
-  1: { open: '9:00', close: '18:00' },
-  2: { open: '9:00', close: '18:00' },
-  3: { open: '9:00', close: '18:00' },
-  4: { open: '9:00', close: '18:00' },
-  5: { open: '9:00', close: '18:00' },
+  1: { open: '08:00', close: '18:00' },
+  2: { open: '08:00', close: '18:00' },
+  3: { open: '08:00', close: '18:00' },
+  4: { open: '08:00', close: '18:00' },
+  5: { open: '08:00', close: '18:00' },
   6: { closed: true },
   0: { closed: true },
 };

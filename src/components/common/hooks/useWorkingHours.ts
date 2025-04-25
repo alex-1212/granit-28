@@ -11,6 +11,7 @@ export const useWorkingHours = () => {
   const calculateNextOpenTime = (currentDay: number, isBeforeOpening: boolean = false) => {
     const daySchedule = workingHours[currentDay.toString()];
     
+    // Если текущий день рабочий и время ещё не наступило
     if (daySchedule && !('closed' in daySchedule) && isBeforeOpening) {
       setNextOpenTime(`сегодня в ${daySchedule.open}`);
       return;
@@ -19,18 +20,24 @@ export const useWorkingHours = () => {
     let nextDay = (currentDay + 1) % 7;
     let daysToAdd = 1;
     
+    // Ищем следующий рабочий день
     while ('closed' in workingHours[nextDay.toString()] && workingHours[nextDay.toString()].closed) {
       nextDay = (nextDay + 1) % 7;
       daysToAdd++;
     }
     
     const nextDaySchedule = workingHours[nextDay.toString()];
-    if (!('closed' in nextDaySchedule) && daysToAdd === 1) {
-      setNextOpenTime(`завтра в ${nextDaySchedule.open}`);
-    } else if (!('closed' in nextDaySchedule) && daysToAdd === 2 && currentDay === 5) {
-      setNextOpenTime(`в понедельник в ${nextDaySchedule.open}`);
-    } else if (!('closed' in nextDaySchedule)) {
-      setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${nextDaySchedule.open}`);
+    if (!('closed' in nextDaySchedule)) {
+      if (daysToAdd === 1) {
+        // Если следующий день - рабочий
+        setNextOpenTime(`завтра в ${nextDaySchedule.open}`);
+      } else if ((currentDay === 6 || currentDay === 0) && nextDay === 1) {
+        // Если сейчас выходные и следующий рабочий день - понедельник
+        setNextOpenTime(`в понедельник в ${nextDaySchedule.open}`);
+      } else {
+        // В остальных случаях показываем день недели
+        setNextOpenTime(`в ${dayNames[nextDay as keyof typeof dayNames].toLowerCase()} в ${nextDaySchedule.open}`);
+      }
     }
   };
 
