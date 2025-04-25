@@ -145,7 +145,7 @@ export const AuthForm = () => {
                   <FormControl>
                     <Input placeholder="your.email@example.com" {...field} />
                   </FormControl>
-                  <FormMessage className="text-base font-normal text-red-600" />
+                  <FormMessage className="font-normal text-red-600 text-sm" />
                 </FormItem>} />
             <FormField control={form.control} name="password" render={({
             field
