@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
+import PartnersSection from '@/components/about/PartnersSection';
 
 const About = () => {
   useAnimateOnScroll();
@@ -203,29 +204,7 @@ const About = () => {
           </div>
           
           {/* Partners Section */}
-          <div className="mb-20 animate-on-scroll">
-            <div className="text-center mb-12">
-              <h2 className="section-title mb-6">
-                Наши партнеры
-              </h2>
-              <p className="text-lg mb-8 max-w-3xl mx-auto">
-                Мы гордимся сотрудничеством с ведущими компаниями отрасли
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-              {Array.from({ length: 12 }).map((_, index) => (
-                <div 
-                  key={index}
-                  className="glass-card p-6 aspect-[4/3] flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                >
-                  <div className="w-full h-full bg-muted/10 rounded-lg flex items-center justify-center">
-                    <p className="text-muted-foreground text-sm">Логотип {index + 1}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <PartnersSection />
           
           {/* Development Strategy */}
           <div className="text-center mb-12 animate-on-scroll">
