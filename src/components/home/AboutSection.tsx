@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Map, Truck, Scroll, Info } from 'lucide-react';
@@ -71,7 +72,6 @@ const AboutSection: React.FC = () => {
               <p className="text-sm text-inherit">Все необходимые разрешения для проведения работ любой сложности</p>
               <Link to="/licenses" className="text-primary text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline">
                 Смотреть все
-                <ArrowRight size={14} />
               </Link>
             </div>
           </div>
@@ -80,3 +80,4 @@ const AboutSection: React.FC = () => {
     </section>;
 };
 export default AboutSection;
+
