@@ -48,19 +48,17 @@ const PartnersSection = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12">
         {partners.map((partner, index) => (
           <div 
             key={index}
-            className="glass-card p-6 aspect-[4/3] flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
-            <div className="w-full h-full flex items-center justify-center p-4">
-              <img 
-                src={partner.logo} 
-                alt={partner.name}
-                className="max-w-full max-h-full object-contain"
-              />
-            </div>
+            <img 
+              src={partner.logo} 
+              alt={partner.name}
+              className="max-w-full max-h-[80px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+            />
           </div>
         ))}
       </div>
