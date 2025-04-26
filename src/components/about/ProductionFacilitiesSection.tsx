@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Factory, Hammer } from 'lucide-react';
+import { Factory } from 'lucide-react';
 
 const ProductionFacilitiesSection = () => {
   return (
@@ -32,9 +32,9 @@ const ProductionFacilitiesSection = () => {
         
         <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
           <div className="flex items-center justify-center mb-4">
-            <Hammer className="w-12 h-12 text-primary" />
+            <Factory className="w-12 h-12 text-primary" />
           </div>
-          <h3 className="text-xl font-semibold mb-3 text-center">Производство в Хабаровске</h3>
+          <h3 className="text-xl font-семибольшой mb-3 text-center">Производство в Хабаровске</h3>
           <p className="text-muted-foreground mb-4">
             Патроны, сенсибилизированные микросферами (диаметры 32–90 мм), для автономного применения на удаленных объектах.
           </p>
