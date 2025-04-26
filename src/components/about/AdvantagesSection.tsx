@@ -1,27 +1,24 @@
 
 import React from 'react';
 import { Calendar, Factory, Users, ShieldCheck } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
 
 const AdvantagesSection = () => {
-  const { t } = useLanguage();
-  
   const advantages = [{
     icon: <Calendar className="h-6 w-6 text-primary" />,
-    title: t('about.advantages.experience'),
-    description: t('about.advantages.experienceText')
+    title: '10+ лет',
+    description: 'успешной практики в сфере буровзрывных работ'
   }, {
     icon: <Factory className="h-6 w-6 text-primary" />,
-    title: t('about.advantages.factories'),
-    description: t('about.advantages.factoriesText')
+    title: '3 завода',
+    description: 'в Забайкалье, Хабаровске и Якутии'
   }, {
     icon: <Users className="h-6 w-6 text-primary" />,
-    title: t('about.advantages.specialists'),
-    description: t('about.advantages.specialistsText')
+    title: '150+ специалистов',
+    description: 'высококвалифицированных сотрудников'
   }, {
     icon: <ShieldCheck className="h-6 w-6 text-primary" />,
-    title: t('about.advantages.safety'),
-    description: t('about.advantages.safetyText')
+    title: 'Безопасность',
+    description: 'соответствие всем нормам и стандартам'
   }];
 
   return (
