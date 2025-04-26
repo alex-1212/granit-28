@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { 
   Pickaxe, Factory, Target, Settings, FileText, Bomb, 
-  Layers, Package, Bulb, Rocket 
+  Layers, Package, Rocket 
 } from 'lucide-react';
 
 export const ServicesSection = () => {
@@ -17,7 +18,7 @@ export const ServicesSection = () => {
       description: 'Современное оборудование для эффективного выполнения буровзрывных работ.',
     },
     {
-      icon: <Bulb size={28} />,
+      icon: <Rocket size={28} />,
       title: 'Инновационные решения',
       description: 'Постоянно разрабатываем и внедряем новые технологии в производство.',
     },
