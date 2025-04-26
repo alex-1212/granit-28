@@ -16,12 +16,12 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const UserMenu = () => {
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   
   const handleLogout = () => {
-    logout();
+    signOut();
     setOpen(false);
   };
   
