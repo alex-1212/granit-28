@@ -1,3 +1,4 @@
+
 import React from 'react';
 const PartnersSection = () => {
   const partners = [{
@@ -25,7 +26,7 @@ const PartnersSection = () => {
     name: "Highland Gold Mining",
     logo: "/lovable-uploads/578d68dc-86e9-415d-8ad3-618a9adb79b2.png"
   }];
-  return <div className="mb-20 animate-on-scroll">
+  return <div className="mb-20">
       <div className="text-center mb-12">
         <h2 className="section-title mb-6">
           Наши партнеры
