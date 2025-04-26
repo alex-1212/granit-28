@@ -1,20 +1,30 @@
-
 import React from 'react';
 import { 
-  Pickaxe, Factory, Target, Settings, FileText, Bomb
+  Pickaxe, Factory, Target, Settings, FileText, Bomb, 
+  Layers, Package, Bulb, Rocket 
 } from 'lucide-react';
 
 export const ServicesSection = () => {
   const services = [
     {
-      icon: <Pickaxe size={28} />,
-      title: 'Буровые работы',
-      description: 'Производим буровые работы с использованием современного оборудования в любых климатических условиях.',
+      icon: <Factory size={28} />,
+      title: 'Собственное производство',
+      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
     },
     {
-      icon: <Bomb size={28} />,
-      title: 'Взрывные работы',
-      description: 'Выполняем взрывные работы с применением ЭВВ собственного производства на различных объектах.',
+      icon: <Rocket size={28} />,
+      title: 'Передовая техника',
+      description: 'Современное оборудование для эффективного выполнения буровзрывных работ.',
+    },
+    {
+      icon: <Bulb size={28} />,
+      title: 'Инновационные решения',
+      description: 'Постоянно разрабатываем и внедряем новые технологии в производство.',
+    },
+    {
+      icon: <Layers size={28} />,
+      title: 'Комплексный подход',
+      description: 'Полный цикл услуг от проектирования до реализации буровзрывных работ.',
     },
     {
       icon: <Target size={28} />,
@@ -30,11 +40,6 @@ export const ServicesSection = () => {
       icon: <FileText size={28} />,
       title: 'Маркшейдерские работы',
       description: 'Проводим профессиональные маркшейдерские работы для обеспечения точности выполнения проектов.',
-    },
-    {
-      icon: <Factory size={28} />,
-      title: 'Производство ЭВВ',
-      description: 'Производим эмульсионные взрывчатые вещества на собственных заводах в Забайкалье и Хабаровске.',
     },
   ];
 
