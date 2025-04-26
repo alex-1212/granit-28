@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
+import { ArrowRight, Award, Building, Calendar, Factory, Hammer, Industry, Mail, ShieldCheck, Tools, Users, UserPlus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
 import PartnersSection from '@/components/about/PartnersSection';
@@ -105,6 +105,9 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
+              <div className="flex items-center justify-center mb-4">
+                <Factory className="w-12 h-12 text-primary" />
+              </div>
               <h3 className="text-xl font-semibold mb-3 text-center">Завод в Забайкалье</h3>
               <p className="text-muted-foreground mb-4">
                 С 2024 года запущено производство компонентов ЭВВ мощностью 30 тыс. тонн/год, включая «холодную» эмульсию для экстремальных условий.
@@ -112,6 +115,9 @@ const About = () => {
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
+              <div className="flex items-center justify-center mb-4">
+                <Industry className="w-12 h-12 text-primary" />
+              </div>
               <h3 className="text-xl font-semibold mb-3 text-center">Линия в Якутии</h3>
               <p className="text-muted-foreground mb-4">
                 Выпуск эмульсионных патронов для заказчиков Дальнего Востока. Стратегическое расположение для минимизации логистических затрат.
@@ -119,6 +125,9 @@ const About = () => {
             </div>
             
             <div className="glass-card-primary rounded-xl p-6 animate-on-scroll">
+              <div className="flex items-center justify-center mb-4">
+                <Tools className="w-12 h-12 text-primary" />
+              </div>
               <h3 className="text-xl font-semibold mb-3 text-center">Производство в Хабаровске</h3>
               <p className="text-muted-foreground mb-4">
                 Патроны, сенсибилизированные микросферами (диаметры 32–90 мм), для автономного применения на удаленных объектах.
