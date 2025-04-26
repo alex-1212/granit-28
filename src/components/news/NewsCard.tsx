@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -15,11 +14,10 @@ interface NewsCardProps {
 const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
   const isMobile = useIsMobile();
 
-  // Функция для расчёта примерного времени чтения (100 слов в минуту)
   const calculateReadingTime = (content: string): number => {
-    const wordsPerMinute = 100; // Среднее количество слов в минуту
+    const wordsPerMinute = 100;
     const words = content.trim().split(/\s+/).length;
-    return Math.max(1, Math.ceil(words / wordsPerMinute)); // Минимум 1 минута
+    return Math.max(1, Math.ceil(words / wordsPerMinute));
   };
 
   const readingTime = calculateReadingTime(newsItem.content);
@@ -67,9 +65,10 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         
         <Link 
           to={`/news/${newsItem.slug}`} 
-          className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-colors"
+          className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-all duration-300 group"
         >
-          {isMobile ? "Далее" : "Подробнее"} <ArrowRight size={isMobile ? 12 : 14} className="ml-1" />
+          {isMobile ? "Далее" : "Подробнее"} 
+          <ArrowRight size={isMobile ? 12 : 14} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       </CardFooter>
     </Card>

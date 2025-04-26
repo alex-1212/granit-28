@@ -55,10 +55,10 @@ const NewsCarouselCard = ({ item, formatDate, calculateReadingTime }: NewsCarous
           
           <Link 
             to={`/news/${item.slug}`}
-            className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto dark:text-white dark:hover:text-white/90"
+            className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto dark:text-white dark:hover:text-white/90 group"
           >
             Читать далее
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
