@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -68,10 +67,10 @@ const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
                       
                       <Link 
                         to={`/news/${item.id}`}
-                        className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto group"
+                        className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-all duration-300 group"
                       >
                         Читать далее
-                        <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                        <ArrowRight size={16} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>

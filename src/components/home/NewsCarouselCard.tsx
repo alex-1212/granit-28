@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { NewsItem } from '@/services/newsService';
 import { CarouselItem } from "@/components/ui/carousel";
 
@@ -54,11 +54,11 @@ const NewsCarouselCard = ({ item, formatDate, calculateReadingTime }: NewsCarous
           </p>
           
           <Link 
-            to={`/news/${item.slug}`}
-            className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto dark:text-white dark:hover:text-white/90 group"
+            to={`/news/${item.slug}`} 
+            className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-all duration-300 group"
           >
             Читать далее
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight size={16} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
