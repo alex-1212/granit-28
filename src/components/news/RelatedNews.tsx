@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
 import {
@@ -68,10 +68,10 @@ const RelatedNews = ({ relatedNews, formatDate }: RelatedNewsProps) => {
                       
                       <Link 
                         to={`/news/${item.id}`}
-                        className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto"
+                        className="text-primary font-medium flex items-center gap-1 hover:underline mt-auto group"
                       >
-                        Читать
-                        <ArrowLeft size={16} className="rotate-180" />
+                        Читать далее
+                        <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
