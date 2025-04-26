@@ -36,7 +36,7 @@ const PartnersSection = () => {
       </div>
       
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12">
-        {partners.map((partner, index) => <div key={index} className="flex items-center justify-center p-4  hover:-translate-y-0.5">
+        {partners.map((partner, index) => <div key={index} className="flex items-center justify-center p-4 hover:-translate-y-0.5 bg-inherit">
             <img src={partner.logo} alt={partner.name} className="max-w-full max-h-[80px] object-contain grayscale hover:grayscale-0 transition-all duration-300" />
           </div>)}
       </div>
