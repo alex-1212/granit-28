@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Building, Calendar, Factory, Mail, ShieldCheck, Users, UserPlus } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
+
 const About = () => {
   useAnimateOnScroll();
+  
   const advantages = [{
     icon: <Calendar className="h-6 w-6 text-primary" />,
     title: '10+ лет',
@@ -22,6 +24,7 @@ const About = () => {
     title: 'Безопасность',
     description: 'соответствие всем нормам и стандартам'
   }];
+
   return <div className="w-full">
       <Helmet>
         <title>О компании — ООО «Гранит»</title>
@@ -199,16 +202,41 @@ const About = () => {
             </div>
           </div>
           
-          {/* Team */}
+          {/* Partners Section */}
+          <div className="mb-20 animate-on-scroll">
+            <div className="text-center mb-12">
+              <h2 className="section-title mb-6">
+                Наши партнеры
+              </h2>
+              <p className="text-lg mb-8 max-w-3xl mx-auto">
+                Мы гордимся сотрудничеством с ведущими компаниями отрасли
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+              {Array.from({ length: 12 }).map((_, index) => (
+                <div 
+                  key={index}
+                  className="glass-card p-6 aspect-[4/3] flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                >
+                  <div className="w-full h-full bg-muted/10 rounded-lg flex items-center justify-center">
+                    <p className="text-muted-foreground text-sm">Логотип {index + 1}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Development Strategy */}
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="section-title mb-6">
               Стратегия развития
             </h2>
             
             <p className="text-lg mb-8 max-w-3xl mx-auto">
-Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
+              Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
             </p>
-          <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
+            <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
                 <Mail size={18} />
                 Связаться с нами
@@ -224,4 +252,5 @@ const About = () => {
       </section>
     </div>;
 };
+
 export default About;
