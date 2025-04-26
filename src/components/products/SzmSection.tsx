@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Truck, Settings, Factory, Rocket, Layers } from 'lucide-react';
-
+import { ArrowRight, Truck, Settings, Factory } from 'lucide-react';
 export const SzmSection = () => {
   return <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
       <div className="order-2 lg:order-1 relative animate-on-scroll">
@@ -15,8 +14,8 @@ export const SzmSection = () => {
       </div>
       
       <div className="order-1 lg:order-2 animate-on-scroll">
-        <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 flex items-center gap-2">
-          <Rocket size={16} /> Передовая техника
+        <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6">
+          Передовая техника
         </span>
         
         <h2 className="section-title mb-6">
