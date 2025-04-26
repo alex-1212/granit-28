@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Send, Info, Drill, Award } from 'lucide-react';
-
+import { ChevronRight, Send, Info } from 'lucide-react';
 export const Hero: React.FC = () => {
   return <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden w-full">
       <div className="absolute inset-0 z-0">
@@ -13,8 +11,7 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
-            <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-fade-in flex items-center gap-2">
-              <Drill size={18} />
+            <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium mb-6 animate-fade-in">
               Профессиональные буровзрывные работы
             </span>
             
@@ -36,14 +33,6 @@ export const Hero: React.FC = () => {
                 <Info size={18} />
                 О компании
               </Link>
-            </div>
-
-            {/* Добавляем вторую плашку с иконкой */}
-            <div className="mt-4">
-              <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground font-medium animate-fade-in flex items-center gap-2">
-                <Award size={18} />
-                10 лет на рынке
-              </span>
             </div>
           </div>
           
