@@ -10,15 +10,18 @@ import AdvantagesSection from '@/components/about/AdvantagesSection';
 import ProductionFacilitiesSection from '@/components/about/ProductionFacilitiesSection';
 import InnovationSection from '@/components/about/InnovationSection';
 import EnvironmentalSection from '@/components/about/EnvironmentalSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 const About = () => {
   useAnimateOnScroll();
+  const { t, language } = useLanguage();
   
   return (
     <div className="w-full">
       <Helmet>
-        <title>О компании — ООО «Гранит»</title>
-        <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы." />
+        <title>{t('about.title')} — ООО «Гранит»</title>
+        <meta name="description" content={t('about.subtitle')} />
+        <meta name="language" content={language} />
       </Helmet>
       
       {/* Hero Section */}
@@ -29,11 +32,11 @@ const About = () => {
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
-              О компании
+              {t('about.title')}
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">
-              Компания ООО «Гранит» зарекомендовала себя как стабильный и ответственный участник рынка буровзрывных работ. За годы активной деятельности мы стали ключевым партнером для ряда компаний горнодобывающего сектора Дальнего Востока и Якутии, предлагая современные технологии и безупречный подход к выполнению задач.
+              {t('about.subtitle')}
             </p>
           </div>
           
@@ -47,15 +50,15 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="section-title mb-6 animate-on-scroll">
-                Более 10 лет успешной практики в буровзрывных работах
+                {t('about.history.title')}
               </h2>
               
               <p className="text-lg mb-6 animate-on-scroll">
-                ООО «Гранит» — динамично развивающаяся компания, специализирующаяся на оказании услуг в сфере горнодобывающей промышленности. За десятилетнюю историю мы накопили уникальный опыт в реализации сложных проектов, разработке собственных технологий и производстве эмульсионных взрывчатых веществ (ЭВВ), что позволяет нам быть независимыми от внешних поставщиков.
+                {t('about.history.text1')}
               </p>
               
               <p className="text-muted-foreground mb-6 animate-on-scroll">
-                Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ». ООО «Гранит» — это синтез опыта, инноваций и ответственности за результат.
+                {t('about.history.text2')}
               </p>
               
               <div className="mt-8 flex flex-wrap gap-4 animate-on-scroll">
@@ -100,21 +103,21 @@ const About = () => {
           {/* Development Strategy */}
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="section-title mb-6">
-              Стратегия развития
+              {t('about.strategy.title')}
             </h2>
             
             <p className="text-lg mb-8 max-w-3xl mx-auto">
-              Наша цель — стать лидером в производстве ЭВВ на Дальнем Востоке, минимизируя зависимость от импорта и предлагая клиентам комплексные решения «под ключ».
+              {t('about.strategy.text')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center animate-on-scroll">
               <Link to="/contact" className="btn-primary">
                 <Mail size={18} />
-                Связаться с нами
+                {t('about.strategy.contactButton')}
               </Link>
               
               <Link to="/careers" className="btn-outline">
                 <UserPlus size={18} />
-                Присоединиться к команде
+                {t('about.strategy.joinButton')}
               </Link>
             </div>
           </div>

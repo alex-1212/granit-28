@@ -1,153 +1,102 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, MessageSquare } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import WorkingHours from '@/components/common/WorkingHours';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
-export const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
+export const Footer = () => {
+  const { t } = useLanguage();
+  
+  return (
+    <footer className="bg-background relative border-t border-border mt-auto">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="Логотип Гранит" className="h-16 object-none" />
-              <span className="text-white" style={{
-              fontFamily: 'Spaceland Ten Oblique, cursive',
-              fontSize: '28px',
-              lineHeight: '1.75rem',
-              textShadow: '0px 0px 7px #000000',
-              letterSpacing: '1px',
-              marginBottom: '-20px'
-            }}>
-                ООО «ГРАНИТ»
-              </span>
+              <img src="/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt="ООО «ГРАНИТ» логотип" className="h-12" />
             </Link>
-            <p className="text-muted-foreground mb-6">
-              Специализированная компания по производству буровзрывных работ в сложных климатических условиях
+            <p className="text-sm text-muted-foreground">
+              ООО «Гранит» - динамично развивающаяся компания, специализирующаяся на буровзрывных работах на Дальнем Востоке и в Сибири.
             </p>
-            <div className="flex space-x-4">
-              <a href="https://wa.me/79145418570" className="inline-block" aria-label="WhatsApp">
-                <Button variant="outline" size="sm" className="flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary">
-                  <MessageSquare size={16} />
-                  Напишите нам
-                </Button>
-              </a>
-            </div>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">Навигация</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-lg mb-4">{t('navigation.products')}</h4>
+            <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-foreground/80 hover:text-primary transition-colors">
-                  Главная
+                <Link to="/evv" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {t('products.evv.title')}
                 </Link>
               </li>
               <li>
-                <Link to="/products" className="text-foreground/80 hover:text-primary transition-colors">
-                  Продукты и услуги
-                </Link>
-              </li>
-              <li>
-                <Link to="/news" className="text-foreground/80 hover:text-primary transition-colors">
-                  Новости
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-foreground/80 hover:text-primary transition-colors">
-                  О компании
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors">
-                  Контакты
+                <Link to="/szm" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {t('products.szm.title')}
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">Разделы</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-lg mb-4">{t('navigation.about')}</h4>
+            <ul className="space-y-2">
               <li>
-                <Link to="/gallery" className="text-foreground/80 hover:text-primary transition-colors">
-                  Галерея
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {t('navigation.about')}
                 </Link>
               </li>
               <li>
-                <Link to="/licenses" className="text-foreground/80 hover:text-primary transition-colors">
+                <Link to="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Команда
+                </Link>
+              </li>
+              <li>
+                <Link to="/licenses" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Лицензии
                 </Link>
               </li>
-              <li>
-                <Link to="/team" className="text-foreground/80 hover:text-primary transition-colors">
-                  Сотрудники
-                </Link>
-              </li>
-              <li>
-                <Link to="/careers" className="text-foreground/80 hover:text-primary transition-colors">
-                  Вакансии
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-foreground/80 hover:text-primary transition-colors">
-                  ЧаВо
-                </Link>
-              </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-5">Контакты</h4>
-            <ul className="space-y-4">
+            <h4 className="font-semibold text-lg mb-4">{t('contact.title')}</h4>
+            <ul className="space-y-3">
               <li className="flex items-start">
-                <Phone size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
-                <a href="tel:+79145418570" className="text-foreground/80 hover:text-primary transition-colors">
+                <MapPin className="w-5 h-5 mr-3 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-muted-foreground">
+                  г. Хабаровск ул. Строительная 28
+                </span>
+              </li>
+              <li className="flex items-center">
+                <Phone className="w-5 h-5 mr-3 text-primary flex-shrink-0" />
+                <a href="tel:+79145418570" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   +7 914 541 85 70
                 </a>
               </li>
-              <li className="flex items-start">
-                <Mail size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
-                <a href="mailto:granit-svg@mail.ru" className="text-foreground/80 hover:text-primary transition-colors">
+              <li className="flex items-center">
+                <Mail className="w-5 h-5 mr-3 text-primary flex-shrink-0" />
+                <a href="mailto:granit-svg@mail.ru" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   granit-svg@mail.ru
                 </a>
-              </li>
-              <li className="flex items-start">
-                <MapPin size={20} className="mr-3 text-primary mt-0.5 flex-shrink-0" />
-                <a href="https://go.2gis.com/1YfhD" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-primary transition-colors">
-                 680001, г. Хабаровск ул. Строительная 28, офис 1
-                </a>
-              </li>
-              {/* Добавляем статус работы */}
-              <li className="flex items-start">
-                <div className="mr-3 mt-0.5 w-5 flex-shrink-0"></div>
-                <WorkingHours />
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-border/50">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {currentYear} ООО «ГРАНИТ». Все права защищены.
-            </p>
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-              <li>
-                <Link to="/privacy-policy" className="text-foreground/80 hover:text-primary transition-colors">
-                  Политика конфиденциальности
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms-of-use" className="text-foreground/80 hover:text-primary transition-colors">
-                  Условия использования
-                </Link>
-              </li>
-            </ul>
+        <div className="border-t border-border mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-sm text-muted-foreground mb-4 md:mb-0">
+            {t('common.copyright')}
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <Link to="/privacy-policy" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              Политика конфиденциальности
+            </Link>
+            <Link to="/terms-of-use" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              Условия использования
+            </Link>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
