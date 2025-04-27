@@ -1,9 +1,11 @@
+
 import React from 'react';
-import { Send } from 'lucide-react';
+import { Send, Drill, Explosion, Truck, ScanSearch, Factory, Grid } from 'lucide-react';
 import { useContactForm } from '@/hooks/useContactForm';
 import FormField from './FormField';
 import CaptchaField from './CaptchaField';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 const ContactForm: React.FC = () => {
   const {
     name,
@@ -51,13 +53,27 @@ const ContactForm: React.FC = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="Буровые работы">Буровые работы</SelectItem>
-                <SelectItem value="Взрывные работы">Взрывные работы</SelectItem>
-                <SelectItem value="Механический демонтаж">Механический демонтаж</SelectItem>
-                <SelectItem value="Маркшейдерские работы">Маркшейдерские работы</SelectItem>
-                <SelectItem value="Смесительно-зарядные машины">Смесительно-зарядные машины</SelectItem>
-                <SelectItem value="Производство и поставка эмульсионных ВВ">Производство и поставка эмульсионных ВВ</SelectItem>
-                <SelectItem value="Другое">Другое</SelectItem>
+                <SelectItem value="Буровые работы" className="flex items-center gap-2">
+                  <Drill className="w-4 h-4 mr-2" /> Буровые работы
+                </SelectItem>
+                <SelectItem value="Взрывные работы" className="flex items-center gap-2">
+                  <Explosion className="w-4 h-4 mr-2" /> Взрывные работы
+                </SelectItem>
+                <SelectItem value="Механический демонтаж" className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 mr-2" /> Механический демонтаж
+                </SelectItem>
+                <SelectItem value="Маркшейдерские работы" className="flex items-center gap-2">
+                  <ScanSearch className="w-4 h-4 mr-2" /> Маркшейдерские работы
+                </SelectItem>
+                <SelectItem value="Смесительно-зарядные машины" className="flex items-center gap-2">
+                  <Factory className="w-4 h-4 mr-2" /> Смесительно-зарядные машины
+                </SelectItem>
+                <SelectItem value="Производство и поставка эмульсионных ВВ" className="flex items-center gap-2">
+                  <Grid className="w-4 h-4 mr-2" /> Производство и поставка эмульсионных ВВ
+                </SelectItem>
+                <SelectItem value="Другое" className="flex items-center gap-2">
+                  <Send className="w-4 h-4 mr-2" /> Другое
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
