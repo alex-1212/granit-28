@@ -1,0 +1,38 @@
+
+User-agent: *
+Allow: /
+
+# Основные разделы
+Allow: /about
+Allow: /products
+Allow: /news
+Allow: /team
+Allow: /gallery
+Allow: /licenses
+Allow: /careers
+Allow: /faq
+Allow: /contact
+
+# Карта сайта
+Sitemap: https://granit-svg.ru/sitemap.xml
+
+# Запрещаем индексацию служебных разделов
+Disallow: /auth
+Disallow: /profile
+Disallow: /admin
+Disallow: /api/
+Disallow: /tmp/
+Disallow: /*?*
+
+# Социальные сети и боты
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yandexbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Mail.Ru
+Allow: /
