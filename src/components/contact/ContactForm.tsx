@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pickaxe, Bomb, Target, Settings, FileText, Factory, Send } from 'lucide-react';
+import { Pickaxe, Bomb, Target, Settings, FileText, Factory, Send, Loader, Boxes } from 'lucide-react';
 import { useContactForm } from '@/hooks/useContactForm';
 import FormField from './FormField';
 import CaptchaField from './CaptchaField';
@@ -79,12 +79,12 @@ const ContactForm: React.FC = () => {
                 </SelectItem>
                 <SelectItem value="Производство и поставка эмульсионных ВВ" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Target className="w-4 h-4 mr-2" /> Производство и поставка эмульсионных ВВ
+                    <Boxes className="w-4 h-4 mr-2" /> Производство и поставка эмульсионных ВВ
                   </div>
                 </SelectItem>
                 <SelectItem value="Другое" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Send className="w-4 h-4 mr-2" /> Другое
+                    <Loader className="w-4 h-4 mr-2" /> Другое
                   </div>
                 </SelectItem>
               </SelectGroup>
