@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Send, Drill, Truck, ScanSearch, Factory, Grid, Zap } from 'lucide-react';
+import { Pickaxe, Bomb, Target, Settings, FileText, Factory, Send } from 'lucide-react';
 import { useContactForm } from '@/hooks/useContactForm';
 import FormField from './FormField';
 import CaptchaField from './CaptchaField';
@@ -55,22 +54,22 @@ const ContactForm: React.FC = () => {
               <SelectGroup>
                 <SelectItem value="Буровые работы" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Drill className="w-4 h-4 mr-2" /> Буровые работы
+                    <Pickaxe className="w-4 h-4 mr-2" /> Буровые работы
                   </div>
                 </SelectItem>
                 <SelectItem value="Взрывные работы" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Zap className="w-4 h-4 mr-2" /> Взрывные работы
+                    <Bomb className="w-4 h-4 mr-2" /> Взрывные работы
                   </div>
                 </SelectItem>
                 <SelectItem value="Механический демонтаж" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Truck className="w-4 h-4 mr-2" /> Механический демонтаж
+                    <Settings className="w-4 h-4 mr-2" /> Механический демонтаж
                   </div>
                 </SelectItem>
                 <SelectItem value="Маркшейдерские работы" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <ScanSearch className="w-4 h-4 mr-2" /> Маркшейдерские работы
+                    <FileText className="w-4 h-4 mr-2" /> Маркшейдерские работы
                   </div>
                 </SelectItem>
                 <SelectItem value="Смесительно-зарядные машины" className="flex items-center justify-between">
@@ -80,7 +79,7 @@ const ContactForm: React.FC = () => {
                 </SelectItem>
                 <SelectItem value="Производство и поставка эмульсионных ВВ" className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Grid className="w-4 h-4 mr-2" /> Производство и поставка эмульсионных ВВ
+                    <Target className="w-4 h-4 mr-2" /> Производство и поставка эмульсионных ВВ
                   </div>
                 </SelectItem>
                 <SelectItem value="Другое" className="flex items-center justify-between">
