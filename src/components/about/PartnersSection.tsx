@@ -1,10 +1,5 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem
-} from '@/components/ui/carousel';
 
 const PartnersSection = () => {
   const partners = [{
@@ -48,7 +43,7 @@ const PartnersSection = () => {
       }
       
       // Плавная прокрутка
-      carousel.scrollLeft += 0.5;
+      carousel.scrollLeft += 1; // Увеличил скорость прокрутки
       
       // Если достигнут конец, переходим в начало
       if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
@@ -63,7 +58,7 @@ const PartnersSection = () => {
     // Активировать автопрокрутку после загрузки всех изображений
     setTimeout(() => {
       setAutoplayEnabled(true);
-    }, 1000);
+    }, 500); // Уменьшил время ожидания
     
     return () => {
       cancelAnimationFrame(animationId);
@@ -81,22 +76,23 @@ const PartnersSection = () => {
         </p>
       </div>
       
-      <div className="relative">
+      <div className="relative max-w-full overflow-hidden">
         {/* Затемнение слева */}
         <div className="absolute top-0 left-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
         
         <div 
-          className="flex overflow-hidden"
+          className="flex overflow-hidden w-full"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           ref={carouselRef}
+          style={{ scrollBehavior: 'smooth' }}
         >
-          <div className="flex items-center space-x-10 py-4 whitespace-nowrap">
+          <div className="flex items-center space-x-16 py-6 whitespace-nowrap w-max">
             {/* Дублируем логотипы для создания эффекта бесконечной прокрутки */}
-            {[...partners, ...partners].map((partner, index) => (
+            {[...partners, ...partners, ...partners].map((partner, index) => (
               <div 
                 key={index} 
-                className="flex items-center justify-center px-6"
+                className="flex items-center justify-center px-6 min-w-[200px]"
               >
                 <img 
                   src={partner.logo} 
