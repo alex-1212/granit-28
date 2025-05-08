@@ -4,7 +4,6 @@ import { useContactForm } from '@/hooks/useContactForm';
 import FormField from './FormField';
 import CaptchaField from './CaptchaField';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
 const ContactForm: React.FC = () => {
   const {
     name,
@@ -43,9 +42,7 @@ const ContactForm: React.FC = () => {
         <FormField id="email" label="Email (необязательно)" type="email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} placeholder="example@email.com" error={errors.email} />
         
         <div>
-          <label htmlFor="serviceType" className="block text-foreground font-medium mb-2">
-            Какой тип продукции наиболее соответствует вашим потребностям?*
-          </label>
+          <label htmlFor="serviceType" className="block text-foreground font-medium mb-2">Какой тип продукции/услуги соответствует вашим потребностям?</label>
           <Select value={serviceType} onValueChange={setServiceType}>
             <SelectTrigger className={`w-full px-4 py-3 rounded-lg border ${errors.serviceType ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 h-auto`}>
               <SelectValue placeholder="Выберите тип продукции" />
