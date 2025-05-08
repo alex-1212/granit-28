@@ -134,7 +134,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {foundingYear} - {currentYear} ООО «ГРАНИТ». Все права защищены.
+              © 2015 - {currentYear} ООО «ГРАНИТ». Все права защищены.
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
