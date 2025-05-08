@@ -6,7 +6,9 @@ import { Button } from '@/components/ui/button';
 import WorkingHours from '@/components/common/WorkingHours';
 
 export const Footer: React.FC = () => {
+  const foundingYear = 2015;
   const currentYear = new Date().getFullYear();
+  
   return <footer className="bg-secondary/50 dark:bg-card/50 pt-16 pb-8 border-t border-border py-[28px]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -132,7 +134,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {currentYear} ООО «ГРАНИТ». Все права защищены.
+              © {foundingYear} - {currentYear} ООО «ГРАНИТ». Все права защищены.
             </p>
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               <li>
