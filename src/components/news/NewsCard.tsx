@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -26,13 +27,17 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
     <Card className="h-full flex flex-col overflow-hidden news-card hover:shadow-lg transition-all duration-300 group">
       <div className="relative overflow-hidden aspect-video">
         <Link to={`/news/${newsItem.slug}`}>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 via-transparent to-blue-600/80 mix-blend-multiply z-10 
+          after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-blue-500/30 after:to-blue-700/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-700/30 z-10"></div>
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(59,130,246,0.1)_10px,rgba(59,130,246,0.1)_20px)] z-10"></div>
           <img 
             src={newsItem.image} 
             alt={newsItem.title} 
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
-          <div className="absolute top-2 md:top-3 right-2 md:right-3">
+          <div className="absolute top-2 md:top-3 right-2 md:right-3 z-20">
             <Badge 
               className="font-medium text-xs md:text-sm border border-primary/20 dark:border-white/20 bg-white/70 dark:bg-black/50 text-primary dark:text-white backdrop-blur-sm rounded-md px-2 md:px-3 py-0.5 md:py-1"
             >
