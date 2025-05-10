@@ -99,9 +99,7 @@ const ContactForm: React.FC = () => {
           Отправить сообщение
         </button>
         
-        <p className="text-sm text-muted-foreground text-center">
-          Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения
-        </p>
+        <p className="text-sm text-muted-foreground text-center">*Нажимая на кнопку, вы будете перенаправлены в WhatsApp для отправки сообщения</p>
       </form>
     </div>;
 };
