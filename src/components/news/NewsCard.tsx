@@ -27,7 +27,8 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
     <Card className="h-full flex flex-col overflow-hidden news-card hover:shadow-lg transition-all duration-300 group">
       <div className="relative overflow-hidden aspect-video">
         <Link to={`/news/${newsItem.slug}`}>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/20 mix-blend-multiply opacity-60 z-10"></div>
+          {/* Эффект градиента, который показывается только при наведении */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-60 z-10 transition-opacity duration-300"></div>
           <img 
             src={newsItem.image} 
             alt={newsItem.title} 
@@ -53,8 +54,8 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         <p className="text-sm md:text-base text-muted-foreground line-clamp-2">{newsItem.summary}</p>
       </CardContent>
       
-      <CardFooter className="px-3 md:px-5 pb-3 md:pb-5 pt-0 flex items-center justify-between">
-        <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground">
+      <CardFooter className="px-3 md:px-5 pb-3 md:pb-5 pt-0 flex flex-col gap-3">
+        <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground w-full">
           <div className="flex items-center">
             <Calendar size={isMobile ? 12 : 14} className="mr-1" />
             <span>{formatDate(newsItem.date)}</span>
@@ -67,7 +68,7 @@ const NewsCard = ({ newsItem, formatDate }: NewsCardProps) => {
         
         <Link 
           to={`/news/${newsItem.slug}`} 
-          className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-all duration-300 group"
+          className="text-xs md:text-sm font-medium text-primary dark:text-white flex items-center self-start border border-primary dark:border-white rounded-md px-2 md:px-3 py-0.5 md:py-1 hover:bg-primary/10 dark:hover:bg-white/10 transition-all duration-300 group"
         >
           {isMobile ? "Далее" : "Подробнее"} 
           <ArrowRight size={isMobile ? 12 : 14} className="ml-1 transition-transform duration-300 group-hover:translate-x-1" />

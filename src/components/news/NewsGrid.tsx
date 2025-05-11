@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { NewsItem } from '@/services/newsService';
 import NewsCard from './NewsCard';
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ScrollToTopButton } from '@/components/layout/ScrollToTopButton';
 import { useDelayedLoading } from '@/hooks/use-delayed-loading';
+import { SquareChevronRight, SquareChevronUp } from 'lucide-react';
 
 interface NewsGridProps {
   isLoading: boolean;
@@ -109,6 +111,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
             onClick={handleLoadMore}
           >
             Показать еще
+            <SquareChevronRight className="ml-2" />
           </Button>
         ) : (
           <Button 
@@ -120,6 +123,7 @@ const NewsGrid = ({ isLoading, news, filter, formatDate }: NewsGridProps) => {
           >
             <Link to="/news">
               К другим новостям
+              <SquareChevronUp className="ml-2" />
             </Link>
           </Button>
         )}
