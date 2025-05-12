@@ -85,7 +85,7 @@ export const Header = () => {
                   
                   <div className="mt-auto pt-4 border-t border-border mt-6">
                     <p className="text-sm text-muted-foreground px-4 py-2">
-                      © {new Date().getFullYear()} ООО «Гранит»
+                      © 2015 - {new Date().getFullYear()} ООО «Гранит»
                     </p>
                   </div>
                 </nav>
