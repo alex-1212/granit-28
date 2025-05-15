@@ -242,7 +242,7 @@
   /* Стили для заголовков в новостях с вертикальной синей полосой слева */
   .news-content h1, 
   .news-content h2 {
-    @apply relative pl-4 py-2 my-6 font-bold text-foreground border-l-4 border-primary bg-primary/5 dark:bg-primary/10 rounded-r-md text-base;
+    @apply relative pl-4 py-2 my-6 font-bold text-foreground border-l-4 border-primary bg-primary/5 dark:bg-primary/10 rounded-r-md text-[16px];
   }
   
   /* Стили для подзаголовков в новостях с маленьким синим индикатором */
@@ -250,7 +250,7 @@
   .news-content h4,
   .news-content h5,
   .news-content h6 {
-    @apply relative pl-3 py-1 my-4 font-semibold text-base;
+    @apply relative pl-3 py-1 my-4 font-semibold text-[16px];
   }
   
   .news-content h3::before,
@@ -260,7 +260,7 @@
     @apply content-[''] absolute left-0 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary;
   }
   
-  /* Стили для цитат с красивыми блоками с синей рамкой и светлым фоном */
+  /* Стили для цитат с красивыми блоками с сине�� рамкой и светлым фоном */
   .news-content blockquote {
     @apply my-6 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary rounded-r-md relative;
   }
@@ -323,7 +323,7 @@
   }
   
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    @apply font-display font-semibold text-foreground mt-8 mb-4 text-base;
+    @apply font-display font-semibold text-foreground mt-8 mb-4 text-[16px];
   }
   
   .prose h1 {

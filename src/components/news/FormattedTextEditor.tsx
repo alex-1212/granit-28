@@ -78,22 +78,22 @@ export function FormattedTextEditor({
 
   const formatCommands = [
     {
-      name: 'Заголовок 1',
+      name: 'Заголовок (16px)',
       icon: <Heading1 className="h-4 w-4" />,
-      action: () => insertFormatting('<h1>', '</h1>', 'Заголовок 1'),
-      tooltip: 'Заголовок с синей полосой слева'
+      action: () => insertFormatting('<h1>', '</h1>', 'Заголовок с синей полосой'),
+      tooltip: 'Заголовок с синей полосой слева (16px)'
     },
     {
-      name: 'Заголовок 2',
+      name: 'Подзаголовок с полосой (16px)',
       icon: <Heading2 className="h-4 w-4" />,
-      action: () => insertFormatting('<h2>', '</h2>', 'Заголовок 2'),
-      tooltip: 'Подзаголовок с синей полосой слева'
+      action: () => insertFormatting('<h2>', '</h2>', 'Подзаголовок с синей полосой'),
+      tooltip: 'Подзаголовок с синей полосой слева (16px)'
     },
     {
-      name: 'Подзаголовок',
+      name: 'Подзаголовок с маркером (16px)',
       icon: <Heading3 className="h-4 w-4" />,
-      action: () => insertFormatting('<h3>', '</h3>', 'Подзаголовок'),
-      tooltip: 'Подзаголовок с синим маркером'
+      action: () => insertFormatting('<h3>', '</h3>', 'Подзаголовок с маркером'),
+      tooltip: 'Подзаголовок с синим маркером (16px)'
     },
     {
       name: 'Жирный',
