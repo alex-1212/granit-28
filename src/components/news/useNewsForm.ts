@@ -35,6 +35,10 @@ export function useNewsForm(initialData: NewsItem | undefined, onSuccess: () => 
     }
   };
 
+  const handleContentChange = (content: string) => {
+    setFormData(prev => ({ ...prev, content }));
+  };
+
   const handleCategoryChange = (value: string) => {
     setFormData(prev => ({ ...prev, category: value }));
   };
@@ -98,6 +102,7 @@ export function useNewsForm(initialData: NewsItem | undefined, onSuccess: () => 
     isLoading,
     isEditing,
     handleChange,
+    handleContentChange,
     handleCategoryChange,
     handleDateChange,
     handleFileUpload,

@@ -1,14 +1,14 @@
 
-/**
- * Core news item type definition
- */
 export interface NewsItem {
   id: string;
   title: string;
+  slug: string;
   summary: string;
+  /**
+   * Содержимое новости в формате HTML
+   */
   content: string;
-  date: string;
   image: string;
   category: string;
-  slug: string;
+  date: string;
 }

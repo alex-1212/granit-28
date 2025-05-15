@@ -7,10 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { categoryOptions } from './NewsEditorSchema';
 import { FileUploader } from './FileUploader';
 import { DatePickerField } from './DatePickerField';
+import { FormattedTextEditor } from './FormattedTextEditor';
 
 interface NewsFormFieldsProps {
   formData: any;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleContentChange: (content: string) => void;
   handleCategoryChange: (value: string) => void;
   handleDateChange: (date: Date) => void;
   handleFileUpload: (url: string) => void;
@@ -19,6 +21,7 @@ interface NewsFormFieldsProps {
 export function NewsFormFields({ 
   formData, 
   handleChange, 
+  handleContentChange,
   handleCategoryChange, 
   handleDateChange,
   handleFileUpload
@@ -67,13 +70,14 @@ export function NewsFormFields({
       
       <div className="space-y-2">
         <Label htmlFor="content">Полное содержание</Label>
-        <Textarea
+        <FormattedTextEditor
           id="content"
           name="content"
           value={formData.content}
-          onChange={handleChange}
+          onChange={handleContentChange}
           required
-          rows={10}
+          rows={15}
+          placeholder="Используйте панель форматирования выше для добавления заголовков, списков, цитат и другого форматирования"
         />
       </div>
       

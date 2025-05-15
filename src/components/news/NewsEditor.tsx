@@ -19,6 +19,7 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
     isLoading,
     isEditing,
     handleChange,
+    handleContentChange,
     handleCategoryChange,
     handleDateChange,
     handleFileUpload,
@@ -38,6 +39,7 @@ export function NewsEditor({ isOpen, onClose, onSuccess, initialData }: NewsEdit
           <NewsFormFields 
             formData={formData} 
             handleChange={handleChange} 
+            handleContentChange={handleContentChange}
             handleCategoryChange={handleCategoryChange}
             handleDateChange={handleDateChange}
             handleFileUpload={handleFileUpload}
