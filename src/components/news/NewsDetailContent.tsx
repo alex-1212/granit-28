@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { NewsItem } from '@/services/newsService';
@@ -80,7 +81,7 @@ const NewsDetailContent = ({ news }: NewsDetailContentProps) => {
               </div>
               
               <div 
-                className={`prose max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}
+                className={`prose news-content max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}
                 dangerouslySetInnerHTML={{ __html: news.content }}
               />
               
