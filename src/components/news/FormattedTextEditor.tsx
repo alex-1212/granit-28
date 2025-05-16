@@ -117,7 +117,7 @@ export function FormattedTextEditor({
       name: 'Маркированный список',
       icon: <List className="h-4 w-4" />,
       action: () => insertFormatting('<ul>\n  <li>', '</li>\n  <li>Элемент списка</li>\n</ul>'),
-      tooltip: 'Список с маркерами'
+      tooltip: 'Список с маркерами (синие точки)'
     },
     {
       name: 'Нумерованный список',

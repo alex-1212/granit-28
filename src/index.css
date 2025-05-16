@@ -260,7 +260,7 @@
     @apply content-[''] absolute left-0 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary;
   }
   
-  /* Стили для цитат с красивыми блоками с сине�� рамкой и светлым фоном */
+  /* Стили для цитат с красивыми блоками с синей рамкой и светлым фоном */
   .news-content blockquote {
     @apply my-6 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary rounded-r-md relative;
   }
@@ -289,6 +289,11 @@
   
   .news-content ul li::before {
     @apply content-[''] absolute left-0 top-2.5 w-2 h-2 bg-primary rounded-full;
+  }
+  
+  /* Убираем стандартные маркеры списка */
+  .news-content ul li::marker {
+    @apply content-none;
   }
   
   /* Стили для ссылок в новостях */
