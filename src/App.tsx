@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { HelmetProvider } from 'react-helmet-async';
@@ -93,27 +93,18 @@ const AppRoutes = () => (
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        <HelmetProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <AuthProvider>
-              <div className="flex flex-col min-h-screen">
-                <Header />
-                <main className="flex-grow pt-20">
-                  <AppRoutes />
-                </main>
-                <Footer />
-              </div>
-            </AuthProvider>
-            <Toaster />
-            <Sonner />
-            <PageProgressBar />
-          </BrowserRouter>
-        </HelmetProvider>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow pt-20">
+          <AppRoutes />
+        </main>
+        <Footer />
+      </div>
+      <Toaster />
+      <Sonner />
+      <PageProgressBar />
+    </TooltipProvider>
   </QueryClientProvider>
 );
 
