@@ -1,0 +1,17 @@
+
+@layer components {
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-bold text-primary dark:text-primary-foreground mb-6;
+  }
+
+  .section-subtitle {
+    @apply font-display text-xl text-muted-foreground mb-12 max-w-3xl;
+  }
+  
+  .about-advantage-title {
+    font-family: "Spaceland Ten Oblique", cursive;
+    font-size: 40px;
+    line-height: 2.75rem;
+    text-shadow: rgb(0, 0, 0) 0px 0px 4px;
+  }
+}

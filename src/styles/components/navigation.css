@@ -1,0 +1,14 @@
+
+@layer components {
+  .nav-link {
+    @apply relative px-2 py-1.5 text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium;
+  }
+  
+  .nav-link-active {
+    @apply text-primary dark:text-primary-foreground font-semibold;
+  }
+  
+  .nav-link-active::after {
+    @apply content-[""] absolute -bottom-[2px] left-0 w-full h-[2px] bg-primary rounded-full;
+  }
+}
