@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, UserPlus } from 'lucide-react';
+import { Mail, Users, UserCheck } from 'lucide-react';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
@@ -61,11 +61,12 @@ const About = () => {
               <div className="mt-8 flex flex-wrap gap-4 animate-on-scroll">
                 <Link to="/team" className="btn-primary flex items-center gap-2">
                   Наша команда
-                  <UserPlus size={18} />
+                  <Users size={18} />
                 </Link>
                 
-                <Link to="/careers" className="btn-outline">
+                <Link to="/careers" className="btn-outline flex items-center gap-2">
                   Вакансии
+                  <UserCheck size={18} />
                 </Link>
               </div>
             </div>
@@ -113,7 +114,7 @@ const About = () => {
               </Link>
               
               <Link to="/careers" className="btn-outline">
-                <UserPlus size={18} />
+                <UserCheck size={18} />
                 Присоединиться к команде
               </Link>
             </div>

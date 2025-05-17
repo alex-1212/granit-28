@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, MapPin, Calendar, GraduationCap, DollarSign } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, GraduationCap, DollarSign, Send, ChevronRight, UserCheck } from 'lucide-react';
 import { vacanciesData } from '@/data/vacancies';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 
@@ -102,9 +102,10 @@ const Careers = () => {
                     
                     <button
                       onClick={() => toggleExpand(vacancy.id)}
-                      className="btn-primary text-sm py-1.5"
+                      className="btn-primary text-sm py-1.5 flex items-center gap-2"
                     >
                       {expandedId === vacancy.id ? 'Свернуть' : 'Подробнее'}
+                      <ChevronRight size={16} />
                     </button>
                   </div>
                   
@@ -186,9 +187,10 @@ const Careers = () => {
             
             <a 
               href="/contact" 
-              className="btn-primary inline-block animate-on-scroll"
+              className="btn-primary inline-flex items-center gap-2 animate-on-scroll"
             >
               Отправить резюме
+              <Send size={18} />
             </a>
           </div>
         </div>

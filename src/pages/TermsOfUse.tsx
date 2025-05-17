@@ -1,10 +1,12 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ClipboardPen } from 'lucide-react';
+
 const TermsOfUse = () => {
   return <>
       <Helmet>
@@ -85,7 +87,8 @@ const TermsOfUse = () => {
               <li>Форма обратной связи на сайте www.granit-svg.ru.</li>
             </ul>
             
-            <div className="text-muted-foreground text-sm mt-8 italic">
+            <div className="text-muted-foreground text-sm mt-8 italic flex items-center gap-2">
+              <ClipboardPen size={16} />
               Дата последнего обновления: 08.04.2025
             </div>
           </div>

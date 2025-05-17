@@ -1,7 +1,9 @@
+
 import React, { useEffect } from 'react';
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, Linkedin, GraduationCap, Users, UserCheck, Handshake } from 'lucide-react';
 import { teamData } from '@/data/team';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+
 const Team = () => {
   useAnimateOnScroll();
   useEffect(() => {
@@ -103,21 +105,30 @@ const Team = () => {
             
             <div className="space-y-6 animate-on-scroll">
               <div>
-                <h3 className="text-xl font-semibold mb-3">Программы повышения квалификации</h3>
+                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                  <GraduationCap className="text-primary" size={20} />
+                  Программы повышения квалификации
+                </h3>
                 <p className="text-muted-foreground">
                   Обучение работе с современным оборудованием, включая российские аналоги контроллеров «Овен» и уровнемеров «Титан». Регулярные тренинги по технике безопасности и новым технологиям бурения.
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-3">Наставничество</h3>
+                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                  <Users className="text-primary" size={20} />
+                  Наставничество
+                </h3>
                 <p className="text-muted-foreground">
                   Молодые сотрудники работают под руководством опытных наставников, что гарантирует преемственность знаний и снижает риски ошибок на объектах. Большое значение отводится обучению, стажировке и работе со студентами.
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-3">Сотрудничество с учебными заведениями</h3>
+                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                  <Handshake className="text-primary" size={20} />
+                  Сотрудничество с учебными заведениями
+                </h3>
                 <p className="text-muted-foreground">
                   Компания на постоянной основе сотрудничает с профильными высшими и средне-профессиональными учебными заведениями. В рамках этого сотрудничества студентам предоставляется возможность пройти производственную и преддипломную практику на производственных участках.
                 </p>
@@ -139,8 +150,9 @@ const Team = () => {
               Мы всегда в поиске талантливых и преданных своему делу специалистов. Ознакомьтесь с текущими вакансиями и станьте частью нашей команды профессионалов.
             </p>
             
-            <a href="/careers" className="btn-primary inline-block animate-on-scroll">
+            <a href="/careers" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
               Смотреть вакансии
+              <UserCheck size={18} />
             </a>
           </div>
         </div>
