@@ -12,6 +12,9 @@ Allow: /licenses
 Allow: /careers
 Allow: /faq
 Allow: /contact
+Allow: /evv
+Allow: /szm
+Allow: /factory
 
 # Карта сайта
 Sitemap: https://granit-svg.ru/sitemap.xml
@@ -36,3 +39,6 @@ Allow: /
 
 User-agent: Mail.Ru
 Allow: /
+
+# Инструкции для поисковых ботов
+Crawl-delay: 10

@@ -17,8 +17,49 @@ const About = () => {
   return (
     <div className="w-full">
       <Helmet>
-        <title>О компании — ООО «Гранит»</title>
-        <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы." />
+        <title>О компании — ООО «Гранит» | Буровзрывные работы на Дальнем Востоке</title>
+        <meta name="description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ и уникальный опыт работы в сложных условиях Дальнего Востока." />
+        <meta name="keywords" content="буровзрывные работы, Дальний Восток, ЭВВ, эмульсионные взрывчатые вещества, взрывчатые материалы, горнодобывающая промышленность, Якутия, Камчатка" />
+        <link rel="canonical" href="https://granit-svg.ru/about" />
+        <meta property="og:title" content="О компании — ООО «Гранит» | Буровзрывные работы" />
+        <meta property="og:description" content="ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://granit-svg.ru/about" />
+        <meta property="og:image" content="https://granit-svg.ru/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg" />
+        <meta property="og:site_name" content="ООО «Гранит»" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="О компании — ООО «Гранит» | Буровзрывные работы" />
+        <meta name="twitter:description" content="ООО «Гранит» — специализируется на буровзрывных работах с собственным производством ЭВВ на Дальнем Востоке." />
+        <meta name="twitter:image" content="https://granit-svg.ru/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ООО «Гранит»",
+            "url": "https://granit-svg.ru",
+            "logo": "https://granit-svg.ru/lovable-uploads/88fff896-717b-4e5d-89b9-497557d68736.png",
+            "description": "ООО «Гранит» — динамично развивающаяся компания с 10-летней историей в сфере буровзрывных работ. Собственное производство ЭВВ.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ул. Павловича, д. 13, офис 514",
+              "addressLocality": "Хабаровск",
+              "postalCode": "680000",
+              "addressCountry": "RU"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+7-4212-40-89-19",
+              "contactType": "customer service",
+              "areaServed": "RU",
+              "availableLanguage": "Russian"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/granit-svg",
+              "https://vk.com/granit-svg"
+            ]
+          }
+        `}</script>
       </Helmet>
       
       {/* Hero Section */}
