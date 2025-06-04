@@ -2,19 +2,27 @@
 User-agent: *
 Allow: /
 
-# Основные разделы
+# Основные разделы сайта
 Allow: /about
 Allow: /products
+Allow: /evv
+Allow: /szm  
+Allow: /factory
 Allow: /news
+Allow: /news/*
 Allow: /team
 Allow: /gallery
 Allow: /licenses
 Allow: /careers
 Allow: /faq
 Allow: /contact
-Allow: /evv
-Allow: /szm
-Allow: /factory
+Allow: /privacy-policy
+Allow: /terms-of-use
+
+# Статические ресурсы
+Allow: /images/
+Allow: /lovable-uploads/
+Allow: /img-granit/
 
 # Карта сайта
 Sitemap: https://granit-svg.ru/sitemap.xml
@@ -26,19 +34,35 @@ Disallow: /admin
 Disallow: /api/
 Disallow: /tmp/
 Disallow: /*?*
+Disallow: /*.json$
 
-# Социальные сети и боты
+# Специальные директивы для поисковых ботов
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Yandexbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
 User-agent: Mail.Ru
 Allow: /
+Crawl-delay: 2
 
-# Инструкции для поисковых ботов
+# Директивы для других ботов
+User-agent: *
 Crawl-delay: 10
+
+# Запрещаем агрессивных ботов
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot  
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

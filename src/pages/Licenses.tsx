@@ -5,6 +5,7 @@ import LicensesHero from '@/components/licenses/LicensesHero';
 import LicenseGrid from '@/components/licenses/LicenseGrid';
 import LicenseModal from '@/components/licenses/LicenseModal';
 import { licensesData, LicenseItem } from '@/components/licenses/licensesData';
+import { LicensesMeta } from '@/components/meta/LicensesMeta';
 
 const Licenses = () => {
   useAnimateOnScroll();
@@ -24,6 +25,7 @@ const Licenses = () => {
 
   return (
     <div>
+      <LicensesMeta />
       <LicensesHero />
       <LicenseGrid licenses={licensesData} onLicenseClick={openModal} />
       <LicenseModal license={selectedLicense} onClose={closeModal} />

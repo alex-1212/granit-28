@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { getAllNews, NewsItem } from '@/services/newsService';
 import { useAuth } from '@/context/AuthContext';
 import { NewsEditor } from '@/components/news/NewsEditor';
+import { NewsMeta } from '@/components/meta/NewsMeta';
 
 // Import refactored components
 import NewsHero from '@/components/news/NewsHero';
@@ -25,8 +25,6 @@ const News = () => {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   
   useEffect(() => {
-    // Обновление title перенесено в компонент NewsHero с Helmet
-    
     const fetchNews = async () => {
       try {
         setIsLoading(true);
@@ -78,12 +76,7 @@ const News = () => {
 
   return (
     <div className="w-full bg-background">
-      <Helmet>
-        <title>Новости компании — ООО «Гранит»</title>
-        <meta name="description" content="Актуальная информация о проектах, достижениях и технологиях компании ООО «Гранит». Последние новости в сфере буровзрывных работ на Дальнем Востоке." />
-        <link rel="canonical" href="https://granite-corp.ru/news" />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
+      <NewsMeta />
       
       {/* Create News Dialog - Only for authenticated users */}
       {user && (

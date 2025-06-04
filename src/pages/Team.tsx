@@ -1,162 +1,145 @@
 
 import React, { useEffect } from 'react';
-import { Mail, Linkedin, GraduationCap, Users, UserCheck, Handshake } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { teamData } from '@/data/team';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
+import { GraduationCap, Users, School, UserCheck } from 'lucide-react';
+import { TeamMeta } from '@/components/meta/TeamMeta';
 
 const Team = () => {
   useAnimateOnScroll();
+  
   useEffect(() => {
     document.title = 'Команда — ООО «Гранит»';
   }, []);
-  return <div>
+
+  return (
+    <div className="w-full">
+      <TeamMeta />
+      
       {/* Hero Section */}
-      <section className="pt-16 pb-20 relative overflow-hidden">
+      <section className="pt-16 pb-20 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.1] dark:opacity-[0.05] bg-repeat bg-[length:50px_50px]"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 animate-fade-in">
               Наша команда
             </h1>
             
-            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">
-              Человек — ключевой ресурс развития. В ООО «Гранит» мы уверены: профессионализм и преданность сотрудников — основа нашего успеха.
+            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">
+              Профессионалы с многолетним опытом в сфере буровзрывных работ, объединенные общей целью — развитием горнодобывающей промышленности Дальнего Востока.
             </p>
           </div>
         </div>
       </section>
       
-      {/* Team Introduction */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="text-lg animate-on-scroll">
-              Каждый член команды — эксперт в своей области, а их опыт и навыки позволяют компании удерживать лидерство в сложных условиях Дальнего Востока. Инвестиции в кадры, социальную защиту и корпоративные ценности — залог долгосрочного роста и стабильности.
-            </p>
-          </div>
-          
-          {/* Team Grid */}
-          {teamData.length > 0 && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              {teamData.map((member, index) => <div key={member.id} className="glass-card-solid rounded-xl overflow-hidden animate-on-scroll">
-                  <div className="aspect-square overflow-hidden">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
-                  </div>
+      {/* Team Members */}
+      <section className="py-20 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {teamData.map((member) => (
+              <div key={member.id} className="glass-card rounded-xl overflow-hidden animate-on-scroll">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-primary font-medium mb-3">{member.position}</p>
+                  <p className="text-muted-foreground mb-4">{member.bio}</p>
                   
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm mb-3">{member.position}</p>
-                    <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
-                    
-                    <div className="flex gap-2">
-                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`Написать ${member.name}`}>
-                        <Mail size={16} />
-                      </button>
-                      
-                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`LinkedIn ${member.name}`}>
-                        <Linkedin size={16} />
-                      </button>
+                  {member.experience && (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <span className="font-medium">Опыт:</span>
+                      <span>{member.experience} лет</span>
                     </div>
-                  </div>
-                </div>)}
-            </div>}
-        </div>
-      </section>
-      
-      {/* Values Section */}
-      <section className="py-16 bg-primary/5 dark:bg-primary/10">
-        <div className="container mx-auto px-4">
-          <h2 className="section-title text-center mb-12 animate-on-scroll">
-            Профессионализм и опыт
-          </h2>
+                  )}
+                  
+                  {member.education && (
+                    <div className="text-sm text-muted-foreground mb-3">
+                      <span className="font-medium">Образование:</span>
+                      <span className="block">{member.education}</span>
+                    </div>
+                  )}
+                  
+                  {member.achievements && member.achievements.length > 0 && (
+                    <div>
+                      <span className="font-medium text-sm">Достижения:</span>
+                      <ul className="list-disc list-inside text-sm text-muted-foreground mt-1">
+                        {member.achievements.map((achievement, index) => (
+                          <li key={index}>{achievement}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="glass-card p-6 animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-4">Стаж и экспертиза</h3>
+          {/* Company Culture */}
+          <div className="text-center mb-16 animate-on-scroll">
+            <h2 className="section-title mb-6">Корпоративная культура</h2>
+            <p className="text-lg mb-8 max-w-3xl mx-auto">
+              В ООО «Гранит» мы ценим профессионализм, инициативность и стремление к развитию. Наша команда — это основа успеха компании.
+            </p>
+          </div>
+          
+          {/* Development Programs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="glass-card p-6 text-center animate-on-scroll">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                <GraduationCap className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Программы повышения квалификации</h3>
               <p className="text-muted-foreground">
-                Ключевые специалисты имеют стаж от 10 лет в буровзрывных работах, геологоразведке и управлении техникой в экстремальных климатических условиях. Опыт работы в Забайкалье, Якутии, на Камчатке и других регионах с суровыми погодными условиями.
+                Регулярное обучение современным технологиям и методам в области буровзрывных работ.
               </p>
             </div>
             
-            <div className="glass-card p-6 animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-4">Работа с молодыми кадрами</h3>
+            <div className="glass-card p-6 text-center animate-on-scroll">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Наставничество</h3>
               <p className="text-muted-foreground">
-                Компания сотрудничает с вузами и колледжами, предоставляя студентам практику на производственных участках. Это позволяет будущим специалистам получить навыки в реальных проектах, таких как строительство БАМ-2 и газопровода «Сила Сибири-2».
+                Система наставничества для новых сотрудников и передача опыта между поколениями специалистов.
+              </p>
+            </div>
+            
+            <div className="glass-card p-6 text-center animate-on-scroll">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                <School className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Сотрудничество с учебными заведениями</h3>
+              <p className="text-muted-foreground">
+                Партнерство с ведущими техническими университетами для подготовки кадров.
               </p>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Training Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="section-title text-center mb-12 animate-on-scroll">
-            Обучение и развитие
-          </h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-on-scroll">
-              <div className="glass-card rounded-xl overflow-hidden">
-                <img alt="Обучение и развитие сотрудников" className="w-full aspect-video object-cover" src="/lovable-uploads/1fb05fcb-ee67-4418-a269-bf02668f2110.png" />
-              </div>
-            </div>
-            
-            <div className="space-y-6 animate-on-scroll">
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <GraduationCap className="text-primary" size={20} />
-                  Программы повышения квалификации
-                </h3>
-                <p className="text-muted-foreground">
-                  Обучение работе с современным оборудованием, включая российские аналоги контроллеров «Овен» и уровнемеров «Титан». Регулярные тренинги по технике безопасности и новым технологиям бурения.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <Users className="text-primary" size={20} />
-                  Наставничество
-                </h3>
-                <p className="text-muted-foreground">
-                  Молодые сотрудники работают под руководством опытных наставников, что гарантирует преемственность знаний и снижает риски ошибок на объектах. Большое значение отводится обучению, стажировке и работе со студентами.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <Handshake className="text-primary" size={20} />
-                  Сотрудничество с учебными заведениями
-                </h3>
-                <p className="text-muted-foreground">
-                  Компания на постоянной основе сотрудничает с профильными высшими и средне-профессиональными учебными заведениями. В рамках этого сотрудничества студентам предоставляется возможность пройти производственную и преддипломную практику на производственных участках.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* CTA */}
-      <section className="py-16 bg-primary/5 dark:bg-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="section-title mb-6 animate-on-scroll">
-              Присоединяйтесь к нашей команде
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
-              Мы всегда в поиске талантливых и преданных своему делу специалистов. Ознакомьтесь с текущими вакансиями и станьте частью нашей команды профессионалов.
+          {/* Call to Action */}
+          <div className="text-center animate-on-scroll">
+            <h2 className="section-title mb-6">Присоединяйтесь к нашей команде</h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto">
+              Мы всегда рады видеть в нашей команде амбициозных и талантливых специалистов, готовых внести свой вклад в развитие компании.
             </p>
             
-            <a href="/careers" className="btn-primary inline-flex items-center gap-2 animate-on-scroll">
-              Смотреть вакансии
+            <Link to="/careers" className="btn-primary flex items-center gap-2 mx-auto w-fit">
               <UserCheck size={18} />
-            </a>
+              Смотреть вакансии
+            </Link>
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default Team;

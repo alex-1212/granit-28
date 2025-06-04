@@ -9,17 +9,14 @@ import { ServicesSection } from '@/components/products/ServicesSection';
 import { AuxiliaryEquipmentSection } from '@/components/products/AuxiliaryEquipmentSection';
 import { InnovationSection } from '@/components/products/InnovationSection';
 import { CTASection } from '@/components/products/CTASection';
-import { Helmet } from 'react-helmet-async';
+import { ProductsMeta } from '@/components/meta/ProductsMeta';
 
 const Products = () => {
   useAnimateOnScroll();
   
   return (
     <div className="w-full">
-      <Helmet>
-        <title>Продукты и услуги — ООО «Гранит»</title>
-        <meta name="description" content="Комплексные решения для буровзрывных работ. Производство эмульсионных взрывчатых веществ (ЭВВ) и оказание услуг в сфере горнодобывающей промышленности." />
-      </Helmet>
+      <ProductsMeta />
       
       {/* Hero Section */}
       <ProductsHero />
