@@ -1,9 +1,7 @@
-
 import React, { useEffect } from 'react';
 import { Mail, Linkedin, GraduationCap, Users, UserCheck, Handshake } from 'lucide-react';
 import { teamData } from '@/data/team';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-
 const Team = () => {
   useAnimateOnScroll();
   useEffect(() => {
@@ -38,29 +36,7 @@ const Team = () => {
           </div>
           
           {/* Team Grid */}
-          {teamData.length > 0 && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              {teamData.map((member, index) => <div key={member.id} className="glass-card-solid rounded-xl overflow-hidden animate-on-scroll">
-                  <div className="aspect-square overflow-hidden">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm mb-3">{member.position}</p>
-                    <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
-                    
-                    <div className="flex gap-2">
-                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`Написать ${member.name}`}>
-                        <Mail size={16} />
-                      </button>
-                      
-                      <button className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" aria-label={`LinkedIn ${member.name}`}>
-                        <Linkedin size={16} />
-                      </button>
-                    </div>
-                  </div>
-                </div>)}
-            </div>}
+          {teamData.length > 0}
         </div>
       </section>
       
