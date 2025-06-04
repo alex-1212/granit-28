@@ -1,7 +1,6 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { teamData } from '@/data/team';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
 import { GraduationCap, Users, School, UserCheck } from 'lucide-react';
 import { TeamMeta } from '@/components/meta/TeamMeta';
@@ -35,55 +34,9 @@ const Team = () => {
         </div>
       </section>
       
-      {/* Team Members */}
+      {/* Company Culture */}
       <section className="py-20 w-full">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {teamData.map((member) => (
-              <div key={member.id} className="glass-card rounded-xl overflow-hidden animate-on-scroll">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3">{member.position}</p>
-                  <p className="text-muted-foreground mb-4">{member.bio}</p>
-                  
-                  {member.experience && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <span className="font-medium">Опыт:</span>
-                      <span>{member.experience} лет</span>
-                    </div>
-                  )}
-                  
-                  {member.education && (
-                    <div className="text-sm text-muted-foreground mb-3">
-                      <span className="font-medium">Образование:</span>
-                      <span className="block">{member.education}</span>
-                    </div>
-                  )}
-                  
-                  {member.achievements && member.achievements.length > 0 && (
-                    <div>
-                      <span className="font-medium text-sm">Достижения:</span>
-                      <ul className="list-disc list-inside text-sm text-muted-foreground mt-1">
-                        {member.achievements.map((achievement, index) => (
-                          <li key={index}>{achievement}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Company Culture */}
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="section-title mb-6">Корпоративная культура</h2>
             <p className="text-lg mb-8 max-w-3xl mx-auto">

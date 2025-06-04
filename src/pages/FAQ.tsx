@@ -18,12 +18,16 @@ const FAQ = () => {
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredFAQ(faqData);
+      // Сбрасываем состояние открытых элементов при очистке поиска
+      setOpenItems([]);
     } else {
       const filtered = faqData.filter(item =>
         item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.answer.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredFAQ(filtered);
+      // Сбрасываем состояние открытых элементов при новом поиске
+      setOpenItems([]);
     }
   }, [searchTerm]);
 
