@@ -3,12 +3,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-  <!-- Главная страница -->
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://granit-svg.ru/</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -16,184 +14,91 @@
       <image:caption>Логотип ООО «Гранит»</image:caption>
     </image:image>
   </url>
-  
-  <!-- О компании -->
   <url>
     <loc>https://granit-svg.ru/about</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://granit-svg.ru/lovable-uploads/d2ed5b10-bfa4-4f48-a866-add9b1779f45.jpg</image:loc>
       <image:caption>Производственный комплекс ООО «Гранит»</image:caption>
     </image:image>
   </url>
-  
-  <!-- Продукты и услуги -->
   <url>
     <loc>https://granit-svg.ru/products</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://granit-svg.ru/img-granit/products1.webp</image:loc>
-      <image:caption>Продукты и услуги ООО «Гранит»</image:caption>
-    </image:image>
   </url>
-  
-  <!-- Производство ЭВВ -->
   <url>
     <loc>https://granit-svg.ru/evv</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- СЗМ -->
   <url>
     <loc>https://granit-svg.ru/szm</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Завод -->
   <url>
     <loc>https://granit-svg.ru/factory</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Новости -->
   <url>
     <loc>https://granit-svg.ru/news</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Динамические новости -->
-  <url>
-    <loc>https://granit-svg.ru/news/zapusk-zavoda-v-zabaykale</loc>
-    <lastmod>2025-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <news:news>
-      <news:publication>
-        <news:name>ООО «Гранит»</news:name>
-        <news:language>ru</news:language>
-      </news:publication>
-      <news:publication_date>2025-03-15</news:publication_date>
-      <news:title>Запуск завода в Забайкалье</news:title>
-      <news:keywords>завод, Забайкалье, производство ЭВВ, буровзрывные работы</news:keywords>
-    </news:news>
-  </url>
-  
-  <url>
-    <loc>https://granit-svg.ru/news/otkrytie-linii-v-yakutii</loc>
-    <lastmod>2025-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <news:news>
-      <news:publication>
-        <news:name>ООО «Гранит»</news:name>
-        <news:language>ru</news:language>
-      </news:publication>
-      <news:publication_date>2025-02-28</news:publication_date>
-      <news:title>Открытие производственной линии в Якутии</news:title>
-      <news:keywords>Якутия, производственная линия, ЭВВ, расширение</news:keywords>
-    </news:news>
-  </url>
-  
-  <url>
-    <loc>https://granit-svg.ru/news/rossiyskoe-oborudovanie</loc>
-    <lastmod>2025-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <news:news>
-      <news:publication>
-        <news:name>ООО «Гранит»</news:name>
-        <news:language>ru</news:language>
-      </news:publication>
-      <news:publication_date>2025-02-10</news:publication_date>
-      <news:title>Переход на российское оборудование</news:title>
-      <news:keywords>российское оборудование, импортозамещение, технологии</news:keywords>
-    </news:news>
-  </url>
-  
-  <!-- Галерея -->
   <url>
     <loc>https://granit-svg.ru/gallery</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://granit-svg.ru/img-granit/galery-1.webp</image:loc>
-      <image:caption>Производственные мощности</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://granit-svg.ru/img-granit/galery-2.webp</image:loc>
-      <image:caption>Буровзрывные работы</image:caption>
-    </image:image>
   </url>
-  
-  <!-- Лицензии -->
   <url>
     <loc>https://granit-svg.ru/licenses</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Команда -->
   <url>
     <loc>https://granit-svg.ru/team</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://granit-svg.ru/img-granit/team.webp</image:loc>
-      <image:caption>Команда ООО «Гранит»</image:caption>
-    </image:image>
   </url>
-  
-  <!-- Карьера -->
   <url>
     <loc>https://granit-svg.ru/careers</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- FAQ -->
   <url>
     <loc>https://granit-svg.ru/faq</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Контакты -->
   <url>
     <loc>https://granit-svg.ru/contact</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Политика конфиденциальности -->
   <url>
     <loc>https://granit-svg.ru/privacy-policy</loc>
-    <lastmod>2025-04-08</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-  
-  <!-- Условия использования -->
   <url>
     <loc>https://granit-svg.ru/terms-of-use</loc>
-    <lastmod>2025-04-08</lastmod>
+    <lastmod>2025-05-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

@@ -1,48 +1,17 @@
-
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Search } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronDown, MessageCircle } from 'lucide-react';
+import { faqData } from '@/data/faq';
 import { useAnimateOnScroll } from '@/hooks/useImageLoader';
-import { faqData, FAQItem } from '@/data/faq';
-import { FAQMeta } from '@/components/meta/FAQMeta';
-
 const FAQ = () => {
   useAnimateOnScroll();
-  const [openItems, setOpenItems] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredFAQ, setFilteredFAQ] = useState<FAQItem[]>(faqData);
-
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   useEffect(() => {
     document.title = 'Часто задаваемые вопросы — ООО «Гранит»';
   }, []);
-
-  useEffect(() => {
-    if (searchTerm.trim() === '') {
-      setFilteredFAQ(faqData);
-      // При очистке поиска возвращаем к изначальному состоянию - все аккордеоны закрыты
-      setOpenItems([]);
-    } else {
-      const filtered = faqData.filter(item =>
-        item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.answer.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredFAQ(filtered);
-      // При поиске также сбрасываем открытые элементы
-      setOpenItems([]);
-    }
-  }, [searchTerm]);
-
-  const toggleItem = (id: string) => {
-    setOpenItems(prev =>
-      prev.includes(id)
-        ? prev.filter(item => item !== id)
-        : [...prev, id]
-    );
+  const toggleAccordion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
-
-  return (
-    <div className="w-full">
-      <FAQMeta />
-      
+  return <div className="w-full">
       {/* Hero Section */}
       <section className="pt-16 pb-20 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/5"></div>
@@ -54,72 +23,53 @@ const FAQ = () => {
               Часто задаваемые вопросы
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in animate-delay-100">
-              Ответы на самые популярные вопросы о наших услугах, технологиях и процедурах
-            </p>
-            
-            {/* Search */}
-            <div className="relative max-w-md mx-auto animate-fade-in animate-delay-200">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Поиск по вопросам..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-border bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+            <p className="text-xl text-muted-foreground animate-fade-in animate-delay-100">Ответы на наиболее распространенные вопросы о компании, услугах и технологиях</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* FAQ Accordion */}
+      <section className="py-16 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-4">
+              {faqData.map((item, index) => <div key={index} className="rounded-xl glass-card-solid animate-on-scroll">
+                  <button onClick={() => toggleAccordion(index)} className="w-full text-left px-6 py-5 flex justify-between items-center" aria-expanded={openIndex === index} aria-controls={`faq-content-${index}`}>
+                    <h3 className="text-lg font-semibold">{item.question}</h3>
+                    <ChevronDown className={`h-5 w-5 text-primary transition-transform duration-300 ${openIndex === index ? 'transform rotate-180' : ''}`} />
+                  </button>
+                  
+                  <div id={`faq-content-${index}`} className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="px-6 pb-5 text-muted-foreground">
+                      <div className="pt-1 border-t border-border"></div>
+                      <p className="pt-4">{item.answer}</p>
+                    </div>
+                  </div>
+                </div>)}
             </div>
           </div>
         </div>
       </section>
       
-      {/* FAQ Content */}
-      <section className="py-16 w-full">
-        <div className="container mx-auto px-4 max-w-4xl">
-          {filteredFAQ.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground">
-                По вашему запросу ничего не найдено. Попробуйте изменить поисковый запрос.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {filteredFAQ.map((item) => {
-                const isOpen = openItems.includes(item.id);
-                
-                return (
-                  <div
-                    key={item.id}
-                    className="glass-card rounded-lg overflow-hidden animate-on-scroll"
-                  >
-                    <button
-                      onClick={() => toggleItem(item.id)}
-                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-primary/5 transition-colors duration-200"
-                    >
-                      <span className="font-semibold text-lg pr-4">{item.question}</span>
-                      {isOpen ? (
-                        <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
-                      )}
-                    </button>
-                    
-                    {isOpen && (
-                      <div className="px-6 pb-6 border-t border-border/50">
-                        <div className="pt-4 text-muted-foreground leading-relaxed">
-                          {item.answer}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
+      {/* Additional Info */}
+      <section className="py-16 bg-primary/5 dark:bg-primary/10 w-full">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="section-title mb-6 animate-on-scroll">
+              Не нашли ответ на свой вопрос?
+            </h2>
+            
+            <p className="text-lg text-muted-foreground mb-8 animate-on-scroll">
+              Наши специалисты готовы ответить на любые вопросы о буровзрывных работах, технологиях и услугах компании
+            </p>
+            
+            <a href="/contact" className="btn-primary inline-flex shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+              <MessageCircle size={18} />
+              Связаться с нами
+            </a>
+          </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default FAQ;
