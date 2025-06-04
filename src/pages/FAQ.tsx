@@ -18,7 +18,7 @@ const FAQ = () => {
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredFAQ(faqData);
-      // Сбрасываем состояние открытых элементов при очистке поиска
+      // При очистке поиска возвращаем к изначальному состоянию - все аккордеоны закрыты
       setOpenItems([]);
     } else {
       const filtered = faqData.filter(item =>
@@ -26,7 +26,7 @@ const FAQ = () => {
         item.answer.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredFAQ(filtered);
-      // Сбрасываем состояние открытых элементов при новом поиске
+      // При поиске также сбрасываем открытые элементы
       setOpenItems([]);
     }
   }, [searchTerm]);
