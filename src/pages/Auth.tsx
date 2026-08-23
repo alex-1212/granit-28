@@ -1,0 +1,55 @@
+import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthForm } from '@/components/auth/AuthForm';
+import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/i18n/LanguageContext';
+import { Seo } from '@/components/common/Seo';
+const Auth = () => {
+  const {
+    user,
+    isLoading
+  } = useAuth();
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Если пользователь уже авторизован, перенаправляем на главную
+    if (!isLoading && user) {
+      navigate('/');
+    }
+  }, [user, isLoading, navigate]);
+
+  // Если загрузка или пользователь авторизован, не показываем форму
+  if (isLoading || user) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-80px)]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>;
+  }
+  return <div className="container mx-auto px-4 py-16 flex flex-col items-center">
+      <Seo
+        path="/auth"
+        title="Вход в личный кабинет"
+        description="Авторизация на сайте ООО «Гранит»."
+        noindex
+      />
+      <Link to="/" className="flex items-center gap-3 mb-8">
+        <img src="/uploads/88fff896-717b-4e5d-89b9-497557d68736.png" alt={t('auth.logo.alt')} className="h-16 object-none" />
+        <span className="text-white" style={{
+        fontFamily: 'Spaceland Ten Oblique, cursive',
+        fontSize: '28px',
+        lineHeight: '1.75rem',
+        textShadow: '0px 0px 7px #000000',
+        letterSpacing: '1px',
+        marginBottom: '-20px'
+      }}>
+          {t('auth.brand.name')}
+        </span>
+      </Link>
+      
+      <div className="max-w-md w-full mb-8 text-center">
+        <h1 className="text-3xl font-bold mb-4">{t('auth.welcome.title')}</h1>
+        <p className="text-muted-foreground">{t('auth.welcome.subtitle')}</p>
+      </div>
+      <AuthForm />
+    </div>;
+};
+export default Auth;

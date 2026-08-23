@@ -1,0 +1,10 @@
+# robots.txt для granit-svg.ru
+# Яндекс: https://webmaster.yandex.ru | Google: https://search.google.com/search-console
+
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /profile
+Disallow: /api/
+
+Sitemap: https://granit-svg.ru/sitemap.xml

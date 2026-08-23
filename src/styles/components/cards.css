@@ -1,0 +1,23 @@
+
+@layer components {
+  .glass-card {
+    @apply bg-white/50 dark:bg-white/5 backdrop-blur-md shadow-glass dark:shadow-glass-dark border border-white/20 dark:border-white/10;
+  }
+
+  .glass-card-accent {
+    @apply glass-card bg-accent/5 hover:bg-accent/10 dark:bg-accent/5 dark:hover:bg-accent/10 transition-all duration-300;
+  }
+
+  .glass-card-primary {
+    @apply glass-card bg-primary/5 hover:bg-primary/10 dark:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300;
+  }
+
+  .glass-card-solid {
+    @apply bg-white dark:bg-card shadow-subtle rounded-xl;
+  }
+  
+  .glass-card-solid:is(.dark *) {
+    background-color: hsl(var(--card));
+    box-shadow: 0 0px 1px rgb(154 160 185 / 5%), 0 15px 40px rgb(0 0 0 / 50%);
+  }
+}

@@ -1,0 +1,13 @@
+
+<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+  <rect width="30" height="30" fill="none" />
+  <circle cx="15" cy="15" r="1" fill="currentColor" />
+  <circle cx="0" cy="0" r="1" fill="currentColor" />
+  <circle cx="0" cy="15" r="1" fill="currentColor" />
+  <circle cx="0" cy="30" r="1" fill="currentColor" />
+  <circle cx="15" cy="0" r="1" fill="currentColor" />
+  <circle cx="15" cy="30" r="1" fill="currentColor" />
+  <circle cx="30" cy="0" r="1" fill="currentColor" />
+  <circle cx="30" cy="15" r="1" fill="currentColor" />
+  <circle cx="30" cy="30" r="1" fill="currentColor" />
+</svg>

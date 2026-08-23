@@ -1,0 +1,139 @@
+
+/* Стили для новостного контента */
+.news-content {
+  @apply text-foreground leading-relaxed;
+}
+
+/* Стили для параграфов в новостях */
+.news-content p {
+  @apply mb-6 leading-relaxed text-base;
+}
+
+/* Стили для заголовков в новостях с вертикальной синей полосой слева */
+.news-content h1, 
+.news-content h2 {
+  @apply relative pl-4 py-2 my-6 font-bold text-foreground border-l-4 border-primary bg-primary/5 dark:bg-primary/10 rounded-r-md text-[16px];
+}
+
+/* Стили для подзаголовков в новостях с маленьким синим индикатором */
+.news-content h3,
+.news-content h4,
+.news-content h5,
+.news-content h6 {
+  @apply relative pl-3 py-1 my-4 font-semibold text-[16px];
+}
+
+.news-content h3::before,
+.news-content h4::before,
+.news-content h5::before,
+.news-content h6::before {
+  @apply content-[''] absolute left-0 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary;
+}
+
+/* Стили для цитат с красивыми блоками с синей рамкой и светлым фоном */
+.news-content blockquote {
+  @apply my-6 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary rounded-r-md relative;
+}
+
+.news-content blockquote::before {
+  content: '"';
+  @apply absolute -top-1 left-2 text-5xl text-primary/30 font-serif;
+}
+
+.news-content blockquote p {
+  @apply italic mb-0 pl-4;
+}
+
+/* Стили для списков в новостях */
+.news-content ul {
+  @apply my-4 pl-5 space-y-2 list-none;
+}
+
+.news-content ol {
+  @apply my-4 pl-5 space-y-2 list-decimal;
+}
+
+.news-content ul li {
+  @apply relative pl-5;
+}
+
+.news-content ul li::before {
+  @apply content-[''] absolute left-0 top-2.5 w-2 h-2 bg-primary rounded-full;
+}
+
+/* Убираем стандартные маркеры списка */
+.news-content ul li::marker {
+  @apply content-none;
+}
+
+/* Стили для ссылок в новостях */
+.news-content a {
+  @apply text-primary hover:underline dark:text-primary dark:hover:text-primary-foreground transition-colors;
+}
+
+/* Стили для изображений в новостях */
+.news-content img {
+  @apply my-6 rounded-md shadow-md max-w-full mx-auto;
+}
+
+/* Стили для таблиц в новостях */
+.news-content table {
+  @apply w-full my-6 border-collapse;
+}
+
+.news-content th {
+  @apply bg-primary/10 dark:bg-primary/20 p-2 text-left font-semibold border border-primary/30 dark:border-primary/50;
+}
+
+.news-content td {
+  @apply p-2 border border-primary/20 dark:border-primary/30;
+}
+
+/* Стили для prose содержимого */
+.prose {
+  @apply text-foreground;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply font-display font-semibold text-foreground mt-8 mb-4 text-[16px];
+}
+
+.prose h1 {
+  @apply text-3xl;
+}
+
+.prose h2 {
+  @apply text-2xl;
+}
+
+.prose h3 {
+  @apply text-xl;
+}
+
+.prose a {
+  @apply text-primary hover:underline dark:text-white dark:hover:text-white/90;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-5;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary/30 pl-4 italic py-1;
+}

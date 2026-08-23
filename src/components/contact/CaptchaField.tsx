@@ -1,0 +1,39 @@
+import React from 'react';
+import { RefreshCw } from 'lucide-react';
+import { Captcha } from './CaptchaComponent';
+import { cn } from '@/lib/utils';
+import { useLanguage } from '@/i18n/LanguageContext';
+interface CaptchaFieldProps {
+  captcha: Captcha | null;
+  captchaInput: string;
+  setCaptchaInput: (value: string) => void;
+  generateCaptcha: () => void;
+  error?: string;
+}
+const CaptchaField: React.FC<CaptchaFieldProps> = ({
+  captcha,
+  captchaInput,
+  setCaptchaInput,
+  generateCaptcha,
+  error
+}) => {
+  const { t } = useLanguage();
+  return <div>
+      <label htmlFor="captcha" className="block text-foreground font-medium mb-2">
+        {t('contact.captcha.label')}*
+      </label>
+      <div className="flex items-center gap-4">
+        <div className="glass-card-solid rounded-lg p-3 flex items-center gap-2 flex-grow">
+          {captcha && <span className="text-lg font-medium">
+              {captcha.num1} {captcha.operation} {captcha.num2} = ?
+            </span>}
+        </div>
+        <button type="button" onClick={generateCaptcha} className="p-3 rounded-lg border border-border bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300" aria-label={t('contact.captcha.refresh')}>
+          <RefreshCw size={20} />
+        </button>
+        <input type="text" id="captcha" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} className={`w-20 px-4 py-3 rounded-lg border ${error ? 'border-destructive' : 'border-border'} bg-background focus:outline-none focus:ring-2 focus:ring-primary/30`} placeholder="?" />
+      </div>
+      {error && <p className="mt-1 text-sm my-[3px] font-normal text-red-600">{error}</p>}
+    </div>;
+};
+export default CaptchaField;
